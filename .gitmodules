@@ -1,0 +1,3 @@
+[submodule "ext/appui"]
+	path = ext/appui
+	url = git://github.com/jgallen23/AppUI.git

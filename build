@@ -1,0 +1,6 @@
+#!/bin/sh
+git submodule update --init --recursive
+pushd ext/appui
+sh build
+popd
+cp ext/appui/lib/app_lawnchair.* www/ui/scripts/
