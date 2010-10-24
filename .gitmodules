@@ -1,3 +1,6 @@
 [submodule "ext/appui"]
 	path = ext/appui
 	url = git://github.com/jgallen23/AppUI.git
+[submodule "ext/raphael.serialize"]
+	path = ext/raphael.serialize
+	url = http://github.com/jgallen23/raphael.serialize.git

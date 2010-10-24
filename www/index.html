@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<style>
+			#Scribble { width: 100%; height: 100%; background: #f0f0f0; }
+		</style>
+		<script src="ui/scripts/app_lawnchair.js"></script>
+		<script src="ui/scripts/raphael-min.js"></script>
+		<script src="ui/scripts/raphael.serialize.js"></script>
+		<script src="views/scribble.js"></script>
+		<script>
+			function preventBehavior(e) { 
+			  e.preventDefault(); 
+			};
+			document.addEventListener("touchmove", preventBehavior, false);
+		</script>
+
+
+	</head>
+	<body>
+		<div id="Scribble"></div>
+		<script>
+			var scribble = new Scribble('Scribble');
+			var obj = [{"type":"path","fill":"none","path":"M28,7L29,7L33,7L42,9L54,14L66,20L80,31L96,46L113,61L130,76L146,89L159,98L175,107L190,114L204,119L216,123L221,124L228,126L232,127","stroke":"#000","transform":""},{"type":"path","fill":"none","path":"M58,127L58,126L64,118L79,101L98,83L115,72L136,60L157,48L176,40L189,34L203,29L209,27L219,24L222,23L224,22L226,22","stroke":"#000","transform":""}];
+			scribble.load(obj);
+		</script>
+	</body>
+</html>
