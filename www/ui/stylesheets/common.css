@@ -1,0 +1,18 @@
+body { margin: 0; padding: 0; background: fff; }
+#Scribble { width: 100%; height: 100%; background: #f0f0f0; }
+
+#AddTask { display: none; position: absolute; background: #fff;}
+	#AddTask .buttons { float: right; } 
+	#AddScribble {  border: 1px solid #ccc; }
+	#AddTask input { display: none; } 
+
+.Header { height: 50px; background: #aaa; }
+	.Header .title { font-size: 20px; line-height: 50px; padding-left: 20px; } 
+	.Header ul { float: right; list-style: none; }
+		.Header ul li { float: left;  }
+
+
+.TaskList { list-style: none; margin: 0; padding: 0;}
+	.TaskList li { height: 100px; } 
+	.TaskList .star { float: left; height: 100px; margin-right: 20px; }
+	.TaskList .name { line-height: 50px; border: 1px solid green }

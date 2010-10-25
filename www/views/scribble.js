@@ -1,16 +1,23 @@
 var Scribble = View.extend({
-	init: function(element) {
+	init: function(element, width, height) {
 		var self = this;
 		this._super(element);
 		this._drawing = false;
 		this._points = [];
+		this._scale = null;
 		this.strokes = [];
+		this.readonly = false;
 		this.undos = [];
 		this.path = null;
-		this.paper = Raphael(this.element);
+		this.paper = Raphael(this.element, width, height);
+
 		this.element.addEventListener("mousedown", function(e) { self._drawStart(e); });
 		this.element.addEventListener("mousemove", function(e) { self._drawMove(e); });
 		this.element.addEventListener("mouseup", function(e) { self._drawEnd(e); });
+
+		this.element.addEventListener("touchstart", function(e) { self._drawStart(e); });
+		this.element.addEventListener("touchmove", function(e) { self._drawMove(e); });
+		this.element.addEventListener("touchend", function(e) { self._drawEnd(e); });
 
 	},
 	_getPoint: function(ev) {
@@ -25,6 +32,8 @@ var Scribble = View.extend({
 		return [x, y];
 	},
 	_drawStart: function(e) {
+		if (this.readonly)
+			return;
 		this._drawing = true;
 		var p = this._getPoint(e);
 		this._points.push(p);
@@ -68,7 +77,12 @@ var Scribble = View.extend({
 		}
 	},
 	drawStroke: function(stroke) {
-		this.paper[stroke.type]().attr(stroke)
+		console.log(stroke);
+		var t = this.paper[stroke.type]();
+		if (this._scale) {
+			stroke['scale'] = this._scale;
+		}
+		t.attr(stroke);
 	},
 	undo: function() {
 		this.undos.push(this.strokes[this.strokes.length-1]);
@@ -81,9 +95,25 @@ var Scribble = View.extend({
 		this.redraw();
 	},
 	load: function(json) {
-		this.paper.serialize.load_json(json);
+		var set = this.paper.serialize.load_json(json);
+		this.strokes = [];
+		for (var i = 0; i < set.length;i++) {
+			var node = set[i];
+			var c = node.attr();
+			c.type = node.type;
+			this.strokes.push(c);
+		};
 	},
 	toJSON: function() {
-		return this.paper.serialize.json();
+		if (this.strokes.length != 0)
+			return this.paper.serialize.json();
+		return null;
+	},
+	scale: function(scale) {
+		this._scale = scale;
+		this.redraw();	
+	},
+	clear: function() {
+		this.paper.clear();
 	}
 });

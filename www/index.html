@@ -1,29 +1,84 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title></title>
-		<style>
-			#Scribble { width: 100%; height: 100%; background: #f0f0f0; }
-		</style>
+		<title>ScribbleTask</title>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
+
+		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
 		<script src="ui/scripts/app_lawnchair.js"></script>
+		<script src="dataproviders/tasks.js"></script>
+		<script src="dataproviders/project.js"></script>
+		<script src="models/project.js"></script>
+		<script src="models/task.js"></script>
 		<script src="ui/scripts/raphael-min.js"></script>
 		<script src="ui/scripts/raphael.serialize.js"></script>
 		<script src="views/scribble.js"></script>
+		<script src="views/project.js"></script>
+		<script src="views/addTask.js"></script>
+		<script src="controllers/project.js"></script>
 		<script>
 			function preventBehavior(e) { 
 			  e.preventDefault(); 
 			};
 			document.addEventListener("touchmove", preventBehavior, false);
 		</script>
-
-
 	</head>
 	<body>
-		<div id="Scribble"></div>
+		<div id="AddTask">
+			<button data-click="star">s</button>
+			<input type="text"/>
+			<div id="AddScribble"></div>
+			<div class="buttons">
+				<button data-click="add">Add</button>
+				<button data-click="cancel">Cancel</button>
+			</div>
+		</div>
+		<div id="Project" class="Project"></div>
+		<script type="text/html" id="jstProjectView">
+			<div class="Header">
+				<ul>
+					<li data-click="clear">Clear</li>
+					<li>Star</li>
+					<li>Completed</li>
+					<li data-click="add">Add</li>
+				</ul>
+				<div class="title">{!= project.name !}</div>
+			</div>
+			<ul class="TaskList">
+				{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
+				<li data-index="{!= i !}">
+					{!= template("jstTaskView", { i: i, task: task }) !}
+				</li>
+				{! } !}	
+			</ul>
+		</script>
+		<script type="text/html" id="jstTaskView">
+			<button class="star" data-click="star">{!= (task.star)?"S":"s" !}</button>
+			{! if (task.name) { !}
+			<div class="name">
+				{!= task.name !}
+			</div>
+			{! } else { !}
+			<div id="Scribble_{!= i !}" class="scribble"></div>
+			{! } !}
+		</script>
 		<script>
-			var scribble = new Scribble('Scribble');
+			//var scribble = new Scribble('Scribble');
 			var obj = [{"type":"path","fill":"none","path":"M28,7L29,7L33,7L42,9L54,14L66,20L80,31L96,46L113,61L130,76L146,89L159,98L175,107L190,114L204,119L216,123L221,124L228,126L232,127","stroke":"#000","transform":""},{"type":"path","fill":"none","path":"M58,127L58,126L64,118L79,101L98,83L115,72L136,60L157,48L176,40L189,34L203,29L209,27L219,24L222,23L224,22L226,22","stroke":"#000","transform":""}];
-			scribble.load(obj);
+			//scribble.load(obj);
+			var project;
+			Project.data.find(function(projects) {
+				var project;
+				if (projects.length == 0) {
+					project = new Project({ name: 'test' });
+					project.save();
+				} else {
+					project = projects[0];
+				}
+				project = new ProjectController(project);
+			});
 		</script>
 	</body>
 </html>

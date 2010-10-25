@@ -4,4 +4,3 @@ pushd ext/appui
 sh build
 popd
 cp ext/appui/lib/app_lawnchair.* www/ui/scripts/
-cp ext/raphael.serialize/raphael.serialize.js www/ui/scripts/
