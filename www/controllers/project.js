@@ -1,4 +1,4 @@
-var ScribbleSize = [750, 200];
+var ScribbleSize = [750, 300];
 var ProjectController = Class.extend({
 	init: function(project) {
 		var self = this;
@@ -25,7 +25,7 @@ var ProjectController = Class.extend({
 	addTask: function(task) {
 		this.addTaskView.hide();
 		var self = this;
-		if (!task instanceof Task) {
+		if (!(task instanceof Task)) {
 			task.project = this.project.key;
 			task = new Task(task);
 		}

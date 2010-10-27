@@ -9,6 +9,7 @@ var AddTaskView = View.extend({
 	},
 	clear: function() {
 		this.input.value = "";
+		this.loadedScribble = null;
 		this.scribble.clear();
 	},
 	show: function(scribble) {

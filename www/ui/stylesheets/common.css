@@ -13,6 +13,6 @@ body { margin: 0; padding: 0; background: fff; }
 
 
 .TaskList { list-style: none; margin: 0; padding: 0;}
-	.TaskList li { height: 100px; } 
+	.TaskList li { } 
 	.TaskList .star { float: left; height: 100px; margin-right: 20px; }
 	.TaskList .name { line-height: 50px; border: 1px solid green }
