@@ -1,3 +1,4 @@
+var ScribbleSize = [750, 200];
 var ProjectController = Class.extend({
 	init: function(project) {
 		var self = this;
@@ -5,6 +6,7 @@ var ProjectController = Class.extend({
 		this.view = new ProjectView("Project");
 		this.view.bind("star", function(task) { self.starTask(task); });
 		this.view.bind("add", function() { self.showAddTask(); });
+		this.view.bind("task", function(task) { self.showAddTask(task); });
 		this.addTaskView = new AddTaskView("AddTask");
 		this.addTaskView.bind("add", function(task) { self.addTask(task); });
 		this.addTaskView.bind("cancel", function() { self.addTaskView.hide(); });
@@ -17,15 +19,17 @@ var ProjectController = Class.extend({
 			self.view.setTasks(self.project, tasks);
 		});
 	},
-	showAddTask: function() {
-		this.addTaskView.show();
+	showAddTask: function(task) {
+		this.addTaskView.show(task);
 	},
 	addTask: function(task) {
 		this.addTaskView.hide();
 		var self = this;
-		task.project = this.project.key;
-		var t = new Task(task);
-		t.save(function(task) {
+		if (!task instanceof Task) {
+			task.project = this.project.key;
+			task = new Task(task);
+		}
+		task.save(function(task) {
 			self.loadTasks();
 		});
 	},

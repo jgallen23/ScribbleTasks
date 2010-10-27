@@ -48,13 +48,15 @@ var Scribble = View.extend({
 		}
 	},
 	_drawEnd: function(e) {
-		var c = this.path.attr();
-		c['type'] = this.path.type;
-		this.strokes.push(c);
-		this.path = null;
-		this._points = [];
-		this._drawing = false;
-		this.undos = [];
+		if (this._drawing) {
+			var c = this.path.attr();
+			c['type'] = this.path.type;
+			this.strokes.push(c);
+			this.path = null;
+			this._points = [];
+			this._drawing = false;
+			this.undos = [];
+		}
 	},
 	_points_to_svg: function() {
 		if (this._points != null && this._points.length > 1) {
