@@ -96,23 +96,31 @@ asyncTest('complete task', function() {
 		ok(self.t.isComplete, "task set to completed");
 		ok(self.t._data.completedOn, "task set to completed");
 		start();
-		/*
 		self.t.save(function(task) {
-			Task.data.findBy(Task.data.filters.incomplete, function(tasks) {
-				equal(tasks.length, taskCount-1);
+			Task.data.find(function(tasks) {
+				equal(tasks.filter(Task.filters.incomplete).length, taskCount-1);
 				start();
 			});
 		});
-		*/
 	});
 
 });
 
-test('star task', function() {
+asyncTest('star task', function() {
+	var self = this;
 	this.t.star = true;
 	equal(this.t._data.star, true, "star added");
 	equal(this.t.star, true, "star added");
 	equal(new Task({ star: true }).star, true, "star added with init");
+	Task.data.find(function(tasks) {
+		var starCount = tasks.filter(Task.filters.starred).length;
+		self.t.save(function(t) {
+			Task.data.find(function(tasks) {
+				equal(tasks.filter(Task.filters.starred).length, starCount+1);
+				start();
+			});
+		});
+	});
 });
 /*
 test('task due', function() {

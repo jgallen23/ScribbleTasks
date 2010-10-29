@@ -18,6 +18,7 @@ var ProjectDataProvider = Class.extend({
 		}
 	},
 	save: function(project, cb) {
+		var self = this;
 		var data = project._data;
 		var update = true;
 		if (!data.key) {
@@ -27,6 +28,7 @@ var ProjectDataProvider = Class.extend({
 		this.provider.save(data, function(data) {
 			if (!update) {
 				project.key = data.key;
+				self.projects.push(project);
 			}
 			if (cb) cb(project);
 		});

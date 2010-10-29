@@ -1,21 +1,36 @@
 var TaskDataProvider = Class.extend({
 	init: function() {
 		this.tasks = null;
+		this.tasksMap = null;
 		this.provider = new Lawnchair('tasks');
 	},
 	find: function(cb) {
 		var self = this;
 		if (!this.tasks) {
 			this.provider.all(function(data) {
+				self.tasksMap = {};
 				self.tasks = [];
 				data.each(function(obj) {
-					self.tasks.push(new Task(obj));
+					var t = new Task(obj);
+					self.tasks.push(t);
+					self.tasksMap[t.key] = t;
 				});
 				cb(self.tasks);
 			});
 		} else {
 			cb(this.tasks);
 		}
+	},
+	findByIds: function(ids, cb) {
+		var self = this;
+		this.find(function(tasks) {
+			var tasks = [];
+			console.log(self.tasksMap);
+			for (var i = 0; i < ids.length; i++) {
+				tasks.push(self.tasksMap[ids[i]]);
+			}
+			cb(tasks);
+		});
 	},
 	findByProject: function(project, cb) {
 		this.find(function(tasks) {

@@ -29,3 +29,14 @@ var Task = Model.extend({
 	}
 });
 Task.data = new TaskDataProvider();
+Task.filters = {
+	incomplete: function(t) {
+		return !t.isComplete;
+	},
+	starred: function(t) {
+		return t.star;
+	},
+	complete: function(t) {
+		return t.isComplete;
+	}
+}

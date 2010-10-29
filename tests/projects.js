@@ -36,4 +36,17 @@ asyncTest('find all projects', function() {
 	});
 });
 
-
+asyncTest('get tasks', function() {
+	Project.data.find(function(projects) {
+		var project = projects[0];
+		project.getTasks(function(tasks) {
+			equal(tasks.length, project.taskIds.length);
+			console.log(tasks);
+			for (var i = 0; i < project.taskIds.length; i++) {
+				var id = project.taskIds[i];
+				equal(tasks[i].key, id);
+			}
+			start();
+		});
+	});
+});

@@ -3,12 +3,24 @@ var Project = Model.extend({
 		this._data = {
 			key: '',
 			name: '',
-			note: null
+			note: null,
+			createdOn: null,
+			modifiedOn: null,
+			taskIds: []
 		}
 		this._super(initial);
+		this.createdOn = new Date();
+	},
+	_propertySet: function(prop, value) {
+		this._data.modifiedOn = new Date();
 	},
 	save: function(cb) {
 		Project.data.save(this, cb);
+	},
+	getTasks: function(cb) {
+		Task.data.findByIds(this.taskIds, function(tasks) {
+			cb(tasks);	
+		});
 	}
 });
 Project.data = new ProjectDataProvider();
