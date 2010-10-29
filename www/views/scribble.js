@@ -79,7 +79,6 @@ var Scribble = View.extend({
 		}
 	},
 	drawStroke: function(stroke) {
-		console.log(stroke);
 		var t = this.paper[stroke.type]();
 		if (this._scale) {
 			stroke['scale'] = this._scale;

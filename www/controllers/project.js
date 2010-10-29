@@ -9,7 +9,7 @@ var ProjectController = Class.extend({
 		this.view.bind("task", function(task) { self.showAddTask(task); });
 		this.addTaskView = new AddTaskView("AddTask");
 		this.addTaskView.bind("add", function(task) { self.addTask(task); });
-		this.addTaskView.bind("cancel", function() { self.addTaskView.hide(); });
+		this.addTaskView.bind("cancel", function() { self.enableScrolling(); self.addTaskView.hide(); });
 
 		this.loadTasks();
 	},
@@ -20,9 +20,11 @@ var ProjectController = Class.extend({
 		});
 	},
 	showAddTask: function(task) {
+		this.disableScrolling();
 		this.addTaskView.show(task);
 	},
 	addTask: function(task) {
+		this.enableScrolling();
 		this.addTaskView.hide();
 		var self = this;
 		if (!(task instanceof Task)) {
@@ -39,5 +41,14 @@ var ProjectController = Class.extend({
 		task.save(function() {
 			self.loadTasks();
 		});
+	},
+	preventScrolling: function(e) {
+		e.preventDefault(); 
+	},
+	enableScrolling: function() {
+		document.removeEventListener("touchmove", this.preventScrolling, false);
+	},
+	disableScrolling: function() {
+		document.addEventListener("touchmove", this.preventScrolling, false);
 	}
 });
