@@ -21,6 +21,13 @@ var Project = Model.extend({
 		Task.data.findByIds(this.taskIds, function(tasks) {
 			cb(tasks);	
 		});
+	},
+	addTask: function(task, cb) {
+		var self = this;
+		task.save(function(task) {
+			self.taskIds = self.taskIds.insert(0, task.key);
+			if (cb) cb();
+		});
 	}
 });
 Project.data = new ProjectDataProvider();

@@ -50,3 +50,19 @@ asyncTest('get tasks', function() {
 		});
 	});
 });
+
+asyncTest("add task to project", function() {
+	Project.data.find(function(projects) {
+		var project = projects[0];
+		var task = new Task({ name: 'new task' });
+		project.getTasks(function(tasks) {
+			var taskCount = tasks.length;	
+			project.addTask(task, function() {
+				project.getTasks(function(tasks) {
+					equal(tasks.length, taskCount+1);
+					start();
+				});
+			});
+		});
+	});
+});
