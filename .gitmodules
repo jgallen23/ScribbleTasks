@@ -4,3 +4,6 @@
 [submodule "ext/raphael.serialize"]
 	path = ext/raphael.serialize
 	url = http://github.com/jgallen23/raphael.serialize.git
+[submodule "ext/qunit"]
+	path = ext/qunit
+	url = http://github.com/jquery/qunit.git
