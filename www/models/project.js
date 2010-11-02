@@ -24,9 +24,19 @@ var Project = Model.extend({
 	},
 	addTask: function(task, cb) {
 		var self = this;
+		var update = true;
+		if (!task.key) {
+			update = false;
+		}
 		task.save(function(task) {
-			self.taskIds = self.taskIds.insert(0, task.key);
-			if (cb) cb();
+			if (!update) {
+				self.taskIds = self.taskIds.insert(0, task.key);
+				self.save(function(project) {
+					if (cb) cb(project, task);
+				});
+			} else {
+				if (cb) cb(project, task);
+			}
 		});
 	}
 });

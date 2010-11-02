@@ -15,7 +15,8 @@ var ProjectController = Class.extend({
 	},
 	loadTasks: function() {
 		var self = this;
-		Task.data.findByProject(this.project.key, function(tasks) {
+		this.project.getTasks(function(tasks) {
+			console.log(tasks);
 			self.view.setTasks(self.project, tasks);
 		});
 	},
@@ -31,7 +32,7 @@ var ProjectController = Class.extend({
 			task.project = this.project.key;
 			task = new Task(task);
 		}
-		task.save(function(task) {
+		this.project.addTask(task, function(project, task) {
 			self.loadTasks();
 		});
 	},

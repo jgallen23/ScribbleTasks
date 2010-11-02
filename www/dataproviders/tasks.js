@@ -51,7 +51,8 @@ var TaskDataProvider = Class.extend({
 		this.provider.save(data, function(data) {
 			if (!update) {
 				task.key = data.key;
-				self.tasks = self.tasks.insert(0, task);
+				self.tasksMap[task.key] = task;
+				self.tasks.push(task); 
 			}
 			if (cb) cb(task);
 		});

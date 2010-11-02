@@ -76,7 +76,8 @@
 				} else {
 					project = projects[0];
 				}
-				project = new ProjectController(project);
+				window.project = project;
+				var projectController = new ProjectController(project);
 			});
 		</script>
 	</body>

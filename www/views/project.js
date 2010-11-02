@@ -35,6 +35,7 @@ var ProjectView = TemplateView.extend({
 			this.trigger("add", []);
 		},
 		'clear': function(e) {
+			Project.data.provider.nuke();
 			Task.data.provider.nuke();
 		},
 		'task': function(e) {

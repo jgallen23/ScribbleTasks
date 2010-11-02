@@ -57,7 +57,7 @@ asyncTest("add task to project", function() {
 		var task = new Task({ name: 'new task' });
 		project.getTasks(function(tasks) {
 			var taskCount = tasks.length;	
-			project.addTask(task, function() {
+			project.addTask(task, function(project, task) {
 				project.getTasks(function(tasks) {
 					equal(tasks.length, taskCount+1);
 					start();
