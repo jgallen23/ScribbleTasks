@@ -40,22 +40,24 @@
 		<div id="Project" class="Project"></div>
 		<script type="text/html" id="jstProjectView">
 			<div class="Header">
-				<ul>
-					<li data-click="clear">Clear</li>
-					<li data-click="filterAll">All</li>
-					<li data-click="filterStarred">Star</li>
-					<li data-click="filterComplete">Completed</li>
-					<li data-click="add">Add</li>
-				</ul>
 				<div class="title">{!= project.name !}</div>
+				<ul>
+					<li><button data-click="clear">Clear</button></li>
+					<li><button data-click="filterAll">All</button></li>
+					<li><button data-click="filterStarred">Star</button></li>
+					<li><button data-click="filterComplete">Completed</button></li>
+					<li><button data-click="add">Add</button></li>
+				</ul>
 			</div>
-			<ul class="TaskList">
-				{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
-				<li data-index="{!= i !}">
-					{!= template("jstTaskView", { i: i, task: task }) !}
-				</li>
-				{! } !}	
-			</ul>
+			<div class="TaskList Paper">
+				<ul class="Paper">
+					{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
+					<li data-index="{!= i !}">
+						{!= template("jstTaskView", { i: i, task: task }) !}
+					</li>
+					{! } !}	
+				</ul>
+			</div>
 		</script>
 		<script type="text/html" id="jstTaskView">
 			<input type="checkbox" data-click="complete" {!= (task.isComplete)?"checked":"" !}/>

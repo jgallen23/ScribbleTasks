@@ -37,7 +37,7 @@ Task.filters = {
 		return !t.isComplete;
 	},
 	starred: function(t) {
-		return t.star;
+		return (!t.isComplete && t.star);
 	},
 	complete: function(t) {
 		return t.isComplete;
