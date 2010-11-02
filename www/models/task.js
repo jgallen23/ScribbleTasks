@@ -24,6 +24,9 @@ var Task = Model.extend({
 	complete: function() {
 		this.completedOn = new Date();
 	},
+	unComplete: function() {
+		this.completedOn = null;
+	},
 	_isComplete: function() {
 		return (this.completedOn)?true:false;
 	}

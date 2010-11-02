@@ -41,6 +41,19 @@ var ProjectView = TemplateView.extend({
 		'task': function(e) {
 			var task = this.tasks[this.findParentWithAttribute(e.target, 'data-index').getAttribute("data-index")];
 			this.trigger("task", [task]);
+		},
+		'complete': function(e) {
+			var task = this.tasks[this.findParentWithAttribute(e.target, 'data-index').getAttribute("data-index")];
+			this.trigger("complete", [task]);
+		},
+		'filterAll': function(e) {
+			this.trigger("filterAll");
+		},
+		'filterComplete': function(e) {
+			this.trigger("filterComplete");
+		},
+		'filterStarred': function(e) {
+			this.trigger("filterStarred");
 		}
 	}
 });

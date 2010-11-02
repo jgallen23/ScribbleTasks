@@ -42,8 +42,9 @@
 			<div class="Header">
 				<ul>
 					<li data-click="clear">Clear</li>
-					<li>Star</li>
-					<li>Completed</li>
+					<li data-click="filterAll">All</li>
+					<li data-click="filterStarred">Star</li>
+					<li data-click="filterComplete">Completed</li>
 					<li data-click="add">Add</li>
 				</ul>
 				<div class="title">{!= project.name !}</div>
@@ -57,6 +58,7 @@
 			</ul>
 		</script>
 		<script type="text/html" id="jstTaskView">
+			<input type="checkbox" data-click="complete" {!= (task.isComplete)?"checked":"" !}/>
 			<button class="star" data-click="star">{!= (task.star)?"S":"s" !}</button>
 			{! if (task.name) { !}
 			<div class="name" data-click="task">
