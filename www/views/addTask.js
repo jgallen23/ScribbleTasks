@@ -17,7 +17,7 @@ var AddTaskView = View.extend({
 			this.loadedScribble = scribble;
 			this.scribble.load(scribble.svg);	
 		}
-		this._super();
+		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
 		star: function(e) {
