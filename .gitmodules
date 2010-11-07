@@ -7,3 +7,6 @@
 [submodule "ext/qunit"]
 	path = ext/qunit
 	url = http://github.com/jquery/qunit.git
+[submodule "ext/phonegap-iphone"]
+	path = ext/phonegap-iphone
+	url = git://github.com/jgallen23/phonegap-iphone.git

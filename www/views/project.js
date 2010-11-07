@@ -1,11 +1,13 @@
 var ProjectView = TemplateView.extend({
 	useLiveClickEvents: true,
 	setTasks: function(project, tasks) {
+		console.log("set tasks");
 		this.project = project;
 		this.tasks = tasks;
 		this._render();
 	},
 	_render: function() {
+		console.log("render project view");
 		var data = { project: this.project, tasks: this.tasks };
 		this._super("jstProjectView", data);
 		this.drawScribbles();

@@ -7,24 +7,39 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
 
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
+		<script src="phonegap.js"></script>
 		<script src="ui/scripts/app_lawnchair.js"></script>
 		<script src="dataproviders/tasks.js"></script>
 		<script src="dataproviders/project.js"></script>
 		<script src="models/project.js"></script>
 		<script src="models/task.js"></script>
 		<script src="ui/scripts/raphael.js"></script>
-		<script src="ui/scripts/raphael.serialize.js"></script>
+		<script src="ui/scripts/serialize.js"></script>
 		<script src="views/scribble.js"></script>
 		<script src="views/project.js"></script>
 		<script src="views/addTask.js"></script>
 		<script src="controllers/project.js"></script>
+		<script src="application.js"></script>
 		<script>
-			/*
-			function preventBehavior(e) { 
-			  e.preventDefault(); 
-			};
-			document.addEventListener("touchmove", preventBehavior, false);
-			*/
+			var app = new Application();
+			app.bind("ready", function() {
+				console.log("ready");
+				var project;
+				console.log("2");
+				Project.data.find(function(projects) {
+					console.log("3");
+					var project;
+					if (projects.length == 0) {
+						project = new Project({ name: 'test' });
+						project.save();
+					} else {
+						project = projects[0];
+					}
+					console.log("4");
+					window.project = project;
+					var projectController = new ProjectController(project);
+				});
+			});
 		</script>
 	</head>
 	<body>
@@ -73,20 +88,6 @@
 			{! } else { !}
 			<div id="Scribble_{!= i !}" data-click="task" class="scribble"></div>
 			{! } !}
-		</script>
-		<script>
-			var project;
-			Project.data.find(function(projects) {
-				var project;
-				if (projects.length == 0) {
-					project = new Project({ name: 'test' });
-					project.save();
-				} else {
-					project = projects[0];
-				}
-				window.project = project;
-				var projectController = new ProjectController(project);
-			});
 		</script>
 	</body>
 </html>

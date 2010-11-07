@@ -25,7 +25,6 @@ var TaskDataProvider = Class.extend({
 		var self = this;
 		this.find(function(tasks) {
 			var tasks = [];
-			console.log(self.tasksMap);
 			for (var i = 0; i < ids.length; i++) {
 				tasks.push(self.tasksMap[ids[i]]);
 			}

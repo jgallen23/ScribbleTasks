@@ -4,7 +4,7 @@ var AddTaskView = View.extend({
 		this._super(element);
 		this.star = false;
 		this.input = this.find("input");
-		this.loadedScribble = null;
+		this.loadedScribble = false;
 		this.scribble = new Scribble('AddScribble', ScribbleSize[0], ScribbleSize[1]);
 	},
 	clear: function() {
@@ -36,6 +36,7 @@ var AddTaskView = View.extend({
 						star: this.star,
 						svg: this.scribble.toJSON()
 					}
+					console.log(task);
 					this.trigger("add", [task]);
 				}
 				this.clear();

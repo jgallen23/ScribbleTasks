@@ -10,6 +10,7 @@ var Scribble = View.extend({
 		this.undos = [];
 		this.path = null;
 		this.paper = Raphael(this.element, width, height);
+		this.paper.serialize.init();
 
 		this.element.addEventListener("mousedown", function(e) { self._drawStart(e); });
 		this.element.addEventListener("mousemove", function(e) { self._drawMove(e); });
@@ -96,7 +97,7 @@ var Scribble = View.extend({
 		this.redraw();
 	},
 	load: function(json) {
-		var set = this.paper.serialize.load_json(json);
+		var set = this.paper.serialize.thaw(json);
 		this.strokes = [];
 		for (var i = 0; i < set.length;i++) {
 			var node = set[i];
@@ -106,15 +107,15 @@ var Scribble = View.extend({
 		};
 	},
 	toJSON: function() {
-		if (this.strokes.length != 0)
-			return this.paper.serialize.json();
-		return null;
+		var json = this.paper.serialize.freeze();
+		return json;
 	},
 	scale: function(scale) {
 		this._scale = scale;
 		this.redraw();	
 	},
 	clear: function() {
+		this.strokes = [];
 		this.paper.clear();
 	}
 });

@@ -21,7 +21,7 @@ var ProjectController = Class.extend({
 	loadTasks: function() {
 		var self = this;
 		this.project.getTasks(function(tasks) {
-			console.log(tasks);
+			console.log("tasks");
 			tasks = tasks.filter(Task.filters[self.filter]);
 			self.view.setTasks(self.project, tasks);
 		});
@@ -31,6 +31,7 @@ var ProjectController = Class.extend({
 		this.addTaskView.show(task);
 	},
 	addTask: function(task) {
+		console.log("add task");
 		this.enableScrolling();
 		this.addTaskView.hide();
 		var self = this;
