@@ -2,7 +2,7 @@ var TaskDataProvider = Class.extend({
 	init: function() {
 		this.tasks = null;
 		this.tasksMap = null;
-		this.provider = new Lawnchair('tasks');
+		this.provider = new Lawnchair({ adaptor: 'webkit', table: 'tasks'});
 	},
 	find: function(cb) {
 		var self = this;

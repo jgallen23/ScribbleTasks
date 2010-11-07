@@ -16,8 +16,7 @@
 		<script src="ui/scripts/raphael.js"></script>
 		<script src="ui/scripts/serialize.js"></script>
 		<script src="views/scribble.js"></script>
-		<script src="views/project.js"></script>
-		<script src="views/addTask.js"></script>
+		<script src="controllers/addTask.js"></script>
 		<script src="controllers/project.js"></script>
 		<script src="application.js"></script>
 		<script>
@@ -37,7 +36,7 @@
 					}
 					console.log("4");
 					window.project = project;
-					var projectController = new ProjectController(project);
+					var projectController = new ProjectController("Project", project);
 				});
 			});
 		</script>
@@ -46,12 +45,12 @@
 		<div id="AddTask">
 			<div class="wrapper">
 				<div class="Paper">
-					<button data-click="star">s</button>
+					<button data-onClick="star">s</button>
 					<input type="text"/>
 					<div id="AddScribble"></div>
 					<div class="buttons">
-						<button data-click="add">Add</button>
-						<button data-click="cancel">Cancel</button>
+						<button data-onClick="add">Add</button>
+						<button data-onClick="cancel">Cancel</button>
 					</div>
 				</div>
 			</div>
@@ -61,11 +60,11 @@
 			<div class="Header">
 				<div class="title">{!= project.name !}</div>
 				<ul>
-					<li><button data-click="clear">Clear</button></li>
-					<li><button data-click="filterAll">All</button></li>
-					<li><button data-click="filterStarred">Star</button></li>
-					<li><button data-click="filterComplete">Completed</button></li>
-					<li><button data-click="add">Add</button></li>
+					<li><button data-onClick="clear">Clear</button></li>
+					<li><button data-onClick="filterAll">All</button></li>
+					<li><button data-onClick="filterStarred">Star</button></li>
+					<li><button data-onClick="filterComplete">Completed</button></li>
+					<li><button data-onClick="add">Add</button></li>
 				</ul>
 			</div>
 			<div class="TaskList Paper">
@@ -79,14 +78,14 @@
 			</div>
 		</script>
 		<script type="text/html" id="jstTaskView">
-			<input type="checkbox" data-click="complete" {!= (task.isComplete)?"checked":"" !}/>
-			<button class="star" data-click="star">{!= (task.star)?"S":"s" !}</button>
+			<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
+			<button class="star" data-onClick="star">{!= (task.star)?"S":"s" !}</button>
 			{! if (task.name) { !}
-			<div class="name" data-click="task">
+			<div class="name" data-onClick="task">
 				{!= task.name !}
 			</div>
 			{! } else { !}
-			<div id="Scribble_{!= i !}" data-click="task" class="scribble"></div>
+			<div id="Scribble_{!= i !}" data-onClick="task" class="scribble"></div>
 			{! } !}
 		</script>
 	</body>

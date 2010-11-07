@@ -1,7 +1,7 @@
 var ProjectDataProvider = Class.extend({
 	init: function() {
 		this.projects = null;
-		this.provider = new Lawnchair('projects');
+		this.provider = new Lawnchair({ adaptor: 'webkit', table: 'projects'});
 	},
 	find: function(cb) {
 		var self = this;

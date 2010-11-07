@@ -1,11 +1,10 @@
-var AddTaskView = View.extend({
-	useLiveClickEvents: true,
-	init: function(element) {
-		this._super(element);
+var AddTaskController = Controller.extend({
+	init: function(elementId) {
+		this._super(elementId);
 		this.star = false;
-		this.input = this.find("input");
+		this.input = this.view.find("input");
 		this.loadedScribble = false;
-		this.scribble = new Scribble('AddScribble', ScribbleSize[0], ScribbleSize[1]);
+		this.scribble = new Scribble(document.getElementById('AddScribble'), ScribbleSize[0], ScribbleSize[1]);
 	},
 	clear: function() {
 		this.input.value = "";
