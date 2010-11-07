@@ -1569,10 +1569,6 @@ var View = EventManager.extend({
 		} while (element)
 	}
 });
-var TemplateView = View.extend({
-	_render: function(templateId, data) {
-	}
-});
 var Model = Class.extend({
 	init: function(initial) {
 		if (!this._data) this._data = {};

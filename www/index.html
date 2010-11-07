@@ -22,11 +22,8 @@
 		<script>
 			var app = new Application();
 			app.bind("ready", function() {
-				console.log("ready");
 				var project;
-				console.log("2");
 				Project.data.find(function(projects) {
-					console.log("3");
 					var project;
 					if (projects.length == 0) {
 						project = new Project({ name: 'test' });
@@ -34,7 +31,6 @@
 					} else {
 						project = projects[0];
 					}
-					console.log("4");
 					window.project = project;
 					var projectController = new ProjectController("Project", project);
 				});

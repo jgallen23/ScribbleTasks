@@ -56,7 +56,6 @@ var ProjectController = Controller.extend({
 		});
 	},
 	_render: function() {
-		console.log("render project view");
 		var data = { project: this.project, tasks: this.tasks };
 		this.view.render("jstProjectView", data);
 		this.drawScribbles();
@@ -81,7 +80,6 @@ var ProjectController = Controller.extend({
 		this.addTaskController.show(task);
 	},
 	addTask: function(task) {
-		console.log("add task");
 		this.enableScrolling();
 		this.addTaskController.hide();
 		var self = this;
