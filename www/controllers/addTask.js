@@ -35,7 +35,6 @@ var AddTaskController = Controller.extend({
 						star: this.star,
 						svg: this.scribble.toJSON()
 					}
-					console.log(task);
 					this.trigger("add", [task]);
 				}
 				this.clear();

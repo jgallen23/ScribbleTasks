@@ -2,7 +2,7 @@ ul { margin: 0; padding: 0; }
 body { font-size: 14px; margin: 0; padding: 0; background: #777; height: 100%; }
 #Scribble { width: 100%; height: 100%; background: #f0f0f0; }
 
-#AddTask { position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal;  }
+#AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal;  }
 	#AddTask .wrapper { display: -webkit-box; -webkit-box-pack: center; -webkit-box-orient: vertical; }
 	#AddTask .Paper { padding: 10px; } 
 	#AddTask .buttons { float: right; } 
@@ -36,6 +36,7 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 	.TaskList .reorder { background: url(../images/icons/reorder.png) no-repeat; margin-right: 20px;  }
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; }
+    .TaskList .sorting { background: #ccc; }
 
 #Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; }
 	#Project .TaskList { -webkit-box-flex: 1; height: 100% }

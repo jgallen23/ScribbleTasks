@@ -3,4 +3,5 @@ git submodule update --init --recursive
 pushd ext/appui
 sh build
 popd
-cp ext/appui/lib/app_lawnchair.* www/ui/scripts/
+cp ext/appui/lib/app.lawnchair.js www/ui/scripts/
+cp ext/appui/lib/app.sortable.js www/ui/scripts/

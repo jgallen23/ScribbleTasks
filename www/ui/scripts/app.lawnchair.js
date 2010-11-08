@@ -15,6 +15,18 @@ var extendObjStrict = function(target, obj1, obj2) {
 }
 
 
+var elem = {
+	classRE: function(name) { return new RegExp("(^|\\s)"+name+"(\\s|$)") },
+	hasClass: function(el, name){
+		return this.classRE(name).test(el.className);
+	},
+	addClass: function(el, name){
+		return !this.hasClass(el, name) && (el.className += (el.className ? ' ' : '') + name);
+	},
+	removeClass: function(el, name){
+		return el.className = el.className.replace(this.classRE(name), '');
+	}
+}
 // Array.indexOf( value, begin, strict ) - Return index of the first element that matches value
 Array.prototype.indexOf = function( v, b, s ) {
 	for( var i = +b || 0, l = this.length; i < l; i++ ) {
@@ -1395,7 +1407,7 @@ var Browser = function() {
 }
 browser = new Browser();
 if (browser.isMobile) {
-	INPUT_EVENT = "touchstart";
+    INPUT_EVENT = "click";
 	INPUT_START_EVENT = "touchstart";
 	INPUT_MOVE_EVENT = "touchmove";
 	INPUT_END_EVENT = "touchend";
@@ -1478,8 +1490,8 @@ var Controller = EventManager.extend({
 		this.element = document.getElementById(elementId);
 		if (this.useLiveClickEvents) {
             var self = this;
-            this.element.addEventListener("click", function(e) {
-                if (self.onClick[e.target.getAttribute("data-onClick")]) {
+            this.element.addEventListener(INPUT_EVENT, function(e) {
+                if (e.target.getAttribute('data-onClick') && self.onClick[e.target.getAttribute("data-onClick")]) {
                     self.onClick[e.target.getAttribute("data-onClick")].call(self, e);
                 }
             });

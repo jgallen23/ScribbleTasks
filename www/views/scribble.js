@@ -4,6 +4,8 @@ var Scribble = View.extend({
 		this._super(element);
 		this._drawing = false;
 		this._points = [];
+        this._lastPoint = 0;
+        this._currentPath = '';
 		this._scale = null;
 		this.strokes = [];
 		this.readonly = false;
@@ -43,8 +45,8 @@ var Scribble = View.extend({
 	_drawMove: function(e) {
 		if (this._drawing == true) {
 			var p = this._getPoint(e);
+            this._lastPoint = this._points.length;
 			this._points.push(p);
-
 			this.path.attr({ path: this._points_to_svg() });
 		}
 	},
@@ -56,18 +58,28 @@ var Scribble = View.extend({
 			this.path = null;
 			this._points = [];
 			this._drawing = false;
+            this._lastPoint = 0;
+            this._currentPath = '';
 			this.undos = [];
 		}
 	},
 	_points_to_svg: function() {
 		if (this._points != null && this._points.length > 1) {
-			var p = this._points[0];
-			var path = "M" + p[0] + "," + p[1];
-			for (var i = 1, n = this._points.length; i < n; i++) {
-				p = this._points[i];
-				path += "L" + p[0] + "," + p[1]; 
-			} 
-			return path;
+            if (this._currentPath) {
+                for (var i = this._lastPoint, n = this._points.length; i < this._points.length; i++) {
+                    var p = this._points[i];
+                    this._currentPath += "L" + p[0] + "," + p[1]; 
+                }
+                return this._currentPath;
+            } else {
+                var p = this._points[0];
+                this._currentPath = "M" + p[0] + "," + p[1];
+                for (var i = 1, n = this._points.length; i < n; i++) {
+                    p = this._points[i];
+                    this._currentPath += "L" + p[0] + "," + p[1]; 
+                } 
+                return this._currentPath;
+            }
 		} else {
 			return "";
 		}

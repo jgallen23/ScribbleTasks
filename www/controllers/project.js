@@ -27,6 +27,7 @@ var ProjectController = Controller.extend({
 		'clear': function(e) {
 			Project.data.provider.nuke();
 			Task.data.provider.nuke();
+            this.loadTasks();
 		},
 		'task': function(e) {
 			var task = this.tasks[this.view.findParentWithAttribute(e.target, 'data-index').getAttribute("data-index")];
@@ -62,8 +63,21 @@ var ProjectController = Controller.extend({
 		var data = { project: this.project, tasks: this.tasks };
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		this.drawScribbles();
+        var sortable = new SortableController('Tasks');
+        var self = this;
+        sortable.bind("sorted", function() {
+            self.tasksSorted();
+        });
 		window.scroll(0,0);
 	},
+    tasksSorted: function() {
+        var items = this.view.findAll("#Tasks li");
+        this.project.taskIds = [];
+        for (var i = 0; i < items.length; i++) {
+            this.project.taskIds.push(items[i].getAttribute("data-key"));
+        }
+        this.project.save();
+    },
 	drawScribbles: function() {
 		var self = this;
 		for (var i = 0; i < this.tasks.length; i++) {

@@ -48,6 +48,7 @@ Raphael.fn.serialize = {
 	this.clear = (function(orig) {
 		return function() {
 			orig.apply(paper, arguments);
+            delete all;
 			all = [];
 		}
 	})(this.clear);

@@ -8,22 +8,22 @@
 
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
 		<script src="phonegap.js"></script>
-		<script src="ui/scripts/app_lawnchair.js"></script>
+        <script src="ui/scripts/app.lawnchair.js"></script>
+		<script src="ui/scripts/app.sortable.js"></script>
 		<script src="ui/scripts/followalong.js"></script>
-		<script src="dataproviders/tasks.js"></script>
-		<script src="dataproviders/project.js"></script>
-		<script src="models/project.js"></script>
-		<script src="models/task.js"></script>
 		<script src="ui/scripts/raphael.js"></script>
 		<script src="ui/scripts/serialize.js"></script>
-		<script src="views/scribble.js"></script>
-		<script src="controllers/addTask.js"></script>
+		<script src="dataproviders/projects.js"></script>
+		<script src="dataproviders/tasks.js"></script>
+		<script src="models/project.js"></script>
+		<script src="models/task.js"></script>
+		<script src="controllers/addtask.js"></script>
 		<script src="controllers/project.js"></script>
+		<script src="views/scribble.js"></script>
 		<script src="application.js"></script>
 		<script>
-			var app = new Application();
-			app.bind("ready", function() {
-				var project;
+            var app = new Application();
+            app.bind("ready", function() {
 				Project.data.find(function(projects) {
 					var project;
 					if (projects.length == 0) {
@@ -39,19 +39,7 @@
 		</script>
 	</head>
 	<body>
-		<div id="AddTask">
-			<div class="wrapper">
-				<div class="Paper">
-					<button data-onClick="star">s</button>
-					<input type="text"/>
-					<div id="AddScribble"></div>
-					<div class="buttons">
-						<button data-onClick="add">Add</button>
-						<button data-onClick="cancel">Cancel</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 		<div id="Project" class="Project">
 			<nav id="Header" class="Header">
 				<div class="title"></div>
@@ -64,12 +52,25 @@
 				</ul>
 			</nav>
 			<div class="TaskList Paper">	
-				<ul class="Paper"></ul>
+				<ul id="Tasks" class="Paper"></ul>
+			</div>
+		</div>
+        <div id="AddTask">
+			<div class="wrapper">
+				<div class="Paper">
+					<button data-onClick="star">s</button>
+					<input type="text"/>
+					<div id="AddScribble"></div>
+					<div class="buttons">
+						<button data-onClick="add">Add</button>
+						<button data-onClick="cancel">Cancel</button>
+					</div>
+				</div>
 			</div>
 		</div>
 		<script type="text/html" id="jstProjectView">
 			{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
-			<li data-index="{!= i !}">
+            <li data-key="{!= task.key !}" data-index="{!= i !}">
 				{!= template("jstTaskView", { i: i, task: task }) !}
 			</li>
 			{! } !}	
@@ -83,7 +84,7 @@
 			</div>
 			{! } else { !}
 			<div id="Scribble_{!= i !}" data-onClick="task" class="task scribble"></div>
-			<button class="Icon reorder" data-onClick="reorder"></button>
+			<button class="Icon reorder" data-onClick="trigger"></button>
 			{! } !}
 		</script>
 	</body>
