@@ -9,6 +9,8 @@ var ProjectController = Controller.extend({
 		this.addTaskController = new AddTaskController("AddTask");
 		this.addTaskController.bind("add", function(task) { self.addTask(task); });
 		this.addTaskController.bind("cancel", function() { self.enableScrolling(); self.addTaskController.hide(); });
+		
+		this.navBar = new followAlong("Header");
 
 		this.loadTasks();
 	},
@@ -16,6 +18,7 @@ var ProjectController = Controller.extend({
 		'star': function(e) {
 			var index = e.target.parentNode.getAttribute("data-index");
 			var task = this.tasks[index];
+			e.target.style.opacity = (task.star)?.3:1.0;
 			this.starTask(task);
 		},
 		'add': function(e) {
@@ -48,8 +51,8 @@ var ProjectController = Controller.extend({
 	},
 	loadTasks: function() {
 		var self = this;
+		this.view.find(".title").innerHTML = this.project.name;
 		this.project.getTasks(function(tasks) {
-			console.log("tasks");
 			tasks = tasks.filter(Task.filters[self.filter]);
 			self.tasks = tasks;
 			self._render();
@@ -57,8 +60,9 @@ var ProjectController = Controller.extend({
 	},
 	_render: function() {
 		var data = { project: this.project, tasks: this.tasks };
-		this.view.render("jstProjectView", data);
+		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		this.drawScribbles();
+		window.scroll(0,0);
 	},
 	drawScribbles: function() {
 		var self = this;
@@ -95,7 +99,7 @@ var ProjectController = Controller.extend({
 		var self = this;
 		task.star = !task.star;
 		task.save(function() {
-			self.loadTasks();
+		//	self.loadTasks();
 		});
 	},
 	completeTask: function(task) {

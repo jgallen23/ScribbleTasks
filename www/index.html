@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
 		<script src="phonegap.js"></script>
 		<script src="ui/scripts/app_lawnchair.js"></script>
+		<script src="ui/scripts/followalong.js"></script>
 		<script src="dataproviders/tasks.js"></script>
 		<script src="dataproviders/project.js"></script>
 		<script src="models/project.js"></script>
@@ -32,7 +33,7 @@
 						project = projects[0];
 					}
 					window.project = project;
-					var projectController = new ProjectController("Project", project);
+					window.controller = new ProjectController("Project", project);
 				});
 			});
 		</script>
@@ -51,37 +52,38 @@
 				</div>
 			</div>
 		</div>
-		<div id="Project" class="Project"></div>
-		<script type="text/html" id="jstProjectView">
-			<div class="Header">
-				<div class="title">{!= project.name !}</div>
+		<div id="Project" class="Project">
+			<nav id="Header" class="Header">
+				<div class="title"></div>
 				<ul>
-					<li><button data-onClick="clear">Clear</button></li>
-					<li><button data-onClick="filterAll">All</button></li>
-					<li><button data-onClick="filterStarred">Star</button></li>
-					<li><button data-onClick="filterComplete">Completed</button></li>
-					<li><button data-onClick="add">Add</button></li>
+					<li><button class="Icon clear" data-onClick="clear"></button></li>
+					<li><button class="Icon folder" data-onClick="filterAll"></button></li>
+					<li><button class="star Icon" data-onClick="filterStarred"></button></li>
+					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+					<li><button class="Icon add" data-onClick="add"></button></li>
 				</ul>
+			</nav>
+			<div class="TaskList Paper">	
+				<ul class="Paper"></ul>
 			</div>
-			<div class="TaskList Paper">
-				<ul class="Paper">
-					{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
-					<li data-index="{!= i !}">
-						{!= template("jstTaskView", { i: i, task: task }) !}
-					</li>
-					{! } !}	
-				</ul>
-			</div>
+		</div>
+		<script type="text/html" id="jstProjectView">
+			{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
+			<li data-index="{!= i !}">
+				{!= template("jstTaskView", { i: i, task: task }) !}
+			</li>
+			{! } !}	
 		</script>
 		<script type="text/html" id="jstTaskView">
 			<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
-			<button class="star" data-onClick="star">{!= (task.star)?"S":"s" !}</button>
+			<button class="Icon star" style="opacity: {!= (task.star)?"1":".3" !}" data-onClick="star"></button>
 			{! if (task.name) { !}
-			<div class="name" data-onClick="task">
+			<div class="task" data-onClick="task">
 				{!= task.name !}
 			</div>
 			{! } else { !}
-			<div id="Scribble_{!= i !}" data-onClick="task" class="scribble"></div>
+			<div id="Scribble_{!= i !}" data-onClick="task" class="task scribble"></div>
+			<button class="Icon reorder" data-onClick="reorder"></button>
 			{! } !}
 		</script>
 	</body>
