@@ -83,7 +83,7 @@ var ProjectController = Controller.extend({
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
 			if (task.svg) {
-				var s = new Scribble(document.getElementById("Scribble_"+i), ScribbleSize[0]/2, ScribbleSize[1]/2);
+				var s = new Scribble(document.getElementById("Scribble_"+i), ScribbleSize[0]/2, ScribbleSize[1]/2, true);
 				s.readonly = true;
 				s.load(task.svg);
 				s.scale([.5, .5, 0, 0]);
