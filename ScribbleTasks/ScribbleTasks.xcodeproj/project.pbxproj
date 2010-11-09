@@ -40,7 +40,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = C92B7EDC12884B7600E56435 /* PhoneGapLib.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libPhoneGapLib.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = PhoneGapLib;
 		};
 /* End PBXContainerItemProxy section */

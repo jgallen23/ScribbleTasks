@@ -16,15 +16,17 @@ var Scribble = View.extend({
 		this.paper = Raphael(this.element, width, height);
 		this.paper.serialize.init();
 
-		this.element.addEventListener("mousedown", function(e) { self._drawStart(e); });
-		this.element.addEventListener("mousemove", function(e) { self._drawMove(e); });
-		this.element.addEventListener("mouseup", function(e) { self._drawEnd(e); });
+		if (!this.readonly) {
+			this.element.addEventListener("mousedown", function(e) { self._drawStart(e); });
+			this.element.addEventListener("mousemove", function(e) { self._drawMove(e); });
+			this.element.addEventListener("mouseup", function(e) { self._drawEnd(e); });
 
-		this.element.addEventListener("touchstart", function(e) { self._drawStart(e); });
-		this.element.addEventListener("touchmove", function(e) { self._drawMove(e); });
-		this.element.addEventListener("touchend", function(e) { self._drawEnd(e); });
+			this.element.addEventListener("touchstart", function(e) { self._drawStart(e); });
+			this.element.addEventListener("touchmove", function(e) { self._drawMove(e); });
+			this.element.addEventListener("touchend", function(e) { self._drawEnd(e); });
 
-		this._drawLoop();
+			this._drawLoop();
+		}
 	},
 	_drawLoop: function() {
 		var self = this;
@@ -32,7 +34,7 @@ var Scribble = View.extend({
 			while (self._points.length) {// && new Date() - start < 10) {
 				self._draw(self._points.shift());
 			}
-		}, 20);
+		}, 10);
 	},
 	_draw: function(point) {
 		if (point) {
@@ -56,34 +58,6 @@ var Scribble = View.extend({
 			return "M"+point[0]+","+point[1];
 		} else { 
 			return "L"+point[0]+","+point[1];
-		}
-	},
-	_points_to_svg: function() {
-		if (this._points != null && this._points.length > 1) {
-			if (this._currentPath == "") {
-				var p = this._points[0];
-                this._currentPath = "M" + p[0] + "," + p[1];
-			} else {
-			}
-
-
-
-            if (this._currentPath) {
-                for (var i = this._lastPoint, n = this._points.length; i < this._points.length; i++) {
-                    var p = this._points[i];
-                    this._currentPath += "L" + p[0] + "," + p[1]; 
-                }
-                return this._currentPath;
-            } else {
-                var p = this._points[0];
-                for (var i = 1, n = this._points.length; i < n; i++) {
-                    p = this._points[i];
-                    this._currentPath += "L" + p[0] + "," + p[1]; 
-                } 
-                return this._currentPath;
-            }
-		} else {
-			return "";
 		}
 	},
 	_getPoint: function(ev) {
@@ -115,7 +89,7 @@ var Scribble = View.extend({
 	},
 	_drawEnd: function(e) {
 		if (this._drawing) {
-			if (!this._moved) {
+			if (false && !this._moved) { //draw dot
 				var p = this._startPoint;
 				p = [p[0]+2, p[1]+2]
 				this._points.push(p);
