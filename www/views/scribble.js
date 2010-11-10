@@ -2,13 +2,8 @@ var Scribble = View.extend({
 	init: function(element, width, height, readonly) {
 		var self = this;
 		this._super(element);
-		this._drawing = false;
-		this._moved = false;
-		this._points = [];
-        this._lastPoint = 0;
-        this._currentPath = '';
-		this._scale = null;
-		this._startPoint = null;
+		this.strokeWidth = 3;
+		this.scale = null;
 		this.strokes = [];
 		this.readonly = readonly;
 		this.undos = [];
@@ -17,50 +12,110 @@ var Scribble = View.extend({
 		this.paper.serialize.init();
 
 		if (!this.readonly) {
-			this.element.addEventListener("mousedown", function(e) { self._drawStart(e); });
-			this.element.addEventListener("mousemove", function(e) { self._drawMove(e); });
-			this.element.addEventListener("mouseup", function(e) { self._drawEnd(e); });
-
-			this.element.addEventListener("touchstart", function(e) { self._drawStart(e); });
-			this.element.addEventListener("touchmove", function(e) { self._drawMove(e); });
-			this.element.addEventListener("touchend", function(e) { self._drawEnd(e); });
-
-			this._drawLoop();
+			this.drawLoop();
 		}
 	},
-	_drawLoop: function() {
+	drawPath: function(path) {
+		var rpath = this.paper.path(path);
+		var attr = { 'stroke-width': this.strokeWidth };
+		/*if (this.scale) {*/
+		/*attr['scale'] = this.scale;*/
+		/*}*/
+		rpath.attr(attr);
+	},
+	drawLoop: function() {
 		var self = this;
-		setInterval(function() {
-			while (self._points.length) {// && new Date() - start < 10) {
-				self._draw(self._points.shift());
+		var points = [];
+		var x = null,
+			y = null;
+		var skip = false;
+		var drawing = false;
+		
+		var draw = function(point) {
+			if (point) {
+				if (skip) {
+					skip = false;
+				} else {
+					var o = [x, y];
+					x = point[0];
+					y = point[1];
+					//draw
+					var pathString = "M"+o[0]+" "+o[1]+"L"+x+" "+y;
+					return pathString;
+				}
+			} else {
+				skip = true;
 			}
-		}, 10);
+			return '';
+		}
+
+		var drawStart = function(e) {
+			drawing = true;
+			var p = self.getPoint(e);
+			x = p[0];
+			y = p[1];
+			return event.preventDefault();
+		}
+
+		var drawMove = function(e) {
+			if (drawing) {
+				var p = self.getPoint(e)
+				points.push(p);
+			}
+		}
+
+		var drawEnd = function() {
+			drawing = false;
+			if (points.length == 0)
+				points.push([x, y], [x+2, y+2]);
+			points.push(null);
+		}
+
+		this.element.addEventListener("mousedown", function(e) { drawStart(e); });
+		this.element.addEventListener("mousemove", function(e) { drawMove(e); });
+		this.element.addEventListener("mouseup", function(e) { drawEnd(e); });
+
+		this.element.addEventListener("touchstart", function(e) { drawStart(e); });
+		this.element.addEventListener("touchmove", function(e) { drawMove(e); });
+		this.element.addEventListener("touchend", function(e) { drawEnd(e); });
+
+		var path = '';
+		setInterval(function() {
+			var tPath = '';
+			var start = new Date();
+			while (points.length && new Date() - start < 10) {
+				var p = points.shift();
+				if (!p) { //grab last stroke
+					self.strokes.push(path);
+					path = '';
+				} else {
+					tPath = draw(points.shift());
+					path += tPath;
+				}
+			}
+			if (tPath) {
+				self.drawPath(tPath);
+			}
+		}, 30);
 	},
 	_draw: function(point) {
 		if (point) {
-			this._currentPath += this._point_to_svg(point);
-			if (this._currentPath)
-				this.path.attr({ "stroke-width": 2, path: this._currentPath });
+			this.currentPath += this.point_to_svg(point);
+			if (this.currentPath)
+				this.path.attr({ "stroke-width": 2, path: this.currentPath });
 		} else { //done drawing
 			var c = this.path.attr();
 			c['type'] = this.path.type;
 			this.strokes.push(c);
 			this.path = null;
-			this._points = [];
-			this._drawing = false;
-			this._moved = false;
-            this._currentPath = '';
+			this.points = [];
+			this.drawing = false;
+			this.moved = false;
+            this.currentPath = '';
 			this.undos = [];
 		}
 	},
-	_point_to_svg: function(point) {
-		if (this._currentPath == "") {
-			return "M"+point[0]+","+point[1];
-		} else { 
-			return "L"+point[0]+","+point[1];
-		}
-	},
-	_getPoint: function(ev) {
+	getPoint: function(ev) {
 		var x,y;
 		if (ev.touches) {
 			x = ev.touches[0].pageX - this.element.offsetLeft;
@@ -71,53 +126,29 @@ var Scribble = View.extend({
 		}
 		return [x, y];
 	},
-	_drawStart: function(e) {
-		if (this.readonly)
-			return;
-		this._drawing = true;
-		var p = this._getPoint(e);
-		this._startPoint = p;
-		this._points.push(p);
-		this.path = this.paper.path();
-	},
-	_drawMove: function(e) {
-		if (this._drawing == true) {
-			this._moved = true;
-			var p = this._getPoint(e);
-			this._points.push(p);
-		}
-	},
-	_drawEnd: function(e) {
-		if (this._drawing) {
-			if (false && !this._moved) { //draw dot
-				var p = this._startPoint;
-				p = [p[0]+2, p[1]+2]
-				this._points.push(p);
-			}
-			this._points.push(null);
-		}
-	},
 	redraw: function() {
 		this.paper.clear();
 		for (var i = 0; i < this.strokes.length; i++) {
 			var s = this.strokes[i];
-			this.drawStroke(s);
+			this.drawPath(s);
 		}
 	},
+	/*
 	drawStroke: function(stroke) {
 		var t = this.paper[stroke.type]();
-		if (this._scale) {
-			stroke['scale'] = this._scale;
+		if (this.scale) {
+			stroke['scale'] = this.scale;
 		}
 		t.attr(stroke);
 	},
+	*/
 	undo: function() {
 		this.undos.push(this.strokes[this.strokes.length-1]);
 		this.strokes.remove(this.strokes.length-1);
 		this.redraw();
 	},
 	redo: function() {
-		this.strokes.extend(this.undos);
+		this.strokes.extend(this.undos.shift());
 		this.undos = [];	
 		this.redraw();
 	},
@@ -136,7 +167,7 @@ var Scribble = View.extend({
 		return json;
 	},
 	scale: function(scale) {
-		this._scale = scale;
+		this.scale = scale;
 		this.redraw();	
 	},
 	clear: function() {

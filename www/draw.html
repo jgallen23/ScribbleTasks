@@ -13,10 +13,11 @@
 			#Scribble { width: 700px; height: 500px; border: 1px solid #ccc; }
 		</style>
 		<script>
+			var scribble;
 			var app = new Application();
 			app.disableScrolling();
 			app.bind("ready", function() {
-				var scribble = new Scribble("Scribble", 700, 500);
+				scribble = new Scribble("Scribble", 700, 500);
 			});
 		</script>
 	</head>
