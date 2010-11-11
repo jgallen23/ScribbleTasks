@@ -3,13 +3,13 @@ var Scribble = View.extend({
 		var self = this;
 		this._super(element);
 		this.strokeWidth = 3;
-		this.scale = null;
+		this._scale = null;
 		this.strokes = [];
 		this.readonly = readonly;
 		this.undos = [];
 		this.path = null;
 		this.paper = Raphael(this.element, width, height);
-		this.paper.serialize.init();
+		//this.paper.serialize.init();
 
 		if (!this.readonly) {
 			this.drawLoop();
@@ -18,9 +18,9 @@ var Scribble = View.extend({
 	drawPath: function(path) {
 		var rpath = this.paper.path(path);
 		var attr = { 'stroke-width': this.strokeWidth };
-		/*if (this.scale) {*/
-		/*attr['scale'] = this.scale;*/
-		/*}*/
+		if (this._scale) {
+			attr['scale'] = this._scale;
+		}
 		rpath.attr(attr);
 	},
 	drawLoop: function() {
@@ -30,7 +30,24 @@ var Scribble = View.extend({
 			y = null;
 		var skip = false;
 		var drawing = false;
+		var offsetLeft = null,
+			offsetRight = null;
 		
+		var getPoint = function(ev) {
+			var x,y;
+			if (self.offset == null) {
+				self.offset = [self.element.offsetLeft, self.element.offsetTop];
+			}
+			if (ev.touches) {
+				x = ev.touches[0].pageX - self.offset[0];
+				y = ev.touches[0].pageY - self.offset[1];
+			} else {
+				x = ev.pageX - self.offset[0];
+				y = ev.pageY - self.offset[1];
+			}
+			return [x, y];
+		}
+
 		var draw = function(point) {
 			if (point) {
 				if (skip) {
@@ -51,7 +68,7 @@ var Scribble = View.extend({
 
 		var drawStart = function(e) {
 			drawing = true;
-			var p = self.getPoint(e);
+			var p = getPoint(e);
 			x = p[0];
 			y = p[1];
 			return event.preventDefault();
@@ -59,7 +76,7 @@ var Scribble = View.extend({
 
 		var drawMove = function(e) {
 			if (drawing) {
-				var p = self.getPoint(e)
+				var p = getPoint(e)
 				points.push(p);
 			}
 		}
@@ -98,34 +115,6 @@ var Scribble = View.extend({
 			}
 		}, 30);
 	},
-	_draw: function(point) {
-		if (point) {
-			this.currentPath += this.point_to_svg(point);
-			if (this.currentPath)
-				this.path.attr({ "stroke-width": 2, path: this.currentPath });
-		} else { //done drawing
-			var c = this.path.attr();
-			c['type'] = this.path.type;
-			this.strokes.push(c);
-			this.path = null;
-			this.points = [];
-			this.drawing = false;
-			this.moved = false;
-            this.currentPath = '';
-			this.undos = [];
-		}
-	},
-	getPoint: function(ev) {
-		var x,y;
-		if (ev.touches) {
-			x = ev.touches[0].pageX - this.element.offsetLeft;
-			y = ev.touches[0].pageY - this.element.offsetTop;
-		} else {
-			x = ev.pageX - this.element.offsetLeft;
-			y = ev.pageY - this.element.offsetTop;
-		}
-		return [x, y];
-	},
 	redraw: function() {
 		this.paper.clear();
 		for (var i = 0; i < this.strokes.length; i++) {
@@ -153,24 +142,20 @@ var Scribble = View.extend({
 		this.redraw();
 	},
 	load: function(json) {
-		var set = this.paper.serialize.thaw(json);
-		this.strokes = [];
-		for (var i = 0; i < set.length;i++) {
-			var node = set[i];
-			var c = node.attr();
-			c.type = node.type;
-			this.strokes.push(c);
-		};
+		var json = JSON.parse(json); 
+		this.strokes = json;
+		this.redraw();
 	},
 	toJSON: function() {
-		var json = this.paper.serialize.freeze();
-		return json;
+		//var json = this.paper.serialize.freeze();
+		return JSON.stringify(this.strokes);
 	},
 	scale: function(scale) {
-		this.scale = scale;
+		this._scale = scale;
 		this.redraw();	
 	},
 	clear: function() {
+		this.offset = null;
 		this.strokes = [];
 		this.paper.clear();
 	}
