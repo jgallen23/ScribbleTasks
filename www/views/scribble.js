@@ -96,22 +96,24 @@ var Scribble = View.extend({
 		this.element.addEventListener("touchmove", function(e) { drawMove(e); });
 		this.element.addEventListener("touchend", function(e) { drawEnd(e); });
 
-		var path = '';
-		setInterval(function() {
-			var tPath = '';
+		var strokeString = [];
+		var tPath = [];
+		setInterval(function __drawLoop() {
 			var start = new Date();
 			while (points.length && new Date() - start < 10) {
 				var p = points.shift();
-				if (!p) { //grab last stroke
-					self.strokes.push(path);
-					path = '';
+				if (!p) { //end of stroke
+					self.strokes.push(strokeString.join(''));
+					strokeString = [];
 				} else {
-					tPath = draw(points.shift());
-					path += tPath;
+					tPath.push(draw(points.shift()));
 				}
 			}
-			if (tPath) {
-				self.drawPath(tPath);
+			if (tPath.length != 0) {
+				var ps = tPath.join('');
+				strokeString.push(ps);
+				self.drawPath(ps);
+				tPath = [];
 			}
 		}, 30);
 	},
@@ -122,15 +124,6 @@ var Scribble = View.extend({
 			this.drawPath(s);
 		}
 	},
-	/*
-	drawStroke: function(stroke) {
-		var t = this.paper[stroke.type]();
-		if (this.scale) {
-			stroke['scale'] = this.scale;
-		}
-		t.attr(stroke);
-	},
-	*/
 	undo: function() {
 		this.undos.push(this.strokes[this.strokes.length-1]);
 		this.strokes.remove(this.strokes.length-1);
