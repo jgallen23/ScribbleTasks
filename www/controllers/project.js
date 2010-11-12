@@ -38,14 +38,20 @@ var ProjectController = Controller.extend({
 			this.completeTask(task);
 		},
 		'filterAll': function(e) {
+			elem.removeClass(this.view.find("button."+this.filter), "current");
+			elem.addClass(this.view.find("button.incomplete"), "current");
 			this.filter = "incomplete";
 			this.loadTasks();
 		},
 		'filterComplete': function(e) {
+			elem.removeClass(this.view.find("button."+this.filter), "current");
+			elem.addClass(this.view.find("button.complete"), "current");
 			this.filter = "complete";
 			this.loadTasks();
 		},
 		'filterStarred': function(e) {
+			elem.removeClass(this.view.find("button."+this.filter), "current");
+			elem.addClass(this.view.find("button.starred"), "current");
 			this.filter = "starred";
 			this.loadTasks();
 		}

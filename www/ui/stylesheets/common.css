@@ -18,11 +18,14 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 	.Header ul { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; }
 		.Header ul li { padding: 0 15px; } 
 			.Header ul li .Icon { background-size: 35px; height: 35px; width: 35px; } 
-			.Header ul li .star { background: url(../images/icons/star-white.png) no-repeat; }
-			.Header ul li .folder { background: url(../images/icons/folder-white.png) no-repeat; }
+			.Header ul li .starred { background: url(../images/icons/star-white.png) no-repeat; }
+			.Header ul li .incomplete { background: url(../images/icons/folder-white.png) no-repeat; }
 			.Header ul li .complete { background: url(../images/icons/check-white.png) no-repeat; }
 			.Header ul li .add { background: url(../images/icons/add-white.png) no-repeat; }
 			.Header ul li .clear { background: url(../images/icons/delete-white.png) no-repeat; }
+			.Header .starred, .Header .incomplete, .Header .complete { opacity: .5 }
+			.Header .current { opacity: 1 }
+			.Header button { -webkit-transition: opacity .5s ease-in-out; }
 
 .Paper { background: #fff; -webkit-border-radius: 10px; -webkit-box-shadow: 2px 2px 2px #333; }
 	.Paper .Paper { margin: 0 3px 2px 0; } 
