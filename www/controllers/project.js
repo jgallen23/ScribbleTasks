@@ -94,12 +94,9 @@ var ProjectController = Controller.extend({
 		}
 	},
 	showAddTask: function(task) {
-		this.disableScrolling();
 		this.addTaskController.show(task);
 	},
 	addTask: function(task) {
-		this.enableScrolling();
-		this.addTaskController.hide();
 		var self = this;
 		if (!(task instanceof Task)) {
 			task.project = this.project.key;
