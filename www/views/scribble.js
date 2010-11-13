@@ -26,10 +26,21 @@ var Scribble = View.extend({
 	drawPoints: function(points) {
 		var lastPoint = null;
 		var path = []
+		path.push("M"+points[0][0]+","+points[0][1]);
+		for (var i = 1; i < points.length; i++) {
+			path.push("L"+points[i][0]+","+points[i][1]);
+		};
+		var p = this.paper.path(path.join(' '));
+		p.attr({'stroke-width': 3, 'stroke': '#ff0000'});
+		return p;
+	},
+	drawPoints2: function(points) {
+		var lastPoint = null;
+		var path = []
 		for (var i = 0; i < points.length; i++) {
 			var p = points[i];
 			var o = (i == 0)?p:points[i-1];
-			var pathString = "M"+o[0]+" "+o[1]+"L"+p[0]+" "+p[1];
+			var pathString = "M"+o[0]+" "+o[1]+"Q"+p[0]+" "+p[1];
 			path.push(pathString);
 		};
 		var p = this.paper.path(path.join(''));
@@ -89,6 +100,7 @@ var Scribble = View.extend({
 		var drawMove = function(e) {
 			if (drawing) {
 				var p = getPoint(e)
+				//console.log(p);
 				points.push(p);
 			}
 		}
@@ -111,20 +123,28 @@ var Scribble = View.extend({
 		var strokeString = [];
 		var tPath = [];
 		var smoothPoints = [];
+		var currentPath = '';
 		setInterval(function __drawLoop() {
 			var start = new Date();
 			while (points.length && new Date() - start < 10) {
 				var p = points.shift();
 				if (!p) { //end of stroke
+					
 					self.strokes.push(strokeString.join(''));
 					strokeString = [];
 					//console.log(smoothPoints);
 					setTimeout(function() {
+						//console.log(smoothPoints);
+						//debugger;
 						//smoothPoints = [[5, 5], [10, 10], [400, 300]];
-						var smoother2 = new PlotSmoother(2,1);
-						var d2 = smoother2.smooth(smoothPoints);
-						self.drawPoints(d2);
-					}, 10);
+						/*console.log("start", smoothPoints);*/
+						/*var smoother2 = new PlotSmoother(2,1);*/
+						/*var d2 = smoother2.smooth(smoothPoints);*/
+						/*console.log("done", smoothPoints);*/
+						/*console.dir(d2);*/
+						self.drawPoints(smoothPoints);
+						smoothPoints = [];
+					}, 0);
 				} else {
 					var p = points.shift();
 					if (p) smoothPoints.push(p);
