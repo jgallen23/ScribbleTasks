@@ -25,15 +25,8 @@ var Scribble = View.extend({
 		return rpath;
 	},
 	drawPoints: function(points) {
-		var lastPoint = null;
-		var path = []
-		path.push("M"+points[0][0]+","+points[0][1]);
-		for (var i = 1; i < points.length; i++) {
-			path.push("L"+points[i][0]+","+points[i][1]);
-		};
-		var p = this.paper.path(path.join(' '));
-		p.attr({'stroke-width': 3, 'stroke': '#ff0000'});
-		return p;
+		var path = this.pathFromPoints(points);
+		return p = this.drawPath(path);
 	},
 	pathFromPoints: function(points) {
 		if (!points || points.length == 0) return '';

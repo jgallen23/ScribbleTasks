@@ -32,7 +32,7 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 
 .TaskList { overflow-y: hidden; margin: 0px; }
 .TaskList ul { list-style: none; margin: 0;}
-	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; } 
+	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; -webkit-transition: opacity 1s ease-in-out; } 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 35px; }
 	.TaskList .star { margin: 0 20px; background: url(../images/icons/star-on.png) no-repeat; -webkit-transition: opacity .5s ease-in-out; opacity: .3;}
 	.TaskList .reorder { background: url(../images/icons/reorder.png) no-repeat; margin-right: 20px;  }

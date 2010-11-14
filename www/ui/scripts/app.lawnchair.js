@@ -1505,7 +1505,7 @@ var EventManager = Class.extend({
 var Controller = EventManager.extend({
 	useLiveClickEvents: true,
 	init: function(elementId) {
-		this.element = document.getElementById(elementId);
+		this.element = (typeof elementId === "string")?document.getElementById(elementId):elementId;
 		if (this.useLiveClickEvents) {
             var self = this;
             this.element.addEventListener(INPUT_EVENT, function(e) {
@@ -1612,8 +1612,14 @@ var View = EventManager.extend({
 	find: function(selector) {
 		return this.element.querySelector(selector);
 	},
-	findAll: function(selector) {
-		return this.element.querySelectorAll(selector);
+	findAll: function(selector, f) {
+		var items = this.element.querySelectorAll(selector);
+		if (f) {
+			for (var i = 0, c = items.length; i < c; i++) {
+				f(items[i]);
+			}
+		}
+		return items;
 	},
 	remove: function() {
 		//TODO: unbind all events

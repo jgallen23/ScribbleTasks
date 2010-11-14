@@ -5,6 +5,7 @@ var ProjectController = Controller.extend({
 		this._super(elementId);
 		this.filter = "incomplete";
 		this.project = project;
+		this.scribbles = [];
 
 		this.addTaskController = new AddTaskController("AddTask");
 		this.addTaskController.bind("add", function(task) { self.addTask(task); });
@@ -12,10 +13,10 @@ var ProjectController = Controller.extend({
 		
 		this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
 		APP.bind("enableScrolling", function() {
-			self.scroller.enabled = true;;
+			self.scroller.enabled = true;
 		});
 		APP.bind("disableScrolling", function() {
-			self.scroller.enabled = false;;
+			self.scroller.enabled = false;
 		});
 		window.addEventListener("resize", function() { self._onResize() });
 		this._onResize();
@@ -41,8 +42,7 @@ var ProjectController = Controller.extend({
 			this.showAddTask(task);
 		},
 		'complete': function(e) {
-			var task = this.tasks[this.view.findParentWithAttribute(e.target, 'data-index').getAttribute("data-index")];
-			this.completeTask(task);
+			this.completeTask(this.view.findParentWithAttribute(e.target, 'data-index'));
 		},
 		'filterAll': function(e) {
 			elem.removeClass(this.view.find("button."+this.filter), "current");
@@ -86,6 +86,14 @@ var ProjectController = Controller.extend({
         sortable.bind("sorted", function() {
             self.tasksSorted();
         });
+		this.view.findAll("div.TaskList li", function(item) {
+			console.log(item);
+			addSwipeHandler(item, function(element, direction) {
+				if (direction == "right") {
+					self.completeTask(element);
+				}
+			});
+		});
 		window.scroll(0,0);
 		this.scroller.refresh();
 	},
@@ -109,6 +117,7 @@ var ProjectController = Controller.extend({
 				s.paper.canvas.addEventListener("click", function(e) {
 					self.onClick['task'].call(self, e);
 				});
+				self.scribbles.push(s);
 			}
 		}
 	},
@@ -132,14 +141,21 @@ var ProjectController = Controller.extend({
 		//	self.loadTasks();
 		});
 	},
-	completeTask: function(task) {
-		if (task.isComplete)
-			task.unComplete();
-		else
-			task.complete();
+	completeTask: function(taskElement) {
 		var self = this;
-		task.save(function() {
-			self.loadTasks();
-		});
+		var index = taskElement.getAttribute("data-index");
+		var path = self.scribbles[index].drawPoints([[0, ScribbleSize[1]/2], [ScribbleSize[0], ScribbleSize[1]/2]]);
+		path.attr({ stroke: '#ff0000' });
+		taskElement.style.opacity = 0;
+		var task = self.tasks[index];
+		setTimeout(function() {
+			if (task.isComplete)
+				task.unComplete();
+			else
+				task.complete();
+			task.save(function() {
+				self.loadTasks();
+			});
+		}, 1000);
 	}
 });
