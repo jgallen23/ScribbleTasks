@@ -1,5 +1,5 @@
 ul { margin: 0; padding: 0; }
-body {	-webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; margin: 0; padding: 0; background: #777; height: 100%; }
+body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; margin: 0; padding: 0;  height: 100%; background: url(../images/paper2-bg.png)}
 #Scribble { width: 100%; height: 100%; background: #f0f0f0; }
 
 #AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal;  }
@@ -30,10 +30,9 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 .Paper { background: #fff; -webkit-border-radius: 10px; -webkit-box-shadow: 2px 2px 2px #333; }
 	.Paper .Paper { margin: 0 3px 2px 0; } 
 
-.TaskList { overflow-y: hidden; margin: 0px 10px 10px 10px; }
+.TaskList { overflow-y: hidden; margin: 0px; }
 .TaskList ul { list-style: none; margin: 0;}
-	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; border-bottom: 1px solid #ccc;} 
-		.TaskList li:last-child { border-bottom: 0; } 
+	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; } 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 35px; }
 	.TaskList .star { margin: 0 20px; background: url(../images/icons/star-on.png) no-repeat; -webkit-transition: opacity .5s ease-in-out; opacity: .3;}
 	.TaskList .reorder { background: url(../images/icons/reorder.png) no-repeat; margin-right: 20px;  }
