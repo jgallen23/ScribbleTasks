@@ -39,6 +39,7 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; }
     .TaskList .sorting { background: #ccc; }
+	.TaskList input { display: none; }
 
 #Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; }
 	#Project .TaskList { -webkit-box-flex: 1; }

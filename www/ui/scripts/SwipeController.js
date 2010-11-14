@@ -6,10 +6,8 @@ window.addSwipeHandler = function(element, callback) {
 	var dy = null;
 
 	var touchStart = function(e) {
-		console.log(e);
 		startX = e.touches[0].clientX;
 		startY = e.touches[0].clientY;	
-		console.log(startX, startY);
 	}
 
 	var touchMove = function(e) {
