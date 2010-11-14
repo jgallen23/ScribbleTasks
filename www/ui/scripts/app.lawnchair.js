@@ -14,7 +14,25 @@ var extendObjStrict = function(target, obj1, obj2) {
 	return (obj2)?extendObj(target, obj2):target;
 }
 
-
+String.format = function( text )
+{
+    //check if there are two arguments in the arguments list
+    if ( arguments.length <= 1 )
+    {
+        //if there are not 2 or more arguments there's nothing to replace
+        //just return the original text
+        return text;
+    }
+    //decrement to move to the second argument in the array
+    var tokenCount = arguments.length - 2;
+    for( var token = 0; token <= tokenCount; token++ )
+    {
+        //iterate through the tokens and replace their placeholders from the original text in order
+        text = text.replace( new RegExp( "\\{" + token + "\\}", "gi" ),
+                                                arguments[ token + 1 ] );
+    }
+    return text;
+};
 var elem = {
 	classRE: function(name) { return new RegExp("(^|\\s)"+name+"(\\s|$)") },
 	hasClass: function(el, name){
@@ -1498,15 +1516,6 @@ var Controller = EventManager.extend({
         }
 		this.view = new View(this.element);
 	},
-	preventScrolling: function(e) {
-		e.preventDefault(); 
-	},
-	enableScrolling: function() {
-		document.removeEventListener("touchmove", this.preventScrolling, false);
-	},
-	disableScrolling: function() {
-		document.addEventListener("touchmove", this.preventScrolling, false);
-	},
 	show: function() {
 		this.view.show();
 		this.trigger("show");
@@ -1538,6 +1547,7 @@ var Controller = EventManager.extend({
 });
 var Application = Controller.extend({
 	init: function() {
+        window.APP = this;
 		this._super.apply(arguments);
 		var self = this;
 
@@ -1551,7 +1561,26 @@ var Application = Controller.extend({
 	},
 	ready: function() {
 		this.trigger("ready");
-	}
+    },
+    preventScrolling: function(e) {
+		e.preventDefault(); 
+	},
+	enableScrolling: function() {
+		document.body.style.overflow = "auto";
+		document.removeEventListener("touchmove", this.preventScrolling, false);
+        this.trigger("enableScrolling");
+	},
+	disableScrolling: function() {
+		document.body.style.overflow = "hidden";
+		document.addEventListener("touchmove", this.preventScrolling, false);
+        this.trigger("disableScrolling");
+    },
+    disableScrollingPermanently: function() {
+        var self = this;
+        this.disableScrolling();
+        this.disableScrolling = function() { self.trigger("disableScrolling"); };
+        this.enableScrolling = function() { self.trigger("enableScrolling"); };
+    }
 });
 var DataProvider = Class.extend({
 	init: function(key) {
