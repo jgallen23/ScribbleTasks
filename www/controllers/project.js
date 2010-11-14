@@ -87,7 +87,6 @@ var ProjectController = Controller.extend({
             self.tasksSorted();
         });
 		this.view.findAll("div.TaskList li", function(item) {
-			console.log(item);
 			addSwipeHandler(item, function(element, direction) {
 				if (direction == "right") {
 					self.completeTask(element);
