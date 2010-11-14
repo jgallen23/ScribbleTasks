@@ -22,6 +22,29 @@ var Scribble = View.extend({
 			attr['scale'] = this._scale;
 		}
 		rpath.attr(attr);
+		return rpath;
+	},
+	drawPoints: function(points) {
+		var lastPoint = null;
+		var path = []
+		path.push("M"+points[0][0]+","+points[0][1]);
+		for (var i = 1; i < points.length; i++) {
+			path.push("L"+points[i][0]+","+points[i][1]);
+		};
+		var p = this.paper.path(path.join(' '));
+		p.attr({'stroke-width': 3, 'stroke': '#ff0000'});
+		return p;
+	},
+	pathFromPoints: function(points) {
+		if (!points || points.length == 0) return '';
+		var p = [];
+		for (var i = 0, c = points.length; i < c; i++) {
+			if (i == 0)
+				p.push(String.format("M{0},{1}", points[i][0], points[i][1]));
+			else
+				p.push(String.format("L{0},{1}", points[i][0], points[i][1]));
+		}
+		return p.join(' ');	
 	},
 	drawLoop: function() {
 		var self = this;
@@ -30,6 +53,7 @@ var Scribble = View.extend({
 			y = null;
 		var skip = false;
 		var drawing = false;
+		var moved = false;
 		var offsetLeft = null,
 			offsetRight = null;
 		
@@ -39,31 +63,13 @@ var Scribble = View.extend({
 				self.offset = [self.element.offsetLeft, self.element.offsetTop];
 			}
 			if (ev.touches) {
-				x = ev.touches[0].pageX - self.offset[0];
-				y = ev.touches[0].pageY - self.offset[1];
+				x = ev.touches[0].clientX - self.offset[0] - window.scrollX;
+				y = ev.touches[0].clientY - self.offset[1] - window.scrollY;
 			} else {
-				x = ev.pageX - self.offset[0];
-				y = ev.pageY - self.offset[1];
+				x = ev.clientX - self.offset[0];
+				y = ev.clientY - self.offset[1];
 			}
 			return [x, y];
-		}
-
-		var draw = function(point) {
-			if (point) {
-				if (skip) {
-					skip = false;
-				} else {
-					var o = [x, y];
-					x = point[0];
-					y = point[1];
-					//draw
-					var pathString = "M"+o[0]+" "+o[1]+"L"+x+" "+y;
-					return pathString;
-				}
-			} else {
-				skip = true;
-			}
-			return '';
 		}
 
 		var drawStart = function(e) {
@@ -76,16 +82,20 @@ var Scribble = View.extend({
 
 		var drawMove = function(e) {
 			if (drawing) {
+				moved = true;
 				var p = getPoint(e)
 				points.push(p);
 			}
 		}
 
 		var drawEnd = function() {
-			drawing = false;
-			if (points.length == 0)
-				points.push([x, y], [x+2, y+2]);
-			points.push(null);
+			if (drawing) {
+				if (!moved)
+					points.push([x, y], [x+2, y+2]);
+				drawing = false;
+				moved = false;
+				points.push(null);
+			}
 		}
 
 		this.element.addEventListener("mousedown", function(e) { drawStart(e); });
@@ -97,23 +107,35 @@ var Scribble = View.extend({
 		this.element.addEventListener("touchend", function(e) { drawEnd(e); });
 
 		var strokeString = [];
-		var tPath = [];
+		var currentStroke = [];
+		var done = false;
 		setInterval(function __drawLoop() {
 			var start = new Date();
 			while (points.length && new Date() - start < 10) {
 				var p = points.shift();
 				if (!p) { //end of stroke
-					self.strokes.push(strokeString.join(''));
-					strokeString = [];
+					done = true;
 				} else {
-					tPath.push(draw(points.shift()));
+					var o = [x, y];
+					if (currentStroke.length == 0)
+						currentStroke.push(o);
+					currentStroke.push(p);
+					x = p[0];
+					y = p[1];
+					strokeString.push(self.pathFromPoints([o, p]));
 				}
 			}
-			if (tPath.length != 0) {
-				var ps = tPath.join('');
-				strokeString.push(ps);
+			if (strokeString.length != 0) {
+				var ps = strokeString.join(' ');
 				self.drawPath(ps);
-				tPath = [];
+				if (done) {
+					var strokePath = self.pathFromPoints(currentStroke);
+					self.strokes.push(strokePath);
+					self.redraw();
+					currentStroke = [];
+					strokeString = [];
+					done = false;
+				}
 			}
 		}, 30);
 	},

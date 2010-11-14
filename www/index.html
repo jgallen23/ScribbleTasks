@@ -10,9 +10,8 @@
 		<script src="phonegap.js"></script>
         <script src="ui/scripts/app.lawnchair.js"></script>
 		<script src="ui/scripts/app.sortable.js"></script>
-		<script src="ui/scripts/followalong.js"></script>
+		<script src="ui/scripts/iscroll.js"></script>
 		<script src="ui/scripts/raphael.js"></script>
-		<script src="ui/scripts/serialize.js"></script>
 		<script src="dataproviders/projects.js"></script>
 		<script src="dataproviders/tasks.js"></script>
 		<script src="models/project.js"></script>
@@ -23,6 +22,7 @@
 		<script>
             var app = new Application();
             app.bind("ready", function() {
+				app.disableScrollingPermanently();
 				Project.data.find(function(projects) {
 					var project;
 					if (projects.length == 0) {
@@ -50,13 +50,14 @@
 					<li><button class="Icon add" data-onClick="add"></button></li>
 				</ul>
 			</nav>
-			<div class="TaskList Paper">	
+			<div class="TaskList">	
 				<ul id="Tasks" class="Paper"></ul>
 			</div>
 		</div>
         <div id="AddTask">
 			<div class="wrapper">
 				<div class="Paper">
+					<div id="coords"></div>
 					<button data-onClick="star">s</button>
 					<input type="text"/>
 					<div id="AddScribble"></div>
