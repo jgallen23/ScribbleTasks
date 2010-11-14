@@ -10,18 +10,19 @@
 		<script src="views/scribble.js"></script>
 		<style>
 			* { -webkit-user-select: none;}
-			#Scribble { width: 700px; height: 500px; border: 1px solid #ccc; }
+			#Scribble { position: absolute; top: 200px; width: 700px; height: 500px; border: 1px solid #ccc; }
 		</style>
 		<script>
 			var scribble;
 			var app = new Application();
-			app.disableScrolling();
 			app.bind("ready", function() {
+				app.disableScrolling();
 				scribble = new Scribble("Scribble", 700, 500);
 			});
 		</script>
 	</head>
 	<body>
+		<div id="coords"></div>
 		<div id="Scribble">
 		</div>
 	</body>

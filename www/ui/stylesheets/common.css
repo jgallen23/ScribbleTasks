@@ -1,5 +1,5 @@
 ul { margin: 0; padding: 0; }
-body { font-size: 14px; margin: 0; padding: 0; background: #777; height: 100%; }
+body {	-webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; margin: 0; padding: 0; background: #777; height: 100%; }
 #Scribble { width: 100%; height: 100%; background: #f0f0f0; }
 
 #AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal;  }
@@ -13,7 +13,7 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; } 
 	button:active { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ADADAD), to(#FFFFFF)) }
 
-.Header { position: absolute; width: 100%; opacity: 0.8;  height: 45px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
+.Header {  width: 100%; opacity: 0.8;  height: 45px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
 	.Header .title { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; -webkit-box-flex: 1;font-size: 25px; text-shadow: 2px 2px 2px #000; padding-left: 20px; } 
 	.Header ul { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; }
 		.Header ul li { padding: 0 15px; } 
@@ -30,7 +30,7 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 .Paper { background: #fff; -webkit-border-radius: 10px; -webkit-box-shadow: 2px 2px 2px #333; }
 	.Paper .Paper { margin: 0 3px 2px 0; } 
 
-.TaskList { margin: 30px 10px 10px 10px; }
+.TaskList { overflow-y: hidden; margin: 0px 10px 10px 10px; }
 .TaskList ul { list-style: none; margin: 0;}
 	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; border-bottom: 1px solid #ccc;} 
 		.TaskList li:last-child { border-bottom: 0; } 
@@ -42,4 +42,4 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
     .TaskList .sorting { background: #ccc; }
 
 #Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; }
-	#Project .TaskList { -webkit-box-flex: 1; height: 100% }
+	#Project .TaskList { -webkit-box-flex: 1; }

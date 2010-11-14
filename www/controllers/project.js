@@ -8,10 +8,17 @@ var ProjectController = Controller.extend({
 
 		this.addTaskController = new AddTaskController("AddTask");
 		this.addTaskController.bind("add", function(task) { self.addTask(task); });
-		this.addTaskController.bind("cancel", function() { self.enableScrolling(); self.addTaskController.hide(); });
+		this.addTaskController.bind("cancel", function() { APP.enableScrolling(); self.addTaskController.hide(); });
 		
-		this.navBar = new followAlong("Header");
-
+		this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
+		APP.bind("enableScrolling", function() {
+			self.scroller.enabled = true;;
+		});
+		APP.bind("disableScrolling", function() {
+			self.scroller.enabled = false;;
+		});
+		window.addEventListener("resize", function() { self._onResize() });
+		this._onResize();
 		this.loadTasks();
 	},
 	onClick: {
@@ -56,6 +63,11 @@ var ProjectController = Controller.extend({
 			this.loadTasks();
 		}
 	},
+	_onResize: function() {
+		var h = window.innerHeight - this.view.find(".Header").clientHeight + 5;
+		this.view.find(".TaskList").style.height = h+"px";
+		this.scroller.refresh();
+	},
 	loadTasks: function() {
 		var self = this;
 		this.view.find(".title").innerHTML = this.project.name;
@@ -75,6 +87,7 @@ var ProjectController = Controller.extend({
             self.tasksSorted();
         });
 		window.scroll(0,0);
+		this.scroller.refresh();
 	},
     tasksSorted: function() {
         var items = this.view.findAll("#Tasks li");
