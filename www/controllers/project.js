@@ -18,6 +18,7 @@ var ProjectController = Controller.extend({
 		APP.bind("disableScrolling", function() {
 			self.scroller.enabled = false;
 		});
+		this._handleTitleChange();
 		window.addEventListener("resize", function() { self._onResize() });
 		this._onResize();
 		this.loadTasks();
@@ -63,6 +64,27 @@ var ProjectController = Controller.extend({
 			this.loadTasks();
 		}
 	},
+	_handleTitleChange: function() {
+		var self = this;
+		var title = this.view.find("[data-type='title']");
+		title.addEventListener("focus", function(e) {
+			setTimeout(function() {
+				e.target.select();
+			}, 100);
+		});
+		var save = function() {
+			self.project.name  = title.value;
+			self.project.save();
+		}
+		title.addEventListener("blur", function(e) {
+			save();
+		});
+		title.addEventListener("keydown", function(e) {
+			if (e.which == 13) { //enter
+				e.target.blur(e);
+			}
+		});
+	},
 	_onResize: function() {
 		var h = window.innerHeight - this.view.find(".Header").clientHeight + 5;
 		this.view.find(".TaskList").style.height = h+"px";
@@ -70,7 +92,7 @@ var ProjectController = Controller.extend({
 	},
 	loadTasks: function() {
 		var self = this;
-		this.view.find(".title").innerHTML = this.project.name;
+		this.view.find("[data-type='title']").value = this.project.name;
 		this.project.getTasks(function(tasks) {
 			tasks = tasks.filter(Task.filters[self.filter]);
 			self.tasks = tasks;
