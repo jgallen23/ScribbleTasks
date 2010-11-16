@@ -143,8 +143,7 @@ var ProjectController = Controller.extend({
 	completeTask: function(taskElement) {
 		var self = this;
 		var index = taskElement.getAttribute("data-index");
-		var path = self.scribbles[index].drawPoints([[0, ScribbleSize[1]/2], [ScribbleSize[0], ScribbleSize[1]/2]]);
-		path.attr({ stroke: '#ff0000' });
+		elem.addClass(this.view.find("li[data-index='"+index+"'] .complete"), "c");
 		taskElement.style.opacity = 0;
 		var task = self.tasks[index];
 		setTimeout(function() {
