@@ -23,6 +23,17 @@ var ProjectController = Controller.extend({
 		this._onResize();
 		this.loadTasks();
 	},
+	destroy: function() {
+		console.log("destroy");
+		this.scroller = null;
+		this.addTaskController.destroy();
+		this.addTaskController = null;
+		this.project = null;
+		this.filter = null;
+		this.scribbles = null;
+		this.tasks = null;
+		this._super();
+	},
 	onClick: {
 		'star': function(e) {
 			var index = e.target.parentNode.getAttribute("data-index");
@@ -62,7 +73,16 @@ var ProjectController = Controller.extend({
 			elem.addClass(this.view.find("button.starred"), "current");
 			this.filter = "starred";
 			this.loadTasks();
+		},
+		'back': function(e) {
+			this.parentController.show();
+			this.destroy();
+			this.hide();
 		}
+	},
+	show: function() {
+		this._super();
+		this.element.style.display = "webkitBox";
 	},
 	_handleTitleChange: function() {
 		var self = this;

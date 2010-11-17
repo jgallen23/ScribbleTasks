@@ -19,11 +19,14 @@
 		<script src="models/task.js"></script>
 		<script src="controllers/addtask.js"></script>
 		<script src="controllers/project.js"></script>
+		<script src="controllers/project_list.js"></script>
 		<script src="views/scribble.js"></script>
 		<script>
             var app = new Application();
             app.bind("ready", function() {
 				app.disableScrollingPermanently();
+				window.controller = new ProjectListController("ProjectList");
+				/*
 				Project.data.find(function(projects) {
 					var project;
 					if (projects.length == 0) {
@@ -35,14 +38,29 @@
 					window.project = project;
 					window.controller = new ProjectController("Project", project);
 				});
+				*/
 			});
 		</script>
 	</head>
 	<body>
-		
+		<div id="ProjectList">
+			<nav id="Header" class="Header">
+				<div class="title">ScribbleTasks</div>
+				<ul>
+					<li><button class="Icon clear" data-onClick="clear"></button></li>
+					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+					<li><button class="Icon starred" data-onClick="filterStarred"></button></li>
+					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+					<li><button class="Icon add" data-onClick="add"></button></li>
+				</ul>
+			</nav>
+			<div class="ProjectList">	
+				<ul id="Projects"></ul>
+			</div>
+		</div>	
 		<div id="Project" class="Project">
 			<nav id="Header" class="Header">
-				<div class="title"><input data-type="title" data-onClick="editTitle"/></div>
+				<div class="title"><button data-onClick="back">&lt;</button><input data-type="title" data-onClick="editTitle"/></div>
 				<ul>
 					<li><button class="Icon clear" data-onClick="clear"></button></li>
 					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
@@ -58,7 +76,6 @@
         <div id="AddTask">
 			<div class="wrapper">
 				<div class="Paper">
-					<div id="coords"></div>
 					<button data-onClick="star">s</button>
 					<input type="text"/>
 					<div id="AddScribble"></div>
@@ -70,6 +87,13 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/html" id="jstProjectListView">
+			{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
+				<li data-key="{!= project.key !}" data-index="{!= i !}" data-onClick="project">
+					{!= project.name !}	
+				</li>
+			{! } !}
+		</script>
 		<script type="text/html" id="jstProjectView">
 			{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
             <li data-key="{!= task.key !}" data-index="{!= i !}">

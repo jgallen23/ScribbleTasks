@@ -44,5 +44,5 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 	.TaskList .complete { height: 4px; opacity: 0.8; -webkit-border-radius: 2px; background: #ff0000; position: absolute; top: 80px; width: 0; left: 100px; -webkit-transition: width .5s ease-in-out;}
 		.TaskList .complete.c { width: 500px; } 
 
-#Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; }
+#Project { display: none; -webkit-box-orient: vertical; height: 100%; }
 	#Project .TaskList { -webkit-box-flex: 1; }
