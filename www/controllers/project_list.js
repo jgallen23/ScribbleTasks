@@ -34,6 +34,15 @@ var ProjectListController = Controller.extend({
 		},
 		'add': function(e) {
 			this.showProject(new Project());
-		}
+		},
+		'clear': function(e) {
+			Project.data.provider.nuke();
+			Task.data.provider.nuke();
+			var self = this;
+			setTimeout(function() {
+				self.loadProjects();
+			}, 1000);
+		},
+
 	}
 });

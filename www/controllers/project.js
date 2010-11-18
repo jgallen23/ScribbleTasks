@@ -1,4 +1,4 @@
-var ScribbleSize = [750, 300];
+var ScribbleSize = [400, 300];
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
 		var self = this;
@@ -13,10 +13,12 @@ var ProjectController = Controller.extend({
 		
 		this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
 		APP.bind("enableScrolling", function() {
-			self.scroller.enabled = true;
+			if (self.scroller)
+				self.scroller.enabled = true;
 		});
 		APP.bind("disableScrolling", function() {
-			self.scroller.enabled = false;
+			if (self.scroller)
+				self.scroller.enabled = false;
 		});
 		this._handleTitleChange();
 		window.addEventListener("resize", function() { self._onResize() });
@@ -43,11 +45,6 @@ var ProjectController = Controller.extend({
 		},
 		'add': function(e) {
 			this.showAddTask();
-		},
-		'clear': function(e) {
-			Project.data.provider.nuke();
-			Task.data.provider.nuke();
-            this.loadTasks();
 		},
 		'task': function(e) {
 			var task = this.tasks[this.view.findParentWithAttribute(e.target, 'data-index').getAttribute("data-index")];
