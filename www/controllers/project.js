@@ -54,20 +54,20 @@ var ProjectController = Controller.extend({
 			this.completeTask(this.view.findParentWithAttribute(e.target, 'data-index'));
 		},
 		'filterAll': function(e) {
-			elem.removeClass(this.view.find("button."+this.filter), "current");
-			elem.addClass(this.view.find("button.incomplete"), "current");
+			elem.removeClass(this.view.findAll("button."+this.filter), "current");
+			elem.addClass(this.view.findAll("button.incomplete"), "current");
 			this.filter = "incomplete";
 			this.loadTasks();
 		},
 		'filterComplete': function(e) {
-			elem.removeClass(this.view.find("button."+this.filter), "current");
-			elem.addClass(this.view.find("button.complete"), "current");
+			elem.removeClass(this.view.findAll("button."+this.filter), "current");
+			elem.addClass(this.view.findAll("button.complete"), "current");
 			this.filter = "complete";
 			this.loadTasks();
 		},
 		'filterStarred': function(e) {
-			elem.removeClass(this.view.find("button."+this.filter), "current");
-			elem.addClass(this.view.find("button.starred"), "current");
+			elem.removeClass(this.view.findAll("button."+this.filter), "current");
+			elem.addClass(this.view.findAll("button.starred"), "current");
 			this.filter = "starred";
 			this.loadTasks();
 		},
