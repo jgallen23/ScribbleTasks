@@ -103,7 +103,11 @@ var ProjectController = Controller.extend({
 		});
 	},
 	_onResize: function() {
-		var h = window.innerHeight - this.view.find(".Header").clientHeight + 5;
+		var h = window.innerHeight - this.view.find("header").clientHeight;
+		var footer = this.view.find("footer");
+		if (footer.style.display != "none") {
+			h -= footer.clientHeight;
+		}
 		this.view.find(".TaskList").style.height = h+"px";
 		this.scroller.refresh();
 	},
@@ -133,7 +137,7 @@ var ProjectController = Controller.extend({
 			});
 		});
 		window.scroll(0,0);
-		this.scroller.refresh();
+		this._onResize();
 	},
     tasksSorted: function() {
         var items = this.view.findAll("#Tasks li");

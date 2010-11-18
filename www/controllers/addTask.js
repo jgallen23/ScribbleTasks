@@ -2,19 +2,19 @@ var AddTaskController = Controller.extend({
 	init: function(elementId) {
 		this._super(elementId);
 		this.star = false;
-		this.input = this.view.find("input");
+		//this.input = this.view.find("input");
 		this.loadedScribble = false;
 		this.scribble = new Scribble(this.view.find('#AddScribble'), ScribbleSize[0], ScribbleSize[1]);
 	},
 	destroy: function() {
 		this.star = null;
-		this.input = null;
+		//this.input = null;
 		this.view.find("#AddScribble").innerHTML = '';
 		this.scribble = null;
 		this._super();
 	},
 	clear: function() {
-		this.input.value = "";
+		//this.input.value = "";
 		this.loadedScribble = null;
 		this.scribble.clear();
 	},
@@ -34,7 +34,7 @@ var AddTaskController = Controller.extend({
 		this._super();
 	},
 	addTask: function() {
-		if (this.input.value != "" || this.scribble.strokes.length != 0) {
+		if (this.scribble.strokes.length != 0) {
 			if (this.loadedScribble) {
 				this.loadedScribble.star = this.star;
 				this.loadedScribble.svg = this.scribble.toJSON();

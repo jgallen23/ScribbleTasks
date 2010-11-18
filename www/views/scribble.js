@@ -8,7 +8,7 @@ var Scribble = View.extend({
 		this.readonly = readonly;
 		this.undos = [];
 		this.path = null;
-		this.paper = Raphael(this.element, width, height);
+		this.paper = Raphael(this.element, "100%", "100%")
 		//this.paper.serialize.init();
 
 		if (!this.readonly) {

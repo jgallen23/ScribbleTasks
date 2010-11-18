@@ -1500,7 +1500,10 @@ var EventManager = Class.extend({
 		}
 	
 		return this;
-	}
+    },
+    handleEvent: function(e) {
+
+    }
 });
 var Controller = EventManager.extend({
 	useLiveClickEvents: true,

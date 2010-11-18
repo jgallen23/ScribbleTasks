@@ -25,7 +25,18 @@
             var app = new Application();
             app.bind("ready", function() {
 				app.disableScrollingPermanently();
-				window.controller = new ProjectListController("ProjectList");
+				var c = new ProjectListController("ProjectList");
+				/* Tests
+				var f = false;
+				c.bind("loaded", function() {
+					if (f) return;
+					var pc = this.showProject(this.projects[0]);
+					//pc.showAddTask();
+					f = true;
+
+				});
+				//*/
+				window.controller = c;
 				/*
 				Project.data.find(function(projects) {
 					var project;
@@ -44,41 +55,57 @@
 	</head>
 	<body>
 		<div id="ProjectList">
-			<nav id="Header" class="Header">
+			<header id="Header" class="Header">
 				<div class="title">ScribbleTasks</div>
-				<ul>
+				<ul class="Toolbar">
 					<li><button class="Icon clear" data-onClick="clear"></button></li>
 					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
 					<li><button class="Icon starred" data-onClick="filterStarred"></button></li>
 					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
 					<li><button class="Icon add" data-onClick="add"></button></li>
 				</ul>
-			</nav>
+			</header>
 			<div class="ProjectList">	
 				<ul id="Projects"></ul>
 			</div>
-		</div>	
-		<div id="Project" class="Project">
-			<nav id="Header" class="Header">
-				<div class="title"><button data-onClick="back">&lt;</button><input data-type="title" data-onClick="editTitle"/></div>
-				<ul>
+			<footer>
+				<ul class="Toolbar">
+					<li><button class="Icon clear" data-onClick="clear"></button></li>
 					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
 					<li><button class="Icon starred" data-onClick="filterStarred"></button></li>
 					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
 					<li><button class="Icon add" data-onClick="add"></button></li>
 				</ul>
-			</nav>
+			</footer>
+		</div>	
+		<div id="Project" class="Project">
+			<header id="Header" class="Header">
+				<div class="title"><button data-onClick="back">&lt;</button><input data-type="title" data-onClick="editTitle"/></div>
+				<ul class="Toolbar">
+					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+					<li><button class="Icon starred" data-onClick="filterStarred"></button></li>
+					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+					<li><button class="Icon add" data-onClick="add"></button></li>
+				</ul>
+			</header>
 			<div class="TaskList">	
 				<ul id="Tasks"></ul>
 			</div>
+			<footer>
+				<ul class="Toolbar">
+					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+					<li><button class="Icon starred" data-onClick="filterStarred"></button></li>
+					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+					<li><button class="Icon add" data-onClick="add"></button></li>
+				</ul>
+			</footer>
 		</div>
         <div id="AddTask">
 			<div class="wrapper">
 				<div class="Paper">
-					<button data-onClick="star">s</button>
-					<input type="text"/>
 					<div id="AddScribble"></div>
 					<div class="buttons">
+						<button data-onClick="star">s</button>
 						<button data-onClick="add">Add</button>
 						<button data-onClick="addAnother">Add Another</button>
 						<button data-onClick="cancel">Cancel</button>

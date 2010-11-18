@@ -35,7 +35,7 @@ var Project = Model.extend({
 					if (cb) cb(project, task);
 				});
 			} else {
-				if (cb) cb(project, task);
+				if (cb) cb(self, task);
 			}
 		});
 	}

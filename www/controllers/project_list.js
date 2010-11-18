@@ -10,6 +10,7 @@ var ProjectListController = Controller.extend({
 		var self = this;
 		Project.data.find(function(projects) {
 			self.projects = projects;
+			self.trigger("loaded");
 			self._render();
 		});
 	},
@@ -22,6 +23,7 @@ var ProjectListController = Controller.extend({
 		projectController.parentController = this;
 		this.hide();
 		projectController.show();
+		return projectController;
 	},
 	show: function() {
 		this.loadProjects();
