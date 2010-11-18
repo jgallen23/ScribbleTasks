@@ -16,7 +16,7 @@ window.addSwipeHandler = function(element, callback) {
 	}
 
 	var touchEnd = function(e) {
-		if (Math.abs(dx) > 50 && Math.abs(dy) < 15) {
+		if (Math.abs(dx) > 150 && Math.abs(dy) < 50) {
 			if (dx > 0) {
 				callback(element, "left");
 			} else {

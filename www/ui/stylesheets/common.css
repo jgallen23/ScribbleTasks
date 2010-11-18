@@ -1,5 +1,6 @@
 ul { margin: 0; padding: 0; }
 body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; margin: 0; padding: 0;  height: 100%; background: url(../images/paper2-bg.png)}
+* { -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
 #AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal;  }
 	#AddTask .wrapper { display: -webkit-box; -webkit-box-pack: center; -webkit-box-orient: vertical; width: 80%; height: 300px;}
@@ -13,7 +14,8 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 
 header, footer {  width: 100%; opacity: 0.8;  height: 45px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 20px; } 
-		header .title input { -webkit-box-flex: 1; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 25px; color: #fff; } 
+		header .title, header .title input { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 25px; color: #fff; }
+		header .title input { -webkit-box-flex: 1; } 
 
 footer { display: none; }
 
@@ -31,6 +33,10 @@ footer { display: none; }
 
 .Paper { background: #fff; -webkit-border-radius: 10px; -webkit-box-shadow: 2px 2px 2px #333; }
 	.Paper .Paper { margin: 0 3px 2px 0; } 
+
+.ProjectList {}
+	.ProjectList li { font-size: 25px; font-family: 'MarkerFelt-Thin'; padding: 15px 5px; } 
+		.ProjectList li:active { background: #ccc; }  
 
 .TaskList { overflow-y: hidden; margin: 0px; position: relative; z-index: 1 }
 .TaskList ul { list-style: none; margin: 0;}
@@ -52,10 +58,15 @@ footer { display: none; }
 /* iPhone */
 @media only screen and (max-width: 480px) {
 	footer { display: block; }
-	.TaskList { height: 200px; }
 	header ul.Toolbar { display: none; }
+
 	#AddTask .wrapper { height: 100%; width: 100% }
-	.TaskList li { height: 150px; }
+	#AddTask .Paper { -webkit-border-radius: 0 }
+	#AddScribble { border: 0; }
+
+	.TaskList { height: 200px; }
+	.TaskList li { height: 175px; }
 	.TaskList .star { margin-left: 2px; }
 	.TaskList .reorder { margin-right: 2px; }
+	.TaskList .complete { left: 60px; }
 }
