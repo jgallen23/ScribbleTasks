@@ -133,10 +133,6 @@ Array.prototype.extend = function(array) {
 		this.push(array[i]);
 	}
 }
-
-Array.prototype.last = function() {
-	return this[this.length - 1];
-}
 if (typeof debug === "undefined") {
 	window.debug = console;
 }
@@ -349,7 +345,7 @@ var Application = Controller.extend({
 		var self = this;
 
         window.addEventListener("load", function() { 
-            if (false && browser.isMobile) {
+            if (browser.isMobile) {
                 document.addEventListener("deviceready", function() { self.ready() }, false);
             } else {
                 self.ready() 
