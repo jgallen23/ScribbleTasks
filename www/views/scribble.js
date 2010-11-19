@@ -127,7 +127,6 @@ var Scribble = View.extend({
 				if (done) {
 					var strokePath = self.pathFromPoints(currentStroke);
 					self.strokes.push(strokePath);
-					console.log(self.strokes);
 					self.redraw();
 					currentStroke = [];
 					strokeString = [];
@@ -156,13 +155,12 @@ var Scribble = View.extend({
 		}
 	},
 	load: function(json) {
-		var json = JSON.parse(json); 
 		this.strokes = json;
 		this.redraw();
 	},
 	toJSON: function() {
 		//var json = this.paper.serialize.freeze();
-		return JSON.stringify(this.strokes);
+		return this.strokes;
 	},
 	scale: function(scale) {
 		this._scale = scale;
