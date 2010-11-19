@@ -21,7 +21,7 @@ footer.buttons button { margin-top: 10px; }
 	#AddScribble {  border: 1px solid #ccc; -webkit-flex: 1 }
 
 
-.Toolbar { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; }
+.Toolbar { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; -webkit-box-pack: justify }
 	.Toolbar li { padding: 0 15px; } 
 	.Toolbar li .Icon { background-size: 25px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; } 
 		.Toolbar li .Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity: 1.0 } 
@@ -45,7 +45,8 @@ footer.buttons button { margin-top: 10px; }
 .TaskList ul { list-style: none; margin: 0;}
 	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; -webkit-transition: opacity 1s ease-in-out; position: relative; height: 150px} 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 35px; }
-	.TaskList .star { margin: 0 20px; background: url(../images/icons/star-on.png) no-repeat; -webkit-transition: opacity .5s ease-in-out; opacity: .3;}
+	.TaskList .buttons { margin-left: 10px; }
+	.TaskList .star { background: url(../images/icons/star-on.png) no-repeat; -webkit-transition: opacity .5s ease-in-out; opacity: .3;}
 	.TaskList .reorder { background: url(../images/icons/reorder.png) no-repeat; margin-right: 20px;  }
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; }
@@ -62,7 +63,7 @@ footer.buttons button { margin-top: 10px; }
 
 /* Desktop */
 @media only screen and (min-width: 481px) {
-	#AddTask footer { background: 0; -webkit-box-shadow: none }
+	#AddTask footer { background: 0; -webkit-box-shadow: none; display: block; }
 }
 
 /* iPhone */
@@ -75,7 +76,9 @@ footer.buttons button { margin-top: 10px; }
 	#AddScribble { border: 0; }
 
 	.TaskList li { height: 175px; }
-	.TaskList .star { margin-left: 2px; }
+	.TaskList .buttons { margin-left: 2px; }
 	.TaskList .reorder { margin-right: 2px; }
 	.TaskList .complete { left: 60px; }
+	.TaskList li .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-align: center; padding-top: 50px; }
+		.TaskList li .buttons .star { margin-bottom: 10px; } 
 }

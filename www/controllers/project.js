@@ -125,7 +125,7 @@ var ProjectController = Controller.extend({
 		var data = { project: this.project, tasks: this.tasks };
 		console.log(this.tasks);
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
-		//this.drawScribbles();
+		this.drawScribbles();
         var sortable = new SortableController('Tasks');
         var self = this;
         sortable.bind("sorted", function() {

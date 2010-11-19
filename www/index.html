@@ -38,7 +38,7 @@
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					pc.showAddTask();
+					//pc.showAddTask();
 					f = true;
 
 				});
@@ -61,14 +61,15 @@
 		</script>
 	</head>
 	<body>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"><desc>Created with Rapha<desc><defs></defs><path fill="none" stroke="#000000" d="M70.5,111L70.5,110L72,108L76.5,101L80.5,94.5L89,83.5L100,74L111,67L130,59L147,54L160.5,51L178.5,50L188.5,50L202,52.5L217,59L226,66L230.5,72L232.5,79.5L232.5,88.5L233,95.5L235.5,102L240,108.5L247.5,113.5L263,120L277.5,123L300,126L328,127.5L348,128L364,128L371.5,127.5L373.5,127L375.5,126.5" style="stroke-width: 3px; " stroke-width="3" transform="  "></path></svg>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"><desc>SVG</desc><defs></defs><path fill="none" stroke="#000000" d="M141,222 L141,220 L144,216 L153,202 L161,189 L178,167 L200,148 L222,134 L260,118 L294,108 L321,102 L357,100 L377,100 L404,105 L434,118 L452,132 L461,144 L465,159 L465,177 L466,191 L471,204 L480,217 L495,227 L526,240 L555,246 L600,252 L656,255 L696,256 L728,256 L743,255 L747,254 L751,253" style="stroke-width: 3px" stroke-width="3" transform="scale(0.5, 0.5)"></path></svg> 
 		<div id="ProjectList" class="Container">
 			<header id="Header" class="Header">
 				<div class="title">ScribbleTasks</div>
 				<ul class="Toolbar">
 					<li><button class="Icon clear" data-onClick="clear"></button></li>
 					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
-					<li><button class="Icon starred" data-onClick="filterStarred"></button></li>
-					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+					<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
 					<li><button class="Icon add" data-onClick="add"></button></li>
 				</ul>
 			</header>
@@ -79,8 +80,7 @@
 				<ul class="Toolbar">
 					<li><button class="Icon clear" data-onClick="clear"></button></li>
 					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
-					<li><button class="Icon starred" data-onClick="filterStarred"></button></li>
-					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+					<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
 					<li><button class="Icon add" data-onClick="add"></button></li>
 				</ul>
 			</footer>
@@ -111,11 +111,11 @@
 			<div class="wrapper Container Paper">
 				<div id="AddScribble"></div>
 				<footer class="buttons">
-					<button data-onClick="undo">Undo</button>
-					<button data-onClick="redo">Redo</button>
+					<button data-onClick="undo">U</button>
+					<button data-onClick="redo">R</button>
 					<button data-onClick="star">s</button>
-					<button data-onClick="add">Add</button>
-					<button data-onClick="addAnother">Add Another</button>
+					<button data-onClick="add">+</button>
+					<button data-onClick="addAnother">++</button>
 					<button data-onClick="cancel">Cancel</button>
 				</footer>
 			</div>
@@ -135,10 +135,10 @@
 			{! } !}	
 		</script>
 		<script type="text/html" id="jstTaskView">
+			<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
 			<div class="buttons">
-				<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
 				<button class="Icon star" style="opacity: {!= (task.star)?"1":".3" !}" data-onClick="star"></button>
-				<button data-onClick="task">E</button>
+				<button class="Icon" data-onClick="task">E</button>
 			</div>
 			{! if (task.name) { !}
 			<div class="task" data-onClick="task">
@@ -146,7 +146,11 @@
 			</div>
 			{! } else { !}
 			<div id="Scribble_{!= i !}" class="task scribble">
-				<svg height="100%" width="100%"><path fill="none" stroke="#000000" d="{!= task.svg.join(' ') !}" style="stroke-width: 3px" stroke-width="3"></path></svg>
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%">
+					<desc>SVG</desc>
+					<defs></defs>
+					<path fill="none" stroke="#000000" d="{!= task.svg.join(' ') !}" style="stroke-width: 3px" stroke-width="3" transform="scale(0.5, 0.5)"></path>
+				</svg>
 			</div>
 			{! } !}
 			<button class="Icon reorder" data-onClick="trigger"></button>

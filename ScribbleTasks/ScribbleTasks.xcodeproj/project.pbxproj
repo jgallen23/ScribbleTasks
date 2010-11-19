@@ -324,7 +324,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C \"/Users/jga/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib\"\necho cp \"/Users/jga/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib/javascripts/phonegap.js ${PROJECT_DIR}/www/phonegap.js\"\ncp \"/Users/jga/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib/javascripts/phonegap.js\" \"${PROJECT_DIR}/www/phonegap.js\"";
+			shellScript = "make -C \"${HOME}/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib\"\necho cp \"${HOME}/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib/javascripts/phonegap.js ${PROJECT_DIR}/www/phonegap.js\"\ncp \"${HOME}/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib/javascripts/phonegap.js\" \"${PROJECT_DIR}/www/phonegap.js\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
