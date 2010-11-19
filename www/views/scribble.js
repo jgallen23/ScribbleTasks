@@ -115,12 +115,15 @@ var Scribble = View.extend({
 					currentStroke.push(p);
 					x = p[0];
 					y = p[1];
-					strokeString.push(self.pathFromPoints([o, p]));
+					var p = self.pathFromPoints([o, p]);
+					self.drawPath(p);
+					//strokeString.push(self.pathFromPoints([o, p]));
 				}
 			}
-			if (strokeString.length != 0) {
-				var ps = strokeString.join(' ');
-				self.drawPath(ps);
+			if (currentStroke.length != 0) {
+				/*var ps = strokeString.join(' ');*/
+				/*console.log(ps);*/
+				/*self.drawPath(ps);*/
 				if (done) {
 					var strokePath = self.pathFromPoints(currentStroke);
 					self.strokes.push(strokePath);
@@ -140,23 +143,24 @@ var Scribble = View.extend({
 		}
 	},
 	undo: function() {
-		this.undos.push(this.strokes[this.strokes.length-1]);
+		this.undos.push(this.strokes.last());
 		this.strokes.remove(this.strokes.length-1);
 		this.redraw();
 	},
 	redo: function() {
-		this.strokes.extend(this.undos.shift());
-		this.undos = [];	
-		this.redraw();
+		if (this.undos.length != 0) {
+			this.strokes.push(this.undos.last());
+			this.undos.remove(this.undos.length - 1);
+			this.redraw();
+		}
 	},
 	load: function(json) {
-		var json = JSON.parse(json); 
 		this.strokes = json;
 		this.redraw();
 	},
 	toJSON: function() {
 		//var json = this.paper.serialize.freeze();
-		return JSON.stringify(this.strokes);
+		return this.strokes;
 	},
 	scale: function(scale) {
 		this._scale = scale;

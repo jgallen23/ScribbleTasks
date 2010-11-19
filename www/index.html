@@ -33,7 +33,7 @@
 				app.resize();
 				app.disableScrollingPermanently();
 				var c = new ProjectListController("ProjectList");
-				/* Tests
+				//* Tests
 				var f = false;
 				c.bind("loaded", function() {
 					if (f) return;
@@ -111,6 +111,8 @@
 			<div class="wrapper Container Paper">
 				<div id="AddScribble"></div>
 				<footer class="buttons">
+					<button data-onClick="undo">Undo</button>
+					<button data-onClick="redo">Redo</button>
 					<button data-onClick="star">s</button>
 					<button data-onClick="add">Add</button>
 					<button data-onClick="addAnother">Add Another</button>
@@ -133,16 +135,21 @@
 			{! } !}	
 		</script>
 		<script type="text/html" id="jstTaskView">
-			<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
-			<button class="Icon star" style="opacity: {!= (task.star)?"1":".3" !}" data-onClick="star"></button>
+			<div class="buttons">
+				<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
+				<button class="Icon star" style="opacity: {!= (task.star)?"1":".3" !}" data-onClick="star"></button>
+				<button data-onClick="task">E</button>
+			</div>
 			{! if (task.name) { !}
 			<div class="task" data-onClick="task">
 				{!= task.name !}
 			</div>
 			{! } else { !}
-			<div id="Scribble_{!= i !}" data-onClick="task" class="task scribble"></div>
-			<button class="Icon reorder" data-onClick="trigger"></button>
+			<div id="Scribble_{!= i !}" class="task scribble">
+				<svg height="100%" width="100%"><path fill="none" stroke="#000000" d="{!= task.svg.join(' ') !}" style="stroke-width: 3px" stroke-width="3"></path></svg>
+			</div>
 			{! } !}
+			<button class="Icon reorder" data-onClick="trigger"></button>
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
 		</script>
 	</body>

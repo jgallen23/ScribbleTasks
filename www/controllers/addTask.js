@@ -64,6 +64,12 @@ var AddTaskController = Controller.extend({
 		cancel: function(e) {
 			this.clear();
 			this.trigger("cancel");
+		},
+		undo: function(e) {
+			this.scribble.undo();
+		},
+		redo: function(e) {
+			this.scribble.redo();
 		}
 	}
 });
