@@ -31,7 +31,7 @@
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					//pc.showAddTask();
+					pc.showAddTask();
 					f = true;
 
 				});
@@ -105,6 +105,8 @@
 				<div class="Paper">
 					<div id="AddScribble"></div>
 					<div class="buttons">
+						<button data-onClick="undo">Undo</button>
+						<button data-onClick="redo">Redo</button>
 						<button data-onClick="star">s</button>
 						<button data-onClick="add">Add</button>
 						<button data-onClick="addAnother">Add Another</button>
