@@ -23,7 +23,14 @@
 		<script src="views/scribble.js"></script>
 		<script>
             var app = new Application();
+			app.bind("resize", function(width, height) {
+				var containers = document.querySelectorAll(".Container");
+				for (var i = 0, c = containers.length; i < c; i++) {
+					containers[i].style.height = height+"px";
+				}
+			});
             app.bind("ready", function() {
+				app.resize();
 				app.disableScrollingPermanently();
 				var c = new ProjectListController("ProjectList");
 				/* Tests
@@ -31,7 +38,7 @@
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					//pc.showAddTask();
+					pc.showAddTask();
 					f = true;
 
 				});
@@ -54,7 +61,7 @@
 		</script>
 	</head>
 	<body>
-		<div id="ProjectList">
+		<div id="ProjectList" class="Container">
 			<header id="Header" class="Header">
 				<div class="title">ScribbleTasks</div>
 				<ul class="Toolbar">
@@ -78,7 +85,7 @@
 				</ul>
 			</footer>
 		</div>	
-		<div id="Project" class="Project">
+		<div id="Project" class="Container Project">
 			<header id="Header" class="Header">
 				<button data-onClick="back">&lt;</button><div class="title"><input data-type="title" data-onClick="editTitle"/></div>
 				<ul class="Toolbar">
@@ -101,16 +108,14 @@
 			</footer>
 		</div>
         <div id="AddTask">
-			<div class="wrapper">
-				<div class="Paper">
-					<div id="AddScribble"></div>
-					<div class="buttons">
-						<button data-onClick="star">s</button>
-						<button data-onClick="add">Add</button>
-						<button data-onClick="addAnother">Add Another</button>
-						<button data-onClick="cancel">Cancel</button>
-					</div>
-				</div>
+			<div class="wrapper Container Paper">
+				<div id="AddScribble"></div>
+				<footer class="buttons">
+					<button data-onClick="star">s</button>
+					<button data-onClick="add">Add</button>
+					<button data-onClick="addAnother">Add Another</button>
+					<button data-onClick="cancel">Cancel</button>
+				</footer>
 			</div>
 		</div>
 		<script type="text/html" id="jstProjectListView">

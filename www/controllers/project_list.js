@@ -28,6 +28,7 @@ var ProjectListController = Controller.extend({
 	show: function() {
 		this.loadProjects();
 		this._super();
+		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
 		'project': function(e) {

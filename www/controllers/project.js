@@ -79,7 +79,7 @@ var ProjectController = Controller.extend({
 	},
 	show: function() {
 		this._super();
-		this.element.style.display = "webkitBox";
+		this.element.style.display = "-webkit-box";
 	},
 	_handleTitleChange: function() {
 		var self = this;
@@ -103,6 +103,7 @@ var ProjectController = Controller.extend({
 		});
 	},
 	_onResize: function() {
+		return;
 		var h = window.innerHeight - this.view.find("header").clientHeight;
 		var footer = this.view.find("footer");
 		if (footer.style.display != "none") {
