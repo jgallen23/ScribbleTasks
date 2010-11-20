@@ -27,6 +27,17 @@
 	[ super applicationDidFinishLaunching:application ];
 }
 
+- (void) applicationDidReceiveMemoryWarning:(UIApplication *)application {
+	UIAlertView *someError = [[UIAlertView alloc] initWithTitle: @"Memory Warning" 
+														message: @"Received memory warning" 
+													   delegate: self 
+											  cancelButtonTitle: @"Ok" 
+											  otherButtonTitles: nil];
+	
+	[someError show];
+	[someError release];
+}
+
 -(id) getCommandInstance:(NSString*)className
 {
 	/** You can catch your own commands here, if you wanted to extend the gap: protocol, or add your
