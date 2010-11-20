@@ -14,7 +14,6 @@ var AddTaskController = Controller.extend({
 		this._super();
 	},
 	clear: function() {
-		//this.input.value = "";
 		this.loadedScribble = null;
 		this.scribble.clear();
 	},
@@ -62,7 +61,6 @@ var AddTaskController = Controller.extend({
 			this.addTask();
 		},
 		cancel: function(e) {
-			this.clear();
 			this.trigger("close");
 		},
 		undo: function(e) {

@@ -26,7 +26,7 @@
 			app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
 				if (this.isPhoneGap)
-					height -= 20;
+					height -= 40;
 				var containers = document.querySelectorAll(".Container");
 				for (var i = 0, c = containers.length; i < c; i++) {
 					containers[i].style.height = height+"px";
@@ -36,11 +36,19 @@
 				}
 			});
             app.bind("ready", function() {
-				app.resize();
-				if (this.browser.isMobile)
+				if (this.browser.isMobile) {
+					/*
+					if (!this.browser.isPhoneGap) {
+						setTimeout(function() { 
+							window.scrollTo(0, 1);
+						}, 100);
+					}
+					*/
 					app.disableScrollingPermanently();
+				}
+				app.resize();
 				var c = new ProjectListController("ProjectList");
-				//* Tests
+				/* Tests
 				var f = false;
 				c.bind("loaded", function() {
 					if (f) return;

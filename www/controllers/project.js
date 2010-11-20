@@ -23,6 +23,8 @@ var ProjectController = Controller.extend({
 		this.loadTasks();
 	},
 	destroy: function() {
+		if (this.scroller)
+			this.scroller.destroy(true);
 		this.scroller = null;
 		this.project = null;
 		this.filter = null;
@@ -32,7 +34,7 @@ var ProjectController = Controller.extend({
 	},
 	onClick: {
 		'star': function(e) {
-			var index = e.target.parentNode.getAttribute("data-index");
+			var index = e.target.parentNode.parentNode.getAttribute("data-index");
 			var task = this.tasks[index];
 			e.target.style.opacity = (task.star)?.3:1.0;
 			this.starTask(task);
@@ -122,7 +124,8 @@ var ProjectController = Controller.extend({
 			});
 		});
 		window.scroll(0,0);
-		this.scroller.refresh();
+		if (this.scroller)
+			this.scroller.refresh();
 	},
     tasksSorted: function() {
         var items = this.view.findAll("#Tasks li");
