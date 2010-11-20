@@ -8,7 +8,8 @@ var ProjectController = Controller.extend({
 		this.scribbles = [];
 
 	
-		this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
+		if (APP.browser.isMobile)
+			this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)
 				self.scroller.enabled = true;
