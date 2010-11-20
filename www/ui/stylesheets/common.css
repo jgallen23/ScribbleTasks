@@ -41,7 +41,7 @@ footer.buttons button { margin-top: 10px; }
 	.ProjectList li { font-size: 25px; font-family: 'MarkerFelt-Thin'; padding: 15px 5px; } 
 		.ProjectList li:active { background: #ccc; }  
 
-.TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll; }
+.TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll }
 	body.Mobile .TaskList { overflow-y: hidden; }
 .TaskList ul { list-style: none; margin: 0;}
 	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; -webkit-transition: opacity 1s ease-in-out; position: relative; height: 150px} 

@@ -8,8 +8,9 @@ var ProjectController = Controller.extend({
 		this.scribbles = [];
 
 	
-		if (APP.browser.isMobile)
-			this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
+		if (APP.browser.isMobile) {
+			this.scroller = new iScroll("Tasks", { checkDOMChanges: false });
+		}
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)
 				self.scroller.enabled = true;
@@ -19,12 +20,9 @@ var ProjectController = Controller.extend({
 				self.scroller.enabled = false;
 		});
 		this._handleTitleChange();
-		window.addEventListener("resize", function() { self._onResize() });
-		this._onResize();
 		this.loadTasks();
 	},
 	destroy: function() {
-		console.log("destroy");
 		this.scroller = null;
 		this.project = null;
 		this.filter = null;
@@ -98,16 +96,6 @@ var ProjectController = Controller.extend({
 			}
 		});
 	},
-	_onResize: function() {
-		return;
-		var h = window.innerHeight - this.view.find("header").clientHeight;
-		var footer = this.view.find("footer");
-		if (footer.style.display != "none") {
-			h -= footer.clientHeight;
-		}
-		this.view.find(".TaskList").style.height = h+"px";
-		this.scroller.refresh();
-	},
 	loadTasks: function() {
 		var self = this;
 		this.view.find("[data-type='title']").value = this.project.name;
@@ -119,7 +107,6 @@ var ProjectController = Controller.extend({
 	},
 	_render: function() {
 		var data = { project: this.project, tasks: this.tasks };
-		console.log(this.tasks);
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		this.drawScribbles();
         var sortable = new SortableController('Tasks');
@@ -135,7 +122,7 @@ var ProjectController = Controller.extend({
 			});
 		});
 		window.scroll(0,0);
-		this._onResize();
+		this.scroller.refresh();
 	},
     tasksSorted: function() {
         var items = this.view.findAll("#Tasks li");
@@ -154,9 +141,9 @@ var ProjectController = Controller.extend({
 				s.readonly = true;
 				s.load(task.svg);
 				s.scale([.5, .5, 0, 0]);
-				s.paper.canvas.addEventListener("click", function(e) {
-					self.onClick['task'].call(self, e);
-				});
+				/*s.paper.canvas.addEventListener("click", function(e) {*/
+				/*self.onClick['task'].call(self, e);*/
+				/*});*/
 				self.scribbles.push(s);
 			}
 		}

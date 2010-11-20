@@ -23,7 +23,10 @@
 		<script src="views/scribble.js"></script>
 		<script>
             var app = new Application();
+			app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
+				if (this.isPhoneGap)
+					height -= 20;
 				var containers = document.querySelectorAll(".Container");
 				for (var i = 0, c = containers.length; i < c; i++) {
 					containers[i].style.height = height+"px";
