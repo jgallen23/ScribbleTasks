@@ -17,7 +17,7 @@ var Scribble = View.extend({
 	},
 	drawPath: function(path) {
 		var rpath = this.paper.path(path);
-		var attr = { 'stroke-width': this.strokeWidth };
+		var attr = { 'stroke-width': this.strokeWidth, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
 		if (this._scale) {
 			attr['scale'] = this._scale;
 		}

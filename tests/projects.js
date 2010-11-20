@@ -54,12 +54,31 @@ asyncTest('get tasks', function() {
 asyncTest("add task to project", function() {
 	Project.data.find(function(projects) {
 		var project = projects[0];
+		var oTask = new Task({ name: 'new task' });
+		project.getTasks(function(tasks) {
+			var taskCount = tasks.length;	
+			project.addTask(oTask, function(project, task) {
+				project.getTasks(function(tasks) {
+					equal(oTask.key, task.key);
+					equal(project.taskIds.length, taskCount+1);
+					equal(tasks.length, taskCount+1);
+					start();
+				});
+			});
+		});
+	});
+});
+
+asyncTest("remove task from project", function() {
+	Project.data.find(function(projects) {
+		var project = projects[0];
 		var task = new Task({ name: 'new task' });
 		project.getTasks(function(tasks) {
 			var taskCount = tasks.length;	
 			project.addTask(task, function(project, task) {
-				project.getTasks(function(tasks) {
-					equal(tasks.length, taskCount+1);
+				equal(project.taskIds.length, taskCount+1);
+				project.removeTask(task, function(project) {
+					equal(project.taskIds.length, taskCount);						
 					start();
 				});
 			});

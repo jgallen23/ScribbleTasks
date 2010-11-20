@@ -128,6 +128,10 @@ Array.prototype.remove = function(from, to) {
   return this.length;
 };
 
+Array.prototype.removeItem = function(item) {
+	return this.remove(this.indexOf(item));
+}
+
 Array.prototype.extend = function(array) {
 	for (var i = 0; i < array.length; i++) {
 		this.push(array[i]);
@@ -243,6 +247,9 @@ var EventManager = Class.extend({
 	init: function() {
 
 	},
+	destroy: function() {
+		this.callbacks = null;
+	},
 	bind: function(event, callback) {
 		if (typeof event === "object") {
 			for (var key in event) {
@@ -311,6 +318,7 @@ var Controller = EventManager.extend({
 		if (this.useLiveClickEvents) {
 			this.element.removeEventListener(INPUT_EVENT, this);
 		}
+		this._super();
 		this.trigger("destroy");
 	},
 	show: function() {
@@ -349,7 +357,7 @@ var Application = Controller.extend({
 		var self = this;
 
         window.addEventListener("load", function() { 
-            if (browser.isMobile) {
+            if (false && browser.isMobile) {
                 document.addEventListener("deviceready", function() { self.ready() }, false);
             } else {
                 self.ready() 

@@ -7,10 +7,7 @@ var ProjectController = Controller.extend({
 		this.project = project;
 		this.scribbles = [];
 
-		this.addTaskController = new AddTaskController("AddTask");
-		this.addTaskController.bind("add", function(task) { self.addTask(task); });
-		this.addTaskController.bind("cancel", function() { APP.enableScrolling(); self.addTaskController.hide(); });
-		
+	
 		this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)
@@ -28,8 +25,6 @@ var ProjectController = Controller.extend({
 	destroy: function() {
 		console.log("destroy");
 		this.scroller = null;
-		this.addTaskController.destroy();
-		this.addTaskController = null;
 		this.project = null;
 		this.filter = null;
 		this.scribbles = null;
@@ -166,7 +161,18 @@ var ProjectController = Controller.extend({
 		}
 	},
 	showAddTask: function(task) {
-		this.addTaskController.show(task);
+		var self = this;
+		var controller = new AddTaskController("AddTask");
+		controller.bind("add", function(task) { 
+			self.addTask(task); 
+		});
+		controller.bind("close", function() { 
+			APP.enableScrolling();
+			this.hide();
+		   	this.destroy(); 
+		});
+	
+		controller.show(task);
 	},
 	addTask: function(task) {
 		var self = this;

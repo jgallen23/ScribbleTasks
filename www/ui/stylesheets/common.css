@@ -15,10 +15,10 @@ footer.buttons button { margin-top: 10px; }
 
 .Container footer { display: none; }
 
-#AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal;  }
-	#AddTask .wrapper { display: -webkit-box; -webkit-box-pack: center; -webkit-box-orient: vertical; width: 80%; height: 300px;}
+#AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal; -webkit-box-align: center; }
+	#AddTask .wrapper { display: -webkit-box; -webkit-box-orient: vertical; width: 80%; height: 300px;}
 	#AddTask .Paper { padding: 10px; } 
-	#AddScribble {  border: 1px solid #ccc; -webkit-flex: 1 }
+	#AddScribble {  border: 1px solid #ccc; -webkit-box-flex: 1 }
 
 
 .Toolbar { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; -webkit-box-pack: justify }

@@ -8,7 +8,7 @@ var FixtureProvider = Class.extend({
     save: function(obj, cb) {
 		if (!obj.key) {
 			this._data.push(obj);
-			obj.key = 999;
+			obj.key = Math.floor(Math.random()*1000);
 		}
         if (cb) cb(obj);
     }

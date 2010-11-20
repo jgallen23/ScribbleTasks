@@ -38,6 +38,13 @@ var Project = Model.extend({
 				if (cb) cb(self, task);
 			}
 		});
+	},
+	removeTask: function(task, cb) {
+		var self = this;
+		this.taskIds.removeItem(task.key);
+		self.save(function(project) {
+			cb(self);
+		});
 	}
 });
 Project.data = new ProjectDataProvider();
