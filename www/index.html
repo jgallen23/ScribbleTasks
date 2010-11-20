@@ -23,7 +23,8 @@
 		<script src="views/scribble.js"></script>
 		<script>
             var app = new Application();
-			app.browser.isPhoneGap = true;
+			//app.browser.isMobile = true;
+			//app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
 				if (this.isPhoneGap)
 					height -= 40;
@@ -53,7 +54,7 @@
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					//pc.showAddTask();
+					pc.showAddTask();
 					f = true;
 
 				});

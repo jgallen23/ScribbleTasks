@@ -7,9 +7,12 @@ var ProjectController = Controller.extend({
 		this.project = project;
 		this.scribbles = [];
 
+		this.addTaskController = new AddTaskController("AddTask");
+		this.addTaskController.bind("add", function(task) { self.addTask(task); });
+		this.addTaskController.bind("close", function() { APP.enableScrolling(); });
 	
 		if (APP.browser.isMobile) {
-			this.scroller = new iScroll("Tasks", { checkDOMChanges: false });
+			this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
 		}
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)
@@ -24,8 +27,10 @@ var ProjectController = Controller.extend({
 	},
 	destroy: function() {
 		if (this.scroller)
-			this.scroller.destroy(true);
+			this.scroller.destroy();
 		this.scroller = null;
+		this.addTaskController.destroy();
+		this.addTaskController = null;
 		this.project = null;
 		this.filter = null;
 		this.scribbles = null;
@@ -123,9 +128,9 @@ var ProjectController = Controller.extend({
 				}
 			});
 		});
-		window.scroll(0,0);
 		if (this.scroller)
-			this.scroller.refresh();
+			setTimeout(function () { self.scroller.refresh() }, 0)
+		window.scroll(0,0);
 	},
     tasksSorted: function() {
         var items = this.view.findAll("#Tasks li");
@@ -152,18 +157,7 @@ var ProjectController = Controller.extend({
 		}
 	},
 	showAddTask: function(task) {
-		var self = this;
-		var controller = new AddTaskController("AddTask");
-		controller.bind("add", function(task) { 
-			self.addTask(task); 
-		});
-		controller.bind("close", function() { 
-			APP.enableScrolling();
-			this.hide();
-		   	this.destroy(); 
-		});
-	
-		controller.show(task);
+		this.addTaskController.show(task);
 	},
 	addTask: function(task) {
 		var self = this;
