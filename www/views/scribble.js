@@ -16,6 +16,9 @@ var Scribble = View.extend({
 		}
 	},
 	drawPoints: function(points) {
+		this.context.lineWidth = this.strokeWidth;
+		this.context.lineCap = 'round';
+		this.context.lineJoin = 'round';
 		for (var i = 0, c = points.length; i < c; i++) {
 			var point = points[i];
 			if (i == 0)
@@ -91,7 +94,6 @@ var Scribble = View.extend({
 				return;
 			var start = new Date();
 			self.context.beginPath();
-			self.context.lineWidth = self.strokeWidth;
 			while (points.length && new Date() - start < 10) {
 				var p = points.shift();
 				if (!p) { //end of stroke
@@ -124,7 +126,6 @@ var Scribble = View.extend({
 		for (var i = 0; i < this.strokes.length; i++) {
 			var s = this.strokes[i];
 			this.context.beginPath();
-			this.context.lineWidth = this.strokeWidth;
 			this.drawPoints(s);
 			this.context.stroke();
 		}
