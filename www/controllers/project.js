@@ -147,7 +147,7 @@ var ProjectController = Controller.extend({
 			if (task.path) {
 				var s = new Scribble(document.getElementById("Scribble_"+i), ScribbleSize[0]/2, ScribbleSize[1]/2, true);
 				s.readonly = true;
-				s.scale(0.65, 0.65);
+				s.scale(0.60, 0.60);
 				s.load(task.path);
 				self.scribbles.push(s);
 			}

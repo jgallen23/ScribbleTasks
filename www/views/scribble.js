@@ -10,8 +10,6 @@ var Scribble = View.extend({
 		this.path = null;
 		this.canvas = this.find("canvas");
 		this.context = this.canvas.getContext('2d');
-		this.context.strokeStyle = "#000000";
-		this.context.lineWidth = 2;
 
 		if (!this.readonly) {
 			this.drawLoop();
@@ -93,6 +91,7 @@ var Scribble = View.extend({
 				return;
 			var start = new Date();
 			self.context.beginPath();
+			self.context.lineWidth = self.strokeWidth;
 			while (points.length && new Date() - start < 10) {
 				var p = points.shift();
 				if (!p) { //end of stroke
@@ -125,6 +124,7 @@ var Scribble = View.extend({
 		for (var i = 0; i < this.strokes.length; i++) {
 			var s = this.strokes[i];
 			this.context.beginPath();
+			this.context.lineWidth = this.strokeWidth;
 			this.drawPoints(s);
 			this.context.stroke();
 		}
