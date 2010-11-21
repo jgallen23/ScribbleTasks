@@ -4,3 +4,5 @@ ScribbleTask/build
 *.mode2v3
 *.pbxuser
 *.perspectivev3
+www/ui/scripts/app*
+www/ui/scripts/scribbletasks*
