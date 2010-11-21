@@ -7,75 +7,7 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
 
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
-		<script src="phonegap.js"></script>
-        <script src="ui/scripts/app.lawnchair.js"></script>
-		<script src="ui/scripts/app.sortable.js"></script>
-		<script src="ui/scripts/iscroll.js"></script>
-		<script src="ui/scripts/raphael.js"></script>
-		<script src="ui/scripts/SwipeController.js"></script>
-		<script src="dataproviders/projects.js"></script>
-		<script src="dataproviders/tasks.js"></script>
-		<script src="models/project.js"></script>
-		<script src="models/task.js"></script>
-		<script src="controllers/addtask.js"></script>
-		<script src="controllers/project.js"></script>
-		<script src="controllers/project_list.js"></script>
-		<script src="views/scribble.js"></script>
-		<script>
-            var app = new Application();
-			//app.browser.isMobile = true;
-			app.browser.isPhoneGap = true;
-			app.bind("resize", function(width, height) {
-				if (this.isPhoneGap)
-					height -= 40;
-				var containers = document.querySelectorAll(".Container");
-				for (var i = 0, c = containers.length; i < c; i++) {
-					containers[i].style.height = height+"px";
-				}
-				if (height < 500) {
-					document.querySelector("#AddTask .wrapper").style.height = height+"px";
-				}
-			});
-            app.bind("ready", function() {
-				if (this.browser.isMobile) {
-					/*
-					if (!this.browser.isPhoneGap) {
-						setTimeout(function() { 
-							window.scrollTo(0, 1);
-						}, 100);
-					}
-					*/
-					app.disableScrollingPermanently();
-				}
-				app.resize();
-				var c = new ProjectListController("ProjectList");
-				/* Tests
-				var f = false;
-				c.bind("loaded", function() {
-					if (f) return;
-					var pc = this.showProject(this.projects[0]);
-					pc.showAddTask();
-					f = true;
-
-				});
-				//*/
-				window.controller = c;
-				/*
-				Project.data.find(function(projects) {
-					var project;
-					if (projects.length == 0) {
-						project = new Project({ name: 'test' });
-						project.save();
-					} else {
-						project = projects[0];
-					}
-					window.project = project;
-					window.controller = new ProjectController("Project", project);
-				});
-				*/
-			});
-		</script>
-	</head>
+			</head>
 	<body>
 		<div id="ProjectList" class="Container">
 			<header id="Header" class="Header">
@@ -163,6 +95,64 @@
 			{! } !}
 			<button class="Icon reorder" data-onClick="trigger"></button>
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
+		</script>
+		<script src="phonegap.js"></script>
+        <script src="ui/scripts/app.lawnchair.js"></script>
+		<script src="ui/scripts/app.sortable.js"></script>
+		<script src="ui/scripts/iscroll.js"></script>
+		<script src="ui/scripts/raphael.js"></script>
+		<script src="ui/scripts/SwipeController.js"></script>
+		<script src="dataproviders/projects.js"></script>
+		<script src="dataproviders/tasks.js"></script>
+		<script src="models/project.js"></script>
+		<script src="models/task.js"></script>
+		<script src="controllers/addtask.js"></script>
+		<script src="controllers/project.js"></script>
+		<script src="controllers/project_list.js"></script>
+		<script src="views/scribble.js"></script>
+		<!--
+		<script src="ui/scripts/scribbletasks.min.js"></script>
+		--!>
+		<script>
+            var app = new Application();
+			//app.browser.isMobile = true;
+			app.browser.isPhoneGap = true;
+			app.bind("resize", function(width, height) {
+				if (this.isPhoneGap)
+					height -= 40;
+				var containers = document.querySelectorAll(".Container");
+				for (var i = 0, c = containers.length; i < c; i++) {
+					containers[i].style.height = height+"px";
+				}
+				if (height < 500) {
+					document.querySelector("#AddTask .wrapper").style.height = height+"px";
+				}
+			});
+            app.bind("ready", function() {
+				if (this.browser.isMobile) {
+					/*
+					if (!this.browser.isPhoneGap) {
+						setTimeout(function() { 
+							window.scrollTo(0, 1);
+						}, 100);
+					}
+					*/
+					app.disableScrollingPermanently();
+				}
+				app.resize();
+				var c = new ProjectListController("ProjectList");
+				/* Tests
+				var f = false;
+				c.bind("loaded", function() {
+					if (f) return;
+					var pc = this.showProject(this.projects[0]);
+					pc.showAddTask();
+					f = true;
+
+				});
+				//*/
+				window.controller = c;
+			});
 		</script>
 	</body>
 </html>
