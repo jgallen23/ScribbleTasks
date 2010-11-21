@@ -5,3 +5,6 @@ sh build
 popd
 cp ext/appui/lib/app.lawnchair.js www/ui/scripts/
 cp ext/appui/lib/app.sortable.js www/ui/scripts/
+pushd www
+python ../ext/appui/external/uimin/uimin.py config.yaml
+popd
