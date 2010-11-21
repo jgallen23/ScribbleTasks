@@ -9,7 +9,7 @@ var AddTaskController = Controller.extend({
 	destroy: function() {
 		this.star = null;
 		//this.input = null;
-		this.view.find("#AddScribble").innerHTML = '';
+		//this.view.find("#AddScribble").innerHTML = '';
 		this.scribble = null;
 		this._super();
 	},
@@ -18,9 +18,13 @@ var AddTaskController = Controller.extend({
 		this.scribble.clear();
 	},
 	show: function(scribble) {
+		APP.currentController = this;
 		this.element.style.top = window.scrollY+"px";
 		this.element.style.display = "-webkit-box";
 		var elem = this.view.find('#AddScribble');
+		console.log(elem.clientWidth);
+		this.scribble.canvas.height = elem.clientHeight;
+		this.scribble.canvas.width = elem.clientWidth;
 		//this._super();
 		APP.disableScrolling();
 		if (scribble) {

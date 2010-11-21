@@ -147,11 +147,8 @@ var ProjectController = Controller.extend({
 			if (task.svg) {
 				var s = new Scribble(document.getElementById("Scribble_"+i), ScribbleSize[0]/2, ScribbleSize[1]/2, true);
 				s.readonly = true;
+				s.scale(0.75, 0.75);
 				s.load(task.svg);
-				s.scale([.5, .5, 0, 0]);
-				/*s.paper.canvas.addEventListener("click", function(e) {*/
-				/*self.onClick['task'].call(self, e);*/
-				/*});*/
 				self.scribbles.push(s);
 			}
 		}

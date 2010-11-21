@@ -8,36 +8,23 @@ var Scribble = View.extend({
 		this.readonly = readonly;
 		this.undos = [];
 		this.path = null;
-		this.paper = Raphael(this.element, "100%", "100%")
-		//this.paper.serialize.init();
+		this.canvas = this.find("canvas");
+		this.context = this.canvas.getContext('2d');
+		this.context.strokeStyle = "#000000";
+		this.context.lineWidth = 2;
 
 		if (!this.readonly) {
 			this.drawLoop();
 		}
 	},
-	drawPath: function(path) {
-		var rpath = this.paper.path(path);
-		var attr = { 'stroke-width': this.strokeWidth, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
-		if (this._scale) {
-			attr['scale'] = this._scale;
-		}
-		rpath.attr(attr);
-		return rpath;
-	},
 	drawPoints: function(points) {
-		var path = this.pathFromPoints(points);
-		return p = this.drawPath(path);
-	},
-	pathFromPoints: function(points) {
-		if (!points || points.length == 0) return '';
-		var p = [];
 		for (var i = 0, c = points.length; i < c; i++) {
+			var point = points[i];
 			if (i == 0)
-				p.push(String.format("M{0},{1}", points[i][0], points[i][1]));
+				this.context.moveTo(point[0], point[1]);
 			else
-				p.push(String.format("L{0},{1}", points[i][0], points[i][1]));
+				this.context.lineTo(point[0], point[1]);
 		}
-		return p.join(' ');	
 	},
 	drawLoop: function() {
 		var self = this;
@@ -99,11 +86,13 @@ var Scribble = View.extend({
 		this.element.addEventListener("touchmove", function(e) { drawMove(e); });
 		this.element.addEventListener("touchend", function(e) { drawEnd(e); });
 
-		var strokeString = [];
 		var currentStroke = [];
 		var done = false;
 		setInterval(function __drawLoop() {
+			if (!points.length)
+				return;
 			var start = new Date();
+			self.context.beginPath();
 			while (points.length && new Date() - start < 10) {
 				var p = points.shift();
 				if (!p) { //end of stroke
@@ -115,31 +104,29 @@ var Scribble = View.extend({
 					currentStroke.push(p);
 					x = p[0];
 					y = p[1];
-					var p = self.pathFromPoints([o, p]);
-					self.drawPath(p);
-					//strokeString.push(self.pathFromPoints([o, p]));
+					self.drawPoints([o, [x, y]]);
 				}
 			}
+			self.context.stroke();
 			if (currentStroke.length != 0) {
-				/*var ps = strokeString.join(' ');*/
-				/*console.log(ps);*/
-				/*self.drawPath(ps);*/
 				if (done) {
-					var strokePath = self.pathFromPoints(currentStroke);
-					self.strokes.push(strokePath);
-					self.redraw();
+					self.strokes.push(currentStroke);
 					currentStroke = [];
-					strokeString = [];
 					done = false;
 				}
 			}
 		}, 30);
 	},
 	redraw: function() {
-		this.paper.clear();
+		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
+		if (this._scale) {
+			this.context.scale(this._scale[0], this._scale[1]);
+		}
 		for (var i = 0; i < this.strokes.length; i++) {
 			var s = this.strokes[i];
-			this.drawPath(s);
+			this.context.beginPath();
+			this.drawPoints(s);
+			this.context.stroke();
 		}
 	},
 	undo: function() {
@@ -159,16 +146,15 @@ var Scribble = View.extend({
 		this.redraw();
 	},
 	toJSON: function() {
-		//var json = this.paper.serialize.freeze();
 		return this.strokes;
 	},
-	scale: function(scale) {
-		this._scale = scale;
+	scale: function(x, y) {
+		this._scale = [x, y];
 		this.redraw();	
 	},
 	clear: function() {
 		this.offset = null;
 		this.strokes = [];
-		this.paper.clear();
+		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
 	}
 });

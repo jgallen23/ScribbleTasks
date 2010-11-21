@@ -55,7 +55,7 @@
 		</div>
         <div id="AddTask">
 			<div class="wrapper Paper">
-				<div id="AddScribble"></div>
+				<div id="AddScribble"><canvas></canvas></div>
 				<footer class="buttons">
 					<button data-onClick="undo">U</button>
 					<button data-onClick="redo">R</button>
@@ -91,7 +91,7 @@
 				{!= task.name !}
 			</div>
 			{! } else { !}
-			<div id="Scribble_{!= i !}" class="task scribble"></div>
+			<div id="Scribble_{!= i !}" class="task scribble"><canvas></canvas></div>
 			{! } !}
 			<button class="Icon reorder" data-onClick="trigger"></button>
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
@@ -100,7 +100,6 @@
         <script src="ui/scripts/app.lawnchair.js"></script>
 		<script src="ui/scripts/app.sortable.js"></script>
 		<script src="ui/scripts/iscroll.js"></script>
-		<script src="ui/scripts/raphael.js"></script>
 		<script src="ui/scripts/SwipeController.js"></script>
 		<script src="dataproviders/projects.js"></script>
 		<script src="dataproviders/tasks.js"></script>
@@ -115,8 +114,8 @@
 		--!>
 		<script>
             var app = new Application();
-			//app.browser.isMobile = true;
-			app.browser.isPhoneGap = true;
+			app.browser.isMobile = true;
+			//app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
 				if (this.isPhoneGap)
 					height -= 40;
@@ -146,7 +145,7 @@
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					pc.showAddTask();
+					//pc.showAddTask();
 					f = true;
 
 				});
