@@ -3,7 +3,7 @@ var Task = Model.extend({
 		this._data = {
 			key: '',
 			name: '',
-			svg: null,
+			path: null,
 			star: false,
 			project: null,
 			note: null,

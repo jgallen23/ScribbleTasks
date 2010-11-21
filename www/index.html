@@ -105,7 +105,7 @@
 		<script src="dataproviders/tasks.js"></script>
 		<script src="models/project.js"></script>
 		<script src="models/task.js"></script>
-		<script src="controllers/addtask.js"></script>
+		<script src="controllers/add_task.js"></script>
 		<script src="controllers/project.js"></script>
 		<script src="controllers/project_list.js"></script>
 		<script src="views/scribble.js"></script>
@@ -114,8 +114,8 @@
 		--!>
 		<script>
             var app = new Application();
-			app.browser.isMobile = true;
-			//app.browser.isPhoneGap = true;
+			//app.browser.isMobile = true;
+			app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
 				if (this.isPhoneGap)
 					height -= 40;
@@ -140,12 +140,12 @@
 				}
 				app.resize();
 				var c = new ProjectListController("ProjectList");
-				/* Tests
+				//* Tests
 				var f = false;
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					//pc.showAddTask();
+					pc.showAddTask();
 					f = true;
 
 				});

@@ -22,14 +22,13 @@ var AddTaskController = Controller.extend({
 		this.element.style.top = window.scrollY+"px";
 		this.element.style.display = "-webkit-box";
 		var elem = this.view.find('#AddScribble');
-		console.log(elem.clientWidth);
 		this.scribble.canvas.height = elem.clientHeight;
 		this.scribble.canvas.width = elem.clientWidth;
 		//this._super();
 		APP.disableScrolling();
 		if (scribble) {
 			this.loadedScribble = scribble;
-			this.scribble.load(scribble.svg);	
+			this.scribble.load(scribble.path);	
 		}
 	},
 	hide: function() {
@@ -40,12 +39,12 @@ var AddTaskController = Controller.extend({
 		if (this.scribble.strokes.length != 0) {
 			if (this.loadedScribble) {
 				this.loadedScribble.star = this.star;
-				this.loadedScribble.svg = this.scribble.toJSON();
+				this.loadedScribble.path = this.scribble.toJSON();
 				this.trigger("add", [this.loadedScribble]);
 			} else {
 				var task = {
 					star: this.star,
-					svg: this.scribble.toJSON()
+					path: this.scribble.toJSON()
 				}
 				this.trigger("add", [task]);
 			}

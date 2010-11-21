@@ -144,11 +144,11 @@ var ProjectController = Controller.extend({
 		var self = this;
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
-			if (task.svg) {
+			if (task.path) {
 				var s = new Scribble(document.getElementById("Scribble_"+i), ScribbleSize[0]/2, ScribbleSize[1]/2, true);
 				s.readonly = true;
-				s.scale(0.75, 0.75);
-				s.load(task.svg);
+				s.scale(0.65, 0.65);
+				s.load(task.path);
 				self.scribbles.push(s);
 			}
 		}
