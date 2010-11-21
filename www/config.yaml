@@ -1,0 +1,17 @@
+output_dir: 'ui/scripts'
+js:
+  scribbletasks:
+    files:
+      - 'ui/scripts/app.lawnchair.js'
+      - 'ui/scripts/app.sortable.js'
+      - 'ui/scripts/iscroll.js'
+      - 'ui/scripts/raphael.js'
+      - 'ui/scripts/SwipeController.js'
+      - 'dataproviders/projects.js'
+      - 'dataproviders/tasks.js'
+      - 'models/project.js'
+      - 'models/task.js'
+      - 'controllers/addtask.js'
+      - 'controllers/project.js'
+      - 'controllers/project_list.js'
+      - 'views/scribble.js'
