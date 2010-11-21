@@ -70,7 +70,11 @@ footer.buttons button { margin-top: 10px; }
 /* iPhone */
 @media only screen and (max-width: 480px) {
 	.Container footer { display: block; }
-	header ul.Toolbar { display: none; }
+	header ul.Toolbar { display: none;  }
+
+	#Project header ul.Toolbar { display: block; } 
+		#Project header ul.Toolbar li { display: none; } 
+			#Project header ul.Toolbar li:last-child { display: block; }
 
 	#AddTask .wrapper { height: 100%; width: 100% }
 	#AddTask .Paper { -webkit-border-radius: 0; padding: 0; margin: 0}
