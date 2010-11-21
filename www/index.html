@@ -68,7 +68,7 @@
 		<script type="text/html" id="jstProjectListView">
 			{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
 				<li data-key="{!= project.key !}" data-index="{!= i !}" data-onClick="project">
-					{!= project.name !}	
+					<div class="name">{!= project.name !}</div><div class="count">{!= project.taskIds.length !}</div>
 				</li>
 			{! } !}
 		</script>
