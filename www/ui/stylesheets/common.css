@@ -32,7 +32,7 @@ footer.buttons button { margin-top: 10px; }
 	.Toolbar li .clear { background-image: url(../images/icons/delete-white.png) ; }
 	.Toolbar .starred, .Toolbar .incomplete, .Toolbar .complete { opacity: .5 }
 	.Toolbar .current { opacity: 1 }
-	.Toolbar button { -webkit-transition: opacity .5s ease-in-out; }
+	.Toolbar button { /*-webkit-transition: opacity .5s ease-in-out;*/ }
 
 .Paper { background: #fff; -webkit-border-radius: 10px; -webkit-box-shadow: 2px 2px 2px #333; }
 	.Paper .Paper { margin: 0 3px 2px 0; } 
@@ -47,16 +47,16 @@ footer.buttons button { margin-top: 10px; }
 .TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll }
 	body.Mobile .TaskList { overflow-y: hidden; }
 .TaskList ul { list-style: none; margin: 0;}
-	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; -webkit-transition: opacity 1s ease-in-out; position: relative; height: 150px} 
+	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px} 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 35px; }
 	.TaskList .buttons { margin-left: 10px; }
-	.TaskList .star { background: url(../images/icons/star-on.png) no-repeat; -webkit-transition: opacity .5s ease-in-out; opacity: .3;}
+	.TaskList .star { background: url(../images/icons/star-on.png) no-repeat; /*-webkit-transition: opacity .5s ease-in-out;*/ opacity: .3;}
 	.TaskList .reorder { background: url(../images/icons/reorder.png) no-repeat; margin-right: 20px;  }
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; }
     .TaskList .sorting { background: #ccc; }
 	body.Mobile .TaskList input { display: none; }
-	.TaskList .complete { height: 4px; opacity: 0.8; -webkit-border-radius: 2px; background: #ff0000; position: absolute; top: 80px; width: 0; left: 100px; -webkit-transition: width .5s ease-in-out;}
+	.TaskList .complete { height: 4px; opacity: 0.8; -webkit-border-radius: 2px; background: #ff0000; position: absolute; top: 80px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
 
 #Project { display: none; -webkit-box-orient: vertical; height: 100%; }
