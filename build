@@ -8,3 +8,4 @@ cp ext/appui/lib/app.sortable.js www/ui/scripts/
 pushd www
 python ../ext/appui/external/uimin/uimin.py config.yaml
 popd
+cp ext/phonegap-plugins/iPhone/Badge/Badge.js www/ui/scripts/

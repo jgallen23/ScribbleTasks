@@ -25,6 +25,7 @@
 		305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
 		307D28A2123043360040C0FA /* PhoneGapBuildSettings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 307D28A1123043350040C0FA /* PhoneGapBuildSettings.xcconfig */; };
 		30E1352710E2C1420031B30D /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E1352610E2C1420031B30D /* PhoneGap.plist */; };
+		C912416E129A3B6E00BBF0CE /* Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = C912416D129A3B6E00BBF0CE /* Badge.m */; };
 		C92B7F0A12884BA300E56435 /* libPhoneGapLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C92B7EE412884B7700E56435 /* libPhoneGapLib.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,8 @@
 		30E1352610E2C1420031B30D /* PhoneGap.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* ScribbleTasks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScribbleTasks_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ScribbleTasks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScribbleTasks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C912416C129A3B6E00BBF0CE /* Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Badge.h; path = "../ext/phonegap-plugins/iPhone/Badge/Badge.h"; sourceTree = SOURCE_ROOT; };
+		C912416D129A3B6E00BBF0CE /* Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Badge.m; path = "../ext/phonegap-plugins/iPhone/Badge/Badge.m"; sourceTree = SOURCE_ROOT; };
 		C92B7EDC12884B7600E56435 /* PhoneGapLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PhoneGapLib.xcodeproj; path = "../ext/phonegap-iphone/PhoneGapLib/PhoneGapLib.xcodeproj"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -172,6 +175,8 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				C912416C129A3B6E00BBF0CE /* Badge.h */,
+				C912416D129A3B6E00BBF0CE /* Badge.m */,
 			);
 			path = Plugins;
 			sourceTree = SOURCE_ROOT;
@@ -307,6 +312,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ScribbleTasksAppDelegate.m in Sources */,
+				C912416E129A3B6E00BBF0CE /* Badge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

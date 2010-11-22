@@ -117,7 +117,7 @@
 		<script>
             var app = new ScribbleTasksApp();
 			//app.browser.isMobile = true;
-			//app.browser.isPhoneGap = true;
+			app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
 				if (this.isPhoneGap)
 					height -= 40;
@@ -142,7 +142,7 @@
 				}
 				app.resize();
 				var c = new ProjectListController("ProjectList");
-				//* Tests
+				/* Tests
 				var f = false;
 				c.bind("loaded", function() {
 					if (f) return;
