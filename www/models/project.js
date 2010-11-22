@@ -64,6 +64,7 @@ var Project = Model.extend({
 				else
 					this.starCount--;
 				this.save();
+				APP.updateBadge();
 				break;	
 		}
 	},
