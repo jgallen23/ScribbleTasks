@@ -45,10 +45,13 @@ var Project = Model.extend({
 		if (!task.key) {
 			update = false;
 		}
+		task.project = self;
 		task.save(function(task) {
 			if (!update) {
 				self.taskIds = self.taskIds.insert(0, task.key);
 				self.incompleteCount++;
+				if (task.star)
+					self.starCount++;
 				self.save(function(project) {
 					if (cb) cb(project, task);
 				});

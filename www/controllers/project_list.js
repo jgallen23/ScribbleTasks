@@ -8,7 +8,12 @@ var ProjectListController = Controller.extend({
 	},
 	loadProjects: function() {
 		var self = this;
+		APP.data.badgeCount = 0;
 		Project.data.find(function(projects) {
+			projects.each(function(project) {
+				APP.data.badgeCount += project.starCount;
+			});
+			APP.updateBadge();
 			self.projects = projects;
 			self.trigger("loaded");
 			self._render();

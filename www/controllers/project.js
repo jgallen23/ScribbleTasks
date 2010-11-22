@@ -169,6 +169,13 @@ var ProjectController = Controller.extend({
 	starTask: function(task) {
 		var self = this;
 		task.star = !task.star;
+		if (task.star) {
+			APP.data.badgeCount++;
+			APP.updateBadge();
+		} else {
+			APP.data.badgeCount--;
+			APP.updateBadge();
+		}
 		task.save(function() {
 			self.loadTasks();
 		});
