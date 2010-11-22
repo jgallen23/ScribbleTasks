@@ -68,7 +68,9 @@
 		<script type="text/html" id="jstProjectListView">
 			{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
 				<li>
-					<div class="name" data-key="{!= project.key !}" data-index="{!= i !}" data-onClick="project">{!= project.name !}</div><div class="count">{!= project.taskIds.length !}</div>
+					<div class="name" data-key="{!= project.key !}" data-index="{!= i !}" data-onClick="project">{!= project.name !}</div>
+					<div class="count">{!= project.starCount !}</div>
+					<div class="count">{!= project.incompleteCount !}</div>
 				</li>
 			{! } !}
 		</script>
@@ -114,7 +116,7 @@
 		<script>
             var app = new Application();
 			//app.browser.isMobile = true;
-			app.browser.isPhoneGap = true;
+			//app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
 				if (this.isPhoneGap)
 					height -= 40;
@@ -139,12 +141,12 @@
 				}
 				app.resize();
 				var c = new ProjectListController("ProjectList");
-				/* Tests
+				//* Tests
 				var f = false;
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					pc.showAddTask();
+					//pc.showAddTask();
 					f = true;
 
 				});

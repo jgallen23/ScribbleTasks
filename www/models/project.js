@@ -6,7 +6,10 @@ var Project = Model.extend({
 			note: null,
 			createdOn: null,
 			modifiedOn: null,
-			taskIds: []
+			taskIds: [],
+			starCount: 0,
+			completeCount: 0,
+			incompleteCount: 0
 		}
 		this._super(initial);
 		this.createdOn = new Date();
@@ -18,7 +21,21 @@ var Project = Model.extend({
 		Project.data.save(this, cb);
 	},
 	getTasks: function(cb) {
+		this.starCount = 0;
+		this.completeCount = 0;
+		this.incompleteCount = 0;
+		var self = this;
 		Task.data.findByIds(this.taskIds, function(tasks) {
+			tasks.each(function(task) {
+				task.parent = self;
+				if (task.isComplete)
+					self.completeCount++;
+				else {
+					self.incompleteCount++;
+					if (task.star)
+						self.starCount++;
+				}
+			});
 			cb(tasks);	
 		});
 	},
@@ -31,6 +48,7 @@ var Project = Model.extend({
 		task.save(function(task) {
 			if (!update) {
 				self.taskIds = self.taskIds.insert(0, task.key);
+				self.incompleteCount++;
 				self.save(function(project) {
 					if (cb) cb(project, task);
 				});

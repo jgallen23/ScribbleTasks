@@ -5,7 +5,6 @@ var Task = Model.extend({
 			name: '',
 			path: null,
 			star: false,
-			project: null,
 			note: null,
 			completedOn: null,
 			createdOn: null,
@@ -13,10 +12,31 @@ var Task = Model.extend({
 		}
 		this._super(initial);
 		this.createdOn = new Date();
+		this.project = null;
 		this.__defineGetter__("isComplete", this._isComplete);
 	},
 	_propertySet: function(prop, value) {
 		this._data.modifiedOn = new Date();
+		return;
+		if (this.parent) {
+			switch (prop) {
+				case 'star':
+					if (value)
+						this.parent.starCount++;
+					else
+						this.parent.starCount--;
+					break;
+				case 'completedOn':
+					if (value) {
+						this.parent.completeCount++;
+						this.parent.incompleteCount--;
+					} else {
+						this.parent.completeCount--;
+						this.parent.incompleteCount++;
+					}
+					break;	
+			}
+		}
 	},
 	save: function(cb) {
 		Task.data.save(this, cb);

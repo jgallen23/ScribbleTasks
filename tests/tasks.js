@@ -91,14 +91,14 @@ asyncTest('update task', function() {
 asyncTest('complete task', function() {
 	var self = this;
 	Task.data.find(function(tasks) {
-		var taskCount = tasks.length;
+		var taskCount = tasks.filter(Task.filters.incomplete).length;
 		self.t.complete();
 		ok(self.t.isComplete, "task set to completed");
 		ok(self.t._data.completedOn, "task set to completed");
 		start();
 		self.t.save(function(task) {
 			Task.data.find(function(tasks) {
-				equal(tasks.filter(Task.filters.incomplete).length, taskCount-1);
+				equal(taskCount-1, tasks.filter(Task.filters.incomplete).length);
 				start();
 			});
 		});

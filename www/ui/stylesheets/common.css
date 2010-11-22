@@ -42,6 +42,7 @@ footer.buttons button { margin-top: 10px; }
 		.ProjectList li:active { background: #ccc; }  
 		.ProjectList li .name { -webkit-box-flex: 1 }
 		.ProjectList li .count { font-size: 14px; background: #000; color: #fff; -webkit-border-radius: 10px; padding: 0 8px; line-height: 30px; }
+			.ProjectList li .count:last-child { margin-left: 10px; } 
 
 .TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll }
 	body.Mobile .TaskList { overflow-y: hidden; }

@@ -170,7 +170,7 @@ var ProjectController = Controller.extend({
 		var self = this;
 		task.star = !task.star;
 		task.save(function() {
-		//	self.loadTasks();
+			self.loadTasks();
 		});
 	},
 	completeTask: function(taskElement) {

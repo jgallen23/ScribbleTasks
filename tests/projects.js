@@ -57,13 +57,30 @@ asyncTest("add task to project", function() {
 		var oTask = new Task({ name: 'new task' });
 		project.getTasks(function(tasks) {
 			var taskCount = tasks.length;	
+			var projectTaskCount = project.incompleteCount;
 			project.addTask(oTask, function(project, task) {
 				project.getTasks(function(tasks) {
 					equal(oTask.key, task.key);
 					equal(project.taskIds.length, taskCount+1);
 					equal(tasks.length, taskCount+1);
+					equal(projectTaskCount+1, project.incompleteCount);
 					start();
 				});
+			});
+		});
+	});
+});
+
+asyncTest("complete task in project", function() {
+	Project.data.find(function(projects) {
+		var project = projects[0];
+		var oTask = new Task({ name: 'new task' });
+		project.addTask(oTask, function(project, task) {
+			project.getTasks(function(tasks) {
+				var completeTasks = project.completeCount;
+				oTask.complete();
+				equal(completeTasks+1, project.completeCount);
+				start();
 			});
 		});
 	});
