@@ -25,6 +25,9 @@ var Project = Model.extend({
 		this.completeCount = 0;
 		this.incompleteCount = 0;
 		var self = this;
+		var propBind = function(prop, value) {
+			self._taskPropertyEvent(prop, value);
+		}
 		Task.data.findByIds(this.taskIds, function(tasks) {
 			tasks.each(function(task) {
 				task.parent = self;
@@ -35,9 +38,34 @@ var Project = Model.extend({
 					if (task.star)
 						self.starCount++;
 				}
+				task.unbind("propertySet");
+				task.bind("propertySet", propBind);
 			});
 			cb(tasks);	
+			self.save();
 		});
+	},
+	_taskPropertyEvent: function(prop, value) {
+		//console.log("prop change", prop, value);
+		switch (prop) {
+			case 'completedOn':
+				if (value) {
+					this.completeCount++;
+					this.incompleteCount--;
+					value = false;
+				} else {
+					this.completeCount--;
+					this.incompleteCount++;
+					value = true;
+				}
+			case 'star':
+				if (value)
+					this.starCount++;
+				else
+					this.starCount--;
+				this.save();
+				break;	
+		}
 	},
 	addTask: function(task, cb) {
 		var self = this;

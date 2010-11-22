@@ -186,14 +186,14 @@ var ProjectController = Controller.extend({
 		elem.addClass(this.view.find("li[data-index='"+index+"'] .complete"), "c");
 		taskElement.style.opacity = 0;
 		var task = self.tasks[index];
-		setTimeout(function() {
-			if (task.isComplete)
-				task.unComplete();
-			else
-				task.complete();
-			task.save(function() {
-				self.loadTasks();
-			});
-		}, 1000);
+		//setTimeout(function() {
+		if (task.isComplete)
+			task.unComplete();
+		else
+			task.complete();
+		task.save(function() {
+			self.loadTasks();
+		});
+		//}, 1000);
 	}
 });
