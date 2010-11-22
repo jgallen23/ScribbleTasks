@@ -2,7 +2,7 @@ var Scribble = View.extend({
 	init: function(element, width, height, readonly) {
 		var self = this;
 		this._super(element);
-		this.strokeWidth = 3;
+		this.strokeWidth = 2;
 		this._scale = null;
 		this.strokes = [];
 		this.readonly = readonly;
