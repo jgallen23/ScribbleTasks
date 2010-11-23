@@ -65,6 +65,7 @@ var AddTaskController = Controller.extend({
 			this.addTask();
 		},
 		cancel: function(e) {
+			this.clear();
 			this.trigger("close");
 			this.hide();
 		},
