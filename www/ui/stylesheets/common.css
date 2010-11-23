@@ -3,8 +3,11 @@ body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; 
 * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
 button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#ADADAD)); border: 0; -webkit-border-radius: 5px; height: 25px; -webkit-box-shadow: 3px 3px 3px #333; }
-	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; } 
+	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 25px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; opacity: 1.0 } 
+		button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px } 
+	button.off { opacity: .3 }
 	button:active { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ADADAD), to(#FFFFFF)) }
+	button.star { background: url(../images/icons/star-on.png) no-repeat; }
 
 header, footer {  width: 100%; opacity: 0.8;  height: 45px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 20px; } 
@@ -19,11 +22,12 @@ footer.buttons button { margin-top: 10px; }
 	#AddTask .wrapper { display: -webkit-box; -webkit-box-orient: vertical; width: 80%; height: 300px;}
 	#AddTask .Paper { padding: 10px; } 
 	#AddScribble {  border: 1px solid #ccc; -webkit-box-flex: 1 }
+	#AddTask .buttons { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: stretch; }
 
 
 .Toolbar { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; -webkit-box-pack: justify }
 	.Toolbar li { padding: 0 15px; } 
-	.Toolbar li .Icon { background-size: 25px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; } 
+	.Toolbar li .Icon { } 
 		.Toolbar li .Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity: 1.0 } 
 	.Toolbar li .starred { background-image: url(../images/icons/star-white.png) ; }
 	.Toolbar li .incomplete { background-image: url(../images/icons/folder-white.png) ; }
@@ -47,7 +51,7 @@ footer.buttons button { margin-top: 10px; }
 .TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll }
 	body.Mobile .TaskList { overflow-y: hidden; }
 .TaskList ul { list-style: none; margin: 0;}
-	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; -webkit-box-shadow: 0 3px 3px #ccc; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px} 
+	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; border-bottom: 1px solid #ccc; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px} 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 35px; }
 	.TaskList .buttons { margin-left: 10px; }
 	.TaskList .star { background: url(../images/icons/star-on.png) no-repeat; /*-webkit-transition: opacity .5s ease-in-out;*/ opacity: .3;}

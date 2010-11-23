@@ -58,7 +58,7 @@
 				<footer class="buttons">
 					<button data-onClick="undo">U</button>
 					<button data-onClick="redo">R</button>
-					<button data-onClick="star">s</button>
+					<button class="Icon star off" data-onClick="star"></button>
 					<button data-onClick="add">+</button>
 					<button data-onClick="addAnother">++</button>
 					<button data-onClick="cancel">Cancel</button>
@@ -148,7 +148,7 @@
 				c.bind("loaded", function() {
 					if (f) return;
 					var pc = this.showProject(this.projects[0]);
-					//pc.showAddTask();
+					pc.showAddTask();
 					f = true;
 
 				});

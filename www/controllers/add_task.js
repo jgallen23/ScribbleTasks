@@ -2,18 +2,17 @@ var AddTaskController = Controller.extend({
 	init: function(elementId) {
 		this._super(elementId);
 		this.star = false;
-		//this.input = this.view.find("input");
 		this.loadedScribble = false;
 		this.scribble = new Scribble(this.view.find('#AddScribble'), ScribbleSize[0], ScribbleSize[1]);
 	},
 	destroy: function() {
 		this.star = null;
-		//this.input = null;
-		//this.view.find("#AddScribble").innerHTML = '';
 		this.scribble = null;
 		this._super();
 	},
 	clear: function() {
+		elem.addClass(this.view.find(".star"), "off");
+		this.star = false;
 		this.loadedScribble = null;
 		this.scribble.clear();
 	},
@@ -53,8 +52,13 @@ var AddTaskController = Controller.extend({
 	},
 	onClick: {
 		star: function(e) {
-			this.star = true;
-			e.target.innerHTML = "S";
+			if (!this.star) {
+				this.star = true;
+				elem.removeClass(e.target, "off");
+			} else {
+				this.star = false;
+				elem.addClass(e.target, "off");
+			}
 		},
 		add: function(e) {
 			this.addTask();	
