@@ -6,7 +6,7 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 25px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; opacity: 1.0 } 
 		button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px } 
 	button.off { opacity: .3 }
-	button:active { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ADADAD), to(#FFFFFF)) }
+	button:active { background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ADADAD), to(#FFFFFF)) }
 	button.star { background: url(../images/icons/star-on.png) no-repeat; }
 
 header, footer {  width: 100%; opacity: 0.8;  height: 45px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
