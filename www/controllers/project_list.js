@@ -4,7 +4,18 @@ var ProjectListController = Controller.extend({
 		this._super(elementId);
 		this.filter = "active";
 		this.projects = null;
+
+		if (APP.browser.isMobile) {
+			this.scroller = new iScroll("Projects", { checkDOMChanges: false, desktopCompatibility: true });
+		}
+
 		this.loadProjects();
+	},
+	destroy: function() {
+		if (this.scroller)
+			this.scroller.destroy();
+		this.scroller = null;
+		this._super();
 	},
 	loadProjects: function() {
 		var self = this;
@@ -20,8 +31,11 @@ var ProjectListController = Controller.extend({
 		});
 	},
 	_render: function() {
+		var self = this;
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
+		if (this.scroller)
+			setTimeout(function () { self.scroller.refresh() }, 0)
 	},
 	showProject: function(project) {
 		var projectController = new ProjectController("Project", project);

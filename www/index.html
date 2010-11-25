@@ -118,8 +118,9 @@
 		<script>
             var app = new ScribbleTasksApp();
 			var params = parseQueryString();
-			//app.browser.isMobile = true;
 
+			if (params.mobile)
+				app.browser.isMobile = true;
 			if (!params.pg)
 				app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
