@@ -13,6 +13,7 @@ var Task = Model.extend({
 		this._super(initial);
 		this.createdOn = new Date();
 		this.__defineGetter__("isComplete", this._isComplete);
+		this.__defineProperty__("star", this._getStar, this._setStar);
 	},
 	_propertySet: function(prop, value) {
 		this._data.modifiedOn = new Date();
@@ -29,6 +30,12 @@ var Task = Model.extend({
 	},
 	_isComplete: function() {
 		return (this.completedOn)?true:false;
+	},
+	_getStar: function() {
+		return this._data.star;
+	},
+	_setStar: function(value) {
+		this._data.star = value;
 	}
 });
 Task.data = new TaskDataProvider();
