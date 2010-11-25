@@ -1,21 +1,16 @@
 var ProjectDataProvider = Class.extend({
 	init: function() {
-		this.projects = null;
 		this.provider = new Lawnchair({ adaptor: 'webkit', table: 'projects'});
 	},
 	find: function(cb) {
 		var self = this;
-		if (!this.projects) {
-			this.provider.all(function(data) {
-				self.projects = [];
-				data.each(function(obj) {
-					self.projects.push(new Project(obj));
-				});
-				cb(self.projects);
+		this.provider.all(function(data) {
+			var projects = [];
+			data.each(function(obj) {
+				projects.push(new Project(obj));
 			});
-		} else {
-			cb(this.projects);
-		}
+			cb(projects);
+		});
 	},
 	save: function(project, cb) {
 		var self = this;
@@ -28,9 +23,14 @@ var ProjectDataProvider = Class.extend({
 		this.provider.save(data, function(data) {
 			if (!update) {
 				project.key = data.key;
-				self.projects.push(project);
 			}
 			if (cb) cb(project);
+		});
+	},
+	remove: function(project, cb) {
+		//TODO: delete tasks as well
+		this.provider.remove(project.key, function(data) {
+			cb();
 		});
 	}
 });

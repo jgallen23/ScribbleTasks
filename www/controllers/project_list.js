@@ -66,6 +66,16 @@ var ProjectListController = Controller.extend({
 				self.loadProjects();
 			}, 1000);
 		},
+		'delete': function(e) {
+			var self = this;
+			var project = this.projects[parseInt(e.target.getAttribute("data-index"))];
+			var a = confirm("Are you sure you want to delete "+project.name);
+			if (a) {
+				Project.data.remove(project, function() {
+					self.loadProjects();
+				});				
+			}
+		}
 
 	}
 });

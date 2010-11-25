@@ -41,7 +41,7 @@ var Task = Model.extend({
 		this.completedOn = null;
 	},
 	_isComplete: function() {
-		return (this.completedOn)?true:false;
+		return (this.completedOn != null)?true:false;
 	},
 	_getStar: function() {
 		return this._data.star;
