@@ -10,7 +10,7 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 	button.star { background: url(../images/icons/star-on.png) no-repeat; }
 
 header, footer {  width: 100%; opacity: 0.8;  height: 45px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
-	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 20px; } 
+	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 10px; } 
 		header .title, header .title input { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 25px; color: #fff; }
 		header .title input { -webkit-box-flex: 1; } 
 
