@@ -31,14 +31,6 @@ var TaskDataProvider = Class.extend({
 			cb(tasks);
 		});
 	},
-	findByProject: function(project, cb) {
-		this.find(function(tasks) {
-			var filtered = tasks.filter(function(t) {
-				return (t.project == project);
-			});
-			cb(filtered);
-		});
-	},
 	save: function(task, cb) {
 		var self = this;
 		var data = task._data;
