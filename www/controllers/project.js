@@ -108,6 +108,7 @@ var ProjectController = Controller.extend({
 		this.view.find("[data-type='title']").value = this.project.name;
 		this.project.getTasks(function(tasks) {
 			tasks = tasks.filter(Task.filters[self.filter]);
+			tasks.sort(Task.sort.starred);
 			self.tasks = tasks;
 			self._render();
 		});
