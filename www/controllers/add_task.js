@@ -11,7 +11,7 @@ var AddTaskController = Controller.extend({
 		this._super();
 	},
 	clear: function() {
-		elem.addClass(this.view.find(".star"), "off");
+		this.setStar(false);
 		this.star = false;
 		this.loadedScribble = null;
 		this.scribble.clear();
@@ -26,6 +26,7 @@ var AddTaskController = Controller.extend({
 		//this._super();
 		APP.disableScrolling();
 		if (scribble) {
+			this.setStar(scribble.star);
 			this.loadedScribble = scribble;
 			this.scribble.load(scribble.path);	
 		}
@@ -33,6 +34,15 @@ var AddTaskController = Controller.extend({
 	hide: function() {
 		APP.enableScrolling();
 		this._super();
+	},
+	setStar: function(star) {
+		this.star = star;
+		var starElement = this.view.find(".star");
+		if (star) {
+			elem.removeClass(starElement, "off");
+		} else {
+			elem.addClass(starElement, "off");
+		}
 	},
 	addTask: function() {
 		if (this.scribble.strokes.length != 0) {
@@ -52,13 +62,7 @@ var AddTaskController = Controller.extend({
 	},
 	onClick: {
 		star: function(e) {
-			if (!this.star) {
-				this.star = true;
-				elem.removeClass(e.target, "off");
-			} else {
-				this.star = false;
-				elem.addClass(e.target, "off");
-			}
+			this.setStar(!this.star);
 		},
 		add: function(e) {
 			this.addTask();	

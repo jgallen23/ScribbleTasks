@@ -5,7 +5,7 @@ body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; 
 button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#ADADAD)); border: 0; -webkit-border-radius: 5px; height: 25px; -webkit-box-shadow: 3px 3px 3px #333; }
 	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 25px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; opacity: 1.0 } 
 		button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px } 
-	button.off { opacity: .3 }
+	button.off { opacity: .5 }
 	button:active { background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ADADAD), to(#FFFFFF)) }
 	button.star { background: url(../images/icons/star-on.png) no-repeat; }
 
@@ -93,4 +93,7 @@ footer.buttons button { margin-top: 10px; }
 	.TaskList .complete { left: 60px; }
 	.TaskList li .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-align: center; padding-top: 50px; }
 		.TaskList li .buttons .star { margin-bottom: 10px; } 
+
+
+	#AddTask footer button.star { background: url(../images/icons/star-white.png) no-repeat; }
 }
