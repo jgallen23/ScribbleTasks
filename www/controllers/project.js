@@ -116,11 +116,7 @@ var ProjectController = Controller.extend({
 		var data = { project: this.project, tasks: this.tasks };
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		this.drawScribbles();
-        var sortable = new SortableController('Tasks');
         var self = this;
-        sortable.bind("sorted", function() {
-            self.tasksSorted();
-        });
 		this.view.findAll("div.TaskList li", function(item) {
 			addSwipeHandler(item, function(element, direction) {
 				if (direction == "right") {
@@ -132,14 +128,6 @@ var ProjectController = Controller.extend({
 			setTimeout(function () { self.scroller.refresh() }, 0)
 		window.scroll(0,0);
 	},
-    tasksSorted: function() {
-        var items = this.view.findAll("#Tasks li");
-        this.project.taskIds = [];
-        for (var i = 0; i < items.length; i++) {
-            this.project.taskIds.push(items[i].getAttribute("data-key"));
-        }
-        this.project.save();
-    },
 	drawScribbles: function() {
 		var self = this;
 		for (var i = 0; i < this.tasks.length; i++) {
