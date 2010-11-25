@@ -23,11 +23,12 @@ var TaskDataProvider = Class.extend({
 	},
 	findByIds: function(ids, cb) {
 		var self = this;
-		this.find(function(tasks) {
+		this.provider.getMany(ids, function(dbTasks) {
 			var tasks = [];
-			for (var i = 0; i < ids.length; i++) {
-				tasks.push(self.tasksMap[ids[i]]);
-			}
+			dbTasks.each(function(task) {
+				var t = new Task(task);
+				tasks.push(t);
+			});
 			cb(tasks);
 		});
 	},
@@ -42,8 +43,8 @@ var TaskDataProvider = Class.extend({
 		this.provider.save(data, function(data) {
 			if (!update) {
 				task.key = data.key;
-				self.tasksMap[task.key] = task;
-				self.tasks.push(task); 
+				//self.tasksMap[task.key] = task;
+				//self.tasks.push(task); 
 			}
 			if (cb) cb(task);
 		});

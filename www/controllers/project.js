@@ -191,7 +191,7 @@ var ProjectController = Controller.extend({
 			task.unComplete();
 		else
 			task.complete();
-		task.save(function() {
+		task.save(function(t) {
 			self.loadTasks();
 		});
 		//}, 1000);
