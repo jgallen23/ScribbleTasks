@@ -97,4 +97,17 @@ var Project = Model.extend({
 		});
 	}
 });
+Project.sort = {
+	starred: function(a, b) {
+		var star = b.starCount - a.starCount;
+		if (star == 0) {
+			var incomplete = b.incompleteCount - a.incompleteCount;
+			if (incomplete == 0) {
+				return b.modifiedOn - a.modifiedOn;
+			}
+			return incomplete
+		}
+		return star;
+	}
+}
 Project.data = new ProjectDataProvider();
