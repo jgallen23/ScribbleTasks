@@ -78,14 +78,20 @@
 		<script type="text/html" id="jstProjectView">
 			{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
             <li data-key="{!= task.key !}" data-index="{!= i !}">
-				{!= template("jstTaskView", { i: i, task: task }) !}
+				{!= template("jstTaskView", { index: i, task: task }) !}
 			</li>
 			{! } !}	
 		</script>
 		<script type="text/html" id="jstTaskView">
 			<div class="buttons">
 				<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
-				<button class="Icon star" style="opacity: {!= (task.star)?"1":".3" !}" data-onClick="star"></button>
+				<button class="Icon priority" data-priority="{!= task.priority !}" data-onClick="priority"></button>
+				<section class="PriorityChooser">
+					{! for (var pi = -1, c = 3; pi < c; pi++) { !}
+						<input data-index="{!= index !}" name="priority_{!= task.key !}" value="{!= pi !}" {!= (pi == task.priority)?"checked":"" !} type="radio" data-onClick="setPriority" />
+					{! } !}
+				</section>
+				<button data-index="{!= index !}" class="Icon star" style="opacity: {!= (task.star)?"1":".3" !}" data-onClick="star"></button>
 				<button class="Icon" data-onClick="task">E</button>
 			</div>
 			{! if (task.name) { !}
@@ -93,7 +99,7 @@
 				{!= task.name !}
 			</div>
 			{! } else { !}
-			<div id="Scribble_{!= i !}" class="task scribble"><canvas></canvas></div>
+			<div id="Scribble_{!= index !}" class="task scribble"><canvas></canvas></div>
 			{! } !}
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
 		</script>

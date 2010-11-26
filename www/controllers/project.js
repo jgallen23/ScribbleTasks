@@ -39,10 +39,20 @@ var ProjectController = Controller.extend({
 	},
 	onClick: {
 		'star': function(e) {
-			var index = e.target.parentNode.parentNode.getAttribute("data-index");
+			var index = e.target.getAttribute("data-index");
 			var task = this.tasks[index];
 			e.target.style.opacity = (task.star)?.3:1.0;
 			this.starTask(task);
+		},
+		'priority': function(e) {
+			e.target.nextSibling.style.display = "block";			
+		},
+		'setPriority': function(e) {
+			var index = e.target.getAttribute("data-index");
+			var task = this.tasks[index];
+			var priority = e.target.value;
+			e.target.parentNode.style.display = "none";
+			this.setPriority(task, priority);
 		},
 		'add': function(e) {
 			this.showAddTask();
@@ -165,6 +175,13 @@ var ProjectController = Controller.extend({
 			APP.data.badgeCount--;
 			APP.updateBadge();
 		}
+		task.save(function() {
+			self.loadTasks();
+		});
+	},
+	setPriority: function(task, priority) {
+		var self = this;
+		task.priority = priority;
 		task.save(function() {
 			self.loadTasks();
 		});

@@ -6,6 +6,7 @@ var Task = Model.extend({
 			path: null,
 			star: false,
 			note: null,
+			priority: 0,
 			completedOn: null,
 			createdOn: null,
 			modifiedOn: null
@@ -77,7 +78,10 @@ Task.sort = {
 		var s2 = (b.star)?1:0;
 		var star = s2 - s1;
 		if (star == 0) {
-			return b.modifiedOn - a.modifiedOn;
+			var p = b.priority - a.priority;
+			if (p == 0)
+				return b.modifiedOn - a.modifiedOn;
+			return p;
 		}
 		return star;
 	},
