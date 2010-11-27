@@ -35,6 +35,7 @@ var ProjectController = Controller.extend({
 		this.filter = null;
 		this.scribbles = null;
 		this.tasks = null;
+		this.view.find("#Tasks").innerHTML = "";
 		this._super();
 	},
 	onClick: {
