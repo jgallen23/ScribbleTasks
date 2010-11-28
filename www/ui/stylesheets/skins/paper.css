@@ -3,14 +3,15 @@ body { /*background: url(../../images/skins/paper/bg.jpg);*/ background:#484848 
 #Wrapper2 { background: url(../../images/skins/paper/red-line.png) top 45px repeat-y; }
 .Wrapper { -webkit-box-shadow: 2px 2px 7px #000; }
 header {  -webkit-box-shadow: 0 0 3px #000; }
-footer { padding-left: 45px; -webkit-box-shadow: 0 0 3px #000; }
+footer { padding-left: 55px; -webkit-box-shadow: 0 0 3px #000; }
 
 button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity: 1.0 } 
 
 #ProjectList header { padding-left: 50px; }
 #ProjectList li:active .name { color: #6394cb; }
 #ProjectList #Projects li { border-bottom: 2px solid #6394cb; padding-left: 60px;}
-#ProjectList #Projects li .count { font-size: 14px; background: #ccc; color: #000; -webkit-border-radius: 15px; margin-right: 10px;  }
+#ProjectList #Projects li .count, 
+#ProjectList #Projects li .sep { font-size: 14px; }
 
 
 #Project header { padding-left: 7px; }
