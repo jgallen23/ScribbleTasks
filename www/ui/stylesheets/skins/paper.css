@@ -1,8 +1,9 @@
-body { background: url(../../images/skins/paper/bg.jpg); }
-#Wrapper { background: #fff; margin: 5px 5px 2px 5px; padding: 0 2px 3px 0; }
-.Wrapper { background: url(../../images/skins/paper/red-line.png) top 45px repeat-y, url(../../images/skins/paper/paper.png); -webkit-box-shadow: 2px 2px 7px #000; }
-header { border-bottom: 2px solid #6394cb; -webkit-box-shadow: 0 0 3px #000; }
-footer { padding-left: 45px; border-top: 2px solid #6394cb; -webkit-box-shadow: 0 0 3px #000; }
+body { /*background: url(../../images/skins/paper/bg.jpg);*/ background:#484848 }
+#Wrapper { background: #fff; margin: 15px 15px 12px 15px; padding: 0 2px 3px 0; }
+#Wrapper2 { background: url(../../images/skins/paper/red-line.png) top 45px repeat-y; }
+.Wrapper { -webkit-box-shadow: 2px 2px 7px #000; }
+header {  -webkit-box-shadow: 0 0 3px #000; }
+footer { padding-left: 45px; -webkit-box-shadow: 0 0 3px #000; }
 
 button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity: 1.0 } 
 
@@ -16,11 +17,23 @@ button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity
 	#Project header .title { padding-left: 20px; } 
 	#Project .TaskList li { border-bottom: 2px solid #6394cb; padding: 0 5px; }
 	#Project .PriorityChooser { margin-top: -25px; }
+	#Project .TaskList .complete { background-color: #bc5768; }
 
 .PriorityChooser { -webkit-border-radius: 5px; -webkit-box-shadow: 1px 1px 10px #000; padding: 2px;}
 	.PriorityChooser input:first-child { margin-left: 15px; } 
 	.PriorityChooser input { margin-top: 5px; }
 
 #AddTask { }
-	#AddTask .wrapper { background: url(../../images/skins/paper/paper.png); -webkit-box-shadow: 2px 2px 7px #000; }
+	#AddTask .wrapper { -webkit-box-shadow: 2px 2px 7px #000; }
 	#AddTask footer { padding-left: 0px; } 
+
+/* Desktop */
+@media only screen and (min-width: 481px) {
+}
+
+/* iPhone */
+@media only screen and (max-width: 480px) {
+	#Wrapper { margin: 3px 3px 0px 3px }
+
+}
+

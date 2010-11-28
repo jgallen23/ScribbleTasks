@@ -194,17 +194,20 @@ var ProjectController = Controller.extend({
 	completeTask: function(taskElement) {
 		var self = this;
 		var index = taskElement.getAttribute("data-index");
-		elem.addClass(this.view.find("li[data-index='"+index+"'] .complete"), "c");
-		taskElement.style.opacity = 0;
 		var task = self.tasks[index];
-		//setTimeout(function() {
 		if (task.isComplete)
-			task.unComplete();
+			elem.removeClass(this.view.find("li[data-index='"+index+"'] .complete"), "c");
 		else
-			task.complete();
-		task.save(function(t) {
-			self.loadTasks();
-		});
-		//}, 1000);
+			elem.addClass(this.view.find("li[data-index='"+index+"'] .complete"), "c");
+		//taskElement.style.opacity = 0;
+		setTimeout(function() {
+			if (task.isComplete)
+				task.unComplete();
+			else
+				task.complete();
+			task.save(function(t) {
+				self.loadTasks();
+			});
+		}, 1000);
 	}
 });
