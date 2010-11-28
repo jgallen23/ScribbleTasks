@@ -11,7 +11,11 @@ button { -webkit-appearance: none; font-size: 13px;  height: 20px; border: 0; }
 	button.incomplete { background-image: url(../images/icons/folder.png); }
 	button.complete { background-image: url(../images/icons/check.png); }
 	button.add { background-image: url(../images/icons/add.png); }
+	button.addMulti { background-image: url(../images/icons/add-multi.png); }
 	button.clear { background-image: url(../images/icons/delete.png); }
+	button.back { background-image: url(../images/icons/arrow-left.png); }
+	button.redo { background-image: url(../images/icons/redo.png); }
+	button.undo { background-image: url(../images/icons/undo.png); }
 
 	button.priority, .TaskList button.Icon.priority { height: 15px; width: 15px; -webkit-border-radius: 10px; padding: 0; margin-left: 8px; }
    	.PriorityChooser input { height: 25px; width: 25px; -webkit-border-radius: 15px; }
@@ -25,22 +29,21 @@ header, footer {  height: 40px; display: -webkit-box; -webkit-box-orient: horizo
 		header .title, header .title input { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 20px; color: #000 }
 		header .title input { -webkit-box-flex: 1; } 
 
-footer.buttons button { margin-top: 10px; }
-	footer.buttons .PriorityChooser { bottom: 45px; } 
+footer.buttons .PriorityChooser { bottom: 45px; } 
 
 .Container footer { display: none; }
 
 #AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal; -webkit-box-align: center; }
-	#AddTask .wrapper {background: #fff; display: -webkit-box; -webkit-box-orient: vertical; width: 80%; height: 300px;}
+	#AddTask .wrapper { display: -webkit-box; -webkit-box-orient: vertical; width: 80%; height: 300px;}
 	#AddTask .Modal { padding: 10px; } 
 	#AddScribble { -webkit-box-flex: 1 }
 	#AddTask .buttons { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: stretch; }
+		#AddTask .buttons .Icon.priority { margin-top: 10px; } 
 
 
 .Toolbar { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; -webkit-box-pack: justify }
 	.Toolbar li { padding: 0 15px; } 
 	.Toolbar li .Icon { } 
-		.Toolbar li .Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity: 1.0 } 
 	.Toolbar .star, .Toolbar .incomplete, .Toolbar .complete { opacity: .2 }
 	.Toolbar .current { opacity: 1 }
 	.Toolbar button { /*-webkit-transition: opacity .5s ease-in-out;*/ }
@@ -58,10 +61,11 @@ footer.buttons button { margin-top: 10px; }
 	body.Mobile .TaskList { overflow-y: hidden; }
 .TaskList ul { list-style: none; margin: 0;}
 	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px} 
-	.TaskList button.Icon { height: 35px; width: 35px; background-size: 25px; }
+	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
 	.TaskList button.priority, .PriorityChooser input { margin-right: 20px; }
 		.TaskList .buttons { margin-left: 10px; }
 	.TaskList .star.off { opacity: .2;}
+	.TaskList .star.off:active { opacity: 1;}
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
