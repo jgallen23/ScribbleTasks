@@ -1,0 +1,21 @@
+body { background: url(../../images/skins/paper/bg.jpg); }
+#Wrapper { background: #fff; margin: 5px 5px 2px 5px; padding: 0 2px 3px 0; }
+.Wrapper { background: url(../../images/skins/paper/red-line.png) top 50px repeat-y, url(../../images/skins/paper/paper.png); -webkit-box-shadow: 2px 2px 7px #000; }
+header { border-bottom: 2px solid #6394cb; }
+footer { padding-left: 55px; }
+
+#ProjectList header { padding-left: 55px; }
+#ProjectList li:active .name { color: #6394cb; }
+.ProjectList li { border-bottom: 2px solid #6394cb; padding-left: 65px;}
+.ProjectList li .count { font-size: 14px; background: #ccc; color: #000; -webkit-border-radius: 15px; margin-right: 10px;  }
+
+
+.Project header { padding-left: 15px; }
+	.Project header .title { padding-left: 20px; } 
+	.Project .TaskList li { border-bottom: 2px solid #6394cb; padding: 0 10px; }
+
+.TaskList .PriorityChooser { margin-top: -25px; }
+
+.PriorityChooser { -webkit-border-radius: 5px; -webkit-box-shadow: 1px 1px 10px #000; padding: 2px;}
+	.PriorityChooser input:first-child { margin-left: 15px; } 
+	.PriorityChooser input { margin-top: 5px; }

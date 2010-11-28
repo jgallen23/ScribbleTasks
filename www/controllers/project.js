@@ -42,11 +42,15 @@ var ProjectController = Controller.extend({
 		'star': function(e) {
 			var index = e.target.getAttribute("data-index");
 			var task = this.tasks[index];
-			e.target.style.opacity = (task.star)?.3:1.0;
+			if (task.star)
+				elem.removeClass(e.target, "off");
+			else
+				elem.addClass(e.target, "off");
 			this.starTask(task);
 		},
 		'priority': function(e) {
-			this.view.find(".PriorityChooser").style.display = "block";
+			e.target.nextSibling.style.display = "block";
+			//this.view.find(".PriorityChooser").style.display = "block";
 		},
 		'setPriority': function(e) {
 			var index = e.target.getAttribute("data-index");

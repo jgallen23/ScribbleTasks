@@ -20,7 +20,7 @@ button { -webkit-appearance: none; font-size: 13px;  height: 20px; border: 0; }
 		button.priority[data-priority="2"], .PriorityChooser input[value='2'] { background-color: #8f0606; } 
 		button.priority[data-priority="-1"], .PriorityChooser input[value='-1'] { background-color: #ccc; } 
 
-header, footer {  width: 100%; height: 40px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; }
+header, footer {  height: 40px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; }
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 10px; } 
 		header .title, header .title input { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 20px; color: #000 }
 		header .title input { -webkit-box-flex: 1; } 
@@ -41,16 +41,17 @@ footer.buttons button { margin-top: 10px; }
 	.Toolbar li { padding: 0 15px; } 
 	.Toolbar li .Icon { } 
 		.Toolbar li .Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity: 1.0 } 
-	.Toolbar .star, .Toolbar .incomplete, .Toolbar .complete { opacity: .5 }
+	.Toolbar .star, .Toolbar .incomplete, .Toolbar .complete { opacity: .2 }
 	.Toolbar .current { opacity: 1 }
 	.Toolbar button { /*-webkit-transition: opacity .5s ease-in-out;*/ }
 
 .Modal .Modal { margin: 0 3px 2px 0; } 
 
 .ProjectList {}
-	.ProjectList li { font-size: 25px; font-family: 'MarkerFelt-Thin'; padding: 15px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; } 
+	.ProjectList li { font-size: 22px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 15px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; line-height: 32px; } 
+		.ProjectList li button { display: none; } 
 		.ProjectList li .name { -webkit-box-flex: 1 }
-		.ProjectList li .count { padding: 0 8px; line-height: 30px; }
+		.ProjectList li .count { padding: 0 8px; line-height: 31px; }
 			.ProjectList li .count:last-child { margin-left: 10px; } 
 
 .TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll }
@@ -60,7 +61,7 @@ footer.buttons button { margin-top: 10px; }
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 25px; }
 	.TaskList button.priority, .PriorityChooser input { margin-right: 20px; }
 		.TaskList .buttons { margin-left: 10px; }
-	.TaskList .star { opacity: .3;}
+	.TaskList .star.off { opacity: .2;}
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }

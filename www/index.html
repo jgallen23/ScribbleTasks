@@ -7,67 +7,69 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
 
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
-		<link rel="stylesheet" type="text/css" href="ui/stylesheets/skins/default.css"/>
+		<link rel="stylesheet" type="text/css" href="ui/stylesheets/skins/paper.css"/>
 	</head>
 	<body>
-		<div id="ProjectList" class="Container">
-			<header>
-				<div class="title">ScribbleTasks</div>
-				<ul class="Toolbar">
-					<li><button class="Icon clear" data-onClick="clear"></button></li>
-					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
-					<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
-					<li><button class="Icon add" data-onClick="add"></button></li>
-				</ul>
-			</header>
-			<div class="ProjectList">	
-				<ul id="Projects"></ul>
-			</div>
-			<footer>
-				<ul class="Toolbar">
-					<li><button class="Icon clear" data-onClick="clear"></button></li>
-					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
-					<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
-					<li><button class="Icon add" data-onClick="add"></button></li>
-				</ul>
-			</footer>
-		</div>	
-		<div id="Project" class="Container Project">
-			<header>
-				<button data-onClick="back">&lt;</button><div class="title"><input data-type="title" data-onClick="editTitle"/></div>
-				<ul class="Toolbar">
-					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
-					<li><button class="Icon star" data-onClick="filterStarred"></button></li>
-					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
-					<li><button class="Icon add" data-onClick="add"></button></li>
-				</ul>
-			</header>
-			<div class="TaskList">	
-				<ul id="Tasks"></ul>
-			</div>
-			<footer>
-				<ul class="Toolbar">
-					<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
-					<li><button class="Icon star" data-onClick="filterStarred"></button></li>
-					<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
-				</ul>
-			</footer>
-		</div>
-        <div id="AddTask">
-			<div class="wrapper Modal">
-				<div id="AddScribble"><canvas></canvas></div>
-				<footer class="buttons">
-					<button data-onClick="undo">U</button>
-					<button data-onClick="redo">R</button>
-					<button class="Icon star off" data-onClick="star"></button>
-					<button class="Icon priority" data-onClick="priority"></button>
-					<section class="PriorityChooser Modal"></section>
-					<button data-onClick="add">+</button>
-					<button data-onClick="addAnother">++</button>
-					<button data-onClick="cancel">Cancel</button>
+		<div id="Wrapper" class="Wrapper"><div id="Wrapper2" class="Wrapper">
+			<div id="ProjectList" class="Container">
+				<header>
+					<div class="title">Projects</div>
+					<ul class="Toolbar">
+						<li><button class="Icon clear" data-onClick="clear"></button></li>
+						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+						<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
+						<li><button class="Icon add" data-onClick="add"></button></li>
+					</ul>
+				</header>
+				<div class="ProjectList">	
+					<ul id="Projects"></ul>
+				</div>
+				<footer>
+					<ul class="Toolbar">
+						<li><button class="Icon clear" data-onClick="clear"></button></li>
+						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+						<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
+						<li><button class="Icon add" data-onClick="add"></button></li>
+					</ul>
+				</footer>
+			</div>	
+			<div id="Project" class="Container Project">
+				<header>
+					<button data-onClick="back">&lt;</button><div class="title"><input data-type="title" data-onClick="editTitle"/></div>
+					<ul class="Toolbar">
+						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+						<li><button class="Icon star" data-onClick="filterStarred"></button></li>
+						<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+						<li><button class="Icon add" data-onClick="add"></button></li>
+					</ul>
+				</header>
+				<div class="TaskList">	
+					<ul id="Tasks"></ul>
+				</div>
+				<footer>
+					<ul class="Toolbar">
+						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+						<li><button class="Icon star" data-onClick="filterStarred"></button></li>
+						<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
+					</ul>
 				</footer>
 			</div>
-		</div>
+			<div id="AddTask">
+				<div class="wrapper Modal">
+					<div id="AddScribble"><canvas></canvas></div>
+					<footer class="buttons">
+						<button data-onClick="undo">U</button>
+						<button data-onClick="redo">R</button>
+						<button class="Icon star off" data-onClick="star"></button>
+						<button class="Icon priority" data-onClick="priority"></button>
+						<section class="PriorityChooser Modal"></section>
+						<button data-onClick="add">+</button>
+						<button data-onClick="addAnother">++</button>
+						<button data-onClick="cancel">Cancel</button>
+					</footer>
+				</div>
+			</div>
+		</div></div>
 		<script type="text/html" id="jstPriorityChooser">
 			{! for (var pi = -1, c = 3; pi < c; pi++) { !}
 				<input name="priority_{!= key !}" value="{!= pi !}" {!= (pi == priority)?"checked":"" !} type="radio" data-onClick="setPriority" />
@@ -99,7 +101,7 @@
 						<input data-index="{!= index !}" name="priority_{!= task.key !}" value="{!= pi !}" {!= (pi == task.priority)?"checked":"" !} type="radio" data-onClick="setPriority" />
 					{! } !}
 				</section>
-				<button data-index="{!= index !}" class="Icon star" style="opacity: {!= (task.star)?"1":".3" !}" data-onClick="star"></button>
+				<button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-onClick="star"></button>
 				<button class="Icon edit" data-onClick="task"></button>
 			</div>
 			{! if (task.name) { !}
@@ -137,8 +139,8 @@
 			if (!params.pg)
 				app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
-				if (this.isPhoneGap)
-					height -= 40;
+				var wrapper = document.querySelector("#Wrapper");
+				height -= (wrapper.offsetTop*2);	
 				var containers = document.querySelectorAll(".Container");
 				for (var i = 0, c = containers.length; i < c; i++) {
 					containers[i].style.height = height+"px";
