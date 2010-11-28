@@ -46,7 +46,7 @@ var ProjectController = Controller.extend({
 			this.starTask(task);
 		},
 		'priority': function(e) {
-			e.target.nextSibling.style.display = "block";			
+			this.view.find(".PriorityChooser").style.display = "block";
 		},
 		'setPriority': function(e) {
 			var index = e.target.getAttribute("data-index");

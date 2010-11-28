@@ -59,12 +59,19 @@
 					<button data-onClick="undo">U</button>
 					<button data-onClick="redo">R</button>
 					<button class="Icon star off" data-onClick="star"></button>
+					<button class="Icon priority" data-onClick="priority"></button>
+					<section class="PriorityChooser"></section>
 					<button data-onClick="add">+</button>
 					<button data-onClick="addAnother">++</button>
 					<button data-onClick="cancel">Cancel</button>
 				</footer>
 			</div>
 		</div>
+		<script type="text/html" id="jstPriorityChooser">
+			{! for (var pi = -1, c = 3; pi < c; pi++) { !}
+				<input name="priority_{!= key !}" value="{!= pi !}" {!= (pi == priority)?"checked":"" !} type="radio" data-onClick="setPriority" />
+			{! } !}
+		</script>
 		<script type="text/html" id="jstProjectListView">
 			{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
 				<li>
@@ -159,7 +166,8 @@
 					c.bind("loaded", function() {
 						if (f) return;
 						var pc = this.showProject(this.projects[0]);
-						//pc.showAddTask();
+						if (params.test == "2")
+							pc.showAddTask();
 						f = true;
 
 					});

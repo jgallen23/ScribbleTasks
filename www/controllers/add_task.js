@@ -26,14 +26,23 @@ var AddTaskController = Controller.extend({
 		//this._super();
 		APP.disableScrolling();
 		if (scribble) {
+			this.setPriority(scribble.priority);
 			this.setStar(scribble.star);
 			this.loadedScribble = scribble;
 			this.scribble.load(scribble.path);	
+		} else {
+			this.setPriority(0);
 		}
 	},
 	hide: function() {
 		APP.enableScrolling();
 		this._super();
+	},
+	setPriority: function(priority) {
+		this.priority = priority;
+		this.view.find("button.priority").setAttribute('data-priority', priority);
+		var data = { key: 'add_task', priority: priority }
+		this.view.renderAt(this.view.find(".PriorityChooser"), "jstPriorityChooser", data);
 	},
 	setStar: function(star) {
 		this.star = star;
@@ -48,12 +57,14 @@ var AddTaskController = Controller.extend({
 		if (this.scribble.strokes.length != 0) {
 			if (this.loadedScribble) {
 				this.loadedScribble.star = this.star;
+				this.loadedScribble.priority = this.priority;
 				this.loadedScribble.path = this.scribble.toJSON();
 				this.trigger("add", [this.loadedScribble]);
 			} else {
 				var task = {
 					star: this.star,
-					path: this.scribble.toJSON()
+					path: this.scribble.toJSON(),
+					priority: this.priority
 				}
 				this.trigger("add", [task]);
 			}
@@ -63,6 +74,14 @@ var AddTaskController = Controller.extend({
 	onClick: {
 		star: function(e) {
 			this.setStar(!this.star);
+		},
+		priority: function(e) {
+			this.view.find(".PriorityChooser").style.display = "block";
+		},
+		setPriority: function(e) {
+			this.priority = e.target.value;	
+			this.setPriority(this.priority);
+			this.view.find(".PriorityChooser").style.display = "none";
 		},
 		add: function(e) {
 			this.addTask();	

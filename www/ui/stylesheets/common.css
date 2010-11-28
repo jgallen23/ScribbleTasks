@@ -16,6 +16,10 @@ button { font-size: 13px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, f
 
 	button.priority, .TaskList button.Icon.priority { height: 15px; width: 15px; -webkit-border-radius: 10px; padding: 0; margin-left: 8px; }
    	.PriorityChooser input { height: 25px; width: 25px; -webkit-border-radius: 15px; }
+		button.priority[data-priority="0"], .PriorityChooser input[value='0'] { background-color: #333; } 
+		button.priority[data-priority="1"], .PriorityChooser input[value='1'] { background-color: #f08e0f; } 
+		button.priority[data-priority="2"], .PriorityChooser input[value='2'] { background-color: #8f0606; } 
+		button.priority[data-priority="-1"], .PriorityChooser input[value='-1'] { background-color: #ccc; } 
 
 header, footer {  width: 100%; opacity: 0.8;  height: 40px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 10px; } 
@@ -23,6 +27,7 @@ header, footer {  width: 100%; opacity: 0.8;  height: 40px; display: -webkit-box
 		header .title input { -webkit-box-flex: 1; } 
 
 footer.buttons button { margin-top: 10px; }
+	footer.buttons .PriorityChooser { bottom: 45px; } 
 
 .Container footer { display: none; }
 
@@ -57,11 +62,7 @@ footer.buttons button { margin-top: 10px; }
 	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; border-bottom: 1px solid #ccc; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px} 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 25px; }
 	.TaskList button.priority, .PriorityChooser input { margin-right: 20px; }
-		.TaskList button.priority[data-priority="0"], .PriorityChooser input[value='0'] { background-color: #000; } 
-		.TaskList button.priority[data-priority="1"], .PriorityChooser input[value='1'] { background-color: #f08e0f; } 
-		.TaskList button.priority[data-priority="2"], .PriorityChooser input[value='2'] { background-color: #8f0606; } 
-		.TaskList button.priority[data-priority="-1"], .PriorityChooser input[value='-1'] { background-color: #ccc; } 
-	.TaskList .buttons { margin-left: 10px; }
+		.TaskList .buttons { margin-left: 10px; }
 	.TaskList .star { opacity: .3;}
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px }
@@ -94,6 +95,7 @@ footer.buttons button { margin-top: 10px; }
 		#Project header ul.Toolbar li { display: none; } 
 			#Project header ul.Toolbar li:last-child { display: block; padding-left: 40px; }
 
+	#AddTask { -webkit-box-align: start; }
 	#AddTask .wrapper { height: 100%; width: 100% }
 	#AddTask .Paper { -webkit-border-radius: 0; padding: 0; margin: 0}
 	#AddScribble { border: 0; }
