@@ -7,7 +7,8 @@
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
 
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
-			</head>
+		<link rel="stylesheet" type="text/css" href="ui/stylesheets/skins/default.css"/>
+	</head>
 	<body>
 		<div id="ProjectList" class="Container">
 			<header>
@@ -53,14 +54,14 @@
 			</footer>
 		</div>
         <div id="AddTask">
-			<div class="wrapper Paper">
+			<div class="wrapper Modal">
 				<div id="AddScribble"><canvas></canvas></div>
 				<footer class="buttons">
 					<button data-onClick="undo">U</button>
 					<button data-onClick="redo">R</button>
 					<button class="Icon star off" data-onClick="star"></button>
 					<button class="Icon priority" data-onClick="priority"></button>
-					<section class="PriorityChooser"></section>
+					<section class="PriorityChooser Modal"></section>
 					<button data-onClick="add">+</button>
 					<button data-onClick="addAnother">++</button>
 					<button data-onClick="cancel">Cancel</button>
@@ -93,7 +94,7 @@
 			<div class="buttons">
 				<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
 				<button class="Icon priority" data-priority="{!= task.priority !}" data-onClick="priority"></button>
-				<section class="PriorityChooser">
+				<section class="PriorityChooser Modal">
 					{! for (var pi = -1, c = 3; pi < c; pi++) { !}
 						<input data-index="{!= index !}" name="priority_{!= task.key !}" value="{!= pi !}" {!= (pi == task.priority)?"checked":"" !} type="radio" data-onClick="setPriority" />
 					{! } !}

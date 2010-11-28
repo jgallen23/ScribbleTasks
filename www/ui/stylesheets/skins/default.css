@@ -1,0 +1,36 @@
+body { background: url(../../images/paper2-bg.png); }
+
+button { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#ADADAD)); -webkit-border-radius: 5px; -webkit-box-shadow: 3px 3px 3px #333; }
+		button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px } 
+
+header, footer { opacity: 0.8;  background: #000; color: #fff; -webkit-box-shadow: 5px 0px 5px #000; }
+	header .title, header .title input { color: #fff;  }
+
+
+.Modal { background: #fff; -webkit-border-radius: 10px; -webkit-box-shadow: 2px 2px 2px #333; }
+
+#AddScribble { border: 1px solid #ccc; }
+.ProjectList li:active { background: #ccc; }  
+.ProjectList li .count { font-size: 14px; background: #000; color: #fff; -webkit-border-radius: 10px;  }
+
+.TaskList li { border-bottom: 1px solid #ccc;  }
+.TaskList .sorting { background: #ccc; }
+
+.TaskList .complete { background: #ff0000; }
+
+.Toolbar button.star { background-image: url(../../images/icons/star-white.png); }
+button.complete { background-image: url(../../images/icons/check-white.png); }
+button.incomplete { background-image: url(../../images/icons/folder-white.png); }
+button.add { background-image: url(../../images/icons/add-white.png); }
+button.clear { background-image: url(../../images/icons/delete-white.png); }
+
+/* Desktop */
+@media only screen and (min-width: 481px) {
+	#AddTask footer { background: 0; -webkit-box-shadow: none; display: block; }
+
+}
+
+/* iPhone */
+@media only screen and (max-width: 480px) {
+	#AddTask footer button.star { background: url(../../images/icons/star-white.png) no-repeat; }
+}
