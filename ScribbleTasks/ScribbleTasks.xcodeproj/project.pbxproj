@@ -12,19 +12,19 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		3009C2AC127B894C007F4BC6 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009C2AA127B894C007F4BC6 /* icon-72.png */; };
-		3009C2AD127B894C007F4BC6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009C2AB127B894C007F4BC6 /* icon@2x.png */; };
 		3009C2B2127B897D007F4BC6 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009C2B0127B897D007F4BC6 /* Default-Landscape.png */; };
 		3009C2B3127B897D007F4BC6 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3009C2B1127B897D007F4BC6 /* Default-Portrait.png */; };
 		301BF570109A69640062928A /* www in Resources */ = {isa = PBXBuildFile; fileRef = 301BF56E109A69640062928A /* www */; };
 		301BF5BD109A6A2B0062928A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5BC109A6A2B0062928A /* CFNetwork.framework */; };
 		301BF5C5109A6A2B0062928A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */; };
 		302CC88810CD8CCE00C49659 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 302CC88610CD8CCE00C49659 /* Default.png */; };
-		302CC88910CD8CCE00C49659 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 302CC88710CD8CCE00C49659 /* icon.png */; };
 		3053AC6F109B7857006FCFE7 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 3053AC6E109B7857006FCFE7 /* VERSION */; };
 		305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
 		307D28A2123043360040C0FA /* PhoneGapBuildSettings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 307D28A1123043350040C0FA /* PhoneGapBuildSettings.xcconfig */; };
 		30E1352710E2C1420031B30D /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E1352610E2C1420031B30D /* PhoneGap.plist */; };
+		7638CDFE12A2FD6500B13FA3 /* app-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7638CDFB12A2FD6500B13FA3 /* app-72.png */; };
+		7638CDFF12A2FD6500B13FA3 /* app.png in Resources */ = {isa = PBXBuildFile; fileRef = 7638CDFC12A2FD6500B13FA3 /* app.png */; };
+		7638CE0012A2FD6500B13FA3 /* app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7638CDFD12A2FD6500B13FA3 /* app@2x.png */; };
 		C912416E129A3B6E00BBF0CE /* Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = C912416D129A3B6E00BBF0CE /* Badge.m */; };
 		C92B7F0A12884BA300E56435 /* libPhoneGapLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C92B7EE412884B7700E56435 /* libPhoneGapLib.a */; };
 /* End PBXBuildFile section */
@@ -47,20 +47,20 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3009C2AA127B894C007F4BC6 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
-		3009C2AB127B894C007F4BC6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		3009C2B0127B897D007F4BC6 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		3009C2B1127B897D007F4BC6 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		301BF5BC109A6A2B0062928A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		302CC88610CD8CCE00C49659 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		302CC88710CD8CCE00C49659 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3053AC6E109B7857006FCFE7 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = PHONEGAPLIB; };
 		305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		307D28A1123043350040C0FA /* PhoneGapBuildSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PhoneGapBuildSettings.xcconfig; sourceTree = "<group>"; };
 		30E1352610E2C1420031B30D /* PhoneGap.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* ScribbleTasks_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScribbleTasks_Prefix.pch; sourceTree = "<group>"; };
+		7638CDFB12A2FD6500B13FA3 /* app-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-72.png"; path = "../resources/app_icon/app-72.png"; sourceTree = SOURCE_ROOT; };
+		7638CDFC12A2FD6500B13FA3 /* app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app.png; path = ../resources/app_icon/app.png; sourceTree = SOURCE_ROOT; };
+		7638CDFD12A2FD6500B13FA3 /* app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app@2x.png"; path = "../resources/app_icon/app@2x.png"; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* ScribbleTasks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScribbleTasks-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C912416C129A3B6E00BBF0CE /* Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Badge.h; path = "../ext/phonegap-plugins/iPhone/Badge/Badge.h"; sourceTree = SOURCE_ROOT; };
 		C912416D129A3B6E00BBF0CE /* Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Badge.m; path = "../ext/phonegap-plugins/iPhone/Badge/Badge.m"; sourceTree = SOURCE_ROOT; };
@@ -155,9 +155,9 @@
 		3009C2AE127B8952007F4BC6 /* icons */ = {
 			isa = PBXGroup;
 			children = (
-				3009C2AA127B894C007F4BC6 /* icon-72.png */,
-				3009C2AB127B894C007F4BC6 /* icon@2x.png */,
-				302CC88710CD8CCE00C49659 /* icon.png */,
+				7638CDFB12A2FD6500B13FA3 /* app-72.png */,
+				7638CDFC12A2FD6500B13FA3 /* app.png */,
+				7638CDFD12A2FD6500B13FA3 /* app@2x.png */,
 			);
 			name = icons;
 			sourceTree = "<group>";
@@ -262,13 +262,13 @@
 				301BF570109A69640062928A /* www in Resources */,
 				3053AC6F109B7857006FCFE7 /* VERSION in Resources */,
 				302CC88810CD8CCE00C49659 /* Default.png in Resources */,
-				302CC88910CD8CCE00C49659 /* icon.png in Resources */,
 				30E1352710E2C1420031B30D /* PhoneGap.plist in Resources */,
 				307D28A2123043360040C0FA /* PhoneGapBuildSettings.xcconfig in Resources */,
-				3009C2AC127B894C007F4BC6 /* icon-72.png in Resources */,
-				3009C2AD127B894C007F4BC6 /* icon@2x.png in Resources */,
 				3009C2B2127B897D007F4BC6 /* Default-Landscape.png in Resources */,
 				3009C2B3127B897D007F4BC6 /* Default-Portrait.png in Resources */,
+				7638CDFE12A2FD6500B13FA3 /* app-72.png in Resources */,
+				7638CDFF12A2FD6500B13FA3 /* app.png in Resources */,
+				7638CE0012A2FD6500B13FA3 /* app@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

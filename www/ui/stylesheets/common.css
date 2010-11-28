@@ -26,7 +26,7 @@ button { -webkit-appearance: none; font-size: 13px;  height: 20px; border: 0; }
 
 header, footer {  height: 50px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; }
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 10px; } 
-		header .title, header .title input { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 20px; color: #000 }
+		header .title, header .title input { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 22px; color: #000 }
 		header .title input { -webkit-box-flex: 1; -webkit-appearance: none; } 
 
 footer.buttons .PriorityChooser { bottom: 45px; } 
@@ -51,7 +51,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Modal .Modal { margin: 0 3px 2px 0; } 
 
 .ProjectList {}
-	.ProjectList li { font-size: 22px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; line-height: 32px; } 
+	.ProjectList li { font-size: 20px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; line-height: 32px; } 
 		.ProjectList li button { display: none; } 
 		.ProjectList li .name { -webkit-box-flex: 1 }
 		.ProjectList li .count { padding: 0 8px; line-height: 31px; }
