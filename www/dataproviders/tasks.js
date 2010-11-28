@@ -21,6 +21,13 @@ var TaskDataProvider = Class.extend({
 			cb(this.tasks);
 		}
 	},
+	findById: function(id, cb) {
+		var self = this;
+		this.provider.get(id, function(dbTask) {
+			var t = new Task(dbTask);
+			cb(t);
+		});
+	},
 	findByIds: function(ids, cb) {
 		var self = this;
 		this.provider.getMany(ids, function(dbTasks) {

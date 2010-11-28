@@ -1,4 +1,4 @@
-var ScribbleSize = [400, 300];
+var TaskHeight = 150;
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
 		var self = this;
@@ -33,6 +33,9 @@ var ProjectController = Controller.extend({
 		this.addTaskController = null;
 		this.project = null;
 		this.filter = null;
+		this.scribbles.each(function(s) {
+			s.destroy();
+		});
 		this.scribbles = null;
 		this.tasks = null;
 		this.view.find("#Tasks").innerHTML = "";
@@ -131,29 +134,59 @@ var ProjectController = Controller.extend({
 	_render: function() {
 		var data = { project: this.project, tasks: this.tasks };
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
-		this.drawScribbles();
-        var self = this;
-		this.view.findAll("div.TaskList li", function(item) {
-			addSwipeHandler(item, function(element, direction) {
-				if (direction == "right") {
-					self.completeTask(element);
-				}
+		if (this.tasks.length != 0) {
+			this.drawScribbles();
+			var self = this;
+			this.view.findAll("div.TaskList li", function(item) {
+				addSwipeHandler(item, function(element, direction) {
+					if (direction == "right") {
+						self.completeTask(element);
+					}
+				});
 			});
-		});
+		}
 		if (this.scroller)
 			setTimeout(function () { self.scroller.refresh() }, 0)
 		window.scroll(0,0);
 	},
 	drawScribbles: function() {
 		var self = this;
+		var container = document.querySelector(".task");
+		var containerSize = [container.clientWidth-20, TaskHeight];
+		console.log(containerSize);
+		var useImage = true;
+		var containerRatio = containerSize[1]/containerSize[0];
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
-			if (task.path) {
-				var s = new Scribble(document.getElementById("Scribble_"+i), ScribbleSize[0]/2, ScribbleSize[1]/2, true);
-				s.readonly = true;
-				s.scale(0.60, 0.60);
-				s.load(task.path);
-				self.scribbles.push(s);
+			if (!task.imageData && task.path) {
+				if (useImage)
+					var s = new Scribble(this.view.find(".TaskList"), true);
+				else
+					var s = new Scribble(document.getElementById("Scribble_"+i), true);
+				var scale = 0;
+				console.log(task.height, task.width);
+				var taskRatio = task.height/task.width;
+				if (taskRatio > containerRatio) {
+					scale = containerSize[1]/task.height;
+				} else {
+					scale = containerSize[0]/task.width;
+				}
+				s.canvas.width = containerSize[0];
+				console.log(scale);
+				if (scale < 1)
+					s.scale(scale, scale);
+				s.load(task.path, task.bounds[0]);
+				if (useImage) {
+					task.imageData = s.imageData();
+					s.clear();
+					var img = new Image();
+					img.src = task.imageData;
+					var taskNode = this.view.find("#Scribble_"+i);
+					taskNode.innerHTML = '';
+					taskNode.appendChild(img)
+				} else {
+					self.scribbles.push(s);
+				}
 			}
 		}
 	},

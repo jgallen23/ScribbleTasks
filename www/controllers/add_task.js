@@ -3,7 +3,7 @@ var AddTaskController = Controller.extend({
 		this._super(elementId);
 		this.star = false;
 		this.loadedScribble = false;
-		this.scribble = new Scribble(this.view.find('#AddScribble'), ScribbleSize[0], ScribbleSize[1]);
+		this.scribble = new Scribble(this.view.find('#AddScribble'));
 	},
 	destroy: function() {
 		this.star = null;

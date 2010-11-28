@@ -7,6 +7,9 @@ var Task = Model.extend({
 			star: false,
 			note: null,
 			priority: 0,
+			bounds: null,
+			height: null,
+			width: null,
 			completedOn: null,
 			createdOn: null,
 			modifiedOn: null
@@ -27,10 +30,23 @@ var Task = Model.extend({
 
 		this.__defineGetter__("isComplete", this._isComplete);
 		this.__defineProperty__("star", this._getStar, this._setStar);
+
+		if(this.path)// && !this.bounds)
+			this._updateDimensions();
 	},
 	_propertySet: function(prop, value) {
 		this._data.modifiedOn = new Date().getTime();
 		this._super(prop, value);
+		if (prop == "path") {
+			this._updateDimensions();
+		}
+	},
+	_updateDimensions: function() {
+		var b = this._getBounds(this._data.path);
+		this._data.bounds = b;
+		this._data.height = b[1][1] - b[0][1];
+		this._data.width = b[1][0] - b[0][0];
+		//this.save();
 	},
 	save: function(cb) {
 		Task.data.save(this, cb);
@@ -49,6 +65,23 @@ var Task = Model.extend({
 	},
 	_setStar: function(value) {
 		this._data.star = value;
+	},
+	_getBounds: function(path) {
+		var minX = 999, maxX = 0, minY = 999, maxY = 0;
+		path.each(function(stroke) {
+			stroke.each(function(point) {
+				if (point[0] < minX)
+					minX = point[0];
+				if (point[0] > maxX)
+					maxX = point[0];
+				if (point[1] < minY)
+					minY = point[1];
+				if (point[1] > maxY)
+					maxY = point[1];
+			});
+		});
+		var bounds = [[minX, minY], [maxX, maxY]];
+		return bounds;
 	}
 });
 Task.data = new TaskDataProvider();

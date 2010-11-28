@@ -1,5 +1,5 @@
 var Scribble = View.extend({
-	init: function(element, width, height, readonly) {
+	init: function(element, readonly) {
 		var self = this;
 		this._super(element);
 		this.strokeWidth = 2;
@@ -22,9 +22,9 @@ var Scribble = View.extend({
 		for (var i = 0, c = points.length; i < c; i++) {
 			var point = points[i];
 			if (i == 0)
-				this.context.moveTo(point[0], point[1]);
+				this.context.moveTo(point[0] - this.origin[0], point[1] - this.origin[1]);
 			else
-				this.context.lineTo(point[0], point[1]);
+				this.context.lineTo(point[0] - this.origin[0], point[1] - this.origin[1]);
 		}
 	},
 	drawLoop: function() {
@@ -119,16 +119,16 @@ var Scribble = View.extend({
 		}, 30);
 	},
 	redraw: function() {
-		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
+		this.canvas.width = this.canvas.width;
+		this.context.beginPath();
 		if (this._scale) {
 			this.context.scale(this._scale[0], this._scale[1]);
 		}
 		for (var i = 0; i < this.strokes.length; i++) {
 			var s = this.strokes[i];
-			this.context.beginPath();
 			this.drawPoints(s);
-			this.context.stroke();
 		}
+		this.context.stroke();
 	},
 	undo: function() {
 		this.undos.push(this.strokes.last());
@@ -142,20 +142,26 @@ var Scribble = View.extend({
 			this.redraw();
 		}
 	},
-	load: function(json) {
+	load: function(json, origin) {
+		this.origin = origin || [0, 0];
 		this.strokes = json;
 		this.redraw();
 	},
 	toJSON: function() {
 		return this.strokes;
 	},
+	imageData: function() {
+		return this.canvas.toDataURL();
+	},
 	scale: function(x, y) {
 		this._scale = [x, y];
 		this.redraw();	
 	},
 	clear: function() {
+		this._scale = null;
 		this.offset = null;
 		this.strokes = [];
-		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
+		//this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
+		this.canvas.width = this.canvas.width;
 	}
 });
