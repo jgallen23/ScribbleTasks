@@ -159,6 +159,8 @@ var ProjectController = Controller.extend({
 				});
 			});
 		}
+		this.view.find("button.incomplete span").innerHTML = this.project.incompleteCount;
+		this.view.find("button.star span").innerHTML = this.project.starCount;
 		if (this.scroller)
 			setTimeout(function () { self.scroller.refresh() }, 0)
 		window.scroll(0,0);
