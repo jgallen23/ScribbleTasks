@@ -7,6 +7,7 @@ var Scribble = View.extend({
 		this.strokes = [];
 		this.readonly = readonly;
 		this.undos = [];
+		this.origin = [0,0];
 		this.path = null;
 		this.canvas = this.find("canvas");
 		this.context = this.canvas.getContext('2d');

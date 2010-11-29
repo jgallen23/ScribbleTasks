@@ -95,7 +95,6 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 @media only screen and (max-width: 480px) {
 	.Container footer { display: block; }
 	header, footer { height: 40px; }
-	header ul.Toolbar { display: none;  }
 
 	#Project header ul.Toolbar { display: block; } 
 		#Project header ul.Toolbar li { display: none; } 
