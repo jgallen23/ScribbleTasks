@@ -75,7 +75,8 @@ var ProjectController = Controller.extend({
 			var task = this.tasks[index];
 			var priority = btn.getAttribute("data-priority");
 			btn.parentNode.style.display = "none";
-			this.setPriority(task, priority);
+			if (task.priority != priority) 
+				this.setPriority(task, priority);
 		},
 		'add': function(e) {
 			this.showAddTask();
