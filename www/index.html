@@ -115,8 +115,8 @@
 			{! } else { !}
 			<div id="Scribble_{!= index !}" class="task scribble">
 				{! if (task.imageData) { !}
-					<img src="{!= task.imageData !}"/>
 				{! } !}
+				<canvas></canvas>
 			</div>
 			{! } !}
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>

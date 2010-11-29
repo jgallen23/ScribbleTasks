@@ -1,5 +1,5 @@
 var Snap = false;
-var TaskHeight = 150;
+var TaskHeight = 165;
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
 		var self = this;
@@ -147,11 +147,22 @@ var ProjectController = Controller.extend({
 	},
 	_render: function() {
 		var data = { project: this.project, tasks: this.tasks };
+
+		if (Snap) {
+			var height = this.view.find(".TaskList").clientHeight;
+			var items = Math.round(height/TaskHeight);
+			var itemHeight = height/items;
+		} else {
+			var itemHeight = TaskHeight;
+		}
+
+
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
-			this.drawScribbles();
+			this.drawScribbles(itemHeight);
 			var self = this;
 			this.view.findAll("div.TaskList li", function(item) {
+				//item.style.height = itemHeight+"px";
 				addSwipeHandler(item, function(element, direction) {
 					if (direction == "right") {
 						self.completeTask(element);
@@ -165,16 +176,16 @@ var ProjectController = Controller.extend({
 			setTimeout(function () { self.scroller.refresh() }, 0)
 		window.scroll(0,0);
 	},
-	drawScribbles: function() {
+	drawScribbles: function(height) {
 		var self = this;
 		var container = document.querySelector(".task");
-		var containerSize = [container.clientWidth-20, TaskHeight];
+		var containerSize = [container.clientWidth-20, height];
 		console.log(containerSize);
-		var useImage = true;
+		var useImage = false;
 		var containerRatio = containerSize[1]/containerSize[0];
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
-			if (!task.imageData && task.path) {
+			if (task.path) {
 				if (useImage)
 					var s = new Scribble(this.view.find(".TaskList"), true);
 				else
@@ -188,6 +199,7 @@ var ProjectController = Controller.extend({
 					scale = containerSize[0]/task.width;
 				}
 				s.canvas.width = containerSize[0];
+				s.canvas.height = containerSize[1];
 				console.log(scale);
 				if (scale < 1)
 					s.scale(scale, scale);

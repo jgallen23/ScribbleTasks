@@ -64,20 +64,19 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		.ProjectList li .count { padding: 0 8px; line-height: 31px; }
 			.ProjectList li .count:last-child { margin-left: 10px; } 
 
-.TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll }
+.TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll; overflow-x: hidden; }
 	.TaskList #tmpCanvas { display: none; } 
 	body.Mobile .TaskList { overflow-y: hidden; }
 .TaskList ul { list-style: none; margin: 0;}
 	.TaskList li .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-pack: center; height: 100%; }
-		.TaskList li .buttons .star { margin: 20px 0; } 
+		.TaskList li .buttons .star { } 
 	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px} 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
 	.PriorityChooser input { margin-right: 20px; }
 	.TaskList .star.off { opacity: .2;}
 	.TaskList .star.off:active { opacity: 1;}
 	.TaskList .name { line-height: 50px }
-	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px }
-		.TaskList .task img { height: 150px; } 
+	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
 	.TaskList .complete { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; -webkit-transition: width .5s ease-in-out;}
 		.TaskList .complete.c { width: 500px; } 
@@ -85,7 +84,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 #Project { display: none; -webkit-box-orient: vertical; height: 100%; }
 	#Project .TaskList { -webkit-box-flex: 1; }
 	#Project .incomplete,
-	#Project .star { background-position: left center; padding: 3px 0 0 25px; width: 65px; }
+	#Project footer .star { background-position: left center; padding: 3px 0 0 25px; width: 65px; }
 	#Project footer button span:before { content: "(" }
 	#Project footer button span:after { content: ")" }
 
