@@ -1,4 +1,5 @@
 var Snap = false;
+var UseImage = true;
 var TaskHeight = 165;
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
@@ -147,7 +148,7 @@ var ProjectController = Controller.extend({
 	},
 	_render: function() {
 		var self = this;
-		var data = { project: this.project, tasks: this.tasks };
+		var data = { project: this.project, tasks: this.tasks, useImage: UseImage };
 
 		if (Snap) {
 			var height = this.view.find(".TaskList").clientHeight;
@@ -196,12 +197,11 @@ var ProjectController = Controller.extend({
 		var container = document.querySelector(".task");
 		var containerSize = [container.clientWidth-20, height];
 		console.log(containerSize);
-		var useImage = false;
 		var containerRatio = containerSize[1]/containerSize[0];
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
-			if (task.path) {
-				if (useImage)
+			if (task.path && (!UseImage || (UseImage && !task.imageData))) {
+				if (UseImage)
 					var s = new Scribble(this.view.find(".TaskList"), true);
 				else
 					var s = new Scribble(document.getElementById("Scribble_"+i), true);
@@ -219,7 +219,7 @@ var ProjectController = Controller.extend({
 				if (scale < 1)
 					s.scale(scale, scale);
 				s.load(task.path, task.bounds[0]);
-				if (useImage) {
+				if (UseImage) {
 					task.imageData = s.imageData();
 					s.clear();
 					var img = new Image();

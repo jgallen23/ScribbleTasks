@@ -162,7 +162,7 @@ var Scribble = View.extend({
 		this._scale = null;
 		this.offset = null;
 		this.strokes = [];
-		//this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
+		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
 		this.canvas.width = this.canvas.width;
 	}
 });

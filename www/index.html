@@ -94,7 +94,7 @@
 		<script type="text/html" id="jstProjectView">
 			{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
             <li data-key="{!= task.key !}" data-index="{!= i !}">
-				{!= template("jstTaskView", { index: i, task: task }) !}
+				{!= template("jstTaskView", { index: i, task: task, useImage: useImage }) !}
 			</li>
 			{! } !}	
 		</script>
@@ -114,9 +114,11 @@
 			</div>
 			{! } else { !}
 			<div id="Scribble_{!= index !}" class="task scribble">
-				{! if (task.imageData) { !}
+				{! if (!useImage) { !}
+					<canvas></canvas>
+				{! } else if (task.imageData) { !}
+					<img src="{!= task.imageData !}"/>
 				{! } !}
-				<canvas></canvas>
 			</div>
 			{! } !}
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
