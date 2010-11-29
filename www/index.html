@@ -149,6 +149,9 @@
 			if (!params.pg)
 				app.browser.isPhoneGap = true;
 			app.bind("resize", function(width, height) {
+				if (this.browser.isPhoneGap)
+					height -= 20;
+				console.log(height);
 				if (height < 500) {
 					document.querySelector("#AddTask .wrapper").style.height = height+"px";
 				}
