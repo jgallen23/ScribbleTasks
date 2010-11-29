@@ -1,3 +1,4 @@
+var Snap = false;
 var TaskHeight = 150;
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
@@ -12,7 +13,7 @@ var ProjectController = Controller.extend({
 		this.addTaskController.bind("close", function() { APP.enableScrolling(); });
 	
 		if (APP.browser.isMobile) {
-			this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: true });
+			this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: false, snap: Snap, momentum: !Snap });
 		}
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)
@@ -42,6 +43,12 @@ var ProjectController = Controller.extend({
 		this._super();
 	},
 	onClick: {
+		'scrollToTop': function(e) {
+			if (this.scroller)
+				this.scroller.scrollTo(0, 0, '400ms');
+			else
+				this.view.find(".TaskList").scrollTop = 0;
+		},
 		'star': function(e) {
 			var index = e.target.getAttribute("data-index");
 			var task = this.tasks[index];
@@ -184,6 +191,7 @@ var ProjectController = Controller.extend({
 					var taskNode = this.view.find("#Scribble_"+i);
 					taskNode.innerHTML = '';
 					taskNode.appendChild(img)
+					task.save();
 				} else {
 					self.scribbles.push(s);
 				}

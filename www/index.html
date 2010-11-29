@@ -15,8 +15,8 @@
 				<header>
 					<div class="title">Projects</div>
 					<ul class="Toolbar">
-						<li><button class="Icon clear" data-onClick="clear"></button></li>
-						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+						<!--<li><button class="Icon clear" data-onClick="clear"></button></li>-->
+						<!--<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>-->
 						<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
 						<li><button class="Icon add" data-onClick="add"></button></li>
 					</ul>
@@ -24,19 +24,20 @@
 				<div class="ProjectList">	
 					<ul id="Projects"></ul>
 				</div>
-				<footer>
-					<ul class="Toolbar">
-						<li><button class="Icon clear" data-onClick="clear"></button></li>
-						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
+				<!--<footer>-->
+				<!--<ul class="Toolbar">-->
+						<!--<li><button class="Icon clear" data-onClick="clear"></button></li>-->
+						<!--<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>-->
 						<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
-						<li><button class="Icon add" data-onClick="add"></button></li>
-					</ul>
-				</footer>
+						<!--<li><button class="Icon add" data-onClick="add"></button></li>-->
+						<!--</ul>-->
+					<!--</footer>-->
 			</div>	
 			<div id="Project" class="Container Project">
 				<header>
 					<button class="Icon back" data-onClick="back"></button><div class="title"><input data-type="title" data-onClick="editTitle"/></div>
 					<ul class="Toolbar">
+						<li><button class="Icon top" data-onClick="scrollToTop"></button></li>
 						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
 						<li><button class="Icon star" data-onClick="filterStarred"></button></li>
 						<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
@@ -49,6 +50,7 @@
 				</div>
 				<footer>
 					<ul class="Toolbar">
+						<li><button class="Icon top" data-onClick="scrollToTop"></button></li>
 						<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>
 						<li><button class="Icon star" data-onClick="filterStarred"></button></li>
 						<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
@@ -117,7 +119,6 @@
 				{! if (task.imageData) { !}
 					<img src="{!= task.imageData !}"/>
 				{! } !}
-				<canvas></canvas>
 			</div>
 			{! } !}
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>

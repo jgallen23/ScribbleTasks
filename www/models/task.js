@@ -10,6 +10,7 @@ var Task = Model.extend({
 			bounds: null,
 			height: null,
 			width: null,
+			imageData: null,
 			completedOn: null,
 			createdOn: null,
 			modifiedOn: null

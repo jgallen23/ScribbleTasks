@@ -59,6 +59,7 @@ var AddTaskController = Controller.extend({
 				this.loadedScribble.star = this.star;
 				this.loadedScribble.priority = this.priority;
 				this.loadedScribble.path = this.scribble.toJSON();
+				this.loadedScribble.imageData = null;
 				this.trigger("add", [this.loadedScribble]);
 			} else {
 				var task = {
