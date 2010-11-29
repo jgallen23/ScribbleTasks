@@ -172,9 +172,13 @@ var ProjectController = Controller.extend({
 		}
 		this.view.find("button.incomplete span").innerHTML = this.project.incompleteCount;
 		this.view.find("button.star span").innerHTML = this.project.starCount;
-		if (this.scroller)
-			setTimeout(function () { self.scroller.refresh() }, 0)
-		window.scroll(0,0);
+		if (this.scroller) {
+			setTimeout(function () { 
+				self.scroller.refresh();
+				self.scroller.scrollTo(0, 0, 0);
+			}, 0)
+		}
+		this.view.find(".TaskList").scrollTop = 0;
 	},
 	drawScribbles: function(height) {
 		var self = this;
