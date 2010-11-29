@@ -275,6 +275,6 @@ var ProjectController = Controller.extend({
 			task.save(function(t) {
 				self.loadTasks();
 			});
-		}, 1000);
+		}, 200);
 	}
 });
