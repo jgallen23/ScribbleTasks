@@ -4,9 +4,9 @@ var ProjectController = Controller.extend({
 	init: function(elementId, project) {
 		var self = this;
 		this._super(elementId);
-		this.filter = "incomplete";
 		this.project = project;
 		this.scribbles = [];
+		this.filter = "incomplete";
 
 		this.addTaskController = new AddTaskController("AddTask");
 		this.addTaskController.bind("add", function(task) { self.addTask(task); });
@@ -24,6 +24,7 @@ var ProjectController = Controller.extend({
 				self.scroller.enabled = false;
 		});
 		this._handleTitleChange();
+
 		this.loadTasks();
 	},
 	destroy: function() {
@@ -87,21 +88,15 @@ var ProjectController = Controller.extend({
 			this.completeTask(this.view.findParentWithAttribute(e.target, 'data-index'));
 		},
 		'filterAll': function(e) {
-			elem.removeClass(this.view.findAll("#Project .Toolbar li button"), "current");
-			elem.addClass(this.view.findAll("button.incomplete"), "current");
 			this.filter = "incomplete";
 			this.loadTasks();
 		},
 		'filterComplete': function(e) {
-			elem.removeClass(this.view.findAll("#Project .Toolbar li button"), "current");
-			elem.addClass(this.view.findAll("button.complete"), "current");
 			this.filter = "complete";
 			this.loadTasks();
 		},
 		'filterStarred': function(e) {
-			elem.removeClass(this.view.findAll("#Project .Toolbar li button"), "current");
-			elem.addClass(this.view.findAll("button.star"), "current");
-			this.filter = "starred";
+			this.filter = "star";
 			this.loadTasks();
 		},
 		'back': function(e) {
@@ -170,8 +165,13 @@ var ProjectController = Controller.extend({
 				});
 			});
 		}
+
+		elem.removeClass(this.view.findAll("#Project .Toolbar li button"), "current");
+		elem.addClass(this.view.findAll("button."+this.filter), "current");
+
 		this.view.find("button.incomplete span").innerHTML = this.project.incompleteCount;
 		this.view.find("button.star span").innerHTML = this.project.starCount;
+
 		if (this.scroller) {
 			setTimeout(function () { 
 				self.scroller.refresh();

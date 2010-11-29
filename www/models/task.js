@@ -90,7 +90,7 @@ Task.filters = {
 	incomplete: function(t) {
 		return !t.isComplete;
 	},
-	starred: function(t) {
+	star: function(t) {
 		return (!t.isComplete && t.star);
 	},
 	complete: function(t) {
