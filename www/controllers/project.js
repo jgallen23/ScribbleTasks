@@ -59,14 +59,21 @@ var ProjectController = Controller.extend({
 			this.starTask(task);
 		},
 		'priority': function(e) {
-			e.target.nextSibling.style.display = "block";
+			if (e.target.nodeName == "SPAN")
+				e.target.parentNode.nextSibling.style.display = "block";
+			else
+				e.target.nextSibling.style.display = "block";
 			//this.view.find(".PriorityChooser").style.display = "block";
 		},
 		'setPriority': function(e) {
-			var index = e.target.getAttribute("data-index");
+			if (e.target.nodeName == "SPAN")
+				var btn = e.target.parentNode;
+			else
+				var btn = e.target;
+			var index = btn.getAttribute("data-key");
 			var task = this.tasks[index];
-			var priority = e.target.value;
-			e.target.parentNode.style.display = "none";
+			var priority = btn.getAttribute("data-priority");
+			btn.parentNode.style.display = "none";
 			this.setPriority(task, priority);
 		},
 		'add': function(e) {

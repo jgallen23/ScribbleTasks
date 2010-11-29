@@ -65,7 +65,7 @@
 							<li><button class="Icon undo" data-onClick="undo"></button></li>
 							<li><button class="Icon redo" data-onClick="redo"></button></li>
 							<li><button class="Icon star off" data-onClick="star"></button></li>
-							<li><button class="Icon priority" data-onClick="priority"></button>
+							<li><button class="Icon priority" data-priority="0" data-onClick="priority"><span data-onClick="priority"></span></button>
 								<section class="PriorityChooser Modal"></section>
 							</li>
 							<li><button class="Icon add" data-onClick="add">+</button></li>
@@ -77,7 +77,7 @@
 		</div></div>
 		<script type="text/html" id="jstPriorityChooser">
 			{! for (var pi = -1, c = 3; pi < c; pi++) { !}
-				<input name="priority_{!= key !}" value="{!= pi !}" {!= (pi == priority)?"checked":"" !} type="radio" data-onClick="setPriority" />
+				<button class="Icon priority" data-key="{!= key !}" data-priority="{!= pi !}" data-onClick="setPriority"><span data-onClick="setPriority"></span></button>
 			{! } !}
 		</script>
 		<script type="text/html" id="jstProjectListView">
@@ -101,11 +101,9 @@
 		<script type="text/html" id="jstTaskView">
 			<div class="buttons">
 				<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
-				<button class="Icon priority" data-priority="{!= task.priority !}" data-onClick="priority"></button>
+				<button class="Icon priority" data-priority="{!= task.priority !}" data-onClick="priority"><span data-onClick="priority"></span></button>
 				<section class="PriorityChooser Modal">
-					{! for (var pi = -1, c = 3; pi < c; pi++) { !}
-						<input data-index="{!= index !}" name="priority_{!= task.key !}" value="{!= pi !}" {!= (pi == task.priority)?"checked":"" !} type="radio" data-onClick="setPriority" />
-					{! } !}
+					{!= template("jstPriorityChooser", { key: index }) !}
 				</section>
 				<button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-onClick="star"></button>
 				<button class="Icon edit" data-onClick="task"></button>

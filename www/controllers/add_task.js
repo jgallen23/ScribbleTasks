@@ -80,7 +80,11 @@ var AddTaskController = Controller.extend({
 			this.view.find(".PriorityChooser").style.display = "block";
 		},
 		setPriority: function(e) {
-			this.priority = e.target.value;	
+			if (e.target.nodeName == "SPAN")
+				var btn = e.target.parentNode;
+			else
+				var btn = e.target;
+			this.priority = btn.getAttribute('data-priority');	
 			this.setPriority(this.priority);
 			this.view.find(".PriorityChooser").style.display = "none";
 		},
