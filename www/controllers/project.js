@@ -7,6 +7,7 @@ var ProjectController = Controller.extend({
 		this.project = project;
 		this.scribbles = [];
 		this.filter = "incomplete";
+		this.scrollTo = true;
 
 		this.addTaskController = new AddTaskController("AddTask");
 		this.addTaskController.bind("add", function(task) { self.addTask(task); });
@@ -89,14 +90,17 @@ var ProjectController = Controller.extend({
 			this.completeTask(this.view.findParentWithAttribute(e.target, 'data-index'));
 		},
 		'filterAll': function(e) {
+			this.scrollTo = true;
 			this.filter = "incomplete";
 			this.loadTasks();
 		},
 		'filterComplete': function(e) {
+			this.scrollTo = true;
 			this.filter = "complete";
 			this.loadTasks();
 		},
 		'filterStarred': function(e) {
+			this.scrollTo = true;
 			this.filter = "star";
 			this.loadTasks();
 		},
@@ -142,6 +146,7 @@ var ProjectController = Controller.extend({
 		});
 	},
 	_render: function() {
+		var self = this;
 		var data = { project: this.project, tasks: this.tasks };
 
 		if (Snap) {
@@ -156,7 +161,6 @@ var ProjectController = Controller.extend({
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
 			this.drawScribbles(itemHeight);
-			var self = this;
 			this.view.findAll("div.TaskList li", function(item) {
 				//item.style.height = itemHeight+"px";
 				addSwipeHandler(item, function(element, direction) {
@@ -176,10 +180,16 @@ var ProjectController = Controller.extend({
 		if (this.scroller) {
 			setTimeout(function () { 
 				self.scroller.refresh();
-				self.scroller.scrollTo(0, 0, 0);
-			}, 0)
+			}, 0);
 		}
-		this.view.find(".TaskList").scrollTop = 0;
+		if (this.scrollTo) {
+			if (this.scroller) {
+				this.scroller.scrollTo(0, 0, 0);
+			} else {
+				this.view.find(".TaskList").scrollTop = 0;
+			}
+			this.scrollTo = false;
+		}
 	},
 	drawScribbles: function(height) {
 		var self = this;
