@@ -196,7 +196,6 @@ var ProjectController = Controller.extend({
 		var self = this;
 		var container = document.querySelector(".task");
 		var containerSize = [container.clientWidth-20, height];
-		console.log(containerSize);
 		var containerRatio = containerSize[1]/containerSize[0];
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
@@ -206,7 +205,6 @@ var ProjectController = Controller.extend({
 				else
 					var s = new Scribble(document.getElementById("Scribble_"+i), true);
 				var scale = 0;
-				console.log(task.height, task.width);
 				var taskRatio = task.height/task.width;
 				if (taskRatio > containerRatio) {
 					scale = containerSize[1]/task.height;
@@ -215,7 +213,6 @@ var ProjectController = Controller.extend({
 				}
 				s.canvas.width = containerSize[0];
 				s.canvas.height = containerSize[1];
-				console.log(scale);
 				if (scale < 1)
 					s.scale(scale, scale);
 				s.load(task.path, task.bounds[0]);
