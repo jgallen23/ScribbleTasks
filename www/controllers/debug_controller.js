@@ -25,7 +25,9 @@ var DebugController = Controller.extend({
 		restoreNow: function() {
 			var self = this;
 			APP.restore(this.view.find(".restore textarea").value, function() {
-				self.trigger("restored");
+				setTimeout(function() {
+					self.trigger("restored");
+				}, 1000);
 			});
 		}
 	}
