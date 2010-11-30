@@ -4,7 +4,7 @@ body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; 
 
 button { -webkit-appearance: none; font-size: 13px; height: 20px; border: 0; padding:0; margin: 0; }
 	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; opacity: 1.0 } 
-	button.off { opacity: .5 }
+	button.off { opacity: .3 }
 	button.star { background-image: url(../images/icons/star.png); }
 		.Toolbar button.star { background-image: url(../images/icons/star.png); }
 	button.edit { background-image: url(../images/icons/pencil.png); }
@@ -51,7 +51,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 
 
 .Toolbar { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; -webkit-box-pack: justify }
-	.Toolbar .star, .Toolbar .incomplete, .Toolbar .complete { opacity: .2 }
+	#Project .Toolbar .star, #Project .Toolbar .incomplete, #Project .Toolbar .complete { opacity: .2 }
 	.Toolbar .current { opacity: 1 }
 	.Toolbar button { /*-webkit-transition: opacity .5s ease-in-out;*/ }
 
