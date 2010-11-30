@@ -8,6 +8,9 @@ var DebugController = Controller.extend({
 		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
+		clear: function() {
+			APP.clearImageCache();
+		},
 		backup: function() {
 			var self = this;
 			APP.backup(function(data) {
