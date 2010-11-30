@@ -2,7 +2,7 @@ var Snap = false;
 var UseImage = true;
 var TaskHeight = 165;
 var MinTaskHeight = 110;
-var TaskScale = 0.6;
+var TaskScale = 0.4;
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
 		var self = this;
@@ -228,7 +228,7 @@ var ProjectController = Controller.extend({
 					var taskNode = this.view.find("#Scribble_"+i);
 					taskNode.innerHTML = '';
 					taskNode.appendChild(img)
-					//task.save();
+					task.save();
 				} else {
 					self.scribbles.push(s);
 				}
