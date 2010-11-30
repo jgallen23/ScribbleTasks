@@ -36,6 +36,8 @@ var AddTaskController = Controller.extend({
 		} else {
 			this.setPriority(0);
 		}
+		var data = { key: 'add_task', priority: 0 }
+		this.view.renderAt(this.view.find(".PriorityChooser"), "jstPriorityChooser", data);
 	},
 	hide: function() {
 		APP.enableScrolling();
@@ -43,9 +45,7 @@ var AddTaskController = Controller.extend({
 	},
 	setPriority: function(priority) {
 		this.priority = priority;
-		this.view.find("button.priority").setAttribute('data-priority', priority);
-		var data = { key: 'add_task', priority: priority }
-		this.view.renderAt(this.view.find(".PriorityChooser"), "jstPriorityChooser", data);
+		this.view.find("button.priority span").className = "priority"+priority;
 	},
 	setStar: function(star) {
 		this.star = star;
