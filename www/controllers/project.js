@@ -242,6 +242,10 @@ var ProjectController = Controller.extend({
 		if (!(task instanceof Task)) {
 			task.project = this.project.key;
 			task = new Task(task);
+			if (task.star) {
+				APP.data.badgeCount++;
+				APP.updateBadge();
+			}
 		}
 		this.project.addTask(task, function(project, task) {
 			self.loadTasks();
