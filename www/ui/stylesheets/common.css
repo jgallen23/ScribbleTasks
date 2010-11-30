@@ -17,6 +17,7 @@ button { -webkit-appearance: none; font-size: 13px; height: 20px; border: 0; pad
 	button.redo { background-image: url(../images/icons/redo.png); }
 	button.undo { background-image: url(../images/icons/undo.png); }
 	button.top { background-image: url(../images/icons/arrow-up.png); }
+	button.menu { background-image: url(../images/icons/menu.png); }
 
 	button.priority { padding: 0 0 0 10px; }
 	button.priority span { height: 15px; width: 15px; -webkit-border-radius: 10px; padding: 0; display: block; }
@@ -41,9 +42,9 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 
 .Container footer { display: none; }
 
-#AddTask { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal; -webkit-box-align: center; }
-	#AddTask .wrapper { background: #fff; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; width: 80%; height: 300px;}
-	#AddTask .Modal { } 
+.Modal { z-index: 100; position: absolute; background: rgba(0,0,0,0.8); top:0; left: 0; height: 100%; width: 100%; display: none; -webkit-box-pack: center; -webkit-box-orient: horizontal; -webkit-box-align: center; }
+	.Modal .wrapper { background: #fff; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; width: 80%; height: 300px;}
+	#AddTask .Popup { } 
 	#AddScribble { -webkit-box-flex: 1 }
 	#AddTask .buttons { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-pack: justify; -webkit-box-align: stretch; }
 		#AddTask .buttons .Toolbar { width: 100%; } 
@@ -55,7 +56,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.Toolbar .current { opacity: 1 }
 	.Toolbar button { /*-webkit-transition: opacity .5s ease-in-out;*/ }
 
-.Modal .Modal { margin: 0 3px 2px 0; } 
+.Popup .Popup { margin: 0 3px 2px 0; } 
 
 .ProjectList {}
 	.ProjectList li { font-size: 20px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; line-height: 32px; } 
@@ -92,6 +93,12 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; }
 	.Container > div { -webkit-box-flex: 1; }
 
+#DebugMenu {}
+	#DebugMenu ul li { margin: 5px 10px; } 
+	#DebugMenu .backup, 
+	#DebugMenu .restore	{ display: none; }
+	#DebugMenu textarea { height: 200px; width: 98%; } 
+
 /* Desktop */
 @media only screen and (min-width: 481px) {
 }
@@ -105,9 +112,9 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		#Project header ul.Toolbar li { display: none; } 
 			#Project header ul.Toolbar li:last-child { display: block; padding-left: 40px; }
 
-	#AddTask { -webkit-box-align: start; }
-	#AddTask .wrapper { height: 100%; width: 100% }
-	#AddTask .Modal { -webkit-border-radius: 0; padding: 0; margin: 0}
+	.Modal { -webkit-box-align: start; }
+	.Modal .wrapper { height: 100%; width: 100% }
+	#AddTask .Popup { -webkit-border-radius: 0; padding: 0; margin: 0}
 	#AddScribble { border: 0; }
 	#AddTask .buttons .Icon { margin-top: 0; } 
 

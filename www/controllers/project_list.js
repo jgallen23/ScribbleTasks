@@ -76,6 +76,20 @@ var ProjectListController = Controller.extend({
 					self.loadProjects();
 				});				
 			}
+		},
+		'debug': function(e) {
+			var self = this;
+			var d = new DebugController('DebugMenu');
+			d.bind("restored", function() {
+				this.hide();
+				this.destroy();
+				self.loadProjects();
+			});
+			d.bind("close", function() {
+				this.hide();
+				this.destroy();
+			});
+			d.show();
 		}
 
 	}

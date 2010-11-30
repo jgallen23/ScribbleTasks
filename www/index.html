@@ -18,6 +18,7 @@
 						<!--<li><button class="Icon clear" data-onClick="clear"></button></li>-->
 						<!--<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>-->
 						<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
+						<li><button class="Icon menu" data-onClick="debug"></button></li>
 						<li><button class="Icon add" data-onClick="add"></button></li>
 					</ul>
 				</header>
@@ -57,8 +58,8 @@
 					</ul>
 				</footer>
 			</div>
-			<div id="AddTask">
-				<div class="wrapper Modal">
+			<div id="AddTask" class="Modal">
+				<div class="wrapper Popup">
 					<div id="AddScribble"></div>
 					<footer class="buttons">
 						<ul class="Toolbar">
@@ -66,12 +67,28 @@
 							<li><button class="Icon redo" data-onClick="redo"></button></li>
 							<li><button class="Icon star off" data-onClick="star"></button></li>
 							<li><button class="Icon priority" data-priority="0" data-onClick="priority"><span data-onClick="priority"></span></button>
-								<section class="PriorityChooser Modal"></section>
+								<section class="PriorityChooser Popup"></section>
 							</li>
 							<li><button class="Icon add" data-onClick="add">+</button></li>
 							<li><button class="Icon addMulti" data-onClick="addAnother"></button></li>
 							<li><button class="Icon clear" data-onClick="cancel"></button></li>
 					</footer>
+				</div>
+			</div>
+			<div id="DebugMenu" class="Modal">
+				<div class="wrapper Popup">
+					<ul class="Toolbar">
+						<li><button data-onClick="backup">Backup</button></li>
+						<li><button data-onClick="restore">Restore</button></li>
+						<li><button data-onClick="close">Close</button></li>
+					</ul>
+					<div class="backup">
+						<textarea></textarea>
+					</div>
+					<div class="restore">
+						<textarea></textarea>
+						<button data-onClick="restoreNow">Restore</button>
+					</div>
 				</div>
 			</div>
 		</div></div>
@@ -102,7 +119,7 @@
 			<div class="buttons">
 				<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
 				<button class="Icon priority" data-priority="{!= task.priority !}" data-onClick="priority"><span data-onClick="priority"></span></button>
-				<section class="PriorityChooser Modal">
+				<section class="PriorityChooser Popup">
 					{!= template("jstPriorityChooser", { key: index }) !}
 				</section>
 				<button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-onClick="star"></button>
@@ -136,6 +153,7 @@
 		<script src="controllers/add_task.js"></script>
 		<script src="controllers/project.js"></script>
 		<script src="controllers/project_list.js"></script>
+		<script src="controllers/debug_controller.js"></script>
 		<script src="views/scribble.js"></script>
 		<!--
 		<script src="ui/scripts/scribbletasks.min.js"></script>
@@ -181,15 +199,19 @@
 				var params = parseQueryString();
 				//* Tests
 				if (params.test) {
-					var f = false;
-					c.bind("loaded", function() {
-						if (f) return;
-						var pc = this.showProject(this.projects[0]);
-						if (params.test == "2")
-							pc.showAddTask();
-						f = true;
+					if (params.test == "1" || params.test == "2") {
+						var f = false;
+						c.bind("loaded", function() {
+							if (f) return;
+							var pc = this.showProject(this.projects[0]);
+							if (params.test == "2")
+								pc.showAddTask();
+							f = true;
 
-					});
+						});
+					} else if (params.test == "3") {
+						c.onClick.debug();
+					}
 				}
 				//*/
 				window.controller = c;
