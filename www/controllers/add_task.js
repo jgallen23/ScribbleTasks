@@ -3,9 +3,12 @@ var AddTaskController = Controller.extend({
 		this._super(elementId);
 		this.star = false;
 		this.loadedScribble = false;
-		this.scribble = new Scribble(this.view.find('#AddScribble'));
+		var container = this.view.find("#AddScribble");
+		container.appendChild(document.createElement("canvas"));
+		this.scribble = new Scribble(container);
 	},
 	destroy: function() {
+		this.view.find("#AddScribble").innerHTML = "";
 		this.star = null;
 		this.scribble = null;
 		this._super();
