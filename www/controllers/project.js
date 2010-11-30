@@ -198,9 +198,11 @@ var ProjectController = Controller.extend({
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
 			if (task.path && (!UseImage || (UseImage && !task.imageData))) {
-				if (UseImage)
+				if (UseImage) {
 					var s = new Scribble(this.view.find(".TaskList"), true);
-				else
+					/*s.canvas.width = 1000;*/
+					/*s.canvas.height = 1000;*/
+				} else
 					var s = new Scribble(document.getElementById("Scribble_"+i), true);
 				/*
 				var scale = 0;
@@ -293,7 +295,9 @@ var ProjectController = Controller.extend({
 				task.unComplete();
 			else
 				task.complete();
+			console.log("save");
 			task.save(function(t) {
+				console.log("load");
 				self.loadTasks();
 			});
 		}, 200);

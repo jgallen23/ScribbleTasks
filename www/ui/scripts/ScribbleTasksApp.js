@@ -12,5 +12,35 @@ var ScribbleTasksApp = Application.extend({
 				task.save();
 			})
 		});
-	}
+    },
+    backup: function(cb) {
+        var data = {};
+        data.projects = [];
+        data.tasks = [];
+        Project.data.find(function(projects) {
+            projects.each(function(project) {
+                data.projects.push(project._data);
+            });
+            Task.data.find(function(tasks) {
+                tasks.each(function(task) {
+                    data.tasks.push(task._data);
+                });
+                cb(JSON.stringify(data));
+            });
+        });
+    },
+    restore: function(data) {
+        data = eval("["+data+"]")[0];
+        Project.data.provider.nuke();
+        data.projects.each(function(project) {
+            var p = new Project(project);
+            p.save();
+        });
+        Task.data.provider.nuke();
+        data.tasks.each(function(task) {
+            console.log(task);
+            var t = new Task(task);
+            t.save();
+        });
+    }
 });

@@ -19,15 +19,15 @@ var Task = Model.extend({
 		if (!this.createdOn)
 			this.createdOn = new Date().getTime();
 
-
 		if (typeof this._data.createdOn === "string")
 			this._data.createdOn = new Date(this._data.createdOn).getTime();
 
 		if (typeof this._data.modifiedOn === "string")
 			this._data.modifiedOn = new Date(this._data.modifiedOn).getTime();
 
-		if (this.completedOn && typeof this._data.completedOn === "string")
-			this._data.completedOn = new Date(this._data.completedOn).getTime();
+		if (this.completedOn && typeof this._data.completedOn === "string") {
+			this._data.completedOn = new Date().getTime();
+		}
 
 		this.__defineGetter__("isComplete", this._isComplete);
 		this.__defineProperty__("star", this._getStar, this._setStar);

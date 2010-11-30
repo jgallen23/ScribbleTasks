@@ -92,7 +92,7 @@
 			{! } !}
 		</script>
 		<script type="text/html" id="jstProjectView">
-			{! for (var i = 0; i < tasks.length; i++) { var task = tasks[i]; !}
+			{! for (var i = 0, c = tasks.length; i < c; i++) { var task = tasks[i]; !}
             <li data-key="{!= task.key !}" data-index="{!= i !}">
 				{!= template("jstTaskView", { index: i, task: task, useImage: useImage }) !}
 			</li>
@@ -148,6 +148,7 @@
 				app.browser.isMobile = true;
 			if (!params.pg)
 				app.browser.isPhoneGap = true;
+
 			app.bind("resize", function(width, height) {
 				if (this.browser.isPhoneGap)
 					height -= 20;
@@ -164,6 +165,7 @@
 				
 			});
             app.bind("ready", function() {
+				this.clearImageCache();
 				if (this.browser.isMobile) {
 					/*
 					if (!this.browser.isPhoneGap) {
@@ -191,6 +193,16 @@
 				}
 				//*/
 				window.controller = c;
+				return;
+				APP.backup(function(data) { 
+					var textarea = document.createElement("textarea");
+					textarea.style.height = "400px";
+					textarea.style.width = "100%";
+
+					textarea.value = data;
+					document.body.innerHTML = ""; 
+					document.body.appendChild(textarea);
+				});
 			});
 		</script>
 	</body>
