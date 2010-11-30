@@ -200,10 +200,11 @@ var ProjectController = Controller.extend({
 			if (task.path && (!UseImage || (UseImage && !task.imageData))) {
 				if (UseImage) {
 					var s = new Scribble(this.view.find(".TaskList"), true);
-					/*s.canvas.width = 1000;*/
-					/*s.canvas.height = 1000;*/
-				} else
+					s.canvas.width = task.width;
+					s.canvas.height = task.height;
+				} else {
 					var s = new Scribble(document.getElementById("Scribble_"+i), true);
+				}
 				/*
 				var scale = 0;
 				var taskRatio = task.height/task.width;
@@ -227,7 +228,7 @@ var ProjectController = Controller.extend({
 					var taskNode = this.view.find("#Scribble_"+i);
 					taskNode.innerHTML = '';
 					taskNode.appendChild(img)
-					task.save();
+					//task.save();
 				} else {
 					self.scribbles.push(s);
 				}
