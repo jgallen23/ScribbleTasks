@@ -4,5 +4,13 @@ var ScribbleTasksApp = Application.extend({
         if (this.browser.isPhoneGap) {
             window.plugins.badge.set(this.data.badgeCount);
         }
-    }
+	},
+	clearImageCache: function() {
+		Task.data.find(function(tasks) {
+			tasks.each(function(task) {
+				task.imageData = "";
+				task.save();
+			})
+		});
+	}
 });
