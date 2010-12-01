@@ -42,10 +42,9 @@ asyncTest('get tasks', function() {
 		project.getTasks(function(tasks) {
 			equal(tasks.length, project.taskIds.length);
 			console.log(tasks);
-			for (var i = 0; i < project.taskIds.length; i++) {
-				var id = project.taskIds[i];
-				equal(tasks[i].key, id);
-			}
+			tasks.each(function(task) {
+				ok(project.taskIds.contains(task.key));
+			});
 			start();
 		});
 	});
@@ -102,3 +101,22 @@ asyncTest("remove task from project", function() {
 		});
 	});
 });
+
+asyncTest("move task", function() {
+	Project.data.find(function(projects) {
+		var projectA = projects[0];
+		var projectB = projects[1];
+		var taskCountA = projectA.taskIds.length;
+		var taskCountB = projectB.taskIds.length;
+		projectA.getTasks(function(tasks) {
+			var task = tasks[0];	
+			projectA.moveTask(task, projectB, function(project1, project2, task2) {
+				equal(taskCountA-1, project1.taskIds.length);
+				equal(taskCountB+1, project2.taskIds.length);
+				equal(task.key, task2.key);
+				start();
+			});
+		});
+	});
+});
+

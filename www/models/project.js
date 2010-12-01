@@ -70,13 +70,9 @@ var Project = Model.extend({
 	},
 	addTask: function(task, cb) {
 		var self = this;
-		var update = true;
-		if (!task.key) {
-			update = false;
-		}
 		task.project = self;
 		task.save(function(task) {
-			if (!update) {
+			if (!self.taskIds.contains(task.key)) {
 				self.taskIds = self.taskIds.insert(0, task.key);
 				self.incompleteCount++;
 				if (task.star)
@@ -94,6 +90,13 @@ var Project = Model.extend({
 		this.taskIds.removeItem(task.key);
 		self.save(function(project) {
 			cb(self);
+		});
+	},
+	moveTask: function(task, project, cb) {
+		this.removeTask(task, function(project1) {
+			project.addTask(task, function(project2, task) {
+				cb(project1, project2, task);
+			});
 		});
 	}
 });
