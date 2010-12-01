@@ -92,6 +92,22 @@
 					</div>
 				</div>
 			</div>
+			<div id="TaskMenu" class="Modal">
+				<section class="wrapper Popup">
+					<header>
+						<div class="title">Task Menu:</div>
+						<button class="Icon clear" data-onClick="close"></button>
+					</header>
+					<menu>
+						<li>Project: 
+							<select>
+								<option>ScribbleTask</option>
+							</select>
+						</li>
+						<li><button>Delete Task</button></li>
+					</menu>
+				</section>
+			</div>
 		</div></div>
 		<script type="text/html" id="jstPriorityChooser">
 			{! for (var pi = -1, c = 3; pi < c; pi++) { !}
@@ -111,7 +127,7 @@
 		</script>
 		<script type="text/html" id="jstProjectView">
 			{! for (var i = 0, c = tasks.length; i < c; i++) { var task = tasks[i]; !}
-            <li data-key="{!= task.key !}" data-index="{!= i !}">
+            <li class="taskItem" data-key="{!= task.key !}" data-index="{!= i !}">
 				{!= template("jstTaskView", { index: i, task: task, useImage: useImage }) !}
 			</li>
 			{! } !}	
@@ -124,7 +140,6 @@
 				<section class="PriorityChooser Popup">
 					{!= template("jstPriorityChooser", { key: index }) !}
 				</section>
-				<button class="Icon edit" data-onClick="task"></button>
 			</div>
 			{! if (task.name) { !}
 			<div class="task" data-onClick="task">
@@ -139,6 +154,10 @@
 				{! } !}
 			</div>
 			{! } !}
+			<menu>
+				<li><button class="Icon edit" data-onClick="task"></button></li>
+				<li><button class="Icon menu" data-onClick="menu"></button></li>
+			</menu>
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
 		</script>
 		<script src="phonegap.js"></script>
@@ -200,13 +219,15 @@
 				var params = parseQueryString();
 				//* Tests
 				if (params.test) {
-					if (params.test == "1" || params.test == "2") {
+					if (params.test == "1" || params.test == "2" || params.test == "4") {
 						var f = false;
 						c.bind("loaded", function() {
 							if (f) return;
 							var pc = this.showProject(this.projects[0]);
 							if (params.test == "2")
 								pc.showAddTask();
+							if (params.test == "4")
+								pc.onClick.menu();
 							f = true;
 
 						});

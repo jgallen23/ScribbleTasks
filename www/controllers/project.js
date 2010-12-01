@@ -1,7 +1,7 @@
 var Snap = false;
 var UseImage = true;
 var TaskHeight = 165;
-var MinTaskHeight = 110;
+var MinTaskHeight = 90;
 var TaskScale = 0.4;
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
@@ -42,6 +42,9 @@ var ProjectController = Controller.extend({
 		this._super();
 	},
 	onClick: {
+		'menu': function(e) {
+			document.getElementById("TaskMenu").style.display = "-webkit-box";
+		},
 		'scrollToTop': function(e) {
 			if (this.scroller)
 				this.scroller.scrollTo(0, 0, '400ms');
@@ -158,7 +161,7 @@ var ProjectController = Controller.extend({
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
 			this.drawScribbles(itemHeight);
-			this.view.findAll("div.TaskList li", function(item, i) {
+			this.view.findAll("div.TaskList li.taskItem", function(item, i) {
 				var size = self.tasks[i].height * TaskScale;
 				size = (size < MinTaskHeight)?MinTaskHeight:size+10;
 				item.style.height = size + "px";

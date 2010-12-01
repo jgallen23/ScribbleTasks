@@ -22,7 +22,7 @@ button { -webkit-appearance: none; font-size: 13px; height: 20px; border: 0; pad
 	button.priority { padding: 0 0 0 10px; }
 	button.priority span { height: 15px; width: 15px; -webkit-border-radius: 10px; padding: 0; display: block; }
    	.PriorityChooser button.Icon.priority span { height: 25px; width: 25px; -webkit-border-radius: 15px; }
-		button.priority[data-priority="0"] span, button.priority span.priority0 { background-color: #333; } 
+		button.priority[data-priority="0"] span, button.priority span.priority0 { background-color: #444; } 
 		button.priority[data-priority="1"] span, button.priority span.priority1 { background-color: #f08e0f; } 
 		button.priority[data-priority="2"] span, button.priority span.priority2 { background-color: #8f0606; } 
 		button.priority[data-priority="-1"] span, button.priority span.priority-1 { background-color: #ccc; } 
@@ -70,9 +70,9 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList #tmpCanvas { display: none; } 
 	body.Mobile .TaskList { overflow-y: hidden; }
 .TaskList ul { list-style: none; margin: 0;}
-	.TaskList li .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-pack: center; height: 100%; }
-		.TaskList li .buttons .star { } 
-	.TaskList li { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px; overflow: hidden; } 
+	.TaskList li.taskItem .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-pack: center; height: 100%; }
+		.TaskList li.taskItem .buttons .star { } 
+	.TaskList li.taskItem { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px; overflow: hidden; } 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
 	.PriorityChooser input { margin-right: 20px; }
 	.TaskList .star.off { opacity: .2;}
@@ -80,6 +80,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0; text-align: center; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
+	.TaskList menu li { list-style: none; }
 	.TaskList .complete { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
 
@@ -93,6 +94,11 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; }
 	.Container > div { -webkit-box-flex: 1; }
 
+#TaskMenu { position: absolute; z-index: 100; }
+	#TaskMenu .wrapper { width: 300px; } 
+	#TaskMenu menu { margin: 0; padding: 10px; } 
+	#TaskMenu li { list-style: none; padding: 3px 0; } 
+
 #DebugMenu {}
 	#DebugMenu ul li { margin: 5px 10px; } 
 	#DebugMenu .backup, 
@@ -101,6 +107,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 
 /* Desktop */
 @media only screen and (min-width: 481px) {
+	/*#Wrapper { width: 800px; margin: 0 auto !important; }*/
 }
 
 /* iPhone */
@@ -112,13 +119,12 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		#Project header ul.Toolbar li { display: none; } 
 			#Project header ul.Toolbar li:last-child { display: block; padding-left: 40px; }
 
-	.Modal { -webkit-box-align: start; }
-	.Modal .wrapper { height: 100%; width: 100% }
+	#AddTask.Modal { -webkit-box-align: start; }
+	#AddTask.Modal .wrapper { height: 100%; width: 100% }
 	#AddTask .Popup { -webkit-border-radius: 0; padding: 0; margin: 0}
 	#AddScribble { border: 0; }
 	#AddTask .buttons .Icon { margin-top: 0; } 
 
-	.TaskList li { height: 175px; }
 	.TaskList .complete { left: 60px; }
 		.TaskList .complete.c { width: 250px; } 
 
