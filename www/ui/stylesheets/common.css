@@ -78,7 +78,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList .star.off { opacity: .2;}
 	.TaskList .star.off:active { opacity: 1;}
 	.TaskList .name { line-height: 50px }
-	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0; }
+	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0; text-align: center; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
 	.TaskList .complete { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
