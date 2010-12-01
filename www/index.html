@@ -92,22 +92,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="TaskMenu" class="Modal">
-				<section class="wrapper Popup">
-					<header>
-						<div class="title">Task Menu:</div>
-						<button class="Icon clear" data-onClick="close"></button>
-					</header>
-					<menu>
-						<li>Project: 
-							<select>
-								<option>ScribbleTask</option>
-							</select>
-						</li>
-						<li><button>Delete Task</button></li>
-					</menu>
-				</section>
-			</div>
+			<div id="TaskMenu"></div>
 		</div></div>
 		<script type="text/html" id="jstPriorityChooser">
 			{! for (var pi = -1, c = 3; pi < c; pi++) { !}
@@ -160,6 +145,27 @@
 			</menu>
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
 		</script>
+		<script type="text/html" id="jstTaskMenu">
+			<div class="Modal">
+				<section class="wrapper Popup">
+					<header>
+						<div class="title">Task Menu:</div>
+						<button class="Icon clear" data-onClick="close"></button>
+					</header>
+					<menu>
+						<li>Project: 
+							<select>
+								{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
+									<option>{!= project.name !}</option>
+								{! } !}
+							</select>
+							</select>
+						</li>
+						<li><button>Delete Task</button></li>
+					</menu>
+				</section>
+			</div>
+		</script>
 		<script src="phonegap.js"></script>
         <script src="ui/scripts/app.lawnchair.js"></script>
 		<script src="ui/scripts/iscroll.js"></script>
@@ -173,6 +179,7 @@
 		<script src="controllers/add_task.js"></script>
 		<script src="controllers/project.js"></script>
 		<script src="controllers/project_list.js"></script>
+		<script src="controllers/task_menu.js"></script>
 		<script src="controllers/debug_controller.js"></script>
 		<script src="views/scribble.js"></script>
 		<!--

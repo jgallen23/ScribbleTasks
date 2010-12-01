@@ -111,6 +111,14 @@ Project.sort = {
 			return incomplete
 		}
 		return star;
+	},
+	alpha: function(a, b) {
+		if (a.name < b.name)
+			return -1;
+		else if (b.name < a.name)
+			return 1;
+		else
+			return 0;
 	}
 }
 Project.data = new ProjectDataProvider();

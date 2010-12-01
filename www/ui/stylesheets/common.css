@@ -94,7 +94,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; }
 	.Container > div { -webkit-box-flex: 1; }
 
-#TaskMenu { position: absolute; z-index: 100; }
+#TaskMenu { display: none; }
+	#TaskMenu .Modal { position: absolute; z-index: 100; display: -webkit-box}
 	#TaskMenu .wrapper { width: 300px; } 
 	#TaskMenu menu { margin: 0; padding: 10px; } 
 	#TaskMenu li { list-style: none; padding: 3px 0; } 

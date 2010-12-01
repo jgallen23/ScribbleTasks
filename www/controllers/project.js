@@ -43,7 +43,8 @@ var ProjectController = Controller.extend({
 	},
 	onClick: {
 		'menu': function(e) {
-			document.getElementById("TaskMenu").style.display = "-webkit-box";
+			var taskMenu = new TaskMenuController("TaskMenu");
+			taskMenu.show();
 		},
 		'scrollToTop': function(e) {
 			if (this.scroller)
