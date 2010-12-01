@@ -119,11 +119,11 @@
 		<script type="text/html" id="jstTaskView">
 			<div class="buttons">
 				<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
+				<button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-onClick="star"></button>
 				<button class="Icon priority" data-priority="{!= task.priority !}" data-onClick="priority"><span data-onClick="priority"></span></button>
 				<section class="PriorityChooser Popup">
 					{!= template("jstPriorityChooser", { key: index }) !}
 				</section>
-				<button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-onClick="star"></button>
 				<button class="Icon edit" data-onClick="task"></button>
 			</div>
 			{! if (task.name) { !}
