@@ -50,6 +50,7 @@ var ProjectListController = Controller.extend({
 	showSearch: function(filterName, filter) {
 		var searchController = new SearchController("SearchResults", filterName, filter);
 		searchController.parentController = this;
+		this.onClick.searchClose.call(this);
 		this.hide();
 		searchController.show();
 	},

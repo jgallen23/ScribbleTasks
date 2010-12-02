@@ -1,5 +1,5 @@
 var Snap = false;
-var UseImage = true;
+var UseImage = false;
 var TaskHeight = 165;
 var MinTaskHeight = 90;
 var TaskScale = 0.4;

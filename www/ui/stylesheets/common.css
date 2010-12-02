@@ -88,15 +88,15 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList .complete { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
 
-#Project { display: none; -webkit-box-orient: vertical; height: 100%; }
-	#Project .TaskList { -webkit-box-flex: 1; }
-	#Project .incomplete,
-	#Project footer .star { background-position: left center; padding: 3px 0 0 25px; width: 65px; }
-	#Project footer button span:before { content: "(" }
-	#Project footer button span:after { content: ")" }
-
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; }
 	.Container > div { -webkit-box-flex: 1; }
+
+.Project { display: none; -webkit-box-orient: vertical; height: 100%; }
+	.Project .TaskList { -webkit-box-flex: 1; }
+	.Project .incomplete,
+	.Project footer .star { background-position: left center; padding: 3px 0 0 25px; width: 65px; }
+	.Project footer button span:before { content: "(" }
+	.Project footer button span:after { content: ")" }
 
 #TaskMenu { display: none; }
 	#TaskMenu .Modal { position: absolute; z-index: 100; display: -webkit-box}
@@ -126,6 +126,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 
 	#AddTask.Modal { -webkit-box-align: start; }
 	#AddTask.Modal .wrapper { height: 100%; width: 100% }
+	#DebugMenu.Modal .wrapper { height: 100%; width: 100% }
 	#AddTask .Popup { -webkit-border-radius: 0; padding: 0; margin: 0}
 	#AddScribble { border: 0; }
 	#AddTask .buttons .Icon { margin-top: 0; } 
