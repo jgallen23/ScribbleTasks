@@ -34,15 +34,34 @@
 						<!--<li><button class="Icon add" data-onClick="add"></button></li>-->
 						<!--</ul>-->
 					<!--</footer>-->
-				<div id="Search" class="Modal">
+				<div id="SearchPopup" class="Modal">
 					<div class="wrapper Popup">
-						<header><div class="title">Search</div><button class="Icon clear"></button></header>
+						<header><div class="title">Search</div><button class="Icon clear" data-onClick="searchClose"></button></header>
 						<ul>
 							<li><button data-onClick="searchStarred">Starred</button></li>
+							<li><button data-onClick="searchHighPriority">High Priority</button></li>
+							<li><button data-onClick="searchMediumPriority">Medium Priority</button></li>
 						</ul>
 					</div>
 				</div>
 			</div>	
+			<div id="SearchResults" class="Container Project">
+				<header>
+					<button class="Icon back" data-onClick="back"></button><div class="title"><input data-type="title" data-onClick="editTitle"/></div>
+					<ul class="Toolbar">
+						<li><button class="Icon top" data-onClick="scrollToTop"></button></li>
+					</ul>
+				</header>
+				<div class="TaskList">	
+					<canvas id="tmpCanvas"></canvas>
+					<ul></ul>
+				</div>
+				<footer>
+					<ul class="Toolbar">
+						<li><button class="Icon top" data-onClick="scrollToTop"></button></li>
+					</ul>
+				</footer>
+			</div>
 			<div id="Project" class="Container Project">
 				<header>
 					<button class="Icon back" data-onClick="back"></button><div class="title"><input data-type="title" data-onClick="editTitle"/></div>
@@ -56,7 +75,7 @@
 				</header>
 				<div class="TaskList">	
 					<canvas id="tmpCanvas"></canvas>
-					<ul id="Tasks"></ul>
+					<ul></ul>
 				</div>
 				<footer>
 					<ul class="Toolbar">
@@ -122,7 +141,7 @@
 		<script type="text/html" id="jstProjectView">
 			{! for (var i = 0, c = tasks.length; i < c; i++) { var task = tasks[i]; !}
             <li class="taskItem" data-key="{!= task.key !}" data-index="{!= i !}">
-				{!= template("jstTaskView", { index: i, task: task, useImage: useImage }) !}
+				{!= template("jstTaskView", { index: i, task: task, useImage: useImage, canEditTask: canEditTask }) !}
 			</li>
 			{! } !}	
 		</script>
@@ -148,10 +167,12 @@
 				{! } !}
 			</div>
 			{! } !}
+			{! if (canEditTask) { !}
 			<menu>
 				<li><button class="Icon edit" data-onClick="task"></button></li>
 				<li><button class="Icon menu" data-index="{!= index !}" data-onClick="menu"></button></li>
 			</menu>
+			{! } !}
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
 		</script>
 		<script type="text/html" id="jstTaskMenu">
@@ -187,6 +208,7 @@
 		<script src="models/task.js"></script>
 		<script src="controllers/add_task.js"></script>
 		<script src="controllers/project.js"></script>
+		<script src="controllers/search.js"></script>
 		<script src="controllers/project_list.js"></script>
 		<script src="controllers/task_menu.js"></script>
 		<script src="controllers/debug_controller.js"></script>
@@ -252,6 +274,7 @@
 					} else if (params.test == "search") {
 						c.bind("loaded", function() {
 							c.onClick.search.call(c);
+							//c.showSearch("Starred Tasks", Task.filters.star);
 						});
 					}
 				}

@@ -47,8 +47,9 @@ var ProjectListController = Controller.extend({
 		projectController.show();
 		return projectController;
 	},
-	showSearch: function(filter) {
-		var searchController = new SearchController("Project", filter);
+	showSearch: function(filterName, filter) {
+		var searchController = new SearchController("SearchResults", filterName, filter);
+		searchController.parentController = this;
 		this.hide();
 		searchController.show();
 	},
@@ -59,10 +60,19 @@ var ProjectListController = Controller.extend({
 	},
 	onClick: {
 		searchStarred: function(e) {
-			
+			this.showSearch("Starred", Task.filters.star);
+		},
+		searchHighPriority: function(e) {
+			this.showSearch("High Priority", Task.filters.highPriority);
+		},
+		searchMediumPriority: function(e) {
+			this.showSearch("Medium Priority", Task.filters.mediumPriority);
 		},
 		search: function(e) {
-			this.view.find("#Search").style.display = "-webkit-box";
+			this.view.find("#SearchPopup").style.display = "-webkit-box";
+		},
+		searchClose: function(e) {
+			this.view.find("#SearchPopup").style.display = "none";
 		},
 		'project': function(e) {
 			var project = this.projects[parseInt(e.target.getAttribute("data-index"))];

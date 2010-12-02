@@ -38,7 +38,7 @@ var ProjectController = Controller.extend({
 		});
 		this.scribbles = null;
 		this.tasks = null;
-		this.view.find("#Tasks").innerHTML = "";
+		this.view.find(".TaskList ul").innerHTML = "";
 		this._super();
 	},
 	onClick: {
@@ -166,7 +166,7 @@ var ProjectController = Controller.extend({
 	},
 	_render: function() {
 		var self = this;
-		var data = { project: this.project, tasks: this.tasks, useImage: UseImage };
+		var data = { project: this.project, tasks: this.tasks, useImage: UseImage, canEditTask: true };
 
 		if (Snap) {
 			var height = this.view.find(".TaskList").clientHeight;
@@ -214,9 +214,9 @@ var ProjectController = Controller.extend({
 	},
 	drawScribbles: function(height) {
 		var self = this;
-		var container = document.querySelector(".task");
-		var containerSize = [container.clientWidth-20, height];
-		var containerRatio = containerSize[1]/containerSize[0];
+		/*var container = document.querySelector(".task");*/
+		/*var containerSize = [container.clientWidth-20, height];*/
+		/*var containerRatio = containerSize[1]/containerSize[0];*/
 		for (var i = 0; i < this.tasks.length; i++) {
 			var task = this.tasks[i];
 			if (task.path && (!UseImage || (UseImage && !task.imageData))) {

@@ -1,25 +1,17 @@
 var TaskDataProvider = Class.extend({
 	init: function() {
-		this.tasks = null;
-		this.tasksMap = null;
 		this.provider = new Lawnchair({ adaptor: 'webkit', table: 'tasks'});
 	},
 	find: function(cb) {
 		var self = this;
-		if (!this.tasks) {
-			this.provider.all(function(data) {
-				self.tasksMap = {};
-				self.tasks = [];
-				data.each(function(obj) {
-					var t = new Task(obj);
-					self.tasks.push(t);
-					self.tasksMap[t.key] = t;
-				});
-				cb(self.tasks);
+		this.provider.all(function(data) {
+			var tasks = [];
+			data.each(function(obj) {
+				var t = new Task(obj);
+				tasks.push(t);
 			});
-		} else {
-			cb(this.tasks);
-		}
+			cb(tasks);
+		});
 	},
 	findById: function(id, cb) {
 		var self = this;

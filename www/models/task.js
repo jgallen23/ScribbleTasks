@@ -93,6 +93,12 @@ Task.filters = {
 	star: function(t) {
 		return (!t.isComplete && t.star);
 	},
+	highPriority: function(t) {
+		return (!t.isComplete && t.priority == 2);
+	},
+	mediumPriority: function(t) {
+		return (!t.isComplete && t.priority == 1);
+	},
 	complete: function(t) {
 		return t.isComplete;
 	}
