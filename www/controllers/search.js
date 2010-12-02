@@ -11,7 +11,6 @@ var SearchController = ProjectController.extend({
 			tasks = tasks.filter(self.searchFilter);
 			tasks.sort(Task.sort.incomplete);
 			self.tasks = tasks;
-			console.log(tasks);
 			self._render();
 		});
 	},
