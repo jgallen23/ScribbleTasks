@@ -42,8 +42,22 @@ var ProjectController = Controller.extend({
 		this._super();
 	},
 	onClick: {
-		'menu': function(e) {
-			var taskMenu = new TaskMenuController("TaskMenu");
+		menu: function(e) {
+			var self = this;
+			var index = e.target.getAttribute("data-index");
+			var task = this.tasks[index];
+			var taskMenu = new TaskMenuController("TaskMenu", this.project, task);
+			var close = function() {
+				taskMenu.hide();
+				taskMenu.destroy();
+			}
+			taskMenu.bind("taskMoved", function() {
+				close();	
+				self.loadTasks();
+			});
+			taskMenu.bind("close", function() {
+				close();
+			});
 			taskMenu.show();
 		},
 		'scrollToTop': function(e) {

@@ -141,7 +141,7 @@
 			{! } !}
 			<menu>
 				<li><button class="Icon edit" data-onClick="task"></button></li>
-				<li><button class="Icon menu" data-onClick="menu"></button></li>
+				<li><button class="Icon menu" data-index="{!= index !}" data-onClick="menu"></button></li>
 			</menu>
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
 		</script>
@@ -154,9 +154,9 @@
 					</header>
 					<menu>
 						<li>Project: 
-							<select>
-								{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
-									<option>{!= project.name !}</option>
+							<select class="project">
+								{! for (var i = 0, c = projects.length; i < c; i++) { var proj = projects[i]; !}
+									<option value="{!= i !}" {!= (proj.key == project.key)?"selected":"" !}>{!= proj.name !}</option>
 								{! } !}
 							</select>
 							</select>
