@@ -55,5 +55,10 @@ var TaskDataProvider = Class.extend({
 			}
 			if (cb) cb(task);
 		});
+	},
+	remove: function(task, cb) {
+		this.provider.remove(task.key, function(data) {
+			cb();
+		});
 	}
 });

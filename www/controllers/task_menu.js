@@ -27,6 +27,14 @@ var TaskMenuController = Controller.extend({
 			this.hide();
 			this.trigger("close");
 		},		
+		'delete': function(e) {
+			var self = this;
+			this.project.removeTask(this.task, function() {
+				Task.data.remove(self.task, function() {
+					self.trigger("taskDeleted");
+				});
+			});
+		}
 	},
 	handleEvent: function(e) {
 		this._super(e);
