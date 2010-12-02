@@ -13,7 +13,7 @@ var ProjectController = Controller.extend({
 		this.scrollTo = true;
 
 		if (APP.browser.isMobile) {
-			this.scroller = new iScroll("Tasks", { checkDOMChanges: false, desktopCompatibility: false, snap: Snap, momentum: !Snap });
+			this.scroller = new iScroll(this.view.find(".TaskList ul"), { checkDOMChanges: false, desktopCompatibility: false, snap: Snap, momentum: !Snap });
 		}
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)

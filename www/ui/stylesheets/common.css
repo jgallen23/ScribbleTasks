@@ -2,7 +2,7 @@ ul { margin: 0; padding: 0; }
 body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; margin: 0; padding: 0;  height: 100%; }
 * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
-button { -webkit-appearance: none; font-size: 13px; height: 20px; border: 0; padding:0; margin: 0; }
+button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin: 0; }
 	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; opacity: 1.0 } 
 	button.off { opacity: .3 }
 	button.star { background-image: url(../images/icons/star.png); }
@@ -67,7 +67,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		.ProjectList li .count { padding: 0 8px; line-height: 31px; }
 			.ProjectList li .count:last-child { margin-left: 10px; } 
 	#SearchPopup .wrapper { width: 250px; }
-		#SearchPopup ul li { list-style: none; padding: 10px; } 
+		#SearchPopup ul { margin-top: 20px; } 
+		#SearchPopup ul li { list-style: none; margin: 20px 0; text-align: center; } 
 
 .TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll; overflow-x: hidden; }
 	.TaskList #tmpCanvas { display: none; } 
