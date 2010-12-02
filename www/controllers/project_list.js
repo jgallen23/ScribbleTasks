@@ -36,6 +36,7 @@ var ProjectListController = Controller.extend({
 		var self = this;
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
+		this.trigger("loaded");
 		if (this.scroller)
 			setTimeout(function () { self.scroller.refresh() }, 0)
 	},
@@ -46,12 +47,23 @@ var ProjectListController = Controller.extend({
 		projectController.show();
 		return projectController;
 	},
+	showSearch: function(filter) {
+		var searchController = new SearchController("Project", filter);
+		this.hide();
+		searchController.show();
+	},
 	show: function() {
 		this.loadProjects();
 		this._super();
 		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
+		searchStarred: function(e) {
+			
+		},
+		search: function(e) {
+			this.view.find("#Search").style.display = "-webkit-box";
+		},
 		'project': function(e) {
 			var project = this.projects[parseInt(e.target.getAttribute("data-index"))];
 			this.showProject(project);
