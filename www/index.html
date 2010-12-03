@@ -144,6 +144,9 @@
 				{!= template("jstTaskView", { index: i, task: task, useImage: useImage, canEditTask: canEditTask }) !}
 			</li>
 			{! } !}	
+			{! if (hasMore) { !}
+			<li class="viewMore"><button data-onClick="viewMore" class="Text">View More</button></li>
+			{! } !}
 		</script>
 		<script type="text/html" id="jstTaskView">
 			<div class="buttons">

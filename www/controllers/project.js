@@ -2,6 +2,7 @@ var UseImage = false;
 var TaskHeight = 165;
 var MinTaskHeight = 90;
 var TaskScale = 0.4;
+var PageSize = 15;
 var ProjectController = Controller.extend({
 	init: function(elementId, project) {
 		var self = this;
@@ -9,6 +10,7 @@ var ProjectController = Controller.extend({
 		this.project = project;
 		this.scribbles = [];
 		this.filter = "incomplete";
+		this.currentPage = 0;
 		this.scrollTo = true;
 
 		if (APP.browser.isMobile) {
@@ -62,6 +64,10 @@ var ProjectController = Controller.extend({
 				close();
 			});
 			taskMenu.show();
+		},
+		viewMore: function(e) {
+			this.currentPage++;
+			this._render();
 		},
 		'scrollToTop': function(e) {
 			if (this.scroller)
@@ -132,6 +138,9 @@ var ProjectController = Controller.extend({
 		this._super();
 		this.element.style.display = "-webkit-box";
 	},
+	getVisibleTasks: function() {
+		return this.tasks.slice(0, (this.currentPage+1)*PageSize);
+	},
 	_handleTitleChange: function() {
 		var self = this;
 		var title = this.view.find("[data-type='title']");
@@ -165,7 +174,8 @@ var ProjectController = Controller.extend({
 	},
 	_render: function() {
 		var self = this;
-		var data = { project: this.project, tasks: this.tasks, useImage: UseImage, canEditTask: true };
+		var tasks = this.getVisibleTasks();
+		var data = { project: this.project, tasks: tasks, useImage: UseImage, canEditTask: true, hasMore: (tasks.length != this.tasks.length) };
 
 		var itemHeight = TaskHeight;
 
@@ -206,11 +216,9 @@ var ProjectController = Controller.extend({
 	},
 	drawScribbles: function(height) {
 		var self = this;
-		/*var container = document.querySelector(".task");*/
-		/*var containerSize = [container.clientWidth-20, height];*/
-		/*var containerRatio = containerSize[1]/containerSize[0];*/
-		for (var i = 0; i < this.tasks.length; i++) {
-			var task = this.tasks[i];
+		var tasks = this.getVisibleTasks();
+		for (var i = 0, c = tasks.length; i < c; i++) {
+			var task = tasks[i];
 			if (task.path && (!UseImage || (UseImage && !task.imageData))) {
 				if (UseImage) {
 					var s = new Scribble(this.view.find(".TaskList"), true);
@@ -310,9 +318,7 @@ var ProjectController = Controller.extend({
 				task.unComplete();
 			else
 				task.complete();
-			console.log("save");
 			task.save(function(t) {
-				console.log("load");
 				self.loadTasks();
 			});
 		}, 200);
