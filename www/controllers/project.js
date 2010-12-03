@@ -178,7 +178,8 @@ var ProjectController = Controller.extend({
 		var data = { project: this.project, tasks: tasks, useImage: UseImage, canEditTask: true, hasMore: (tasks.length != this.tasks.length) };
 
 		var itemHeight = TaskHeight;
-
+		
+		var startTime = new Date().getTime();
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
 			this.drawScribbles(itemHeight);
@@ -217,6 +218,7 @@ var ProjectController = Controller.extend({
 	drawScribbles: function(height) {
 		var self = this;
 		var tasks = this.getVisibleTasks();
+		var startTime = new Date().getTime();
 		for (var i = 0, c = tasks.length; i < c; i++) {
 			var task = tasks[i];
 			if (task.path && (!UseImage || (UseImage && !task.imageData))) {
@@ -254,8 +256,12 @@ var ProjectController = Controller.extend({
 				} else {
 					self.scribbles.push(s);
 				}
+			} else {
+				console.log("has image");
 			}
 		}
+		var endTime = new Date().getTime();
+		console.log((endTime - startTime));
 	},
 	showAddTask: function(task) {
 		var self = this;

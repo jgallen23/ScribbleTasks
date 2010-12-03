@@ -45,5 +45,18 @@ var ScribbleTasksApp = Application.extend({
 			});
         });
         
-    }
+	},
+	generateTestData: function() { 
+		Task.data.find(function(tasks) {
+			var task = tasks[0];
+			console.log(task.projectKey);
+			Project.data.get(task.projectKey, function(project) {
+				for (var i = 0, c = 50; i < c; i++) {
+					var t = new Task();
+					t.path = task.path;
+					project.addTask(t);	
+				}
+			});
+		});
+	}
 });

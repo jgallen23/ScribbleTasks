@@ -12,6 +12,12 @@ var ProjectDataProvider = Class.extend({
 			cb(projects);
 		});
 	},
+	get: function(key, cb) {
+		var self = this;
+		this.provider.get(key, function(data) {
+			cb(new Project(data));
+		});
+	},
 	save: function(project, cb) {
 		var self = this;
 		var data = project._data;

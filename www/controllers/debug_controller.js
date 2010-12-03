@@ -32,6 +32,9 @@ var DebugController = Controller.extend({
 					self.trigger("restored");
 				}, 1000);
 			});
+		},
+		generateData: function() {
+			APP.generateTestData();
 		}
 	}
 });
