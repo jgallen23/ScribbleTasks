@@ -78,7 +78,6 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		.TaskList li.taskItem .buttons .star { } 
 	.TaskList li.taskItem { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px; overflow: hidden; } 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
-	.PriorityChooser input { margin-right: 20px; }
 	.TaskList .star.off { opacity: .2;}
 	.TaskList .star.off:active { opacity: 1;}
 	.TaskList .name { line-height: 50px }
