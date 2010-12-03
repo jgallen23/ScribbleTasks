@@ -31,6 +31,11 @@ var Project = Model.extend({
 		Task.data.findByIds(this.taskIds, function(tasks) {
 			tasks.each(function(task) {
 				task.parent = self;
+				//TODO: REMOVE
+				if (!task.projectKey || task.projectKey != self.key) {
+					task.projectKey = self.key;
+					task.save();
+				}
 				if (task.isComplete)
 					self.completeCount++;
 				else {
@@ -71,7 +76,10 @@ var Project = Model.extend({
 	addTask: function(task, cb) {
 		var self = this;
 		task.project = self;
+		console.log(task.projectKey);
+		task.projectKey = self.key;
 		task.save(function(task) {
+			console.log(task.projectKey);
 			if (!self.taskIds.contains(task.key)) {
 				self.taskIds = self.taskIds.insert(0, task.key);
 				self.incompleteCount++;

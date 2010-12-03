@@ -11,6 +11,7 @@ var Task = Model.extend({
 			height: null,
 			width: null,
 			imageData: null,
+			projectKey: null,
 			completedOn: null,
 			createdOn: null,
 			modifiedOn: null
