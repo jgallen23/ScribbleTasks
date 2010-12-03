@@ -16,6 +16,7 @@ var AddTaskController = Controller.extend({
 	clear: function() {
 		this.setStar(false);
 		this.star = false;
+		this.setPriority(0);
 		this.loadedScribble = null;
 		this.scribble.clear();
 	},
