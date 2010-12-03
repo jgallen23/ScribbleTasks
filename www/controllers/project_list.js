@@ -60,6 +60,9 @@ var ProjectListController = Controller.extend({
 		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
+		searchIncomplete: function(e) {
+			this.showSearch("Incomplete", Task.filters.incomplete);
+		},
 		searchStarred: function(e) {
 			this.showSearch("Starred", Task.filters.star);
 		},
