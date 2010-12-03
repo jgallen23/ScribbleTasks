@@ -191,7 +191,7 @@
 						<li>Project: 
 							<select class="project">
 								{! for (var i = 0, c = projects.length; i < c; i++) { var proj = projects[i]; !}
-									<option value="{!= i !}" {!= (proj.key == project.key)?"selected":"" !}>{!= proj.name !}</option>
+									<option value="{!= i !}" {!= (proj.key == task.projectKey)?"selected":"" !}>{!= proj.name !}</option>
 								{! } !}
 							</select>
 							</select>

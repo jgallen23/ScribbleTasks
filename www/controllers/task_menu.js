@@ -1,8 +1,14 @@
 var TaskMenuController = Controller.extend({
 	init: function(elementId, project, task) {
+		var self = this;
 		this._super(elementId);
 		this.task = task;
 		this.project = project;
+		if (!this.project) {
+			Project.data.get(this.task.projectKey, function(project) {
+				self.project = project;
+			});
+		}
 		this.loadProjects();
 	},
 	destroy: function() {
@@ -18,7 +24,7 @@ var TaskMenuController = Controller.extend({
 		});
 	},
 	_render: function() {
-		var data = { projects: this.projects, task: this.task, project: this.project };
+		var data = { projects: this.projects, task: this.task };
 		this.view.render("jstTaskMenu", data);
 		this.view.find("select.project").addEventListener("change", this);
 	},

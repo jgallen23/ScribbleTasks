@@ -21,7 +21,6 @@ var ProjectListController = Controller.extend({
 		var self = this;
 		APP.data.badgeCount = 0;
 		Project.data.find(function(projects) {
-			console.log("projects: "+projects.length);
 			projects.sort(Project.sort.starred);
 			projects.each(function(project) {
 				APP.data.badgeCount += project.starCount;

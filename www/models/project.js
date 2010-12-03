@@ -76,10 +76,8 @@ var Project = Model.extend({
 	addTask: function(task, cb) {
 		var self = this;
 		task.project = self;
-		console.log(task.projectKey);
 		task.projectKey = self.key;
 		task.save(function(task) {
-			console.log(task.projectKey);
 			if (!self.taskIds.contains(task.key)) {
 				self.taskIds = self.taskIds.insert(0, task.key);
 				self.incompleteCount++;
