@@ -1,4 +1,3 @@
-var Snap = false;
 var UseImage = false;
 var TaskHeight = 165;
 var MinTaskHeight = 90;
@@ -13,7 +12,7 @@ var ProjectController = Controller.extend({
 		this.scrollTo = true;
 
 		if (APP.browser.isMobile) {
-			this.scroller = new iScroll(this.view.find(".TaskList ul"), { checkDOMChanges: false, desktopCompatibility: false, snap: Snap, momentum: !Snap });
+			this.scroller = new iScroll(this.view.find(".TaskList ul"), { checkDOMChanges: false, desktopCompatibility: false });
 		}
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)
@@ -168,14 +167,7 @@ var ProjectController = Controller.extend({
 		var self = this;
 		var data = { project: this.project, tasks: this.tasks, useImage: UseImage, canEditTask: true };
 
-		if (Snap) {
-			var height = this.view.find(".TaskList").clientHeight;
-			var items = Math.round(height/TaskHeight);
-			var itemHeight = height/items;
-		} else {
-			var itemHeight = TaskHeight;
-		}
-
+		var itemHeight = TaskHeight;
 
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
