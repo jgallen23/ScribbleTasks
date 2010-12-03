@@ -1,4 +1,3 @@
-var UseImage = false;
 var TaskHeight = 165;
 var MinTaskHeight = 90;
 var TaskScale = 0.4;
@@ -165,9 +164,16 @@ var ProjectController = Controller.extend({
 	loadTasks: function() {
 		var self = this;
 		this.view.find("[data-type='title']").value = this.project.name;
+		var startTime = new Date().getTime();
 		this.project.getTasks(function(tasks) {
+			console.log("task count: "+ tasks.length);
+			console.log("load tasks: " + (new Date().getTime() - startTime));
+			startTime = new Date().getTime();
 			tasks = tasks.filter(Task.filters[self.filter]);
+			console.log("filter tasks: " + (new Date().getTime() - startTime));
+			startTime = new Date().getTime();
 			tasks.sort(Task.sort[self.filter]);
+			console.log("sort tasks: " + (new Date().getTime() - startTime));
 			self.tasks = tasks;
 			self._render();
 		});
@@ -175,14 +181,19 @@ var ProjectController = Controller.extend({
 	_render: function() {
 		var self = this;
 		var tasks = this.getVisibleTasks();
-		var data = { project: this.project, tasks: tasks, useImage: UseImage, canEditTask: true, hasMore: (tasks.length != this.tasks.length) };
+		var data = { project: this.project, tasks: tasks, canEditTask: true, hasMore: (tasks.length != this.tasks.length) };
 
 		var itemHeight = TaskHeight;
 		
 		var startTime = new Date().getTime();
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
+		console.log("render tasks: " + (new Date().getTime() - startTime));
 		if (this.tasks.length != 0) {
+			console.log("start draw");
+			var startTime = new Date().getTime();
 			this.drawScribbles(itemHeight);
+			console.log("draw scribbles: " + (new Date().getTime() - startTime));
+			var startTime = new Date().getTime();
 			this.view.findAll("div.TaskList li.taskItem", function(item, i) {
 				var size = self.tasks[i].height * TaskScale;
 				size = (size < MinTaskHeight)?MinTaskHeight:size+10;
@@ -193,6 +204,7 @@ var ProjectController = Controller.extend({
 					}
 				});
 			});
+			console.log("swipe handler: " + (new Date().getTime() - startTime));
 		}
 
 		elem.removeClass(this.view.findAll("#Project .Toolbar li button"), "current");
@@ -218,50 +230,25 @@ var ProjectController = Controller.extend({
 	drawScribbles: function(height) {
 		var self = this;
 		var tasks = this.getVisibleTasks();
-		var startTime = new Date().getTime();
+		console.log("start draw 2");
 		for (var i = 0, c = tasks.length; i < c; i++) {
 			var task = tasks[i];
-			if (task.path && (!UseImage || (UseImage && !task.imageData))) {
-				if (UseImage) {
-					var s = new Scribble(this.view.find(".TaskList"), true);
-					s.canvas.width = task.width;
-					s.canvas.height = task.height;
-				} else {
-					var s = new Scribble(document.getElementById("Scribble_"+i), true);
-				}
-				/*
-				var scale = 0;
-				var taskRatio = task.height/task.width;
-				if (taskRatio > containerRatio) {
-					scale = containerSize[1]/task.height;
-				} else {
-					scale = containerSize[0]/task.width;
-				}
-				s.canvas.width = containerSize[0];
-				s.canvas.height = containerSize[1];
-				if (scale < 1)
-					s.scale(scale, scale);
-				*/
+			console.log("draw");
+			var startTime = new Date().getTime();
+			//console.log(task.path.toString());
+			if (task.path) {
+				console.log("new scribble");
+				var s = new Scribble(document.getElementById("Scribble_"+i), true);
+				console.log("start");
 				s.scale(TaskScale, TaskScale);
 				s.load(task.path, task.bounds[0]);
-				if (UseImage) {
-					task.imageData = s.imageData();
-					s.clear();
-					var img = new Image();
-					img.src = task.imageData;
-					var taskNode = this.view.find("#Scribble_"+i);
-					taskNode.innerHTML = '';
-					taskNode.appendChild(img)
-					task.save();
-				} else {
-					self.scribbles.push(s);
-				}
+				self.scribbles.push(s);
+				console.log("done");
 			} else {
 				console.log("has image");
 			}
+			console.log("draw scribble: " + (new Date().getTime() - startTime));
 		}
-		var endTime = new Date().getTime();
-		console.log((endTime - startTime));
 	},
 	showAddTask: function(task) {
 		var self = this;
