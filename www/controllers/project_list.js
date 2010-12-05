@@ -59,6 +59,12 @@ var ProjectListController = Controller.extend({
 		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
+		searchOldTasks: function(e) {
+			var oldDate = new Date().getTime() - 1000*60*60*24*14; //secs*mins*hours
+			this.showSearch("Old Tasks", function(t) {
+				return (!t.isComplete && t.createdOn < oldDate);
+			});
+		},
 		searchNoProject: function(e) {
 			this.showSearch("No Project", function(t) {
 				return (!t.isComplete && t.projectKey == null);
