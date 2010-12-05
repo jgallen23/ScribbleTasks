@@ -164,16 +164,16 @@ var ProjectController = Controller.extend({
 	loadTasks: function() {
 		var self = this;
 		this.view.find("[data-type='title']").value = this.project.name;
-		var startTime = new Date().getTime();
+		var p = new PerfTest("Load Tasks").start();
 		this.project.getTasks(function(tasks) {
-			console.log("task count: "+ tasks.length);
-			console.log("load tasks: " + (new Date().getTime() - startTime));
+			p.end()
 			startTime = new Date().getTime();
+			p = new PerfTest("Filter Tasks").start();
 			tasks = tasks.filter(Task.filters[self.filter]);
-			console.log("filter tasks: " + (new Date().getTime() - startTime));
-			startTime = new Date().getTime();
+			p.end();
+			p = new PerfTest("Sort Tasks").start();
 			tasks.sort(Task.sort[self.filter]);
-			console.log("sort tasks: " + (new Date().getTime() - startTime));
+			p.end();
 			self.tasks = tasks;
 			self._render();
 		});
