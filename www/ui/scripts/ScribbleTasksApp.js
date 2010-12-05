@@ -121,5 +121,32 @@ var ScribbleTasksApp = Application.extend({
 				}
 			});
 		});
+	},
+	resetProjectKeys: function() {
+		Task.data.find(function(tasks) {
+			tasks.each(function(task) {
+				task.projectKey = null;
+				task.save(function(task) {
+					console.log("saved");
+				});
+			});
+			console.log("Tasks Complete");
+		});
+		setTimeout(function() {	
+			Project.data.find(function(projects) {
+				projects.each(function(project) {
+					project.getTasks(function(tasks) {
+						tasks.each(function(task) {
+							if (!task.projectKey)
+								console.log("No Project Key");
+						});
+						
+						console.log(tasks.length);
+					});
+				});
+				console.log("Projects Complete");
+			});
+		}, 30000);
+		
 	}
 });
