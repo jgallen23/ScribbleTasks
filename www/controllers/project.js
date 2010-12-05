@@ -181,7 +181,7 @@ var ProjectController = Controller.extend({
 	_render: function() {
 		var self = this;
 		var tasks = this.getVisibleTasks();
-		var data = { project: this.project, tasks: tasks, canEditTask: true, hasMore: (tasks.length != this.tasks.length) };
+		var data = { project: this.project, tasks: tasks, hasMore: (tasks.length != this.tasks.length) };
 
 		var itemHeight = TaskHeight;
 		

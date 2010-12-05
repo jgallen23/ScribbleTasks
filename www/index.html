@@ -107,7 +107,6 @@
 			<div id="DebugMenu" class="Modal">
 				<div class="wrapper Popup">
 					<ul class="Toolbar">
-						<li><button class="Text" data-onClick="clear">Clear Images</button></li>
 						<li><button class="Text" data-onClick="generateData">Gen Data</button></li>
 						<li><button class="Text" data-onClick="backup">Backup</button></li>
 						<li><button class="Text" data-onClick="restore">Restore</button></li>
@@ -143,7 +142,7 @@
 		<script type="text/html" id="jstProjectView">
 			{! for (var i = 0, c = tasks.length; i < c; i++) { var task = tasks[i]; !}
             <li class="taskItem" data-key="{!= task.key !}" data-index="{!= i !}">
-				{!= template("jstTaskView", { index: i, task: task, canEditTask: canEditTask }) !}
+				{!= template("jstTaskView", { index: i, task: task }) !}
 			</li>
 			{! } !}	
 			{! if (hasMore) { !}
@@ -168,12 +167,10 @@
 				<canvas></canvas>
 			</div>
 			{! } !}
-			{! if (canEditTask) { !}
 			<menu>
 				<li><button class="Icon edit" data-onClick="task"></button></li>
 				<li><button class="Icon menu" data-index="{!= index !}" data-onClick="menu"></button></li>
 			</menu>
-			{! } !}
 			<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
 		</script>
 		<script type="text/html" id="jstTaskMenu">
@@ -192,7 +189,7 @@
 							</select>
 							</select>
 						</li>
-						<li><button data-onClick="delete">Delete Task</button></li>
+						<li><button class="Text" data-onClick="delete">Delete Task</button></li>
 					</menu>
 				</section>
 			</div>
