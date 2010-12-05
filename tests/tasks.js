@@ -92,13 +92,16 @@ asyncTest('complete task', function() {
 	var self = this;
 	Task.data.find(function(tasks) {
 		var taskCount = tasks.filter(Task.filters.incomplete).length;
+		console.log(taskCount);
 		self.t.complete();
 		ok(self.t.isComplete, "task set to completed");
 		ok(self.t._data.completedOn, "task set to completed");
-		start();
 		self.t.save(function(task) {
 			Task.data.find(function(tasks) {
-				equal(taskCount-1, tasks.filter(Task.filters.incomplete).length);
+				console.log(taskCount);
+				console.log(tasks);
+				console.log(tasks.filter(Task.filters.incomplete));
+				equal(taskCount, tasks.filter(Task.filters.incomplete).length);
 				start();
 			});
 		});
@@ -113,10 +116,10 @@ asyncTest('star task', function() {
 	equal(this.t.star, true, "star added");
 	equal(new Task({ star: true }).star, true, "star added with init");
 	Task.data.find(function(tasks) {
-		var starCount = tasks.filter(Task.filters.starred).length;
+		var starCount = tasks.filter(Task.filters.star).length;
 		self.t.save(function(t) {
 			Task.data.find(function(tasks) {
-				equal(tasks.filter(Task.filters.starred).length, starCount+1);
+				equal(tasks.filter(Task.filters.star).length, starCount+1);
 				start();
 			});
 		});

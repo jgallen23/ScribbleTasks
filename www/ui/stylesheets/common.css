@@ -66,8 +66,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		.ProjectList li .name { -webkit-box-flex: 1 }
 		.ProjectList li .count { padding: 0 8px; line-height: 31px; }
 			.ProjectList li .count:last-child { margin-left: 10px; } 
-	#SearchPopup .wrapper { width: 250px; }
-		#SearchPopup ul { margin-top: 20px; } 
+	#SearchPopup .wrapper { width: 250px; height: auto; }
+		#SearchPopup ul { margin: 20px 0; } 
 		#SearchPopup ul li { list-style: none; margin: 20px 0; text-align: center; } 
 
 .TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll; overflow-x: hidden; }

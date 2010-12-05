@@ -1,3 +1,5 @@
+APP = {};
+APP.updateBadge = function() {};
 Project.data.provider = new FixtureProvider(projectFixture);
 /*Task.data.provider = new FixtureProvider();*/
 
@@ -41,7 +43,6 @@ asyncTest('get tasks', function() {
 		var project = projects[0];
 		project.getTasks(function(tasks) {
 			equal(tasks.length, project.taskIds.length);
-			console.log(tasks);
 			tasks.each(function(task) {
 				ok(project.taskIds.contains(task.key));
 			});
@@ -77,7 +78,7 @@ asyncTest("complete task in project", function() {
 		project.addTask(oTask, function(project, task) {
 			project.getTasks(function(tasks) {
 				var completeTasks = project.completeCount;
-				oTask.complete();
+				tasks[0].complete();
 				equal(completeTasks+1, project.completeCount);
 				start();
 			});

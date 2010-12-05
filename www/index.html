@@ -18,7 +18,7 @@
 						<!--<li><button class="Icon clear" data-onClick="clear"></button></li>-->
 						<!--<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>-->
 						<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
-						<li><button class="Icon menu" data-onClick="debug"></button></li>
+						<li class="DebugOnly"><button class="Icon menu" data-onClick="debug"></button></li>
 						<li><button class="Icon search" data-onClick="search"></button></li>
 						<li><button class="Icon add" data-onClick="add"></button></li>
 					</ul>
@@ -42,6 +42,7 @@
 							<li><button class="Text" data-onClick="searchHighPriority">High Priority</button></li>
 							<li><button class="Text" data-onClick="searchMediumPriority">Medium Priority</button></li>
 							<li><button class="Text" data-onClick="searchIncomplete">Incomplete Tasks</button></li>
+							<li class="DebugOnly"><button class="Text" data-onClick="searchNoProject">No Project</button></li>
 						</ul>
 					</div>
 				</div>
@@ -104,7 +105,7 @@
 					</footer>
 				</div>
 			</div>
-			<div id="DebugMenu" class="Modal">
+			<div id="DebugMenu" class="Modal DebugOnly">
 				<div class="wrapper Popup">
 					<ul class="Toolbar">
 						<li><button class="Text" data-onClick="generateData">Gen Data</button></li>

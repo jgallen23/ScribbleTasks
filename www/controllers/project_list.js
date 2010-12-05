@@ -59,6 +59,11 @@ var ProjectListController = Controller.extend({
 		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
+		searchNoProject: function(e) {
+			this.showSearch("No Project", function(t) {
+				return (!t.isComplete && t.projectKey == null);
+			});
+		},
 		searchIncomplete: function(e) {
 			this.showSearch("Incomplete", Task.filters.incomplete);
 		},

@@ -4,7 +4,7 @@ var TaskMenuController = Controller.extend({
 		this._super(elementId);
 		this.task = task;
 		this.project = project;
-		if (!this.project) {
+		if (!this.project && this.task.projectKey) {
 			Project.data.get(this.task.projectKey, function(project) {
 				self.project = project;
 			});
@@ -48,8 +48,12 @@ var TaskMenuController = Controller.extend({
 		if (e.type == "change") {
 			if (e.target.className == "project") {
 				var project = this.projects[e.target.value];
-				if (project.key != this.project.key) {
-					this.project.moveTask(this.task, project, function(project1, project2, task) {
+				if (this.project && project.key != this.project.key) {
+						this.project.moveTask(this.task, project, function(project1, project2, task) {
+							self.trigger("taskMoved");
+						});
+				} else {
+					project.addTask(this.task, function() {
 						self.trigger("taskMoved");
 					});
 				}

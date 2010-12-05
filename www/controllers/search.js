@@ -17,7 +17,7 @@ var SearchController = ProjectController.extend({
 	_render: function() {
 		var self = this;
 		var tasks = this.getVisibleTasks();
-		var data = { tasks: tasks, useImage: UseImage, hasMore: (tasks.length != this.tasks.length) };
+		var data = { tasks: tasks, hasMore: (tasks.length != this.tasks.length) };
 
 		var itemHeight = TaskHeight;
 
