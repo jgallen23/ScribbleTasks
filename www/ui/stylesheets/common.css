@@ -105,7 +105,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	#TaskMenu li { list-style: none; padding: 3px 0; } 
 
 #DebugMenu {}
-	#DebugMenu ul li { margin: 5px 10px; } 
+	#DebugMenu .Toolbar { display: block; } 
+	#DebugMenu ul li { margin: 5px 10px; float: left; } 
 	#DebugMenu .backup, 
 	#DebugMenu .restore	{ display: none; }
 	#DebugMenu textarea { height: 200px; width: 98%; } 
