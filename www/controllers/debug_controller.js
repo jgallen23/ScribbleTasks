@@ -9,7 +9,7 @@ var DebugController = Controller.extend({
 	},
 	onClick: {
 		clear: function() {
-			APP.clearImageCache();
+			APP.debug.clearImageCache();
 		},
 		backup: function() {
 			var self = this;
@@ -34,13 +34,13 @@ var DebugController = Controller.extend({
 			});
 		},
 		generateData: function() {
-			APP.generateTestData();
+			APP.debug.generateTestData();
 		},
 		resetProjectKeys: function() {
-			APP.resetProjectKeys();
+			APP.debug.resetProjectKeys();
 		},
 		perfTest: function() {
-			APP.perfTest();
+			APP.debug.perfTest();
 		}
 	}
 });
