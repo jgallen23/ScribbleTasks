@@ -38,6 +38,9 @@ var DebugController = Controller.extend({
 		},
 		resetProjectKeys: function() {
 			APP.resetProjectKeys();
+		},
+		perfTest: function() {
+			APP.perfTest();
 		}
 	}
 });

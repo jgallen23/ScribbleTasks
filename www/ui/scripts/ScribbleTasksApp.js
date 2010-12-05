@@ -148,5 +148,38 @@ var ScribbleTasksApp = Application.extend({
 			});
 		}, 30000);
 		
+	},
+	perfTest: function() {
+
+		var fetchTasks1 = function(project, cb) {
+			var p = new PerfTest("Fetch Tasks").start();
+			Task.data.find(function(tasks) {
+				p.end();
+				p = new PerfTest("Filter Tasks").start();
+				tasks.filter(function(t) {
+					return (t.projectKey == project.key);
+				});
+				p.end();
+				cb();
+			});
+		}
+
+		var fetchTasks2 = function(project) {
+			var p = new PerfTest("Fetch Tasks 2").start();
+			project.getTasks(function(tasks) {
+				p.end();
+			});
+		}
+
+		var p = new PerfTest("Fetch Projects").start();
+		Project.data.find(function(projects) {
+			p.end();
+			var project = projects[0];
+			fetchTasks1(project, function() {
+				fetchTasks2(project);
+			});
+			
+			
+		});
 	}
 });
