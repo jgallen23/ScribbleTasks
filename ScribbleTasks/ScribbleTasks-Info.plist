@@ -51,5 +51,7 @@
 	<string></string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>

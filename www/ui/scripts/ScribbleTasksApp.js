@@ -11,8 +11,8 @@ var ScribbleTasksApp = Application.extend({
 	},
 	resize: function(width, height) {
 		this._super(width, height);
-		if (this.browser.isPhoneGap)
-			height -= 20;
+		/*if (this.browser.isPhoneGap)*/
+		/*height -= 20;*/
 		console.log(height);
 		if (height < 500) {
 			document.querySelector("#AddTask .wrapper").style.height = height+"px";
