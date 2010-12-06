@@ -32,7 +32,7 @@ var Project = Model.extend({
 			tasks.each(function(task) {
 				task.parent = self;
 				//TODO: REMOVE
-				if (!task.projectKey || task.projectKey != self.key) {
+				if (!task.projectKey || (self.key && task.projectKey != self.key)) {
 					task.projectKey = self.key;
 					task.save();
 				}

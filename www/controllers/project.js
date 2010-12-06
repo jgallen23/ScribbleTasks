@@ -264,32 +264,29 @@ var ProjectController = Controller.extend({
 	},
 	addTask: function(tasks) {
 		var self = this;
-		var add = function(task, cb) {
+		var add = function(tasks, index,  cb) {
+			if (tasks.length == index) {
+				cb();
+				return;
+			}
+			var task = tasks[index];
 			if (!(task instanceof Task)) { //New Task
-				task.project = self.project.key;
 				task = new Task(task);
 				if (task.star) {
 					APP.data.badgeCount++;
 					APP.updateBadge();
 				}
 				self.project.addTask(task, function(project, task) {
-					cb();
-					//self.loadTasks();
+					add(tasks, index+1, cb);
 				});
 			} else { // Update Task
 				task.save(function(task) {
-					cb();
-					//self.loadTasks();
+					add(tasks, index+1, cb);
 				});
 			}
 		}
-		tasks.each(function(task, i) {
-			add(task, function() {
-				console.log(i);
-				if (tasks.length == (i+1)) {
-					self.loadTasks();
-				}
-			});
+		add(tasks, 0, function() {
+			self.loadTasks();
 		});
 	},
 	starTask: function(task) {

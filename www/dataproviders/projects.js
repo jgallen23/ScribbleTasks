@@ -23,13 +23,10 @@ var ProjectDataProvider = Class.extend({
 		var data = project._data;
 		var update = true;
 		if (!data.key) {
-			update = false;
 			delete data.key;
 		}
 		this.provider.save(data, function(data) {
-			if (!update) {
-				project.key = data.key;
-			}
+			project.key = data.key;
 			if (cb) cb(project);
 		});
 	},
