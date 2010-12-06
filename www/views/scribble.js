@@ -9,11 +9,11 @@ var Scribble = View.extend({
 		this.undos = [];
 		this.origin = [0,0];
 		this.path = null;
+		//Error Here
+		//this.canvas = this.find("canvas");
+		this.canvas = this.element.firstChild; 
 		console.log(1);
-		this.canvas = this.find("canvas");
-		console.log(2);
 		this.context = this.canvas.getContext('2d');
-		console.log("scribble created");
 
 		if (!this.readonly) {
 			this.drawLoop();

@@ -162,16 +162,10 @@ var ProjectController = Controller.extend({
 	loadTasks: function() {
 		var self = this;
 		this.view.find("[data-type='title']").value = this.project.name;
-		var p = new PerfTest("Load Tasks").start();
 		this.project.getTasks(function(tasks) {
-			p.end()
 			startTime = new Date().getTime();
-			p = new PerfTest("Filter Tasks").start();
 			tasks = tasks.filter(Task.filters[self.filter]);
-			p.end();
-			p = new PerfTest("Sort Tasks").start();
 			tasks.sort(Task.sort[self.filter]);
-			p.end();
 			self.tasks = tasks;
 			self._render();
 		});
@@ -185,12 +179,9 @@ var ProjectController = Controller.extend({
 		
 		var startTime = new Date().getTime();
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
-		console.log("render tasks: " + (new Date().getTime() - startTime));
 		if (this.tasks.length != 0) {
-			console.log("start draw");
 			var startTime = new Date().getTime();
 			this.drawScribbles(itemHeight);
-			console.log("draw scribbles: " + (new Date().getTime() - startTime));
 			var startTime = new Date().getTime();
 			this.view.findAll("div.TaskList li.taskItem", function(item, i) {
 				var size = self.tasks[i].height * TaskScale;
@@ -202,7 +193,6 @@ var ProjectController = Controller.extend({
 					}
 				});
 			});
-			console.log("swipe handler: " + (new Date().getTime() - startTime));
 		}
 
 		elem.removeClass(this.view.findAll("#Project .Toolbar li button"), "current");
@@ -228,24 +218,15 @@ var ProjectController = Controller.extend({
 	drawScribbles: function(height) {
 		var self = this;
 		var tasks = this.getVisibleTasks();
-		console.log("start draw 2");
 		for (var i = 0, c = tasks.length; i < c; i++) {
 			var task = tasks[i];
-			console.log("draw");
 			var startTime = new Date().getTime();
-			//console.log(task.path.toString());
 			if (task.path) {
-				console.log("new scribble");
 				var s = new Scribble(document.getElementById("Scribble_"+i), true);
-				console.log("start");
 				s.scale(TaskScale, TaskScale);
 				s.load(task.path, task.bounds[0]);
 				self.scribbles.push(s);
-				console.log("done");
-			} else {
-				console.log("has image");
-			}
-			console.log("draw scribble: " + (new Date().getTime() - startTime));
+			} 
 		}
 	},
 	showAddTask: function(task) {
