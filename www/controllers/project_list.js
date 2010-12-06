@@ -41,7 +41,12 @@ var ProjectListController = Controller.extend({
 	},
 	showProject: function(project) {
 		var projectController = new ProjectController("Project", project);
-		projectController.parentController = this;
+		var self = this;
+		projectController.bind("back", function() {
+			self.show();
+			this.hide();
+			this.destroy();
+		});
 		this.hide();
 		projectController.show();
 		return projectController;

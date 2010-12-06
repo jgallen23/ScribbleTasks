@@ -128,9 +128,7 @@ var ProjectController = Controller.extend({
 			this.loadTasks();
 		},
 		'back': function(e) {
-			this.parentController.show();
-			this.destroy();
-			this.hide();
+			this.trigger("back");
 		}
 	},
 	show: function() {
