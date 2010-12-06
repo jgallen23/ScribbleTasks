@@ -253,8 +253,8 @@ var ProjectController = Controller.extend({
 	showAddTask: function(task) {
 		var self = this;
 		var atc = new AddTaskController("AddTask");
-		atc.bind("add", function(task) { 
-			self.addTask(task); 
+		atc.bind("add", function(tasks) { 
+			self.addTask(tasks); 
 		});
 		atc.bind("close", function() {
 			APP.enableScrolling(); 
@@ -262,23 +262,35 @@ var ProjectController = Controller.extend({
 		});
 		atc.show(task);
 	},
-	addTask: function(task) {
+	addTask: function(tasks) {
 		var self = this;
-		if (!(task instanceof Task)) { //New Task
-			task.project = this.project.key;
-			task = new Task(task);
-			if (task.star) {
-				APP.data.badgeCount++;
-				APP.updateBadge();
+		var add = function(task, cb) {
+			if (!(task instanceof Task)) { //New Task
+				task.project = self.project.key;
+				task = new Task(task);
+				if (task.star) {
+					APP.data.badgeCount++;
+					APP.updateBadge();
+				}
+				self.project.addTask(task, function(project, task) {
+					cb();
+					//self.loadTasks();
+				});
+			} else { // Update Task
+				task.save(function(task) {
+					cb();
+					//self.loadTasks();
+				});
 			}
-			this.project.addTask(task, function(project, task) {
-				self.loadTasks();
-			});
-		} else { // Update Task
-			task.save(function(task) {
-				self.loadTasks();
-			});
 		}
+		tasks.each(function(task, i) {
+			add(task, function() {
+				console.log(i);
+				if (tasks.length == (i+1)) {
+					self.loadTasks();
+				}
+			});
+		});
 	},
 	starTask: function(task) {
 		var self = this;

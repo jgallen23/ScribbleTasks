@@ -6,6 +6,7 @@ var AddTaskController = Controller.extend({
 		var container = this.view.find("#AddScribble");
 		container.appendChild(document.createElement("canvas"));
 		this.scribble = new Scribble(container);
+		this.tasks = [];
 	},
 	destroy: function() {
 		this.view.find("#AddScribble").innerHTML = "";
@@ -57,24 +58,26 @@ var AddTaskController = Controller.extend({
 			elem.addClass(starElement, "off");
 		}
 	},
-	addTask: function() {
+	appendTask: function() {
 		if (this.scribble.strokes.length != 0) {
 			if (this.loadedScribble) {
 				this.loadedScribble.star = this.star;
 				this.loadedScribble.priority = this.priority;
 				this.loadedScribble.path = this.scribble.toJSON();
 				this.loadedScribble.imageData = null;
-				this.trigger("add", [this.loadedScribble]);
+				this.tasks.push(this.loadedScribble);
+				//this.trigger("add", [this.loadedScribble]);
 			} else {
 				var task = {
 					star: this.star,
 					path: this.scribble.toJSON(),
 					priority: this.priority
 				}
-				this.trigger("add", [task]);
+				this.tasks.push(task);
+				//this.trigger("add", [task]);
 			}
-			this.clear();
 		}
+		this.clear();
 	},
 	onClick: {
 		star: function(e) {
@@ -93,17 +96,20 @@ var AddTaskController = Controller.extend({
 			this.view.find(".PriorityChooser").style.display = "none";
 		},
 		add: function(e) {
-			this.addTask();	
+			this.appendTask();	
 			this.hide();
+			this.trigger("add", [this.tasks]);
 			this.trigger("close");
 		},
 		addAnother: function(e) {
-			this.addTask();
+			this.appendTask();
 		},
 		cancel: function(e) {
+			if (this.tasks.length != 0)
+				this.trigger("add", [this.tasks]);
 			this.clear();
-			this.trigger("close");
 			this.hide();
+			this.trigger("close");
 		},
 		undo: function(e) {
 			this.scribble.undo();
