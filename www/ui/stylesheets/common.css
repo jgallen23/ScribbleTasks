@@ -11,6 +11,7 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	button.incomplete { background-image: url(../images/icons/folder.png); }
 	button.complete { background-image: url(../images/icons/check.png); }
 	button.add { background-image: url(../images/icons/add.png); }
+	button.addFolder { background-image: url(../images/icons/add-folder.png); }
 	button.addMulti { background-image: url(../images/icons/add-multi.png); }
 	button.clear { background-image: url(../images/icons/delete.png); }
 	button.back { background-image: url(../images/icons/arrow-left.png); }
