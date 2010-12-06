@@ -28,6 +28,7 @@
 }
 
 - (void) applicationDidReceiveMemoryWarning:(UIApplication *)application {
+	return;
 	UIAlertView *someError = [[UIAlertView alloc] initWithTitle: @"Memory Warning" 
 														message: @"Received memory warning" 
 													   delegate: self 
