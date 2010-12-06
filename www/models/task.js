@@ -95,7 +95,7 @@ Task.filters = {
 		return (!t.isComplete && t.star);
 	},
 	highPriority: function(t) {
-		return (!t.isComplete && t.priority == 2);
+		return (!t.isComplete && !t.star && t.priority == 2);
 	},
 	mediumPriority: function(t) {
 		return (!t.isComplete && t.priority == 1);
