@@ -12,10 +12,26 @@ var Project = Model.extend({
 			incompleteCount: 0
 		}
 		this._super(initial);
-		this.createdOn = new Date();
+
+
+		var fromISODate = function(dateString) {
+			console.log(dateString);
+			return new Date(((dateString || '').replace(/-/g,'/').replace(/[TZ]/g,' ').split(".")[0]));
+		}
+
+		if (!this.createdOn)
+			this.createdOn = new Date().getTime();
+
+		if (typeof this._data.createdOn === "string")
+			this._data.createdOn = fromISODate(this._data.createdOn).getTime();
+
+		if (typeof this._data.modifiedOn === "string")
+			this._data.modifiedOn = fromISODate(this._data.modifiedOn).getTime();
 	},
 	_propertySet: function(prop, value) {
-		this._data.modifiedOn = new Date();
+		if (!['completeCount', 'incompleteCount', 'starCount'].contains(prop))
+			this._data.modifiedOn = new Date().getTime();
+		this._super(prop, value);
 	},
 	save: function(cb) {
 		Project.data.save(this, cb);
