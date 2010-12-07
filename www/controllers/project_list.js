@@ -52,10 +52,15 @@ var ProjectListController = Controller.extend({
 		return projectController;
 	},
 	showSearch: function(filterName, filter) {
+		var self = this;
 		var searchController = new SearchController("SearchResults", filterName, filter);
-		searchController.parentController = this;
-		this.onClick.searchClose.call(this);
+		searchController.bind("back", function() {
+			self.show();
+			this.hide();
+			this.destroy();
+		});
 		this.hide();
+		this.onClick.searchClose.call(this);
 		searchController.show();
 	},
 	show: function() {
