@@ -15,18 +15,25 @@ var Project = Model.extend({
 
 
 		var fromISODate = function(dateString) {
-			console.log(dateString);
 			return new Date(((dateString || '').replace(/-/g,'/').replace(/[TZ]/g,' ').split(".")[0]));
 		}
 
 		if (!this.createdOn)
 			this.createdOn = new Date().getTime();
 
-		if (typeof this._data.createdOn === "string")
+		var needSave = false;
+		if (typeof this._data.createdOn === "string") {
 			this._data.createdOn = fromISODate(this._data.createdOn).getTime();
+			needSave = true;
+		}
 
-		if (typeof this._data.modifiedOn === "string")
+		if (typeof this._data.modifiedOn === "string") {
 			this._data.modifiedOn = fromISODate(this._data.modifiedOn).getTime();
+			needSave = true;
+		}
+
+		if (needSave)
+			this.save();
 	},
 	_propertySet: function(prop, value) {
 		if (!['completeCount', 'incompleteCount', 'starCount'].contains(prop))

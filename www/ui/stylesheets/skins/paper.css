@@ -11,9 +11,9 @@ button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity
 
 #ProjectList header { padding-left: 50px; }
 #ProjectList li:active .name { color: #6394cb; }
-#ProjectList #Projects li { border-bottom: 2px solid #6394cb; padding-left: 60px;}
-#ProjectList #Projects li .count, 
-#ProjectList #Projects li .sep { font-size: 14px; }
+#ProjectList .ProjectList li { border-bottom: 2px solid #6394cb; padding-left: 60px;}
+#ProjectList .ProjectList li .count, 
+#ProjectList .ProjectList li .sep { font-size: 14px; }
 
 
 .Project header { padding-left: 7px; }

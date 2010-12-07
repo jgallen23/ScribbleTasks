@@ -60,7 +60,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 
 .Popup .Popup { margin: 0 3px 2px 0; } 
 
-.ProjectList {}
+.ProjectList { overflow-x: hidden; overflow-y: scroll;}
 	.ProjectList li { font-size: 20px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; line-height: 32px; } 
 	/*.ProjectList li button { display: none; } */
 		.ProjectList li button { padding: 5px 10px; }

@@ -6,7 +6,7 @@ var ProjectListController = Controller.extend({
 		this.projects = null;
 
 		if (APP.browser.isMobile) {
-			this.scroller = new iScroll("Projects", { checkDOMChanges: false, desktopCompatibility: true });
+			this.scroller = new iScroll(this.view.find(".ProjectList ul"), { checkDOMChanges: false, desktopCompatibility: false });
 		}
 
 		this.loadProjects();
@@ -27,7 +27,6 @@ var ProjectListController = Controller.extend({
 			});
 			APP.updateBadge();
 			self.projects = projects;
-			self.trigger("loaded");
 			self._render();
 		});
 	},
@@ -35,9 +34,10 @@ var ProjectListController = Controller.extend({
 		var self = this;
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
-		this.trigger("loaded");
-		if (this.scroller)
-			setTimeout(function () { self.scroller.refresh() }, 0)
+		//this.trigger("loaded");
+		if (this.scroller) {
+			setTimeout(function () { console.log(self.scroller);self.scroller.refresh() }, 100)
+		}
 	},
 	showProject: function(project) {
 		var projectController = new ProjectController("Project", project);
