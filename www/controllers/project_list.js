@@ -6,7 +6,9 @@ var ProjectListController = Controller.extend({
 		this.projects = null;
 
 		if (APP.browser.isMobile) {
-			this.scroller = new iScroll(this.view.find(".ProjectList ul"), { checkDOMChanges: false, desktopCompatibility: false });
+            //console.log(this.view.find(".ProjectList ul"));
+			//this.scroller = new iScroll(this.view.find(".ProjectList ul"), { checkDOMChanges: false, desktopCompatibility: false });
+            //console.log(this.scroller);
 		}
 
 		this.loadProjects();
@@ -35,6 +37,8 @@ var ProjectListController = Controller.extend({
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
 		//this.trigger("loaded");
+        //console.log(this.scroller);
+        return;
 		if (this.scroller) {
 			setTimeout(function () { console.log(self.scroller);self.scroller.refresh() }, 100)
 		}

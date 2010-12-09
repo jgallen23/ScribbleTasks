@@ -1,5 +1,6 @@
 var ScribbleTasksApp = Application.extend({
 	ready: function() {
+        console.log("ready");
 		var self = this;
 		this._super();
 		if (this.browser.isMobile) {

@@ -221,8 +221,8 @@
 		<script src="ui/scripts/scribbletasks.min.js"></script>
 		--!>
 		<script>
-            var app = new ScribbleTasksApp();
 			var params = parseQueryString();
+            var app = new ScribbleTasksApp((!params.pg));
 			if (params.mobile)
 				app.browser.isMobile = true;
 			if (!params.pg)
