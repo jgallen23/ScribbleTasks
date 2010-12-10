@@ -1,12 +1,11 @@
 var ScribbleTasksApp = Application.extend({
 	ready: function() {
-        console.log("ready");
 		var self = this;
 		this._super();
 		if (this.browser.isMobile) {
 			self.disableScrollingPermanently();
 		}
-		this.resize();
+		this.resize(window.innerWidth, window.innerHeight);
 		this.debug = debugUtils;
 		this.currentController = new ProjectListController("ProjectList");
 		this.runTests();
@@ -15,7 +14,6 @@ var ScribbleTasksApp = Application.extend({
 		this._super(width, height);
 		/*if (this.browser.isPhoneGap)*/
 		/*height -= 20;*/
-		console.log(height);
 		if (height < 500) {
 			document.querySelector("#AddTask .wrapper").style.height = height+"px";
 		}
@@ -95,7 +93,6 @@ var ScribbleTasksApp = Application.extend({
             p.save();
 			Task.data.provider.nuke();
 			data.tasks.each(function(task) {
-				console.log(task);
 				var t = new Task(task);
 				t.save();
 				if (callback) callback();
