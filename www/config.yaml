@@ -2,11 +2,11 @@ output_dir: 'ui/scripts'
 js:
   scribbletasks:
     files:
-      - 'ui/scripts/app.lawnchair.js'
-      - 'ui/scripts/app.sortable.js'
       - 'ui/scripts/iscroll.js'
-      - 'ui/scripts/raphael.js'
+      - 'ui/scripts/Badge.js'
+      - 'ui/scripts/debug.js'
       - 'ui/scripts/SwipeController.js'
+      - 'ui/scripts/date-en-US.js'
       - 'ui/scripts/ScribbleTasksApp.js'
       - 'dataproviders/projects.js'
       - 'dataproviders/tasks.js'
@@ -14,5 +14,8 @@ js:
       - 'models/task.js'
       - 'controllers/add_task.js'
       - 'controllers/project.js'
+      - 'controllers/search.js'
       - 'controllers/project_list.js'
+      - 'controllers/task_menu.js'
+      - 'controllers/debug_controller.js'
       - 'views/scribble.js'
