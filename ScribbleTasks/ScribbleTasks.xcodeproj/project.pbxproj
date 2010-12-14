@@ -196,6 +196,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "ScribbleTasks" */;
 			buildPhases = (
+				7667F76E12B7D02000A61A4A /* Build index.html */,
 				30E9A9A110B758320022D3BA /* Copy PhoneGap Javascript */,
 				304B58A110DAC018002A0835 /* Touch www folder */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
@@ -302,6 +303,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "make -C \"${HOME}/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib\"\necho cp \"${HOME}/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib/javascripts/phonegap.js ${PROJECT_DIR}/www/phonegap.js\"\ncp \"${HOME}/code/ScribbleTasks/ext/phonegap-iphone/PhoneGapLib/javascripts/phonegap.js\" \"${PROJECT_DIR}/www/phonegap.js\"";
+		};
+		7667F76E12B7D02000A61A4A /* Build index.html */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build index.html";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${PROJECT_DIR}\ncd ..\n/opt/local/bin/python2.6 run_server.py generate www/index.html phonegap";
 		};
 /* End PBXShellScriptBuildPhase section */
 

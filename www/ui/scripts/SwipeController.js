@@ -1,4 +1,3 @@
-(function() {
 window.addSwipeHandler = function(element, callback) {
 	var startX = null;
 	var startY = null;
@@ -29,4 +28,3 @@ window.addSwipeHandler = function(element, callback) {
 	element.addEventListener("touchmove", touchMove);
 	element.addEventListener("touchend", touchEnd);
 }
-})();
