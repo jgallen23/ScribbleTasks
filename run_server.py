@@ -35,8 +35,10 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 ui_path = "ui/scripts"
             data = { 'phonegap': False,
                 'debug': debug,
-                'appui': uimin.get_output('ext/appui/config.yaml', 'js', 'app.lawnchair', path = appui_path, debug = debug),
-                'scribbletasks_ui': uimin.get_output('www/config.yaml', 'js', 'scribbletasks', path = ui_path,  debug = debug),
+                'appui_files': uimin.get_file_list('ext/appui/config.yaml', 'js', 'app.lawnchair', debug = debug),
+                'appui_path': "ext/appui" if debug else "ui/scripts",
+                'ui_files': uimin.get_file_list('www/config.yaml', 'js', 'scribbletasks', debug = debug),
+                'ui_path': '' if debug else 'ui/scripts',
             }
             self.wfile.write(template.render(**data))
             return

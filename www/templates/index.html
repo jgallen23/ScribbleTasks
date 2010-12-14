@@ -201,34 +201,17 @@
 		{% if phonegap %}
 		<script src="phonegap.js"></script>
 		{% endif %}
-		{{ appui }}
-		{{ scribbletasks_ui }}
-		<!--
-		<script src="ui/scripts/iscroll.js"></script>
-		<script src="ui/scripts/Badge.js"></script>
-		<script src="ui/scripts/debug.js"></script>
-		<script src="ui/scripts/SwipeController.js"></script>
-		<script src="ui/scripts/date-en-US.js"></script>
-		<script src="ui/scripts/ScribbleTasksApp.js"></script>
-		<script src="dataproviders/projects.js"></script>
-		<script src="dataproviders/tasks.js"></script>
-		<script src="models/project.js"></script>
-		<script src="models/task.js"></script>
-		<script src="controllers/add_task.js"></script>
-		<script src="controllers/project.js"></script>
-		<script src="controllers/search.js"></script>
-		<script src="controllers/project_list.js"></script>
-		<script src="controllers/task_menu.js"></script>
-		<script src="controllers/debug_controller.js"></script>
-		<script src="views/scribble.js"></script>
-		-->
+		{% for file in appui_files %}
+		<script src="{{ appui_path }}/{{ file }}"></script>
+		{% endfor %}
+		{% for file in ui_files %}
+		<script src="{{ ui_path }}/{{ file }}"></script>
+		{% endfor %}
 		<script>
 			var params = parseQueryString();
-            var app = new ScribbleTasksApp((!params.pg));
+            var app = new ScribbleTasksApp();
 			if (params.mobile)
 				app.browser.isMobile = true;
-			if (!params.pg)
-				app.browser.isPhoneGap = true;
 		</script>
 	</body>
 </html>
