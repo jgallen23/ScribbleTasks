@@ -1,4 +1,4 @@
-debugUtils = {
+var debugUtils = {
 	clearImageCache: function() {
 		Task.data.find(function(tasks) {
 			tasks.each(function(task) {

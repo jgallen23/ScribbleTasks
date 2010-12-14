@@ -6,6 +6,7 @@ import os
 from os import curdir, sep
 import SimpleHTTPServer
 import SocketServer
+from urlparse import urlparse, parse_qs
 from jinja2 import Environment, FileSystemLoader
 TEMPLATE_DIRS = "www/templates"
 env = Environment(loader = FileSystemLoader(TEMPLATE_DIRS))
@@ -18,21 +19,15 @@ print uimin.read_config("www/config.yaml")
 class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     def do_GET(self):
-        print self.path
-        #TODO: Parse path
-        if self.path == "/":
+        o = urlparse(self.path)
+        query = parse_qs(o.query)
+        print query
+        if o.path == "/":
             self.send_response(200)
             self.send_header('Content-type',    'text/html')
             self.end_headers()
             template = env.get_template("index.html")
-            debug = True
-            #TODO: get debug query string
-            if debug:
-                appui_path = "ext/appui"
-                ui_path = ""
-            else:
-                appui_path = "ui/scripts"
-                ui_path = "ui/scripts"
+            debug = query.has_key('debug')
             data = { 'phonegap': False,
                 'debug': debug,
                 'appui_files': uimin.get_file_list('ext/appui/config.yaml', 'js', 'app.lawnchair', debug = debug),

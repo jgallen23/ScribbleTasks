@@ -34,6 +34,7 @@ var ProjectListController = Controller.extend({
 		var self = this;
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
+		this.trigger("loaded");
 		if (this.scroller) {
 			setTimeout(function () { self.scroller.refresh() }, 100)
 		}
