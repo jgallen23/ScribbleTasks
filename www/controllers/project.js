@@ -8,6 +8,7 @@ var ProjectController = Controller.extend({
 		this._super(elementId);
 		this.project = project;
 		this.scribbles = [];
+		this.allTasks = null;
 		this.filter = "incomplete";
 		this.currentPage = 0;
 		this.scrollTo = true;
@@ -31,6 +32,7 @@ var ProjectController = Controller.extend({
 		if (this.scroller)
 			this.scroller.destroy();
 		this.scroller = null;
+		this.allTasks = null;
 		this.project = null;
 		this.filter = null;
 		this.scribbles.each(function(s) {
@@ -162,13 +164,20 @@ var ProjectController = Controller.extend({
 	loadTasks: function() {
 		var self = this;
 		this.view.find("[data-type='title']").value = this.project.name;
-		this.project.getTasks(function(tasks) {
-			startTime = new Date().getTime();
-			tasks = tasks.filter(Task.filters[self.filter]);
-			tasks.sort(Task.sort[self.filter]);
-			self.tasks = tasks;
+		var filter = function() {
+			self.tasks = self.allTasks.filter(Task.filters[self.filter]);
+			self.tasks.sort(Task.sort[self.filter]);
 			self._render();
-		});
+		};
+		if (!self.allTasks) {
+			this.project.getTasks(function(tasks) {
+				startTime = new Date().getTime();
+				self.allTasks = tasks;
+				filter();
+			});
+		} else {
+			filter();
+		}
 	},
 	_render: function() {
 		var self = this;
@@ -251,6 +260,7 @@ var ProjectController = Controller.extend({
 			var task = tasks[index];
 			if (!(task instanceof Task)) { //New Task
 				task = new Task(task);
+				self.allTasks.push(task);
 				if (task.star) {
 					APP.data.badgeCount++;
 					APP.updateBadge();
