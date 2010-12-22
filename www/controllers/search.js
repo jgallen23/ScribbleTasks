@@ -7,12 +7,19 @@ var SearchController = ProjectController.extend({
 	loadTasks: function() {
 		var self = this;
 		this.view.find("[data-type='title']").value = this.searchFilterName;
-		Task.data.find(function(tasks) {
-			tasks = tasks.filter(self.searchFilter);
-			tasks.sort(Task.sort.incomplete);
-			self.tasks = tasks;
+        var filter = function() {
+            self.tasks = self.allTasks.filter(self.searchFilter);
+			self.tasks.sort(Task.sort.incomplete);
 			self._render();
-		});
+        }
+        if (!self.allTasks) {
+            Task.data.find(function(tasks) {
+                self.allTasks = tasks;
+                filter();
+            });
+        } else {
+            filter();
+        }
 	},
 	_render: function() {
 		var self = this;
