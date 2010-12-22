@@ -171,7 +171,6 @@ var ProjectController = Controller.extend({
 		};
 		if (!self.allTasks) {
 			this.project.getTasks(function(tasks) {
-				startTime = new Date().getTime();
 				self.allTasks = tasks;
 				filter();
 			});
@@ -186,12 +185,9 @@ var ProjectController = Controller.extend({
 
 		var itemHeight = TaskHeight;
 		
-		var startTime = new Date().getTime();
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
-			var startTime = new Date().getTime();
 			this.drawScribbles(itemHeight);
-			var startTime = new Date().getTime();
 			this.view.findAll("div.TaskList li.taskItem", function(item, i) {
 				var size = self.tasks[i].height * TaskScale;
 				size = (size < MinTaskHeight)?MinTaskHeight:size+10;
@@ -229,7 +225,6 @@ var ProjectController = Controller.extend({
 		var tasks = this.getVisibleTasks();
 		for (var i = 0, c = tasks.length; i < c; i++) {
 			var task = tasks[i];
-			var startTime = new Date().getTime();
 			if (task.path) {
 				var s = new Scribble(document.getElementById("Scribble_"+i), true);
 				s.scale(TaskScale, TaskScale);
