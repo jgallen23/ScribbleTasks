@@ -187,7 +187,7 @@ var ProjectController = Controller.extend({
 		
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
-			this.drawScribbles(itemHeight);
+			//this.drawScribbles(itemHeight);
 			this.view.findAll("div.TaskList li.taskItem", function(item, i) {
 				var size = self.tasks[i].height * TaskScale;
 				size = (size < MinTaskHeight)?MinTaskHeight:size+10;
@@ -253,6 +253,7 @@ var ProjectController = Controller.extend({
 				return;
 			}
 			var task = tasks[index];
+			var imgData = task.imageData;
 			if (!(task instanceof Task)) { //New Task
 				task = new Task(task);
 				self.allTasks.push(task);
@@ -261,6 +262,7 @@ var ProjectController = Controller.extend({
 					APP.updateBadge();
 				}
 				self.project.addTask(task, function(project, task) {
+					task.imageData = imgData;
 					add(tasks, index+1, cb);
 				});
 			} else { // Update Task

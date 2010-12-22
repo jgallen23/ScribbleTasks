@@ -10,6 +10,7 @@ js:
       - 'ui/scripts/ScribbleTasksApp.js'
       - 'dataproviders/projects.js'
       - 'dataproviders/tasks.js'
+      - 'dataproviders/imagestore.js'
       - 'models/project.js'
       - 'models/task.js'
       - 'controllers/add_task.js'

@@ -36,6 +36,9 @@ var DebugController = Controller.extend({
 		generateData: function() {
 			APP.debug.generateTestData();
 		},
+        generateImages: function() {
+            APP.debug.generateImages();
+        },
 		resetProjectKeys: function() {
 			APP.debug.resetProjectKeys();
 		},

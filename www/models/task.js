@@ -10,7 +10,6 @@ var Task = Model.extend({
 			bounds: null,
 			height: null,
 			width: null,
-			imageData: null,
 			projectKey: null,
 			completedOn: null,
 			createdOn: null,
@@ -32,6 +31,7 @@ var Task = Model.extend({
 
 		this.__defineGetter__("isComplete", this._isComplete);
 		this.__defineProperty__("star", this._getStar, this._setStar);
+		this.__defineProperty__("imageData", this._getImageData, this._setImageData);
 
 		if(this.path)// && !this.bounds)
 			this._updateDimensions();
@@ -84,6 +84,12 @@ var Task = Model.extend({
 		});
 		var bounds = [[minX, minY], [maxX, maxY]];
 		return bounds;
+	},
+	_getImageData: function() {
+		return imageStore.get(this.key);
+	},
+	_setImageData: function(imageData) {
+		imageStore.set(this.key, imageData);
 	}
 });
 Task.data = new TaskDataProvider();

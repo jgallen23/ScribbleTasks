@@ -58,7 +58,7 @@
 					</ul>
 				</header>
 				<div class="TaskList">	
-					<canvas id="tmpCanvas"></canvas>
+                    <div id="tmpCanvas"><canvas></canvas></div>
 					<ul></ul>
 				</div>
 				<footer>
@@ -112,6 +112,7 @@
 				<div class="wrapper Popup">
 					<ul class="Toolbar">
 						<li><button class="Text" data-onClick="generateData">Gen Data</button></li>
+						<li><button class="Text" data-onClick="generateImages">Images</button></li>
 						<li><button class="Text" data-onClick="resetProjectKeys">Reset Project Keys</button></li>
 						<li><button class="Text" data-onClick="perfTest">Perf Test</button></li>
 						<li><button class="Text" data-onClick="backup">Backup</button></li>
@@ -170,7 +171,7 @@
 			</div>
 			{! } else { !}
 			<div id="Scribble_{!= index !}" class="task scribble">
-				<canvas></canvas>
+                <img src="{!= imageStore.get(task.key) !}"/>
 			</div>
 			{! } !}
 			<menu>

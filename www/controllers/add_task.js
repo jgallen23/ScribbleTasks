@@ -59,19 +59,23 @@ var AddTaskController = Controller.extend({
 		}
 	},
 	appendTask: function() {
+        var json = this.scribble.toJSON();
+        this.scribble.scale(TaskScale, TaskScale);
+        var img = this.scribble.imageData();
 		if (this.scribble.strokes.length != 0) {
 			if (this.loadedScribble) {
 				this.loadedScribble.star = this.star;
 				this.loadedScribble.priority = this.priority;
-				this.loadedScribble.path = this.scribble.toJSON();
-				this.loadedScribble.imageData = null;
+				this.loadedScribble.path = json;
+				this.loadedScribble.imageData = img;
 				this.tasks.push(this.loadedScribble);
 				//this.trigger("add", [this.loadedScribble]);
 			} else {
 				var task = {
 					star: this.star,
-					path: this.scribble.toJSON(),
-					priority: this.priority
+					path: json,
+                    priority: this.priority,
+                    imageData: img 
 				}
 				this.tasks.push(task);
 				//this.trigger("add", [task]);
