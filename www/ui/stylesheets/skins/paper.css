@@ -34,6 +34,7 @@ button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity
 /* iPhone */
 @media only screen and (max-width: 480px) {
 	#Wrapper { margin: 0; padding: 0 }
+    .Wrapper { -webkit-box-shadow: 0; }
 
 }
 
