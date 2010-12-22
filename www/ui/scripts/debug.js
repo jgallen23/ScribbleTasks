@@ -83,7 +83,7 @@ var debugUtils = {
     generateImages: function() {
         var canvas = document.getElementById("tmpCanvas");
         Task.data.find(function(tasks) {
-            tasks.each(function(task) {
+            tasks.filter(Task.filters.incomplete).each(function(task) {
                 canvas.height = 1000;
                 canvas.width = 1000;
                 var s = new Scribble(canvas, true);

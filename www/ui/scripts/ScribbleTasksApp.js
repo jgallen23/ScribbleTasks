@@ -77,7 +77,7 @@ var ScribbleTasksApp = Application.extend({
                 data.projects.push(project._data);
             });
             Task.data.find(function(tasks) {
-                tasks.each(function(task) {
+                tasks.filter(Task.filters.incomplete).each(function(task) {
 					task._data.imageData = null;
                     data.tasks.push(task._data);
                 });
