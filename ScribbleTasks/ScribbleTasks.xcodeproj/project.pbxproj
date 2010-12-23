@@ -316,7 +316,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ${PROJECT_DIR}\ncd ..\n/opt/local/bin/python2.6 run_server.py generate www/index.html phonegap";
+			shellScript = "cd ${PROJECT_DIR}\ncd ..\npython run_server.py generate www/index.html phonegap";
 		};
 /* End PBXShellScriptBuildPhase section */
 
