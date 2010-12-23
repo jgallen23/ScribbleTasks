@@ -8,6 +8,9 @@
 
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
 		<link rel="stylesheet" type="text/css" href="ui/stylesheets/skins/paper.css"/>
+		{% if remote %}
+		<script src="http://{{ remote }}:8080/target/target-script.js"></script>
+		{% endif %}
 	</head>
 	<body>
 		<div id="Wrapper" class="Wrapper"><div id="Wrapper2" class="Wrapper">

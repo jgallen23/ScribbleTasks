@@ -14,7 +14,7 @@ env = Environment(loader = FileSystemLoader(TEMPLATE_DIRS))
 sys.path.append(os.path.join(curdir, "ext/appui/external/uimin"))
 import uimin
 
-def generate_template(debug = False, phonegap = False):
+def generate_template(debug = False, phonegap = False, remote = ''):
     template = env.get_template("index.html")
     data = {
         'phonegap': phonegap,
@@ -23,6 +23,7 @@ def generate_template(debug = False, phonegap = False):
         'appui_path': "ext/appui" if debug else "ui/scripts",
         'ui_files': uimin.get_file_list('www/config.yaml', 'js', 'scribbletasks', debug = debug),
         'ui_path': '' if debug else 'ui/scripts',
+        'remote': remote,
     }
     return template.render(**data)
 
@@ -38,7 +39,8 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.send_header('Content-type',    'text/html')
             self.end_headers()
             debug = query.has_key('debug')
-            self.wfile.write(generate_template(debug))
+            remote = query['remote'][0] if query.has_key('remote') else ''
+            self.wfile.write(generate_template(debug = debug, remote = remote))
             return
         if not self.path.startswith("/ext"):
             self.path = "/www" + self.path
