@@ -87,6 +87,9 @@ var ProjectController = Controller.extend({
 				elem.addClass(e.target, "off");
 			this.starTask(task);
 		},
+		closePriority: function(e) {
+			e.target.parentNode.style.display = "none";
+		},
 		'priority': function(e) {
 			if (e.target.nodeName == "SPAN")
 				e.target.parentNode.nextSibling.style.display = "block";
@@ -95,10 +98,7 @@ var ProjectController = Controller.extend({
 			//this.view.find(".PriorityChooser").style.display = "block";
 		},
 		'setPriority': function(e) {
-			if (e.target.nodeName == "SPAN")
-				var btn = e.target.parentNode;
-			else
-				var btn = e.target;
+			var btn = e.target;
 			var index = btn.getAttribute("data-key");
 			var task = this.tasks[index];
 			var priority = btn.getAttribute("data-priority");

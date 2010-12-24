@@ -1,4 +1,5 @@
 <script type="text/html" id="jstPriorityChooser">
+	<button class="Icon clear" data-onClick="closePriority">&nbsp;</button>
 	{! for (var pi = -1, c = 3; pi < c; pi++) { !}
 		<button class="Icon priority" data-key="{!= key !}" data-priority="{!= pi !}" data-onClick="setPriority">!</button>
 	{! } !}

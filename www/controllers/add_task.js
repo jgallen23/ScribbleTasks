@@ -86,6 +86,9 @@ var AddTaskController = Controller.extend({
 		priority: function(e) {
 			this.view.find(".PriorityChooser").style.display = "block";
 		},
+		closePriority: function(e) {
+			this.view.find(".PriorityChooser").style.display = "none";
+		},
 		setPriority: function(e) {
 			if (e.target.nodeName == "SPAN")
 				var btn = e.target.parentNode;
