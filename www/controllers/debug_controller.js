@@ -8,6 +8,9 @@ var DebugController = Controller.extend({
 		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
+		updateCounts: function() {
+			APP.debug.updateCounts();
+		},
 		clear: function() {
 			APP.debug.clearImageCache();
 		},

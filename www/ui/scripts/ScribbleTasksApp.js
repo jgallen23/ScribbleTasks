@@ -7,6 +7,8 @@ var ScribbleTasksApp = Application.extend({
 		}
 		this.resize(window.innerWidth, window.innerHeight);
 		this.debug = debugUtils;
+		this.notificationCenter.bind("task.propertySet", function() { self.taskPropertySet.apply(self, arguments)});
+		this.notificationCenter.bind("project.taskAdded", function() { self.projectTaskAdded.apply(self, arguments)});
 		this.currentController = new ProjectListController("ProjectList");
 		this.runTests();
 	},
@@ -62,10 +64,45 @@ var ScribbleTasksApp = Application.extend({
 			document.body.appendChild(textarea);
 		});
 	},
+	offsetKey: function(key, value) {
+		var v = localStorage[key] || 0;
+		localStorage.setItem(key, parseInt(v)+value);
+	},
+	projectTaskAdded: function(project, task) {
+		this.offsetKey(String.format("taskCount_{0}", project.key), 1);
+		if (task.star) {
+			this.offsetKey(String.format("starCount_{0}", task.projectKey), 1);
+			this.offsetKey(String.format("totalStarCount", task.projectKey), 1);
+			this.updateBadge();
+		}
+	},
+	taskPropertySet: function(task, property, value) {
+		switch (property) {
+			case 'star':
+				var val = (value)?1:-1;
+				this.offsetKey(String.format("starCount_{0}", task.projectKey), val);
+				this.offsetKey(String.format("totalStarCount", task.projectKey), val);
+				this.updateBadge();
+				break;
+			case 'completedOn':
+				var val = (value)?-1:1;
+				this.offsetKey(String.format("taskCount_{0}", task.projectKey), val);
+				if (task.star) {
+					this.offsetKey(String.format("starCount_{0}", task.projectKey), val);
+					this.offsetKey(String.format("totalStarCount", task.projectKey), val);
+					this.updateBadge();
+				}
+				break;
+		}
+	},
+	taskCreated: function(task) {
+		offsetKey(String.format("taskCount_{0}", task.projectKey), 1);	
+	},
     updateBadge: function() {
-		console.log("Badge: "+this.data.badgeCount);
+		var count = localStorage['totalStarCount'];
+		console.log("Badge: "+count);
         if (this.browser.isPhoneGap) {
-            window.plugins.badge.set(this.data.badgeCount);
+            window.plugins.badge.set(count);
         }
 	},
     backup: function(cb) {

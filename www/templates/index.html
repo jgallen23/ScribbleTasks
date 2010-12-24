@@ -31,7 +31,7 @@
                 <footer>
                     <ul class="Toolbar">
 						<li><button class="Icon search" data-onClick="search"></button></li>
-                        <li><button class="Icon star" data-onClick="searchStarred"></button></li>
+						<li><button class="Icon star hasCount" data-onClick="searchStarred"><span data-onClick="searchStarred">0</span></button></li>
                         <li><button class="Icon priority" data-priority="0" data-onClick="searchHighPriority"><span data-onClick="searchHighPriority"></span></button></li>
                         <!--<li><button class="Icon clear" data-onClick="clear"></button></li>-->
                         <!--<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>-->
@@ -88,8 +88,8 @@
 				<footer>
 					<ul class="Toolbar">
 						<li><button class="Icon top" data-onClick="scrollToTop"></button></li>
-						<li><button class="Icon incomplete current" data-onClick="filterAll"><span data-onClick="filterAll"></span></button></li>
-						<li><button class="Icon star" data-onClick="filterStarred"><span data-onClick="filterStarred"></span></button></li>
+						<li><button class="Icon incomplete hasCount current" data-onClick="filterAll"><span data-onClick="filterAll"></span></button></li>
+						<li><button class="Icon star hasCount" data-onClick="filterStarred"><span data-onClick="filterStarred"></span></button></li>
 						<li><button class="Icon complete" data-onClick="filterComplete"></button></li>
 					</ul>
 				</footer>
@@ -114,6 +114,7 @@
 			<div id="DebugMenu" class="Modal DebugOnly">
 				<div class="wrapper Popup">
 					<ul class="Toolbar">
+						<li><button class="Text" data-onClick="updateCounts">Update Counts</button></li>
 						<li><button class="Text" data-onClick="generateData">Gen Data</button></li>
 						<li><button class="Text" data-onClick="resetProjectKeys">Reset Project Keys</button></li>
 						<li><button class="Text" data-onClick="perfTest">Perf Test</button></li>

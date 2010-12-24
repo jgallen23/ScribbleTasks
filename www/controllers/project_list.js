@@ -22,9 +22,6 @@ var ProjectListController = Controller.extend({
 		APP.data.badgeCount = 0;
 		Project.data.find(function(projects) {
 			projects.sort(Project.sort.starred);
-			projects.each(function(project) {
-				APP.data.badgeCount += project.starCount;
-			});
 			APP.updateBadge();
 			self.projects = projects;
 			self._render();
@@ -34,6 +31,7 @@ var ProjectListController = Controller.extend({
 		var self = this;
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
+		this.view.find("button.star span").innerHTML = localStorage['totalStarCount'] || 0;
 		this.trigger("loaded");
 		if (this.scroller) {
 			setTimeout(function () { self.scroller.refresh() }, 100)

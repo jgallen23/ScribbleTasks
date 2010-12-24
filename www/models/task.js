@@ -42,6 +42,8 @@ var Task = Model.extend({
 		if (prop == "path") {
 			this._updateDimensions();
 		}
+		if (APP)
+			APP.notificationCenter.trigger("task.propertySet", [this, prop, value]);
 	},
 	_updateDimensions: function() {
 		var b = this._getBounds(this._data.path);
@@ -67,6 +69,7 @@ var Task = Model.extend({
 	},
 	_setStar: function(value) {
 		this._data.star = value;
+		this._propertySet("star", value);
 	},
 	_getBounds: function(path) {
 		var minX = 999, maxX = 0, minY = 999, maxY = 0;

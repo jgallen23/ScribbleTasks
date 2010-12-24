@@ -79,5 +79,34 @@ var debugUtils = {
 			
 			
 		});
+	},
+	updateCounts: function() {
+		localStorage.clear();
+		var incStar = function(count) {
+			var v = localStorage['totalStarCount'] || 0;
+			v = parseInt(v) + count
+			localStorage.setItem('totalStarCount', v);
+		}
+		var updateProject = function(project) {
+			project.getTasks(function(tasks) {
+				var starCount = 0;
+				var incompleteCount = 0;
+				tasks.each(function(task) {
+					if (!task.isComplete) {
+						incompleteCount++;
+						if (task.star) starCount++;
+					}
+				});
+				localStorage.setItem(String.format("starCount_{0}", project.key), starCount);
+				localStorage.setItem(String.format("taskCount_{0}", project.key), incompleteCount);
+				incStar(starCount);
+			});
+		}
+
+		Project.data.find(function(projects) {
+			projects.each(function(project) {
+				updateProject(project);
+			});
+		});
 	}
 }

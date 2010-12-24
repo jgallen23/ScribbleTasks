@@ -6,13 +6,11 @@ var Project = Model.extend({
 			note: null,
 			createdOn: null,
 			modifiedOn: null,
-			taskIds: [],
-			starCount: 0,
-			completeCount: 0,
-			incompleteCount: 0
+			taskIds: []
 		}
 		this._super(initial);
-
+		this.__defineProperty__("starCount", this.starCount);
+		this.__defineProperty__("incompleteCount", this.incompleteCount);
 
 		var fromISODate = function(dateString) {
 			return new Date(((dateString || '').replace(/-/g,'/').replace(/[TZ]/g,' ').split(".")[0]));
@@ -35,6 +33,12 @@ var Project = Model.extend({
 		if (needSave)
 			this.save();
 	},
+	starCount: function() {
+		return localStorage.getItem(String.format("starCount_{0}", this.key)) || 0;
+	},
+	incompleteCount: function() {
+		return localStorage.getItem(String.format("taskCount_{0}", this.key)) || 0;
+	},
 	_propertySet: function(prop, value) {
 		if (!['completeCount', 'incompleteCount', 'starCount'].contains(prop))
 			this._data.modifiedOn = new Date().getTime();
@@ -44,17 +48,17 @@ var Project = Model.extend({
 		Project.data.save(this, cb);
 	},
 	getTasks: function(cb) {
+		/*
 		this.starCount = 0;
 		this.completeCount = 0;
 		this.incompleteCount = 0;
+		*/
 		var self = this;
-		var propBind = function(prop, value) {
-			self._taskPropertyEvent(prop, value);
-		}
 		Task.data.findByIds(this.taskIds, function(tasks) {
 			tasks.each(function(task) {
 				task.parent = self;
 				//TODO: REMOVE
+				/*
 				if (!task.projectKey || (self.key && task.projectKey != self.key)) {
 					task.projectKey = self.key;
 					task.save();
@@ -66,35 +70,11 @@ var Project = Model.extend({
 					if (task.star)
 						self.starCount++;
 				}
-				task.unbind("propertySet");
-				task.bind("propertySet", propBind);
+				*/
 			});
 			cb(tasks);	
 			self.save();
 		});
-	},
-	_taskPropertyEvent: function(prop, value) {
-		//console.log("prop change", prop, value);
-		switch (prop) {
-			case 'completedOn':
-				if (value) {
-					this.completeCount++;
-					this.incompleteCount--;
-					value = false;
-				} else {
-					this.completeCount--;
-					this.incompleteCount++;
-					value = true;
-				}
-			case 'star':
-				if (value)
-					this.starCount++;
-				else
-					this.starCount--;
-				this.save();
-				APP.updateBadge();
-				break;	
-		}
 	},
 	addTask: function(task, cb) {
 		var self = this;
@@ -103,10 +83,8 @@ var Project = Model.extend({
 		task.save(function(task) {
 			if (!self.taskIds.contains(task.key)) {
 				self.taskIds = self.taskIds.insert(0, task.key);
-				self.incompleteCount++;
-				if (task.star)
-					self.starCount++;
 				self.save(function(project) {
+					APP.notificationCenter.trigger("project.taskAdded", [project, task]);
 					if (cb) cb(project, task);
 				});
 			} else {
