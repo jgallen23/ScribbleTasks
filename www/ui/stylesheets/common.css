@@ -89,7 +89,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList menu li { list-style: none; }
 	.TaskList .complete { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
-	.TaskList .viewMore { text-align: center; margin: 15px 0;  }
+	.TaskList .viewMore { text-align: center; padding: 15px 0;  }
 
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; }
 	.Container > div { -webkit-box-flex: 1; }
