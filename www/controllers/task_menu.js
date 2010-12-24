@@ -35,11 +35,21 @@ var TaskMenuController = Controller.extend({
 		},		
 		'delete': function(e) {
 			var self = this;
-			this.project.removeTask(this.task, function() {
-				Task.data.remove(self.task, function() {
-					self.trigger("taskDeleted");
-				});
-			});
+			var d = function(index) {
+				if (index == 0) { //OK
+					self.project.removeTask(self.task, function() {
+						Task.data.remove(self.task, function() {
+							self.trigger("taskDeleted");
+						});
+					});
+				}
+			}
+			var msg = "Are you sure you want to delete that task?";
+			if (APP.browser.isPhoneGap) {
+				navigator.notification.confirm(msg, d);
+			} else {
+				if (confirm(msg)) d(0);
+			}
 		}
 	},
 	handleEvent: function(e) {
