@@ -55,10 +55,12 @@ var ProjectController = Controller.extend({
 			}
 			taskMenu.bind("taskMoved", function() {
 				close();	
+				self.allTasks = null;
 				self.loadTasks();
 			});
 			taskMenu.bind("taskDeleted", function() {
 				close();
+				self.allTasks = null;
 				self.loadTasks();
 			});
 			taskMenu.bind("close", function() {
