@@ -47,7 +47,7 @@ var AddTaskController = Controller.extend({
 	},
 	setPriority: function(priority) {
 		this.priority = priority;
-		this.view.find("button.priority span").className = "priority"+priority;
+		this.view.find("button.priority").setAttribute("data-priority", priority);
 	},
 	setStar: function(star) {
 		this.star = star;

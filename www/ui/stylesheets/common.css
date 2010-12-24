@@ -22,13 +22,13 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	button.menu { background-image: url(../images/icons/menu.png); }
 	button.search { background-image: url(../images/icons/search.png); }
 
-	button.priority { padding: 0 0 0 10px; }
-	button.priority span { height: 15px; width: 15px; -webkit-border-radius: 10px; padding: 0; display: block; }
+	button.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px;}
+	footer button.priority { font-size: 20px; }
    	.PriorityChooser button.Icon.priority span { height: 25px; width: 25px; -webkit-border-radius: 15px; }
-		button.priority[data-priority="0"] span, button.priority span.priority0 { background-color: #444; } 
-		button.priority[data-priority="1"] span, button.priority span.priority1 { background-color: #f08e0f; } 
-		button.priority[data-priority="2"] span, button.priority span.priority2 { background-color: #8f0606; } 
-		button.priority[data-priority="-1"] span, button.priority span.priority-1 { background-color: #ccc; } 
+		button.priority[data-priority="0"] { color: #000; } 
+		button.priority[data-priority="1"] { color: #f08e0f; } 
+		button.priority[data-priority="2"] { color: #8f0606; } 
+		button.priority[data-priority="-1"] { color: #ccc; } 
 
 .PriorityChooser { background: #fff; display: none; position: absolute; z-index: 100; padding: 5px 5px 0 5px; margin-top: -15px; }
 	.PriorityChooser button { margin-right: 5px; padding: 0 0 0 5px; }
