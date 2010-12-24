@@ -1,0 +1,22 @@
+<div id="TaskMenu"></div>
+<script type="text/html" id="jstTaskMenu">
+	<div class="Modal">
+		<section class="wrapper Popup">
+			<header>
+				<div class="title">Task Menu:</div>
+				<button class="Icon clear" data-onClick="close"></button>
+			</header>
+			<menu>
+				<li>Project: 
+					<select class="project">
+						{! for (var i = 0, c = projects.length; i < c; i++) { var proj = projects[i]; !}
+							<option value="{!= i !}" {!= (proj.key == task.projectKey)?"selected":"" !}>{!= proj.name !}</option>
+						{! } !}
+					</select>
+					</select>
+				</li>
+				<li><button class="Text" data-onClick="delete">Delete Task</button></li>
+			</menu>
+		</section>
+	</div>
+</script>
