@@ -38,8 +38,8 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 
 header, footer {  height: 50px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; }
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 10px; } 
-		header .title, header .title input { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 22px; color: #000 }
-		header .title input { -webkit-box-flex: 1; -webkit-appearance: none; } 
+		header .title { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 22px; color: #000 }
+		header input.title { -webkit-appearance: none; } 
 
 footer.buttons .PriorityChooser { bottom: 45px; } 
 

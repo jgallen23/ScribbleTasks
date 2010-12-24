@@ -221,9 +221,14 @@ var ProjectController = Controller.extend({
 			}
 			this.scrollTo = false;
 		}
-		
-		if (this.project.name == "")
-			this.view.find("[data-type='title']").focus();
+		/*	
+		setTimeout(function() {
+			if (!self.project.name) {
+				console.log("focus");
+				self.view.find("[data-type='title']").focus();
+			}
+		}, 1000);
+		*/
 	},
 	drawScribbles: function(height) {
 		var self = this;
