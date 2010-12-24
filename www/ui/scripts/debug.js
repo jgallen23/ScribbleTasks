@@ -100,6 +100,7 @@ var debugUtils = {
 				localStorage.setItem(String.format("starCount_{0}", project.key), starCount);
 				localStorage.setItem(String.format("taskCount_{0}", project.key), incompleteCount);
 				incStar(starCount);
+				console.log("Set Counts for: "+project.name);
 			});
 		}
 
