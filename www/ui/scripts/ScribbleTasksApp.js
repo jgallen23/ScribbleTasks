@@ -9,6 +9,7 @@ var ScribbleTasksApp = Application.extend({
 		this.debug = debugUtils;
 		this.notificationCenter.bind("task.propertySet", function() { self.taskPropertySet.apply(self, arguments)});
 		this.notificationCenter.bind("project.taskAdded", function() { self.projectTaskAdded.apply(self, arguments)});
+		this.notificationCenter.bind("project.taskRemoved", function() { self.projectTaskRemoved.apply(self, arguments)});
 		this.currentController = new ProjectListController("ProjectList");
 		this.runTests();
 	},
@@ -73,6 +74,14 @@ var ScribbleTasksApp = Application.extend({
 		if (task.star) {
 			this.offsetKey(String.format("starCount_{0}", task.projectKey), 1);
 			this.offsetKey(String.format("totalStarCount", task.projectKey), 1);
+			this.updateBadge();
+		}
+	},
+	projectTaskRemoved: function(project, task) {
+		this.offsetKey(String.format("taskCount_{0}", project.key), -1);
+		if (task.star) {
+			this.offsetKey(String.format("starCount_{0}", task.projectKey), -1);
+			this.offsetKey(String.format("totalStarCount", task.projectKey), -1);
 			this.updateBadge();
 		}
 	},

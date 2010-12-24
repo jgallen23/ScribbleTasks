@@ -96,6 +96,7 @@ var Project = Model.extend({
 		var self = this;
 		this.taskIds.removeItem(task.key);
 		self.save(function(project) {
+			APP.notificationCenter.trigger("project.taskRemoved", [self, task]);
 			cb(self);
 		});
 	},
