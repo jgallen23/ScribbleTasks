@@ -221,6 +221,9 @@ var ProjectController = Controller.extend({
 			}
 			this.scrollTo = false;
 		}
+		
+		if (this.project.name == "")
+			this.view.find("[data-type='title']").focus();
 	},
 	drawScribbles: function(height) {
 		var self = this;
