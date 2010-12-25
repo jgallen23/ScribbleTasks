@@ -10,3 +10,6 @@
 [submodule "ext/phonegap-plugins"]
 	path = ext/phonegap-plugins
 	url = git://github.com/jgallen23/PhoneGap-Plugins.git
+[submodule "ext/sprite_generator"]
+	path = ext/sprite_generator
+	url = git://github.com/jgallen23/sprite_generator.git
