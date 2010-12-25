@@ -131,7 +131,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	#AddTask.Modal { -webkit-box-align: start; }
 	#AddTask.Modal .wrapper { height: 100%; width: 100% }
 	#DebugMenu.Modal .wrapper { height: 100%; width: 100% }
-	#AddTask .Popup { -webkit-border-radius: 0; padding: 0; margin: 0}
+	#AddTask .wrapper.Popup { -webkit-border-radius: 0; padding: 0; margin: 0}
 	#AddScribble { border: 0; }
 	#AddTask .buttons .Icon { margin-top: 0; } 
 
