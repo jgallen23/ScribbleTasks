@@ -19,10 +19,8 @@ var ProjectListController = PageController.extend({
 	},
 	loadProjects: function() {
 		var self = this;
-		APP.data.badgeCount = 0;
 		Project.data.find(function(projects) {
 			projects.sort(Project.sort.starred);
-			APP.updateBadge();
 			self.projects = projects;
 			self._render();
 		});

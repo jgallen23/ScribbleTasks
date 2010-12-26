@@ -1,7 +1,7 @@
 var TaskHeight = 165;
 var MinTaskHeight = 90;
 var TaskScale = 0.4;
-var PageSize = 15;
+var PageSize = 5;
 var ProjectController = PageController.extend({
 	init: function(elementId, project) {
 		var self = this;
@@ -187,7 +187,8 @@ var ProjectController = PageController.extend({
 
 		var itemHeight = TaskHeight;
 		
-		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
+		var e = this.view.find("div.TaskList ul");
+		this.view.renderAt(e, "jstProjectView", data);
 		if (this.tasks.length != 0) {
 			this.drawScribbles(itemHeight);
 			this.view.findAll("div.TaskList li.taskItem", function(item, i) {
@@ -236,7 +237,8 @@ var ProjectController = PageController.extend({
 		for (var i = 0, c = tasks.length; i < c; i++) {
 			var task = tasks[i];
 			if (task.path) {
-				var s = new Scribble(document.getElementById("Scribble_"+i), true);
+				var elem = document.getElementById("Scribble_"+task.key);
+				var s = new Scribble(elem, true);
 				s.scale(TaskScale, TaskScale);
 				s.load(task.path, task.bounds[0]);
 				self.scribbles.push(s);
@@ -266,10 +268,6 @@ var ProjectController = PageController.extend({
 			if (!(task instanceof Task)) { //New Task
 				task = new Task(task);
 				self.allTasks.push(task);
-				if (task.star) {
-					APP.data.badgeCount++;
-					APP.updateBadge();
-				}
 				self.project.addTask(task, function(project, task) {
 					add(tasks, index+1, cb);
 				});
@@ -286,13 +284,6 @@ var ProjectController = PageController.extend({
 	starTask: function(task) {
 		var self = this;
 		task.star = !task.star;
-		if (task.star) {
-			APP.data.badgeCount++;
-			APP.updateBadge();
-		} else {
-			APP.data.badgeCount--;
-			APP.updateBadge();
-		}
 		task.save(function() {
 			self.loadTasks();
 		});
@@ -319,6 +310,7 @@ var ProjectController = PageController.extend({
 			else
 				task.complete();
 			task.save(function(t) {
+				console.log(t.completedOn);
 				self.loadTasks();
 			});
 		}, 200);

@@ -10,7 +10,6 @@
 		</ul>
 	</header>
 	<div class="TaskList">	
-		<canvas id="tmpCanvas"></canvas>
 		<ul><li class="loading">Getting Tasks</li></ul>
 	</div>
 	<footer>
@@ -46,7 +45,7 @@
 		{!= task.name !}
 	</div>
 	{! } else { !}
-	<div id="Scribble_{!= index !}" class="task scribble">
+	<div id="Scribble_{!= task.key !}" class="task scribble">
 		<canvas></canvas>
 	</div>
 	{! } !}

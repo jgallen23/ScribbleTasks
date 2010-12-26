@@ -12,7 +12,6 @@ var Scribble = View.extend({
 		//Error Here
 		//this.canvas = this.find("canvas");
 		this.canvas = this.element.firstChild; 
-		console.log(1);
 		this.context = this.canvas.getContext('2d');
 
 		if (!this.readonly) {
