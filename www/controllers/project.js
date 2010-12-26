@@ -1,7 +1,7 @@
 var TaskHeight = 165;
 var MinTaskHeight = 90;
 var TaskScale = 0.4;
-var PageSize = 5;
+var PageSize = 15;
 var ProjectController = PageController.extend({
 	init: function(elementId, project) {
 		var self = this;
@@ -284,16 +284,14 @@ var ProjectController = PageController.extend({
 	starTask: function(task) {
 		var self = this;
 		task.star = !task.star;
-		task.save(function() {
-			self.loadTasks();
-		});
+		self.loadTasks();
+		task.save();
 	},
 	setPriority: function(task, priority) {
 		var self = this;
 		task.priority = priority;
-		task.save(function() {
-			self.loadTasks();
-		});
+		self.loadTasks();
+		task.save();
 	},
 	completeTask: function(taskElement) {
 		var self = this;
@@ -309,10 +307,8 @@ var ProjectController = PageController.extend({
 				task.unComplete();
 			else
 				task.complete();
-			task.save(function(t) {
-				console.log(t.completedOn);
-				self.loadTasks();
-			});
+			self.loadTasks();
+			task.save();
 		}, 200);
 	}
 });
