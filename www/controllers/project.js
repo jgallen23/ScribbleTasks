@@ -253,9 +253,12 @@ var ProjectController = PageController.extend({
 		});
 		atc.bind("close", function() {
 			APP.enableScrolling(); 
+			this.slideUp();
 			this.destroy();
 		});
-		atc.show(task);
+		atc.show();
+		atc.setTask(task);
+		atc.slideDown();
 	},
 	addTask: function(tasks) {
 		var self = this;

@@ -1,4 +1,4 @@
-var AddTaskController = Controller.extend({
+var AddTaskController = PageController.extend({
 	init: function(elementId) {
 		this._super(elementId);
 		this.star = false;
@@ -21,10 +21,9 @@ var AddTaskController = Controller.extend({
 		this.loadedScribble = null;
 		this.scribble.clear();
 	},
-	show: function(scribble) {
+	setTask: function(scribble) {
 		APP.currentController = this;
-		this.element.style.top = window.scrollY+"px";
-		this.element.style.display = "-webkit-box";
+		//this.element.style.top = window.scrollY+"px";
 		var elem = this.view.find('#AddScribble');
 		this.scribble.canvas.height = elem.clientHeight;
 		this.scribble.canvas.width = elem.clientWidth;
@@ -40,6 +39,9 @@ var AddTaskController = Controller.extend({
 		}
 		var data = { key: 'add_task', priority: 0 }
 		this.view.renderAt(this.view.find(".PriorityChooser"), "jstPriorityChooser", data);
+	},
+	show: function() {
+		this.element.style.display = "-webkit-box";
 	},
 	hide: function() {
 		APP.enableScrolling();
@@ -100,7 +102,7 @@ var AddTaskController = Controller.extend({
 		},
 		add: function(e) {
 			this.appendTask();	
-			this.hide();
+			//this.hide();
 			this.trigger("add", [this.tasks]);
 			this.trigger("close");
 		},
@@ -111,7 +113,7 @@ var AddTaskController = Controller.extend({
 			if (this.tasks.length != 0)
 				this.trigger("add", [this.tasks]);
 			this.clear();
-			this.hide();
+			//this.hide();
 			this.trigger("close");
 		},
 		undo: function(e) {
