@@ -1,4 +1,4 @@
-var ProjectListController = Controller.extend({
+var ProjectListController = PageController.extend({
 	init: function(elementId) {
 		var self = this;
 		this._super(elementId);
@@ -41,26 +41,29 @@ var ProjectListController = Controller.extend({
 		var projectController = new ProjectController("Project", project);
 		var self = this;
 		projectController.bind("back", function() {
-			self.show();
-			this.hide();
+			/*self.show();*/
+			/*this.hide();*/
+			this.slideOut(self);
 			this.destroy();
 		});
-		this.hide();
-		projectController.show();
-		//this.slideIn(projectController);
+		//this.hide();
+		//projectController.show();
+		this.slideIn(projectController);
 		return projectController;
 	},
 	showSearch: function(filterName, filter, sort) {
 		var self = this;
 		var searchController = new SearchController("SearchResults", filterName, filter, sort);
 		searchController.bind("back", function() {
-			self.show();
-			this.hide();
+			/*self.show();*/
+			/*this.hide();*/
+			this.slideOut(self);
 			this.destroy();
 		});
-		this.hide();
+		/*this.hide();*/
 		this.onClick.searchClose.call(this);
-		searchController.show();
+		this.slideIn(searchController);
+		/*searchController.show();*/
 	},
 	show: function() {
 		this.loadProjects();

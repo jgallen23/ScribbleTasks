@@ -21,6 +21,8 @@ var ScribbleTasksApp = Application.extend({
 			document.querySelector("#AddTask .wrapper").style.height = height+"px";
 		}
 		var wrapper = document.querySelector("#Wrapper");
+		wrapper.style.width = width+"px";
+		wrapper.style.height = height+"px";
 		height -= (wrapper.offsetTop*2);	
 		var containers = document.querySelectorAll(".Container");
 		for (var i = 0, c = containers.length; i < c; i++) {
