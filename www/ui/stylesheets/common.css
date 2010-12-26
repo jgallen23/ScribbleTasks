@@ -9,6 +9,10 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	button.off { opacity: .3 }
 	button.star { background-image: url(../images/icons/star.png); }
 		.Toolbar button.star { background-image: url(../images/icons/star.png); }
+
+	.TaskList button.star { -webkit-mask-box-image: url(../images/icons/star.png); -webkit-mask-box-size: 20px; background-image: 0; background: #000; }
+		.TaskList button.star.off { background: #ccc; }
+
 	button.edit { background-image: url(../images/icons/pencil.png); }
 	button.incomplete { background-image: url(../images/icons/folder.png); }
 	button.complete { background-image: url(../images/icons/check.png); }
