@@ -47,11 +47,12 @@ var ProjectListController = Controller.extend({
 		});
 		this.hide();
 		projectController.show();
+		//this.slideIn(projectController);
 		return projectController;
 	},
-	showSearch: function(filterName, filter) {
+	showSearch: function(filterName, filter, sort) {
 		var self = this;
-		var searchController = new SearchController("SearchResults", filterName, filter);
+		var searchController = new SearchController("SearchResults", filterName, filter, sort);
 		searchController.bind("back", function() {
 			self.show();
 			this.hide();
@@ -69,8 +70,11 @@ var ProjectListController = Controller.extend({
 	onClick: {
 		searchOldTasks: function(e) {
 			var oldDate = new Date().getTime() - 1000*60*60*24*14; //secs*mins*hours
+			oldDate = new Date().getTime();
 			this.showSearch("Old Tasks", function(t) {
 				return (!t.isComplete && t.createdOn < oldDate);
+			}, function(a, b) {
+				return a.createdOn - b.createdOn;
 			});
 		},
 		searchNoProject: function(e) {

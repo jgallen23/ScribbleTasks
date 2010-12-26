@@ -1,7 +1,8 @@
 var SearchController = ProjectController.extend({
-	init: function(elementId, filterName, filter) {
+	init: function(elementId, filterName, filter, sort) {
 		this.searchFilterName = filterName;
 		this.searchFilter = filter;
+		this.sort = sort || Task.sort.incomplete;
 		this._super(elementId, null);
 	},
 	loadTasks: function() {
@@ -9,7 +10,7 @@ var SearchController = ProjectController.extend({
 		this.view.find("[data-type='title']").value = this.searchFilterName;
         var filter = function() {
             self.tasks = self.allTasks.filter(self.searchFilter);
-			self.tasks.sort(Task.sort.incomplete);
+			self.tasks.sort(self.sort);
 			self._render();
         }
         if (!self.allTasks) {
