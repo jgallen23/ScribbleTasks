@@ -27,6 +27,7 @@
 		7638CE0012A2FD6500B13FA3 /* app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7638CDFD12A2FD6500B13FA3 /* app@2x.png */; };
 		C912416E129A3B6E00BBF0CE /* Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = C912416D129A3B6E00BBF0CE /* Badge.m */; };
 		C92B7F0A12884BA300E56435 /* libPhoneGapLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C92B7EE412884B7700E56435 /* libPhoneGapLib.a */; };
+		C93C546712C7B6E8000C6B1C /* ClipboardPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C93C546612C7B6E8000C6B1C /* ClipboardPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		C912416C129A3B6E00BBF0CE /* Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Badge.h; path = "../ext/phonegap-plugins/iPhone/Badge/Badge.h"; sourceTree = SOURCE_ROOT; };
 		C912416D129A3B6E00BBF0CE /* Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Badge.m; path = "../ext/phonegap-plugins/iPhone/Badge/Badge.m"; sourceTree = SOURCE_ROOT; };
 		C92B7EDC12884B7600E56435 /* PhoneGapLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PhoneGapLib.xcodeproj; path = "../ext/phonegap-iphone/PhoneGapLib/PhoneGapLib.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		C93C546512C7B6E8000C6B1C /* ClipboardPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClipboardPlugin.h; path = "../ext/phonegap-plugins/iPhone/ClipboardPlugin/ClipboardPlugin.h"; sourceTree = SOURCE_ROOT; };
+		C93C546612C7B6E8000C6B1C /* ClipboardPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClipboardPlugin.m; path = "../ext/phonegap-plugins/iPhone/ClipboardPlugin/ClipboardPlugin.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				C93C546512C7B6E8000C6B1C /* ClipboardPlugin.h */,
+				C93C546612C7B6E8000C6B1C /* ClipboardPlugin.m */,
 				C912416C129A3B6E00BBF0CE /* Badge.h */,
 				C912416D129A3B6E00BBF0CE /* Badge.m */,
 			);
@@ -328,6 +333,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ScribbleTasksAppDelegate.m in Sources */,
 				C912416E129A3B6E00BBF0CE /* Badge.m in Sources */,
+				C93C546712C7B6E8000C6B1C /* ClipboardPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,4 +7,5 @@ ScribbleTask/build
 www/ui/scripts/app*
 www/ui/scripts/scribbletasks*
 www/ui/scripts/Badge.js
+www/ui/scripts/clipboardPlugin.js
 www/index.html

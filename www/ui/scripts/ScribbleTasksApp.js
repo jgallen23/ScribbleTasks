@@ -124,8 +124,10 @@ var ScribbleTasksApp = Application.extend({
             });
             Task.data.find(function(tasks) {
                 tasks.each(function(task) {
-					task._data.imageData = null;
-                    data.tasks.push(task._data);
+					if (!task.isComplete) {
+						task._data.imageData = null;
+						data.tasks.push(task._data);
+					}
                 });
                 cb(JSON.stringify(data));
             });

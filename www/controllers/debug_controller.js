@@ -17,6 +17,8 @@ var DebugController = Controller.extend({
 		backup: function() {
 			var self = this;
 			APP.backup(function(data) {
+				if (APP.browser.isPhoneGap)
+					plugins.clipboardPlugin.setText(data);
 				self.view.find(".backup textarea").value = data;
 				self.view.find(".backup").style.display = "block";				
 			});

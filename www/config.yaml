@@ -4,6 +4,7 @@ js:
     files:
       - 'ui/scripts/iscroll.js'
       - 'ui/scripts/Badge.js'
+      - 'ui/scripts/clipboardPlugin.js'
       - 'ui/scripts/debug.js'
       - 'ui/scripts/SwipeController.js'
       - 'ui/scripts/date-en-US.js'
