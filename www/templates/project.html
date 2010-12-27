@@ -22,42 +22,5 @@
 		</ul>
 	</footer>
 </div>
-<script type="text/html" id="jstProjectView">
-	{! for (var i = 0, c = tasks.length; i < c; i++) { var task = tasks[i]; !}
-	<li class="taskItem" data-key="{!= task.key !}" data-index="{!= i !}">
-		{!= template("jstTaskView", { index: i, task: task, projects: projects }) !}
-	</li>
-	{! } !}	
-	{! if (hasMore) { !}
-	<li class="viewMore"><button data-onClick="viewMore" class="Text">View More</button></li>
-	{! } !}
-</script>
-<script type="text/html" id="jstTaskView">
-	
-	<div class="buttons">
-		<input type="checkbox" data-onClick="complete" {!= (task.isComplete)?"checked":"" !}/>
-		<button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-onClick="star"></button>
-		<button class="Icon priority" data-priority="{!= task.priority !}" data-onClick="priority">!</button>
-		<section class="PriorityChooser Popup">
-			{!= template("jstPriorityChooser", { key: index }) !}
-		</section>
-	</div>
-	{! if (task.name) { !}
-	<div class="task" data-onClick="task">
-		{!= task.name !}
-	</div>
-	{! } else { !}
-	<div id="Scribble_{!= task.key !}" class="task scribble">
-		<canvas></canvas>
-	</div>
-	{! } !}
 
-	<menu>
-		{! if (projects) { !}
-			<li class="projectName">{!= projects[task.projectKey].name !}</li>
-		{! } !}
-		<li><button class="Icon edit" data-onClick="task"></button></li>
-		<li><button class="Icon menu" data-index="{!= index !}" data-onClick="menu"></button></li>
-	</menu>
-	<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
-</script>
+
