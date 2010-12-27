@@ -10,7 +10,7 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	.Icon.star { background-image: url(../images/icons/star.png); }
 		.Toolbar .Icon.star { background-image: url(../images/icons/star.png); }
 
-	.TaskList .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; }
+	.TaskList .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; -webkit-mask-origin: border; border: 7px solid #fff; }
 		.TaskList .Icon.star.off { background: #ddd; }
 
 	.Icon.edit { background-image: url(../images/icons/pencil.png); }
