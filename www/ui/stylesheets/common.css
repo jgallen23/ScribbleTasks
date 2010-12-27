@@ -5,35 +5,35 @@ body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; 
 #Wrapper { position: relative; }
 
 button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin: 0; }
-	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; } 
-	button.off { opacity: .3 }
-	button.star { background-image: url(../images/icons/star.png); }
-		.Toolbar button.star { background-image: url(../images/icons/star.png); }
+	.Icon.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; } 
+	.Icon.off { opacity: .3 }
+	.Icon.star { background-image: url(../images/icons/star.png); }
+		.Toolbar .Icon.star { background-image: url(../images/icons/star.png); }
 
-	.TaskList button.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; }
-		.TaskList button.star.off { background: #ddd; }
+	.TaskList .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; }
+		.TaskList .Icon.star.off { background: #ddd; }
 
-	button.edit { background-image: url(../images/icons/pencil.png); }
-	button.incomplete { background-image: url(../images/icons/folder.png); }
-	button.complete { background-image: url(../images/icons/check.png); }
-	button.add { background-image: url(../images/icons/add.png); }
-	button.addFolder { background-image: url(../images/icons/add-folder.png); }
-	button.addMulti { background-image: url(../images/icons/add-multi.png); }
-	button.clear { background-image: url(../images/icons/delete.png); }
-	button.back { background-image: url(../images/icons/arrow-left.png); }
-	button.redo { background-image: url(../images/icons/redo.png); }
-	button.undo { background-image: url(../images/icons/undo.png); }
-	button.top { background-image: url(../images/icons/arrow-up.png); }
-	button.menu { background-image: url(../images/icons/menu.png); }
-	button.search { background-image: url(../images/icons/search.png); }
+	.Icon.edit { background-image: url(../images/icons/pencil.png); }
+	.Icon.incomplete { background-image: url(../images/icons/folder.png); }
+	.Icon.complete { background-image: url(../images/icons/check.png); }
+	.Icon.add { background-image: url(../images/icons/add.png); }
+	.Icon.addFolder { background-image: url(../images/icons/add-folder.png); }
+	.Icon.addMulti { background-image: url(../images/icons/add-multi.png); }
+	.Icon.clear { background-image: url(../images/icons/delete.png); }
+	.Icon.back { background-image: url(../images/icons/arrow-left.png); }
+	.Icon.redo { background-image: url(../images/icons/redo.png); }
+	.Icon.undo { background-image: url(../images/icons/undo.png); }
+	.Icon.top { background-image: url(../images/icons/arrow-up.png); }
+	.Icon.menu { background-image: url(../images/icons/menu.png); }
+	.Icon.search { background-image: url(../images/icons/search.png); }
 
-	button.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px;}
-	footer button.priority { font-size: 20px; }
-   	.PriorityChooser button.Icon.priority span { height: 25px; width: 25px; -webkit-border-radius: 15px; }
-		button.priority[data-priority="0"] { color: #000; } 
-		button.priority[data-priority="1"] { color: #f08e0f; } 
-		button.priority[data-priority="2"] { color: #8f0606; } 
-		button.priority[data-priority="-1"] { color: #ccc; } 
+	.Icon.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px;}
+	footer .Icon.priority { font-size: 20px; }
+   	.PriorityChooser .Icon.Icon.priority span { height: 25px; width: 25px; -webkit-border-radius: 15px; }
+		.Icon.priority[data-priority="0"] { color: #000; } 
+		.Icon.priority[data-priority="1"] { color: #f08e0f; } 
+		.Icon.priority[data-priority="2"] { color: #8f0606; } 
+		.Icon.priority[data-priority="-1"] { color: #ccc; } 
 
 .PriorityChooser { background: #fff; display: none; position: absolute; z-index: 100; padding: 5px 5px 0 5px; margin-top: -15px; }
 	.PriorityChooser button { margin-right: 5px; padding: 0 0 0 5px; }
@@ -100,7 +100,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; left: 5000px}
 	.Project .TaskList { -webkit-box-flex: 1; }
 	.Project .incomplete,
-	footer .hasCount { background-position: left center; padding: 3px 0 0 25px; width: 65px; }
+	footer .Icon.hasCount { background-position: left center; padding: 3px 0 0 25px; width: 65px; }
 	footer button.hasCount span:before { content: "(" }
 	footer button.hasCount span:after { content: ")" }
 
