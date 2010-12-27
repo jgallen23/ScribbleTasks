@@ -41,6 +41,7 @@ var ProjectListController = PageController.extend({
 		projectController.bind("back", function() {
 			/*self.show();*/
 			/*this.hide();*/
+			self.loadProjects();
 			this.slideOut(self);
 			this.destroy();
 		});
@@ -55,6 +56,7 @@ var ProjectListController = PageController.extend({
 		searchController.bind("back", function() {
 			/*self.show();*/
 			/*this.hide();*/
+			self.loadProjects();
 			this.slideOut(self);
 			this.destroy();
 		});
