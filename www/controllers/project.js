@@ -26,6 +26,7 @@ var ProjectController = PageController.extend({
 		});
 		this._handleTitleChange();
 
+		this.view.find(".loading").style.display = "block";
 		this.loadTasks();
 	},
 	destroy: function() {
@@ -187,6 +188,7 @@ var ProjectController = PageController.extend({
 
 		var itemHeight = TaskHeight;
 		
+		this.view.find(".loading").style.display = "none";
 		var e = this.view.find("div.TaskList ul");
 		this.view.renderAt(e, "jstProjectView", data);
 		if (this.tasks.length != 0) {

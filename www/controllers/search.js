@@ -29,6 +29,7 @@ var SearchController = ProjectController.extend({
 
 		var itemHeight = TaskHeight;
 
+		this.view.find(".loading").style.display = "none";
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data);
 		if (this.tasks.length != 0) {
 			this.drawScribbles(itemHeight);
