@@ -50,8 +50,8 @@ var ScribbleTasksApp = Application.extend({
 				this.currentController.onClick.debug();
 			} else if (params.test == "search") {
 				this.currentController.bind("loaded", function() {
-					this.onClick.search.call(this);
-					//c.showSearch("Starred Tasks", Task.filters.star);
+					//this.onClick.search.call(this);
+					this.showSearch("Starred Tasks", Task.filters.star);
 				});
 			}
 		}

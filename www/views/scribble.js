@@ -9,9 +9,7 @@ var Scribble = View.extend({
 		this.undos = [];
 		this.origin = [0,0];
 		this.path = null;
-		//Error Here
-		//this.canvas = this.find("canvas");
-		this.canvas = this.element.firstChild; 
+		this.canvas = this.find("canvas");
 		this.context = this.canvas.getContext('2d');
 
 		if (!this.readonly) {

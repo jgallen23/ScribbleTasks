@@ -52,7 +52,7 @@ var ProjectListController = PageController.extend({
 	},
 	showSearch: function(filterName, filter, sort) {
 		var self = this;
-		var searchController = new SearchController("SearchResults", filterName, filter, sort);
+		var searchController = new SearchController("SearchResults", this.projects, filterName, filter, sort);
 		searchController.bind("back", function() {
 			/*self.show();*/
 			/*this.hide();*/

@@ -85,11 +85,13 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList li.taskItem .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-pack: center; height: 100%; }
 		.TaskList li.taskItem .buttons .star { } 
 	.TaskList li.taskItem { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px; overflow: hidden; } 
+		.TaskList li.taskItem .projectName { font-family: 'Arial' } 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0; text-align: center; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
-	.TaskList menu li { list-style: none; }
+	.TaskList menu { padding: 0; list-style: none; }
+		.TaskList menu li { text-align: right; } 
 	.TaskList .complete { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
 	.TaskList .viewMore { text-align: center; padding: 15px 0;  }

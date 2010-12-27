@@ -1,8 +1,13 @@
 var SearchController = ProjectController.extend({
-	init: function(elementId, filterName, filter, sort) {
+	init: function(elementId, projects, filterName, filter, sort) {
 		this.searchFilterName = filterName;
 		this.searchFilter = filter;
 		this.sort = sort || Task.sort.incomplete;
+		this.projects = {};
+		var self = this;
+		projects.each(function(project) {
+			self.projects[project.key] = project;
+		});
 		this._super(elementId, null);
 	},
 	loadTasks: function() {
@@ -14,10 +19,10 @@ var SearchController = ProjectController.extend({
 			self._render();
         }
         if (!self.allTasks) {
-            Task.data.find(function(tasks) {
-                self.allTasks = tasks;
-                filter();
-            });
+			Task.data.find(function(tasks) {
+				self.allTasks = tasks;
+				filter();
+			});
         } else {
             filter();
         }
@@ -25,7 +30,7 @@ var SearchController = ProjectController.extend({
 	_render: function() {
 		var self = this;
 		var tasks = this.getVisibleTasks();
-		var data = { tasks: tasks, hasMore: (tasks.length != this.tasks.length) };
+		var data = { tasks: tasks, hasMore: (tasks.length != this.tasks.length), projects: this.projects };
 
 		var itemHeight = TaskHeight;
 
