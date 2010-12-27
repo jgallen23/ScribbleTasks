@@ -7,15 +7,26 @@ var ProjectListController = PageController.extend({
 
 		if (APP.browser.isMobile) {
 			this.scroller = new iScroll(this.view.find(".ProjectList ul"), { checkDOMChanges: false, desktopCompatibility: false });
+			window.addEventListener('orientationchange', this);
 		}
 
 		this.loadProjects();
 	},
 	destroy: function() {
+		window.removeEventListener('orientationchange', this);
 		if (this.scroller)
 			this.scroller.destroy();
 		this.scroller = null;
 		this._super();
+	},
+	handleEvent: function(e) {
+		this._super(e);
+		var self = this;
+		switch (e.type) {
+			case "orientationchange":
+				setTimeout(function () { self.scroller.refresh(); }, 0);
+				break;
+		}
 	},
 	loadProjects: function() {
 		var self = this;

@@ -15,7 +15,9 @@ var ProjectController = PageController.extend({
 
 		if (APP.browser.isMobile) {
 			this.scroller = new iScroll(this.view.find(".TaskList ul"), { checkDOMChanges: false, desktopCompatibility: false });
+			window.addEventListener('orientationchange', this);
 		}
+
 		APP.bind("enableScrolling", function() {
 			if (self.scroller)
 				self.scroller.enabled = true;
@@ -30,6 +32,7 @@ var ProjectController = PageController.extend({
 		this.loadTasks();
 	},
 	destroy: function() {
+		window.removeEventListener('orientationchange', this);
 		if (this.scroller)
 			this.scroller.destroy();
 		this.scroller = null;
@@ -43,6 +46,15 @@ var ProjectController = PageController.extend({
 		this.tasks = null;
 		this.view.find(".TaskList ul").innerHTML = "";
 		this._super();
+	},
+	handleEvent: function(e) {
+		this._super(e);
+		var self = this;
+		switch (e.type) {
+			case "orientationchange":
+				setTimeout(function () { self.scroller.refresh(); }, 0);
+				break;
+		}
 	},
 	onClick: {
 		menu: function(e) {
