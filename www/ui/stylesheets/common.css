@@ -5,13 +5,13 @@ body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; 
 #Wrapper { position: relative; }
 
 button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin: 0; }
-	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; opacity: 1.0 } 
+	button.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; } 
 	button.off { opacity: .3 }
 	button.star { background-image: url(../images/icons/star.png); }
 		.Toolbar button.star { background-image: url(../images/icons/star.png); }
 
-	.TaskList button.star { -webkit-mask-box-image: url(../images/icons/star.png); -webkit-mask-box-size: 20px; background-image: 0; background: #000; }
-		.TaskList button.star.off { background: #ccc; }
+	.TaskList button.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; }
+		.TaskList button.star.off { background: #ddd; }
 
 	button.edit { background-image: url(../images/icons/pencil.png); }
 	button.incomplete { background-image: url(../images/icons/folder.png); }
@@ -86,8 +86,6 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		.TaskList li.taskItem .buttons .star { } 
 	.TaskList li.taskItem { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px; overflow: hidden; } 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
-	.TaskList .star.off { opacity: .2;}
-	.TaskList .star.off:active { opacity: 1;}
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0; text-align: center; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
