@@ -13,6 +13,7 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	.TaskList .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; -webkit-mask-origin: border; border: 7px solid #fff; }
 		.TaskList .Icon.star.off { background: #ddd; }
 
+	/*
 	.Icon.edit { background-image: url(../images/icons/pencil.png); }
 	.Icon.incomplete { background-image: url(../images/icons/folder.png); }
 	.Icon.complete { background-image: url(../images/icons/check.png); }
@@ -26,6 +27,7 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	.Icon.top { background-image: url(../images/icons/arrow-up.png); }
 	.Icon.menu { background-image: url(../images/icons/menu.png); }
 	.Icon.search { background-image: url(../images/icons/search.png); }
+	*/
 
 	.Icon.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px;}
 	footer .Icon.priority { font-size: 20px; }
@@ -102,7 +104,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; left: 5000px}
 	.Project .TaskList { -webkit-box-flex: 1; }
 	.Project .incomplete,
-	footer .Icon.hasCount { background-position: left center; padding: 3px 0 0 25px; width: 65px; }
+	footer .Icon.star.hasCount { background-position: left center; padding: 3px 0 0 4px; width: 65px; }
+	footer .Icon.incomplete.hasCount { padding: 3px 0 0 25px; width: 65px; }
 	footer button.hasCount span:before { content: "(" }
 	footer button.hasCount span:after { content: ")" }
 
