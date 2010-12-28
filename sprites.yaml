@@ -1,50 +1,50 @@
 stylesheet_dir: www/ui/stylesheets/
-base_dir: www/ui/images
-sprite_dir: sprites
+sprite_dir: www/ui/images/sprites/
 sprite_path: /ui/images/sprites
-scale: 0.3125
-offset_y: 7
-offset_x: 7
 sprites:
   - name: icons
+    base_dir: www/ui/images/icons/
+    scale: 0.3125
+    offset_y: 7
+    offset_x: 7
     images:
-      - file: icons/add.png
+      - file: add.png
         selector: .Icon.add
         bottom_padding: 40
-      - file: icons/add-multi.png
+      - file: add-multi.png
         selector: .Icon.addMulti
         bottom_padding: 40
-      - file: icons/pencil.png
+      - file: pencil.png
         selector: .Icon.edit
         bottom_padding: 40
-      - file: icons/folder.png
+      - file: folder.png
         selector: .Icon.incomplete
         bottom_padding: 40
-      - file: icons/check.png
+      - file: check.png
         selector: .Icon.complete
         bottom_padding: 40
-      - file: icons/add-folder.png
+      - file: add-folder.png
         selector: .Icon.addFolder
         bottom_padding: 40
-      - file: icons/delete.png
+      - file: delete.png
         selector: .Icon.clear
         bottom_padding: 40
-      - file: icons/arrow-left.png
+      - file: arrow-left.png
         selector: .Icon.back
         bottom_padding: 40
-      - file: icons/redo.png
+      - file: redo.png
         selector: .Icon.redo
         bottom_padding: 40
-      - file: icons/undo.png
+      - file: undo.png
         selector: .Icon.undo
         bottom_padding: 40
-      - file: icons/arrow-up.png
+      - file: arrow-up.png
         selector: .Icon.top
         bottom_padding: 40
-      - file: icons/menu.png
+      - file: menu.png
         selector: .Icon.menu
         bottom_padding: 40
-      - file: icons/search.png
+      - file: search.png
         selector: .Icon.search
         bottom_padding: 40
 
