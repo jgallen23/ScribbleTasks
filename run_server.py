@@ -23,6 +23,7 @@ def generate_template(debug = False, phonegap = False, remote = ''):
         'appui_path': "ext/appui" if debug else "ui/scripts",
         'ui_files': uimin.get_file_list('www/config.yaml', 'js', 'scribbletasks', debug = debug),
         'ui_path': '' if debug else 'ui/scripts',
+        'phonegap_plugin_files': uimin.get_file_list('www/config.yaml', 'js', 'phonegap_plugins', debug = debug),
         'remote': remote,
     }
     return template.render(**data)

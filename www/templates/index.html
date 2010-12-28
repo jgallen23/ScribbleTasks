@@ -26,6 +26,9 @@
 		
 		{% if phonegap %}
 		<script src="phonegap.js"></script>
+		{% for file in phonegap_plugin_files %}
+		<script src="{{ ui_path }}/{{ file }}"></script>
+		{% endfor %}
 		{% endif %}
 		{% for file in appui_files %}
 		<script src="{{ appui_path }}/{{ file }}"></script>

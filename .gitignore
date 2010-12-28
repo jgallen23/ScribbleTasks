@@ -8,4 +8,5 @@ www/ui/scripts/app*
 www/ui/scripts/scribbletasks*
 www/ui/scripts/Badge.js
 www/ui/scripts/clipboardPlugin.js
+www/ui/scripts/phonegap_plugins*
 www/index.html
