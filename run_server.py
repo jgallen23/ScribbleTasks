@@ -21,9 +21,9 @@ def generate_template(debug = False, phonegap = False, remote = ''):
         'debug': debug,
         'appui_files': uimin.get_file_list('ext/appui/config.yaml', 'js', 'app.lawnchair', debug = debug),
         'appui_path': "ext/appui" if debug else "ui/scripts",
-        'ui_files': uimin.get_file_list('www/config.yaml', 'js', 'scribbletasks', debug = debug),
+        'ui_files': uimin.get_file_list('config.yaml', 'js', 'scribbletasks', debug = debug),
         'ui_path': '' if debug else 'ui/scripts',
-        'phonegap_plugin_files': uimin.get_file_list('www/config.yaml', 'js', 'phonegap_plugins', debug = debug),
+        'phonegap_plugin_files': uimin.get_file_list('config.yaml', 'js', 'phonegap_plugins', debug = debug),
         'remote': remote,
     }
     return template.render(**data)
@@ -43,7 +43,7 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             remote = query['remote'][0] if query.has_key('remote') else ''
             self.wfile.write(generate_template(debug = debug, remote = remote))
             return
-        if not self.path.startswith("/ext"):
+        if not self.path.startswith("/www") and not self.path.startswith("/ext"):
             self.path = "/www" + self.path
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
         return
