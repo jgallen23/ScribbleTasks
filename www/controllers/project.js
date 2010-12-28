@@ -236,14 +236,6 @@ var ProjectController = PageController.extend({
 			}
 			this.scrollTo = false;
 		}
-		/*	
-		setTimeout(function() {
-			if (!self.project.name) {
-				console.log("focus");
-				self.view.find("[data-type='title']").focus();
-			}
-		}, 1000);
-		*/
 	},
 	drawScribbles: function(height) {
 		var self = this;

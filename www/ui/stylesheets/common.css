@@ -134,7 +134,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 
 	#Project header ul.Toolbar { display: block; } 
 		#Project header ul.Toolbar li { display: none; } 
-			#Project header ul.Toolbar li:last-child { display: block; padding-left: 40px; }
+			#Project header ul.Toolbar li:last-child { display: block; padding-left: 20px; }
 
 	#AddTask.Modal { -webkit-box-align: start; }
 	#AddTask.Modal .wrapper { height: 100%; width: 100% }
