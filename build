@@ -3,9 +3,9 @@ git submodule update --init --recursive
 pushd ext/appui
 sh build
 popd
-cp ext/appui/lib/* www/ui/scripts/
-cp ext/phonegap-plugins/iPhone/Badge/Badge.js www/ui/scripts/
-cp ext/phonegap-plugins/iPhone/ClipboardPlugin/clipboardPlugin.js www/ui/scripts/
+cp ext/appui/lib/* www/ui/compressed/
+#cp ext/phonegap-plugins/iPhone/Badge/Badge.js www/ui/scripts/
+#cp ext/phonegap-plugins/iPhone/ClipboardPlugin/clipboardPlugin.js www/ui/scripts/
 python ext/sprite_generator/sprite_generator.py sprites.yaml
 python ext/appui/external/uimin/uimin.py config.yaml
 python run_server.py generate www/index.html

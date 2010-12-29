@@ -1,9 +1,9 @@
-output_dir: 'www/ui/scripts'
+output_dir: 'www/ui/compressed'
 js:
   phonegap_plugins:
     files:
-      - 'www/ui/scripts/Badge.js'
-      - 'www/ui/scripts/clipboardPlugin.js'
+      - 'ext/phonegap-plugins/iPhone/Badge/Badge.js'
+      - 'ext/phonegap-plugins/iPhone/ClipboardPlugin/clipboardPlugin.js'
   scribbletasks:
     files:
       - 'www/ui/scripts/iscroll.js'
@@ -22,3 +22,10 @@ js:
       - 'www/controllers/task_menu.js'
       - 'www/controllers/debug_controller.js'
       - 'www/views/scribble.js'
+css:
+  scribbletasks:
+    files:
+      - 'www/ui/stylesheets/common.css'
+      - 'www/ui/stylesheets/icons.css'
+      - 'www/ui/stylesheets/paper.css'
+      

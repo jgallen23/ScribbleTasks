@@ -1,6 +1,6 @@
 stylesheet_dir: www/ui/stylesheets/
 sprite_dir: www/ui/images/sprites/
-sprite_path: /ui/images/sprites
+sprite_path: ../images/sprites
 sprites:
   - name: icons
     base_dir: www/ui/images/icons/

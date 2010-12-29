@@ -6,9 +6,9 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
 
-		<link rel="stylesheet" type="text/css" href="ui/stylesheets/common.css"/>
-		<link rel="stylesheet" type="text/css" href="ui/stylesheets/icons.css"/>
-		<link rel="stylesheet" type="text/css" href="ui/stylesheets/skins/paper.css"/>
+		{% for file in css_files %}
+		<link rel="stylesheet" type="text/css" href="{{ css_path }}/{{ file }}"/>
+		{% endfor %}
 		{% if remote %}
 		<script src="http://{{ remote }}:8080/target/target-script.js"></script>
 		{% endif %}
@@ -28,14 +28,14 @@
 		{% if phonegap %}
 		<script src="phonegap.js"></script>
 		{% for file in phonegap_plugin_files %}
-		<script src="{{ ui_path }}/{{ file }}"></script>
+		<script src="{{ js_path }}/{{ file }}"></script>
 		{% endfor %}
 		{% endif %}
 		{% for file in appui_files %}
 		<script src="{{ appui_path }}/{{ file }}"></script>
 		{% endfor %}
-		{% for file in ui_files %}
-		<script src="{{ ui_path }}/{{ file }}"></script>
+		{% for file in js_files %}
+		<script src="{{ js_path }}/{{ file }}"></script>
 		{% endfor %}
 		<script>
 			var params = parseQueryString();
