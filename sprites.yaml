@@ -47,4 +47,9 @@ sprites:
       - file: search.png
         selector: .Icon.search
         bottom_padding: 40
-
+      - file: trash.png
+        selector: .Icon.trash
+        bottom_padding: 40
+      - file: reload.png
+        selector: .Icon.refresh
+        bottom_padding: 40
