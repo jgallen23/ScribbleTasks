@@ -6,3 +6,5 @@ ScribbleTask/build
 *.perspectivev3
 www/ui/compressed/*
 www/index.html
+www/ui/stylesheets/icons.css
+www/ui/images/sprites/*
