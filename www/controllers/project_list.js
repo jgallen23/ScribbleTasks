@@ -10,6 +10,7 @@ var ProjectListController = PageController.extend({
 			window.addEventListener('orientationchange', this);
 		}
 
+		this.view.find(".Loading").style.display = "block";
 		this.loadProjects();
 	},
 	destroy: function() {
@@ -40,6 +41,7 @@ var ProjectListController = PageController.extend({
 		var self = this;
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
+		this.view.find(".Loading").style.display = "none";
 		this.view.find("button.star span").innerHTML = localStorage['totalStarCount'] || 0;
 		this.trigger("loaded");
 		if (this.scroller) {
@@ -82,6 +84,15 @@ var ProjectListController = PageController.extend({
 		this.element.style.display = "-webkit-box";
 	},
 	onClick: {
+        refresh: function(e) {
+            var self = this;
+            this.view.find(".ProjectList ul").innerHTML = "";
+            this.view.find(".Loading").style.display = "block";
+			APP.debug.updateCounts();
+            setTimeout(function() {
+               self.loadProjects(); 
+            }, 2000);
+        },
 		searchOldTasks: function(e) {
 			var oldDate = new Date().getTime() - 1000*60*60*24*14; //secs*mins*hours
 			oldDate = new Date().getTime();

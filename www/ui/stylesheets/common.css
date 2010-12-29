@@ -79,8 +79,9 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		#SearchPopup ul { margin: 20px 0; } 
 		#SearchPopup ul li { list-style: none; margin: 20px 0 20px 40px; } 
 
+.Loading { text-align: center; height: 75px; font-size: 20px; line-height: 75px;font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: url(../images/loader.gif) no-repeat center top; margin-top: 20px; }
+
 .TaskList { margin: 0px; position: relative; z-index: 1; overflow-y: scroll; overflow-x: hidden; }
-	.TaskList .loading { text-align: center; height: 75px; font-size: 20px; line-height: 75px;font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: url(../images/loader.gif) no-repeat center top; margin-top: 20px; }
 	.TaskList #tmpCanvas { display: none; } 
 	body.Mobile .TaskList { overflow-y: hidden; }
 .TaskList ul { list-style: none; margin: 0;}
@@ -121,6 +122,9 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	#DebugMenu .backup, 
 	#DebugMenu .restore	{ display: none; }
 	#DebugMenu textarea { height: 200px; width: 98%; } 
+
+.DebugOnly { display: none; }
+.Debug .DebugOnly { display: block; }
 
 /* Desktop */
 @media only screen and (min-width: 481px) {
