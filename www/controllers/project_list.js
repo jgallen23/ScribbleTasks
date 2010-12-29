@@ -132,11 +132,18 @@ var ProjectListController = PageController.extend({
 		'delete': function(e) {
 			var self = this;
 			var project = this.projects[parseInt(e.target.getAttribute("data-index"))];
-			var a = confirm("Are you sure you want to delete "+project.name);
-			if (a) {
-				Project.data.remove(project, function() {
-					self.loadProjects();
-				});				
+			var d = function(index) {
+				if (index == 0) {
+					Project.data.remove(project, function() {
+						self.loadProjects();
+					});
+				}
+			}
+			var msg = "Are you sure you want to delete "+project.name;
+			if (APP.browser.isPhoneGap) {
+				navigator.notification.confirm(msg, d);
+			} else {
+				if (confirm(msg)) d(0);
 			}
 		},
 		'debug': function(e) {
