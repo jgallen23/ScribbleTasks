@@ -91,7 +91,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		.TaskList li.taskItem .projectName { font-family: 'Arial' } 
 	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
 	.TaskList .name { line-height: 50px }
-	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0; text-align: center; }
+	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0 5px 15px; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
 	.TaskList menu { padding: 0; list-style: none; }
 		.TaskList menu li { text-align: right; } 

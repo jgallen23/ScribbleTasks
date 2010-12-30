@@ -259,12 +259,16 @@ var ProjectController = PageController.extend({
 		});
 		atc.bind("close", function() {
 			APP.enableScrolling(); 
-			this.slideUp();
+            if (window.innerWidth < 500)
+                this.slideUp();
+            else
+                this.hide();
 			this.destroy();
 		});
 		atc.show();
 		atc.setTask(task);
-		atc.slideDown();
+        if (window.innerWidth < 500)
+            atc.slideDown();
 	},
 	addTask: function(tasks) {
 		var self = this;
