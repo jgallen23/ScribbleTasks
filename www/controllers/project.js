@@ -220,8 +220,8 @@ var ProjectController = PageController.extend({
 		elem.removeClass(this.view.findAll("#Project .Toolbar li button"), "current");
 		elem.addClass(this.view.findAll("button."+this.filter), "current");
 
-		this.view.find("button.incomplete span").innerHTML = this.project.incompleteCount;
-		this.view.find("button.star span").innerHTML = this.project.starCount;
+		this.view.findAll("button.incomplete span", function(elem, i) { elem.innerHTML = self.project.incompleteCount; });
+		this.view.findAll("button.star span", function(elem, i) { elem.innerHTML = self.project.starCount; });
 
 		if (this.scroller) {
 			setTimeout(function () { 

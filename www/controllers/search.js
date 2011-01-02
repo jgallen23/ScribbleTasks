@@ -50,7 +50,7 @@ var SearchController = ProjectController.extend({
 			});
 		}
 
-		this.view.find("button.incomplete span").innerHTML = this.tasks.length;
+		this.view.findAll("button.incomplete span", function(elem, i) { elem.innerHTML = self.tasks.length; });
 
 		if (this.scroller) {
 			setTimeout(function () { 

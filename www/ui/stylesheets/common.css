@@ -29,8 +29,8 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	.Icon.search { background-image: url(../images/icons/search.png); }
 	*/
 
-	.Icon.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px;}
-	footer .Icon.priority { font-size: 20px; }
+	.Icon.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px; padding-top: 4px; }
+	header .Icon.priority, footer .Icon.priority { font-size: 20px; }
    	.PriorityChooser .Icon.Icon.priority span { height: 25px; width: 25px; -webkit-border-radius: 15px; }
 		.Icon.priority[data-priority="0"] { color: #000; } 
 		.Icon.priority[data-priority="1"] { color: #f08e0f; } 
@@ -47,6 +47,7 @@ header, footer {  height: 50px; display: -webkit-box; -webkit-box-orient: horizo
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 10px; } 
 		header .title { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 22px; color: #000 }
 		header input.title { -webkit-appearance: none; } 
+		header .Toolbar li { padding-right: 5px; }
 
 footer.buttons .PriorityChooser { bottom: 45px; } 
 
@@ -62,18 +63,19 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 
 
 .Toolbar { list-style: none; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; -webkit-box-pack: justify }
-	#Project .Toolbar .star, #Project .Toolbar .incomplete, #Project .Toolbar .complete { opacity: .2 }
-	#Project .Toolbar .current { opacity: 1 }
+	.Project .Toolbar .star, .Project .Toolbar .incomplete, .Project .Toolbar .complete { opacity: .2 }
+	.Project .Toolbar .current { opacity: 1 }
 	.Toolbar button { /*-webkit-transition: opacity .5s ease-in-out;*/ }
 
 .Popup .Popup { margin: 0 3px 2px 0; } 
 
 .ProjectList { overflow-x: hidden; overflow-y: scroll;}
-	.ProjectList li { font-size: 20px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; line-height: 32px; } 
+	.ProjectList li { font-size: 20px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; } 
 	/*.ProjectList li button { display: none; } */
 		.ProjectList li button { padding: 5px 10px; }
-		.ProjectList li .name { -webkit-box-flex: 1 }
-		.ProjectList li .count { padding: 0 8px; line-height: 31px; }
+		.ProjectList li .name { -webkit-box-flex: 1; padding-top: 10px; }
+		.ProjectList li .count { padding: 12px 8px 0; }
+		.ProjectList li .sep { padding-top: 12px; }
 			.ProjectList li .count:last-child { margin-left: 10px; } 
 	#SearchPopup .wrapper { width: 250px; height: auto; }
 		#SearchPopup ul { margin: 20px 0; } 
@@ -105,10 +107,11 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; left: 5000px}
 	.Project .TaskList { -webkit-box-flex: 1; }
 	.Project .incomplete,
-	footer .Icon.star.hasCount { background-position: left center; padding: 3px 0 0 4px; width: 65px; }
-	footer .Icon.incomplete.hasCount { padding: 3px 0 0 25px; width: 65px; }
-	footer button.hasCount span:before { content: "(" }
-	footer button.hasCount span:after { content: ")" }
+	.Icon.star.hasCount { background-position: left center; }
+	.Icon.incomplete.hasCount { width: 50px; padding-left: 30px; }
+	.Icon.hasCount { width: 45px; padding: 3px 0 0 25px; }
+	button.hasCount span:before { content: "(" }
+	button.hasCount span:after { content: ")" }
 
 #TaskMenu { display: none; }
 	#TaskMenu .Modal { position: absolute; z-index: 100; display: -webkit-box}
@@ -124,7 +127,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	#DebugMenu textarea { height: 200px; width: 98%; } 
 
 .DebugOnly { display: none; }
-.Debug .DebugOnly { display: block; }
+.Debug .DebugOnly { display: block !important; }
 
 /* Desktop */
 @media only screen and (min-width: 481px) {
@@ -136,9 +139,13 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.Container footer { display: block; }
 	header, footer { height: 40px; }
 
-	#Project header ul.Toolbar { display: block; } 
-		#Project header ul.Toolbar li { display: none; } 
-			#Project header ul.Toolbar li:last-child { display: block; padding-left: 20px; }
+	#ProjectList header ul.Toolbar li { display: none; }
+	#ProjectList header ul.Toolbar li:last-child { display: block; }
+
+
+	.Project header ul.Toolbar { display: block; } 
+		.Project header ul.Toolbar li { display: none; } 
+			.Project header ul.Toolbar li:last-child { display: block; padding-left: 20px; }
 
 	#AddTask.Modal { -webkit-box-align: start; }
 	#AddTask.Modal .wrapper { height: 100%; width: 100% }
