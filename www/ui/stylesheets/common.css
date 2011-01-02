@@ -159,8 +159,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	#AddScribble { border: 0; }
 	#AddTask .buttons .Icon { margin-top: 0; } 
 
-	.TaskList .complete { left: 60px; }
-		.TaskList .complete.c { width: 250px; } 
+	.TaskList .completedTask { left: 60px; }
+		.TaskList .completedTask.c { width: 250px; } 
 
 
 }
