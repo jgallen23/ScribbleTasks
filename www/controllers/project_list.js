@@ -42,7 +42,7 @@ var ProjectListController = PageController.extend({
 		var data = { projects: this.projects };
 		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
 		this.view.find(".Loading").style.display = "none";
-		this.view.find("button.star span").innerHTML = localStorage['totalStarCount'] || 0;
+		this.view.findAll("button.star span", function(elem) { elem.innerHTML = localStorage['totalStarCount'] || 0 });
 		this.trigger("loaded");
 		if (this.scroller) {
 			setTimeout(function () { self.scroller.refresh() }, 100)
