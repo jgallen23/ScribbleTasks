@@ -311,9 +311,9 @@ var ProjectController = PageController.extend({
 		var index = taskElement.getAttribute("data-index");
 		var task = self.tasks[index];
 		if (task.isComplete)
-			elem.removeClass(this.view.find("li[data-index='"+index+"'] .complete"), "c");
+			elem.removeClass(this.view.find("li[data-index='"+index+"'] .completedTask"), "c");
 		else
-			elem.addClass(this.view.find("li[data-index='"+index+"'] .complete"), "c");
+			elem.addClass(this.view.find("li[data-index='"+index+"'] .completedTask"), "c");
 		//taskElement.style.opacity = 0;
 		setTimeout(function() {
 			if (task.isComplete)

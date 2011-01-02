@@ -7,6 +7,14 @@
 	{! if (hasMore) { !}
 	<li class="viewMore"><button data-onClick="viewMore" class="Text">View More</button></li>
 	{! } !}
+	{! if (tasks.length == 0) { !}
+		<li class="help">There are no tasks in this list</li>
+		<li class="help"><button class="Icon add" data-onClick="add"></button> Creates a new task</li>
+		<li class="help"><div class="Icon incomplete"></div> Shows your incomplete tasks</li>
+		<li class="help"><div class="Icon star"></div> Shows your starred tasks</li>
+		<li class="help"><div class="Icon complete"></div> Shows your completed tasks</li>
+		<li class="help"><div class="Icon top"></div> Scrolls to top of task list</li>
+	{! } !}
 </script>
 <script type="text/html" id="jstTaskView">
 	<div class="buttons">
@@ -34,5 +42,5 @@
 		<li><button class="Icon edit" data-onClick="task"></button></li>
 		<li><button class="Icon menu" data-index="{!= index !}" data-onClick="menu"></button></li>
 	</menu>
-	<div class="complete {!= (task.isComplete)?"c":"" !}"></div>
+	<div class="completedTask {!= (task.isComplete)?"c":"" !}"></div>
 </script>

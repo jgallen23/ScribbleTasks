@@ -20,7 +20,7 @@ button.Icon:active { background-color: #ccc; -webkit-border-radius: 5px; opacity
 .Project header { padding-left: 7px; }
 	.Project header .title { padding-left: 5px; margin: 0; } 
 	.Project .TaskList li.taskItem { border-bottom: 2px solid #6394cb; padding: 0 5px; }
-	.Project .TaskList .complete { background-color: #bc5768; }
+	.Project .TaskList .completedTask { background-color: #bc5768; }
 
 .Popup { -webkit-border-radius: 5px; -webkit-box-shadow: 1px 1px 10px #000; background: #fff; }
 

@@ -1,17 +1,17 @@
 ul { margin: 0; padding: 0; }
-body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; margin: 0; padding: 0;  height: 100%; }
+body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; margin: 0; padding: 0;  height: 100%; font-family: 'Arial' }
 * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
 .Wrapper { overflow: hidden; }
 #Wrapper { position: relative; }
 
 button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin: 0; }
-	.Icon.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; } 
+	.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; display: inline-block; } 
 	.Icon.off { opacity: .3 }
 	.Icon.star { background-image: url(../images/icons/star.png); }
 		.Toolbar .Icon.star { background-image: url(../images/icons/star.png); }
 
-	.TaskList .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; -webkit-mask-origin: border; border: 7px solid #fff; }
-		.TaskList .Icon.star.off { background: #ddd; }
+	.TaskList .buttons .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #F5BF49; -webkit-mask-origin: border; border: 7px solid #fff; }
+		.TaskList .buttons .Icon.star.off { background: #ddd; }
 
 	/*
 	.Icon.edit { background-image: url(../images/icons/pencil.png); }
@@ -90,16 +90,18 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList li.taskItem .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-pack: center; height: 100%; }
 		.TaskList li.taskItem .buttons .star { } 
 	.TaskList li.taskItem { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px; overflow: hidden; } 
-		.TaskList li.taskItem .projectName { font-family: 'Arial' } 
-	.TaskList button.Icon { height: 35px; width: 35px; background-size: 20px; }
+	.TaskList .buttons button.Icon { height: 35px; width: 35px; background-size: 20px; }
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0 5px 15px; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
 	.TaskList menu { padding: 0; list-style: none; }
 		.TaskList menu li { text-align: right; } 
-	.TaskList .complete { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
+	.TaskList .completedTask { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
 	.TaskList .viewMore { text-align: center; padding: 15px 0;  }
+	.TaskList .help { line-height: 35px; margin-left: 60px; }
+		.TaskList .help .Icon { display: block; float: left; }
+		.TaskList .help:first-child { margin-top: 5px; margin-bottom: 10px; font-size: 16px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; }
 
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; position: absolute; top: 0; width: 100%; background: #fff; }
 	.Container > div { -webkit-box-flex: 1; }
@@ -108,8 +110,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.Project .TaskList { -webkit-box-flex: 1; }
 	.Project .incomplete,
 	.Icon.star.hasCount { background-position: left center; }
-	.Icon.incomplete.hasCount { width: 50px; padding-left: 30px; }
-	.Icon.hasCount { width: 45px; padding: 3px 0 0 25px; }
+	.Icon.incomplete.hasCount { width: 60px; padding-left: 30px; }
+	.Icon.hasCount { width: auto; padding: 3px 0 0 25px; }
 	button.hasCount span:before { content: "(" }
 	button.hasCount span:after { content: ")" }
 
