@@ -26,6 +26,14 @@
 					<button data-index="{!= i !}" class="Icon trash" data-action="delete"></button>
 				</li>
 			{! } !}
+			{! if (projects.length == 0) { !}
+				<li class="Help">You have no projects</li>
+				<li class="Help"><button class="Icon addFolder" data-action="add"></button> Creates a new Project</li>
+				<li class="Help"><div class="Icon search"></div> Searches your tasks</li>
+				<li class="Help"><div class="Icon star"></div> Shows all of your starred tasks</li>
+				<li class="Help"><div class="Icon priority" data-priority="2">!</div> Shows your high priority tasks</li>
+				<li class="Help"><div class="Icon refresh"></div> Refreshes your projects</li>
+			{! } !}
 		</script>
 	</div>
 	<footer>

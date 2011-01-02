@@ -29,7 +29,7 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 	.Icon.search { background-image: url(../images/icons/search.png); }
 	*/
 
-	.Icon.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px; padding-top: 4px; }
+	.Icon.priority { font-family: 'MarkerFelt-Thin'; font-size: 22px; padding-top: 4px; text-align: center; }
 	header .Icon.priority, footer .Icon.priority { font-size: 20px; }
    	.PriorityChooser .Icon.Icon.priority span { height: 25px; width: 25px; -webkit-border-radius: 15px; }
 		.Icon.priority[data-priority="0"] { color: #000; } 
@@ -70,10 +70,11 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 .Popup .Popup { margin: 0 3px 2px 0; } 
 
 .ProjectList { overflow-x: hidden; overflow-y: scroll;}
-	.ProjectList li { font-size: 20px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; } 
+	.ProjectList ul { list-style: none; }
+	.ProjectList li { padding: 10px 5px; display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: stretch; } 
 	/*.ProjectList li button { display: none; } */
 		.ProjectList li button { padding: 5px 10px; }
-		.ProjectList li .name { -webkit-box-flex: 1; padding-top: 10px; }
+		.ProjectList li .name { -webkit-box-flex: 1; padding-top: 10px; font-size: 20px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; }
 		.ProjectList li .count { padding: 12px 8px 0; }
 		.ProjectList li .sep { padding-top: 12px; }
 			.ProjectList li .count:last-child { margin-left: 10px; } 
@@ -99,9 +100,13 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList .completedTask { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
 		.TaskList .complete.c { width: 500px; } 
 	.TaskList .viewMore { text-align: center; padding: 15px 0;  }
-	.TaskList .help { line-height: 35px; margin-left: 60px; }
-		.TaskList .help .Icon { display: block; float: left; }
-		.TaskList .help:first-child { margin-top: 5px; margin-bottom: 10px; font-size: 16px; font-family: 'MarkerFelt-Thin'; letter-spacing: 2px; }
+
+ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-size: 14px; }
+	ul .Help .Icon { display: block; float: left; }
+	.ProjectList .Help .Icon { float: none; }
+	.ProjectList li.Help:first-child { padding: 2px 5px; border-width: 0 0 2px 0 !important; }
+	.ProjectList li.Help { padding: 2px 5px; border-width: 0 0 0 0 !important; }
+	ul .Help:first-child { margin-top: 5px; margin-bottom: 10px; font-size: 16px; font-family: 'MarkerFelt-Thin'; letter-spacing: 2px; }
 
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; position: absolute; top: 0; width: 100%; background: #fff; }
 	.Container > div { -webkit-box-flex: 1; }
