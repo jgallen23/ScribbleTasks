@@ -110,11 +110,26 @@ var AddTaskController = PageController.extend({
 			this.appendTask();
 		},
 		cancel: function(e) {
-			if (this.tasks.length != 0)
-				this.trigger("add", [this.tasks]);
-			this.clear();
-			//this.hide();
-			this.trigger("close");
+            var self = this;
+            var d = function(index) {
+                if (index == 0) {
+                    if (self.tasks.length != 0)
+                        self.trigger("add", [self.tasks]);
+                    self.clear();
+                    //self.hide();
+                    self.trigger("close");
+                }
+            }
+            if (this.scribble.dirty) {
+                var msg = "Are you sure you want to cancel this scribble?";
+                if (APP.browser.isPhoneGap) {
+                    navigator.notification.confirm(msg, d);
+                } else {
+                    if (confirm(msg)) d(0);
+                }
+            } else {
+                d(0);
+            }
 		},
 		undo: function(e) {
 			this.scribble.undo();

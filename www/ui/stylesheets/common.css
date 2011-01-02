@@ -101,7 +101,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList .viewMore { text-align: center; padding: 15px 0;  }
 	.TaskList .help { line-height: 35px; margin-left: 60px; }
 		.TaskList .help .Icon { display: block; float: left; }
-		.TaskList .help:first-child { margin-top: 5px; margin-bottom: 10px; font-size: 16px; font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; }
+		.TaskList .help:first-child { margin-top: 5px; margin-bottom: 10px; font-size: 16px; font-family: 'MarkerFelt-Thin'; letter-spacing: 2px; }
 
 .Container { height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch; position: absolute; top: 0; width: 100%; background: #fff; }
 	.Container > div { -webkit-box-flex: 1; }

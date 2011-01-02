@@ -8,6 +8,7 @@ var Scribble = View.extend({
 		this.readonly = readonly;
 		this.undos = [];
 		this.origin = [0,0];
+        this.dirty = false;
 		this.path = null;
 		this.canvas = this.find("canvas");
 		this.context = this.canvas.getContext('2d');
@@ -42,7 +43,8 @@ var Scribble = View.extend({
 		var getPoint = function(ev) {
 			var x,y;
 			if (self.offset == null) {
-				self.offset = [self.element.offsetLeft, self.element.offsetTop];
+                var margin = (window.innerWidth <= 480)?0:30;
+				self.offset = [self.element.offsetLeft + margin, self.element.offsetTop + margin];
 			}
 			if (ev.touches) {
 				x = ev.touches[0].clientX - self.offset[0] - window.scrollX;
@@ -76,6 +78,7 @@ var Scribble = View.extend({
 					points.push([x, y], [x+2, y+2]);
 				drawing = false;
 				moved = false;
+                self.dirty = true;
 				points.push(null);
 			}
 		}
