@@ -7,7 +7,7 @@
 				<button class="Icon clear" data-action="close"></button>
 			</header>
 			<menu>
-				<li>Project: 
+                <li><p>Move to Project:</p>
 					<select class="project">
 						{! for (var i = 0, c = projects.length; i < c; i++) { var proj = projects[i]; !}
 							<option value="{!= i !}" {!= (proj.key == task.projectKey)?"selected":"" !}>{!= proj.name !}</option>
@@ -15,7 +15,7 @@
 					</select>
 					</select>
 				</li>
-				<li><button class="Text" data-action="delete">Delete Task</button></li>
+				<li class="delete"><button class="Text" data-action="delete">Delete Task</button></li>
 			</menu>
 		</section>
 	</div>
