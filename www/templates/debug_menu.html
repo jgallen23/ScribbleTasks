@@ -1,19 +1,19 @@
 <div id="DebugMenu" class="Modal">
 	<div class="wrapper Popup">
 		<ul class="Toolbar">
-			<li><button class="Text" data-onClick="updateCounts">Update Counts</button></li>
-			<li><button class="Text" data-onClick="generateData">Gen Data</button></li>
-			<li><button class="Text" data-onClick="resetProjectKeys">Reset Project Keys</button></li>
-			<li><button class="Text" data-onClick="perfTest">Perf Test</button></li>
-			<li><button class="Text" data-onClick="backup">Backup</button></li>
-			<li><button class="Text" data-onClick="restore">Restore</button></li>
-			<li><button class="Text" data-onClick="close">Close</button></li>
+			<li><button class="Text" data-action="updateCounts">Update Counts</button></li>
+			<li><button class="Text" data-action="generateData">Gen Data</button></li>
+			<li><button class="Text" data-action="resetProjectKeys">Reset Project Keys</button></li>
+			<li><button class="Text" data-action="perfTest">Perf Test</button></li>
+			<li><button class="Text" data-action="backup">Backup</button></li>
+			<li><button class="Text" data-action="restore">Restore</button></li>
+			<li><button class="Text" data-action="close">Close</button></li>
 		</ul>
 		<div class="backup">
 			<textarea></textarea>
 		</div>
 		<div class="restore">
-			<button data-onClick="restoreNow">Restore</button>
+			<button data-action="restoreNow">Restore</button>
 			<textarea></textarea>
 		</div>
 	</div>

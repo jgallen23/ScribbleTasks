@@ -28,7 +28,7 @@ var TaskMenuController = Controller.extend({
 		this.view.render("jstTaskMenu", data);
 		this.view.find("select.project").addEventListener("change", this);
 	},
-	onClick: {
+	actions: {
 		close: function(e) {
 			this.hide();
 			this.trigger("close");

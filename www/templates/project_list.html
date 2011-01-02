@@ -2,15 +2,15 @@
 	<header>
 		<div class="title">Projects</div>
 		<ul class="Toolbar">
-			<!--<li><button class="Icon clear" data-onClick="clear"></button></li>-->
-			<!--<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>-->
-			<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
-			<li class="DebugOnly"><button class="Icon menu" data-onClick="debug"></button></li>
-			<li><button class="Icon search" data-onClick="search"></button></li>
-			<li><button class="Icon star hasCount" data-onClick="searchStarred"><span data-onClick="searchStarred">0</span></button></li>
-			<li><button class="Icon priority" data-priority="2" data-onClick="searchHighPriority">!</button></li>
-			<li><button class="Icon refresh" data-onClick="refresh"></button></li>
-			<li><button class="Icon addFolder" data-onClick="add"></button></li>
+			<!--<li><button class="Icon clear" data-action="clear"></button></li>-->
+			<!--<li><button class="Icon incomplete current" data-action="filterAll"></button></li>-->
+			<!--<li><button class="Icon complete" data-action="filterComplete"></button></li>-->
+			<li class="DebugOnly"><button class="Icon menu" data-action="debug"></button></li>
+			<li><button class="Icon search" data-action="search"></button></li>
+			<li><button class="Icon star hasCount" data-action="searchStarred"><span data-action="searchStarred">0</span></button></li>
+			<li><button class="Icon priority" data-priority="2" data-action="searchHighPriority">!</button></li>
+			<li><button class="Icon refresh" data-action="refresh"></button></li>
+			<li><button class="Icon addFolder" data-action="add"></button></li>
 		</ul>
 	</header>
 	<div class="ProjectList">	
@@ -19,37 +19,37 @@
 		<script type="text/html" id="jstProjectListView">
 			{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
 				<li>
-					<div class="name" data-key="{!= project.key !}" data-index="{!= i !}" data-onClick="project">{!= project.name !}</div>
+					<div class="name" data-key="{!= project.key !}" data-index="{!= i !}" data-action="project">{!= project.name !}</div>
 					<div class="count">{!= project.starCount !}</div>
 					<div class="sep">/</div>
 					<div class="count">{!= project.incompleteCount !}</div>
-					<button data-index="{!= i !}" class="Icon trash" data-onClick="delete"></button>
+					<button data-index="{!= i !}" class="Icon trash" data-action="delete"></button>
 				</li>
 			{! } !}
 		</script>
 	</div>
 	<footer>
 		<ul class="Toolbar">
-			<li><button class="Icon search" data-onClick="search"></button></li>
-			<li><button class="Icon star hasCount" data-onClick="searchStarred"><span data-onClick="searchStarred">0</span></button></li>
-			<li><button class="Icon priority" data-priority="2" data-onClick="searchHighPriority">!</button></li>
-			<li><button class="Icon refresh" data-onClick="refresh"></button></li>
-			<!--<li><button class="Icon clear" data-onClick="clear"></button></li>-->
-			<!--<li><button class="Icon incomplete current" data-onClick="filterAll"></button></li>-->
-			<!--<li><button class="Icon complete" data-onClick="filterComplete"></button></li>-->
-			<!--<li><button class="Icon add" data-onClick="add"></button></li>-->
+			<li><button class="Icon search" data-action="search"></button></li>
+			<li><button class="Icon star hasCount" data-action="searchStarred"><span data-action="searchStarred">0</span></button></li>
+			<li><button class="Icon priority" data-priority="2" data-action="searchHighPriority">!</button></li>
+			<li><button class="Icon refresh" data-action="refresh"></button></li>
+			<!--<li><button class="Icon clear" data-action="clear"></button></li>-->
+			<!--<li><button class="Icon incomplete current" data-action="filterAll"></button></li>-->
+			<!--<li><button class="Icon complete" data-action="filterComplete"></button></li>-->
+			<!--<li><button class="Icon add" data-action="add"></button></li>-->
 		</ul>
 		</footer>
 	<div id="SearchPopup" class="Modal">
 		<div class="wrapper Popup">
-			<header><div class="title">Search</div><button class="Icon clear" data-onClick="searchClose"></button></header>
+			<header><div class="title">Search</div><button class="Icon clear" data-action="searchClose"></button></header>
 			<ul>
-				<!--<li><button class="Text" data-onClick="searchStarred">Starred</button></li>-->
-				<!--<li><button class="Text" data-onClick="searchHighPriority">High Priority</button></li>-->
-				<li><button class="Text" data-onClick="searchMediumPriority">Medium Priority</button></li>
-				<li><button class="Text" data-onClick="searchIncomplete">Incomplete Tasks</button></li>
-				<li><button class="Text" data-onClick="searchOldTasks">Old Tasks</button></li>
-				<li class="DebugOnly"><button class="Text" data-onClick="searchNoProject">No Project</button></li>
+				<!--<li><button class="Text" data-action="searchStarred">Starred</button></li>-->
+				<!--<li><button class="Text" data-action="searchHighPriority">High Priority</button></li>-->
+				<li><button class="Text" data-action="searchMediumPriority">Medium Priority</button></li>
+				<li><button class="Text" data-action="searchIncomplete">Incomplete Tasks</button></li>
+				<li><button class="Text" data-action="searchOldTasks">Old Tasks</button></li>
+				<li class="DebugOnly"><button class="Text" data-action="searchNoProject">No Project</button></li>
 			</ul>
 		</div>
 	</div>

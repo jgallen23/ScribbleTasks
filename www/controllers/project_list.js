@@ -74,7 +74,7 @@ var ProjectListController = PageController.extend({
 			this.destroy();
 		});
 		/*this.hide();*/
-		this.onClick.searchClose.call(this);
+		this.actions.searchClose.call(this);
 		this.slideIn(searchController);
 		/*searchController.show();*/
 	},
@@ -83,7 +83,7 @@ var ProjectListController = PageController.extend({
 		this._super();
 		this.element.style.display = "-webkit-box";
 	},
-	onClick: {
+	actions: {
         refresh: function(e) {
             var self = this;
             this.view.find(".ProjectList ul").innerHTML = "";

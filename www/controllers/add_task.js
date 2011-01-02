@@ -81,7 +81,7 @@ var AddTaskController = PageController.extend({
 		}
 		this.clear();
 	},
-	onClick: {
+	actions: {
 		star: function(e) {
 			this.setStar(!this.star);
 		},

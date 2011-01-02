@@ -56,7 +56,7 @@ var ProjectController = PageController.extend({
 				break;
 		}
 	},
-	onClick: {
+	actions: {
 		menu: function(e) {
 			var self = this;
 			var index = e.target.getAttribute("data-index");

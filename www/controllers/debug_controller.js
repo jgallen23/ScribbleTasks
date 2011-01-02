@@ -7,7 +7,7 @@ var DebugController = Controller.extend({
 	show: function() {
 		this.element.style.display = "-webkit-box";
 	},
-	onClick: {
+	actions: {
 		updateCounts: function() {
 			APP.debug.updateCounts();
 		},
