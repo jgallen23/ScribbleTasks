@@ -47,7 +47,7 @@ header, footer {  height: 50px; display: -webkit-box; -webkit-box-orient: horizo
 	header .title {  -webkit-box-flex: 1; display: -webkit-box; -webkit-box-orient: horizontal; padding-left: 10px; } 
 		header .title { font-family: 'MarkerFelt-Thin'; letter-spacing: 3px; background: transparent; border: 0; font-size: 22px; color: #000 }
 		header input.title { -webkit-appearance: none; } 
-		header .Toolbar li { padding-right: 5px; }
+		header .Toolbar li { padding-right: 10px; }
 
 footer.buttons .PriorityChooser { bottom: 45px; } 
 
@@ -110,8 +110,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.Project .TaskList { -webkit-box-flex: 1; }
 	.Project .incomplete,
 	.Icon.star.hasCount { background-position: left center; }
-	.Icon.incomplete.hasCount { width: 60px; padding-left: 30px; }
-	.Icon.hasCount { width: auto; padding: 3px 0 0 25px; }
+	.Icon.incomplete.hasCount { padding-left: 30px; }
+	.Icon.hasCount { width: auto; padding: 3px 5px 0 25px; }
 	button.hasCount span:before { content: "(" }
 	button.hasCount span:after { content: ")" }
 
