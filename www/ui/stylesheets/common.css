@@ -169,3 +169,7 @@ ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-siz
 
 
 }
+
+.iPhoneVersionMinor1 .Icon.hasCount,
+.iPhoneVersionMinor0 .Icon.hasCount { text-align: right; width: 60px; }
+.iPhoneVersionMinor1 .TaskList .buttons .Icon.star { -webkit-mask-position: 7px 7px; }

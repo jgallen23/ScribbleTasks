@@ -13,7 +13,7 @@
 		<script src="http://{{ remote }}:8080/target/target-script.js"></script>
 		{% endif %}
 	</head>
-    <body {% if debug %}class="Debug"{% endif %}>
+    <body class="iPhoneVersionMajor4 iPhoneVersionMinor1 {% if debug %} Debug{% endif %}">
 		<div id="Wrapper" class="Wrapper"><div id="Wrapper2" class="Wrapper">
 			{% include "project_list.html" %}	
 			{% include "search_results.html" %}	

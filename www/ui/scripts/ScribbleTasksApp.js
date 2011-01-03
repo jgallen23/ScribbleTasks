@@ -5,6 +5,12 @@ var ScribbleTasksApp = Application.extend({
 		if (this.browser.isMobile) {
 			self.disableScrollingPermanently();
 		}
+		if (this.browser.isPhoneGap) {
+			var s = DeviceInfo.version.split(".");
+			console.log(s);
+			elem.addClass(document.body, "iPhoneVersionMajor"+s[0]);
+			elem.addClass(document.body, "iPhoneVersionMinor"+s[1]);
+		}
 		this.resize(window.innerWidth, window.innerHeight);
 		this.debug = debugUtils;
 		this.notificationCenter.bind("task.propertySet", function() { self.taskPropertySet.apply(self, arguments)});
