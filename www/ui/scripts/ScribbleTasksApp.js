@@ -89,7 +89,9 @@ var ScribbleTasksApp = Application.extend({
 			this.updateBadge();
 		}
 	},
-	taskPropertySet: function(task, property, value) {
+	taskPropertySet: function(task, property, value, oldValue) {
+		if (value == oldValue)
+			return;
 		switch (property) {
 			case 'star':
 				var val = (value)?1:-1;

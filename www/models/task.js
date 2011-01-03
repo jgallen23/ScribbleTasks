@@ -36,14 +36,14 @@ var Task = Model.extend({
 		if(this.path)// && !this.bounds)
 			this._updateDimensions();
 	},
-	_propertySet: function(prop, value) {
+	_propertySet: function(prop, value, oldValue) {
+		if (APP)
+			APP.notificationCenter.trigger("task.propertySet", [this, prop, value, oldValue]);
 		this._data.modifiedOn = new Date().getTime();
 		this._super(prop, value);
 		if (prop == "path") {
 			this._updateDimensions();
 		}
-		if (APP)
-			APP.notificationCenter.trigger("task.propertySet", [this, prop, value]);
 	},
 	_updateDimensions: function() {
 		var b = this._getBounds(this._data.path);
@@ -53,7 +53,9 @@ var Task = Model.extend({
 		//this.save();
 	},
 	save: function(cb) {
-		Task.data.save(this, cb);
+		Task.data.save(this, function(task) {
+			if (cb) cb(task);
+	   	});
 	},
 	complete: function() {
 		this.completedOn = new Date().getTime();
@@ -68,8 +70,8 @@ var Task = Model.extend({
 		return this._data.star;
 	},
 	_setStar: function(value) {
+		this._propertySet("star", value, this._data.star);
 		this._data.star = value;
-		this._propertySet("star", value);
 	},
 	_getBounds: function(path) {
 		var minX = 999, maxX = 0, minY = 999, maxY = 0;

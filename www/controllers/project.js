@@ -280,8 +280,8 @@ var ProjectController = PageController.extend({
 			var task = tasks[index];
 			if (!(task instanceof Task)) { //New Task
 				task = new Task(task);
-				self.allTasks.push(task);
 				self.project.addTask(task, function(project, task) {
+					self.allTasks.push(task);
 					add(tasks, index+1, cb);
 				});
 			} else { // Update Task
@@ -291,7 +291,9 @@ var ProjectController = PageController.extend({
 			}
 		}
 		add(tasks, 0, function() {
-			self.loadTasks();
+			setTimeout(function() {
+				self.loadTasks();
+			}, 50);
 		});
 	},
 	starTask: function(task) {
