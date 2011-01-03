@@ -98,7 +98,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList menu { padding: 0; list-style: none; }
 		.TaskList menu li { text-align: right; } 
 	.TaskList .completedTask { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
-		.TaskList .complete.c { width: 500px; } 
+		.TaskList .completedTask.c { width: 500px; } 
 	.TaskList .viewMore { text-align: center; padding: 15px 0;  }
 
 ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-size: 14px; }
