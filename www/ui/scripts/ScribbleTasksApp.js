@@ -7,7 +7,6 @@ var ScribbleTasksApp = Application.extend({
 		}
 		if (this.browser.isPhoneGap) {
 			var s = DeviceInfo.version.split(".");
-			console.log(s);
 			elem.addClass(document.body, "iPhoneVersionMajor"+s[0]);
 			elem.addClass(document.body, "iPhoneVersionMinor"+s[1]);
 		}
