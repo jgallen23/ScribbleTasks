@@ -37,7 +37,7 @@ button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin
 		.Icon.priority[data-priority="2"] { color: #8f0606; } 
 		.Icon.priority[data-priority="-1"] { color: #ccc; } 
 
-.PriorityChooser { background: #fff; display: none; position: absolute; z-index: 100; padding: 5px 5px 0 5px; margin-top: -15px; }
+.PriorityChooser { background: #fff; display: none; position: absolute; z-index: 100; padding: 5px 5px 0 5px; margin-top: -15px; width: 200px; }
 	.PriorityChooser button { margin-right: 5px; padding: 0 0 0 5px; }
 		/*.PriorityChooser button span { margin-left: -7px;  }*/
 	.Project .PriorityChooser { margin-top: -40px; }
@@ -166,6 +166,8 @@ ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-siz
 
 	.TaskList .completedTask { left: 60px; }
 		.TaskList .completedTask.c { width: 250px; } 
+
+	footer.buttons .PriorityChooser { margin-left: -50px; }
 
 
 }
