@@ -1,5 +1,5 @@
 body { /*background: url(../../images/skins/paper/bg.jpg);*/ background:#484848 }
-#Wrapper { margin: 30px; }
+#Wrapper { margin: 15px; }
 #Wrapper2 { background: #fff; }
 .TaskList, .ProjectList { background: url(../images/skins/paper/red-line.png) top 45px repeat-y; }
 .Wrapper { -webkit-box-shadow: 2px 2px 7px #000; }

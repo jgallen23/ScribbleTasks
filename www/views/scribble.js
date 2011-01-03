@@ -43,7 +43,7 @@ var Scribble = View.extend({
 		var getPoint = function(ev) {
 			var x,y;
 			if (self.offset == null) {
-                var margin = (window.innerWidth <= 480)?0:30;
+                var margin = (window.innerWidth <= 480)?0:15;
 				self.offset = [self.element.offsetLeft + margin, self.element.offsetTop + margin];
 			}
 			if (ev.touches) {
