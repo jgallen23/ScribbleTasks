@@ -15,6 +15,7 @@ var ScribbleTasksApp = Application.extend({
 		this.notificationCenter.bind("task.propertySet", function() { self.taskPropertySet.apply(self, arguments)});
 		this.notificationCenter.bind("project.taskAdded", function() { self.projectTaskAdded.apply(self, arguments)});
 		this.notificationCenter.bind("project.taskRemoved", function() { self.projectTaskRemoved.apply(self, arguments)});
+		this.notificationCenter.bind("project.removed", function() { self.projectRemoved.apply(self, arguments)});
 		this.currentController = new ProjectListController("ProjectList");
 		this.runTests();
 	},
@@ -78,11 +79,15 @@ var ScribbleTasksApp = Application.extend({
 		var v = localStorage[key] || 0;
 		localStorage.setItem(key, parseInt(v)+value);
 	},
+	projectRemoved: function(project) {
+		this.offsetKey("totalStarCount", -project.starCount);
+		this.updateBadge();
+	},
 	projectTaskAdded: function(project, task) {
 		this.offsetKey(String.format("taskCount_{0}", project.key), 1);
 		if (task.star) {
 			this.offsetKey(String.format("starCount_{0}", task.projectKey), 1);
-			this.offsetKey(String.format("totalStarCount", task.projectKey), 1);
+			this.offsetKey("totalStarCount", 1);
 			this.updateBadge();
 		}
 	},
@@ -90,7 +95,7 @@ var ScribbleTasksApp = Application.extend({
 		this.offsetKey(String.format("taskCount_{0}", project.key), -1);
 		if (task.star) {
 			this.offsetKey(String.format("starCount_{0}", task.projectKey), -1);
-			this.offsetKey(String.format("totalStarCount", task.projectKey), -1);
+			this.offsetKey("totalStarCount", -1);
 			this.updateBadge();
 		}
 	},
@@ -101,7 +106,7 @@ var ScribbleTasksApp = Application.extend({
 			case 'star':
 				var val = (value)?1:-1;
 				this.offsetKey(String.format("starCount_{0}", task.projectKey), val);
-				this.offsetKey(String.format("totalStarCount", task.projectKey), val);
+				this.offsetKey("totalStarCount", val);
 				this.updateBadge();
 				break;
 			case 'completedOn':
@@ -109,7 +114,7 @@ var ScribbleTasksApp = Application.extend({
 				this.offsetKey(String.format("taskCount_{0}", task.projectKey), val);
 				if (task.star) {
 					this.offsetKey(String.format("starCount_{0}", task.projectKey), val);
-					this.offsetKey(String.format("totalStarCount", task.projectKey), val);
+					this.offsetKey("totalStarCount", val);
 					this.updateBadge();
 				}
 				break;

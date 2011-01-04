@@ -145,7 +145,7 @@ var ProjectListController = PageController.extend({
 			var project = this.projects[parseInt(e.target.getAttribute("data-index"))];
 			var d = function(index) {
 				if (index == 0) {
-					Project.data.remove(project, function() {
+					project.remove(function() {
 						self.loadProjects();
 					});
 				}

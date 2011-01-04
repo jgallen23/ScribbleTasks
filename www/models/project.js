@@ -106,6 +106,13 @@ var Project = Model.extend({
 				cb(project1, project2, task);
 			});
 		});
+	},
+	remove: function(cb) {
+		var self = this;
+		Project.data.remove(this, function() {
+			APP.notificationCenter.trigger("project.removed", [self]);
+			if (cb) cb();
+		});
 	}
 });
 Project.sort = {
