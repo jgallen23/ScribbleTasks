@@ -12,7 +12,7 @@ var SearchController = ProjectController.extend({
 	},
 	loadTasks: function() {
 		var self = this;
-		this.view.find("[data-type='title']").value = this.searchFilterName;
+		this.view.find("[data-type='title']").innerHTML = this.searchFilterName;
         var filter = function() {
             self.tasks = self.allTasks.filter(self.searchFilter);
 			self.tasks.sort(self.sort);

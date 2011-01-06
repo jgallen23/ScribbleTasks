@@ -101,6 +101,12 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 		.TaskList .completedTask.c { width: 500px; } 
 	.TaskList .viewMore { text-align: center; padding: 15px 0;  }
 
+#SearchResults li.Help { display: none; }
+#SearchResults li.Help:first-child,
+#SearchResults li.Help:nth-child(3),
+#SearchResults li.Help:nth-child(4),
+#SearchResults li.Help:last-child { display: block; }
+
 ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-size: 14px; }
 	ul .Help .Icon { display: block; float: left; }
 	.ProjectList .Help .Icon { float: none; }
