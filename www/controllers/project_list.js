@@ -40,13 +40,14 @@ var ProjectListController = PageController.extend({
 	_render: function() {
 		var self = this;
 		var data = { projects: this.projects };
-		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data);
-		this.view.find(".Loading").style.display = "none";
-		this.view.findAll("button.star span", function(elem) { elem.innerHTML = localStorage['totalStarCount'] || 0 });
-		this.trigger("loaded");
-		if (this.scroller) {
-			setTimeout(function () { self.scroller.refresh() }, 100)
-		}
+		this.view.renderAt("div.ProjectList ul", "jstProjectListView", data, function() {
+			self.view.find(".Loading").style.display = "none";
+			self.view.findAll("button.star span", function(elem) { elem.innerHTML = localStorage['totalStarCount'] || 0 });
+			self.trigger("loaded");
+			if (self.scroller) {
+				setTimeout(function () { self.scroller.refresh() }, 100)
+			}
+		});
 	},
 	showProject: function(project) {
 		var projectController = new ProjectController("Project", project);

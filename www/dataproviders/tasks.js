@@ -1,6 +1,10 @@
 var TaskDataProvider = Class.extend({
 	init: function() {
-		this.provider = new Lawnchair({ adaptor: 'webkit', table: 'tasks'});
+        var error = function(err) {
+            console.log("error");
+            console.log("SQL ERROR" + err.code);
+        }
+		this.provider = new Lawnchair({ adaptor: 'webkit', table: 'tasks', onError: error });
 	},
 	find: function(cb) {
 		var self = this;
@@ -50,7 +54,7 @@ var TaskDataProvider = Class.extend({
 	},
 	remove: function(task, cb) {
 		this.provider.remove(task.key, function(data) {
-			cb();
+			if (cb) cb();
 		});
 	}
 });

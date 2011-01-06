@@ -8,6 +8,16 @@ var DebugController = Controller.extend({
 		this.element.style.display = "-webkit-box";
 	},
 	actions: {
+        oldTasks: function() {
+            Task.data.find(function(tasks) {
+                tasks = tasks.filter(Task.filters.complete);
+                if (confirm(tasks.length)) {
+                    for (var i = 0, c = 100; i < c; i++) {
+                        Task.data.remove(tasks[i]);
+                    }
+                }
+            });
+        },
 		updateCounts: function() {
 			APP.debug.updateCounts();
 		},
