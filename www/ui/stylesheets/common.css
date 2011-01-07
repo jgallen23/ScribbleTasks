@@ -5,13 +5,13 @@ body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; 
 #Wrapper { position: relative; }
 
 button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin: 0; }
-	.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 20px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; display: inline-block; } 
+	.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 25px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; display: inline-block; } 
 	.Icon.off { opacity: .3 }
-	.Icon.star { background-image: url(../images/icons/star.png); }
-		.Toolbar .Icon.star { background-image: url(../images/icons/star.png); }
+	/*.Icon.star { opacity: 0.8 }*/
+	/*.Icon.star.off { opacity: 0.8 }*/
 
-	.TaskList .buttons .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #000; -webkit-mask-origin: border; border: 7px solid #fff; }
-		.TaskList .buttons .Icon.star.off { background: #ddd; }
+	/*.TaskList .buttons .Icon.star { -webkit-mask-image: url(../images/icons/star.png); -webkit-mask-repeat: no-repeat; -webkit-mask-position: 6px 7px; -webkit-mask-size: 22px 22px; background-image: 0; background: #000; -webkit-mask-origin: border; border: 7px solid #fff; }*/
+	/*.TaskList .buttons .Icon.star.off { background: #ddd; }*/
 
 	/*
 	.Icon.edit { background-image: url(../images/icons/pencil.png); }
@@ -91,7 +91,7 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	.TaskList li.taskItem .buttons { display: -webkit-box; -webkit-box-orient: vertical; width: 35px; -webkit-box-pack: center; height: 100%; }
 		.TaskList li.taskItem .buttons .star { } 
 	.TaskList li.taskItem { display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-align: center; /*-webkit-box-shadow: 0 3px 3px #ccc; */; padding: 5px 10px; /*-webkit-transition: opacity 1s ease-in-out;*/ position: relative; height: 150px; overflow: hidden; } 
-	.TaskList .buttons button.Icon { height: 35px; width: 35px; background-size: 20px; }
+	.TaskList .buttons button.Icon { height: 35px; width: 35px; background-size: 25px; }
 	.TaskList .name { line-height: 50px }
 	.TaskList .task { -webkit-box-flex: 1; margin-left: 20px; padding: 5px 0 5px 15px; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
@@ -120,9 +120,8 @@ ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-siz
 .Project { display: -webkit-box; -webkit-box-orient: vertical; height: 100%; left: 5000px}
 	.Project .TaskList { -webkit-box-flex: 1; }
 	.Project .incomplete,
-	.Icon.star.hasCount { background-position: left center; }
-	.Icon.incomplete.hasCount { padding-left: 30px; }
-	.Icon.hasCount { width: auto; padding: 3px 5px 0 25px; }
+	/*.Icon.star.hasCount { background-position: left center; }*/
+	.Icon.hasCount { width: auto; padding: 3px 5px 0 35px; }
 	button.hasCount span:before { content: "(" }
 	button.hasCount span:after { content: ")" }
 
@@ -179,5 +178,4 @@ ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-siz
 }
 
 .iPhoneVersionMinor1 .Icon.hasCount,
-.iPhoneVersionMinor0 .Icon.hasCount { text-align: right; width: 60px; }
-.iPhoneVersionMinor1 .TaskList .buttons .Icon.star { -webkit-mask-position: 7px 7px; }
+.iPhoneVersionMinor0 .Icon.hasCount { text-align: right; width: 65px; }

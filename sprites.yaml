@@ -4,7 +4,7 @@ sprite_path: ../images/sprites
 sprites:
   - name: icons
     base_dir: www/ui/images/icons/
-    scale: 0.3125
+    scale: 0.391
     offset_y: 7
     offset_x: 7
     images:
@@ -52,4 +52,10 @@ sprites:
         bottom_padding: 40
       - file: reload.png
         selector: .Icon.refresh
+        bottom_padding: 40
+      - file: star.png
+        selector: .Icon.star
+        bottom_padding: 40
+      - file: star-empty.png
+        selector: .Icon.star.off
         bottom_padding: 40
