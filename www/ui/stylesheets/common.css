@@ -6,7 +6,7 @@ body { -webkit-user-select:none; -webkit-text-size-adjust:none;font-size: 14px; 
 
 button { -webkit-appearance: none; font-size: 14px; border: 0; padding:0; margin: 0; }
 	.Icon { background: 0; -webkit-box-shadow: none; -webkit-border-radius: 0; background-size: 25px; background-repeat: no-repeat; background-position: center center; height: 35px; width: 35px; display: inline-block; } 
-	.Icon.off { opacity: .3 }
+	/*.Icon.off { opacity: .3 }*/
 	/*.Icon.star { opacity: 0.8 }*/
 	/*.Icon.star.off { opacity: 0.8 }*/
 
