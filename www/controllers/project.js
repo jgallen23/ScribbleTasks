@@ -63,6 +63,7 @@ var ProjectController = PageController.extend({
 			var task = this.tasks[index];
 			var taskMenu = new TaskMenuController("TaskMenu", this.project, task);
 			var close = function() {
+				self.view.find("[data-type='title']").removeAttribute('readonly');
 				taskMenu.hide();
 				taskMenu.destroy();
 			}
@@ -79,6 +80,7 @@ var ProjectController = PageController.extend({
 			taskMenu.bind("close", function() {
 				close();
 			});
+			this.view.find("[data-type='title']").setAttribute("readonly", "readonly");
 			taskMenu.show();
 		},
 		viewMore: function(e) {
