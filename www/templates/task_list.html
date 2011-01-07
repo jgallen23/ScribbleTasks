@@ -38,7 +38,7 @@
 	{! } !}
 
 	<menu>
-		{! if (projects) { !}
+		{! if (projects && projects[task.projectKey]) { !}
 			<li class="projectName">{!= projects[task.projectKey].name !}</li>
 		{! } !}
 		<li><button class="Icon edit" data-action="task"></button></li>
