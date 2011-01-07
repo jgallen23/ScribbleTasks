@@ -28,9 +28,9 @@
 			{! if (projects.length == 0) { !}
 				<li class="Help">You have no projects</li>
 				<li class="Help"><button class="Icon addFolder" data-action="add"></button> Creates a new Project</li>
-				<li class="Help"><div class="Icon search"></div> Searches your tasks</li>
-				<li class="Help"><div class="Icon star"></div> Shows all of your starred tasks</li>
-				<li class="Help"><div class="Icon priority" data-priority="2">!</div> Shows your high priority tasks</li>
+				<li class="Help"><button class="Icon search" data-action="search"></button> Searches your tasks</li>
+				<li class="Help"><button class="Icon star" data-action="searchStarred"></button> Shows all of your starred tasks</li>
+				<li class="Help"><button class="Icon priority" data-priority="2" data-action="searchHighPriority">!</button> Shows your high priority tasks</li>
 			{! } !}
 		</script>
 	</div>
