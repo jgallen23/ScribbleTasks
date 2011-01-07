@@ -97,8 +97,8 @@ footer.buttons .PriorityChooser { bottom: 45px; }
 	body.Mobile .TaskList input[type='checkbox'] { display: none; }
 	.TaskList menu { padding: 0; list-style: none; }
 		.TaskList menu li { text-align: right; } 
-	.TaskList .completedTask { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 60px; width: 0; left: 100px; /*-webkit-transition: width .5s ease-in-out;*/}
-		.TaskList .completedTask.c { width: 500px; } 
+	.TaskList .completedTask { height: 4px; opacity: 0.8; background: #000; -webkit-border-radius: 2px; position: absolute; top: 50px; left: 0; width: 0; /*-webkit-transition: width .5s ease-in-out;*/}
+		.TaskList .completedTask.c { width: 100%; } 
 	.TaskList .viewMore { text-align: center; padding: 15px 0;  }
 
 #SearchResults li.Help { display: none; }
@@ -170,8 +170,8 @@ ul .Help { line-height: 35px; padding-left: 60px; font-family: 'Arial'; font-siz
 	#AddScribble { border: 0; }
 	#AddTask .buttons .Icon { margin-top: 0; } 
 
-	.TaskList .completedTask { left: 60px; }
-		.TaskList .completedTask.c { width: 250px; } 
+	.TaskList .completedTask { }
+		.TaskList .completedTask.c { width: 100%; } 
 
 	footer.buttons .PriorityChooser { margin-left: -50px; }
 
