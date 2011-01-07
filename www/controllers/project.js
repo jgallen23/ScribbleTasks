@@ -225,6 +225,8 @@ var ProjectController = PageController.extend({
 			self.view.findAll("button.incomplete span", function(elem, i) { elem.innerHTML = self.project.incompleteCount; });
 			self.view.findAll("button.star span", function(elem, i) { elem.innerHTML = self.project.starCount; });
 
+			self.enableEvents();
+
 			if (self.scroller) {
 				setTimeout(function () { 
 					self.scroller.refresh();
@@ -238,7 +240,6 @@ var ProjectController = PageController.extend({
 				}
 				self.scrollTo = false;
 			}
-			self.enableEvents();
 		});
 	},
 	drawScribbles: function(height) {

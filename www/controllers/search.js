@@ -51,6 +51,7 @@ var SearchController = ProjectController.extend({
             }
 
             self.view.findAll("button.incomplete span", function(elem, i) { elem.innerHTML = self.tasks.length; });
+			self.enableEvents();
 
             if (self.scroller) {
                 setTimeout(function () { 
