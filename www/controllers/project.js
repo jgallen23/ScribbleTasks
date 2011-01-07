@@ -236,6 +236,7 @@ var ProjectController = PageController.extend({
 				}
 				self.scrollTo = false;
 			}
+			self.enableEvents();
 		});
 	},
 	drawScribbles: function(height) {
@@ -298,6 +299,7 @@ var ProjectController = PageController.extend({
 		});
 	},
 	starTask: function(task) {
+		this.disableEvents();
 		var self = this;
 		task.star = !task.star;
 		self.loadTasks();
@@ -305,6 +307,7 @@ var ProjectController = PageController.extend({
 		});
 	},
 	setPriority: function(task, priority) {
+		this.disableEvents();
 		var self = this;
 		task.priority = priority;
 		self.loadTasks();
@@ -312,6 +315,7 @@ var ProjectController = PageController.extend({
 		});
 	},
 	completeTask: function(taskElement) {
+		this.disableEvents();
 		var self = this;
 		var index = taskElement.getAttribute("data-index");
 		var task = self.tasks[index];
