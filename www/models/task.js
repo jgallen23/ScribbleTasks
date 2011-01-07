@@ -110,12 +110,12 @@ Task.filters = {
 	}
 }
 Task.sort = {
-	starred: function(a, b) {
+	star: function(a, b) {
 		var s1 = (a.star)?1:0;
 		var s2 = (b.star)?1:0;
 		var star = s2 - s1;
 		if (star == 0) {
-			return b.modifiedOn - a.modifiedOn;
+			return Task.sort.incomplete(a, b);
 		}
 		return star;
 	},
