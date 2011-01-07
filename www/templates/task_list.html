@@ -18,14 +18,15 @@
 	{! } !}
 </script>
 <script type="text/html" id="jstTaskView">
-	<div class="buttons">
+	<menu class="buttons">
+		<li><button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-action="star"></button></li>
+		<li><button class="Icon priority" data-priority="{!= task.priority !}" data-action="priority">!</button>
+			<section class="PriorityChooser Popup">
+				{!= template("jstPriorityChooser", { key: index }) !}
+			</section>
+		</li>
+	</menu>
 		<input type="checkbox" data-action="complete" {!= (task.isComplete)?"checked":"" !}/>
-		<button data-index="{!= index !}" class="Icon star {!= (!task.star)?"off":"" !}" data-action="star"></button>
-		<button class="Icon priority" data-priority="{!= task.priority !}" data-action="priority">!</button>
-		<section class="PriorityChooser Popup">
-			{!= template("jstPriorityChooser", { key: index }) !}
-		</section>
-	</div>
 	{! if (task.name) { !}
 	<div class="task" data-action="task">
 		{!= task.name !}

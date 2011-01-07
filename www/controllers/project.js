@@ -1,5 +1,5 @@
 var TaskHeight = 165;
-var MinTaskHeight = 90;
+var MinTaskHeight = 100;
 var TaskScale = 0.4;
 var PageSize = 15;
 var ProjectController = PageController.extend({
