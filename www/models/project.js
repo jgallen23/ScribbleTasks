@@ -109,9 +109,11 @@ var Project = Model.extend({
 	},
 	remove: function(cb) {
 		var self = this;
-		Project.data.remove(this, function() {
-			APP.notificationCenter.trigger("project.removed", [self]);
-			if (cb) cb();
+		Task.data.provider.removeMany(self.taskIds, function() {
+			Project.data.remove(self, function() {
+				APP.notificationCenter.trigger("project.removed", [self]);
+				if (cb) cb();
+			});
 		});
 	}
 });

@@ -1,8 +1,7 @@
 var TaskDataProvider = Class.extend({
 	init: function() {
-        var error = function(err) {
-            console.log("error");
-            console.log("SQL ERROR" + err.code);
+        var error = function(trans, err) {
+            console.log("SQL ERROR" + err.message);
         }
 		this.provider = new Lawnchair({ adaptor: 'webkit', table: 'tasks', onError: error });
 	},
