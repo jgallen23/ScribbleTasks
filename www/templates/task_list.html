@@ -33,14 +33,14 @@
 	</div>
 	{! } else { !}
 	<div id="Scribble_{!= task.key !}" class="task scribble">
+		{! if (projects && projects[task.projectKey]) { !}
+			<li class="projectName">{!= projects[task.projectKey].name !}</li>
+		{! } !}
 		<canvas></canvas>
 	</div>
 	{! } !}
 
 	<menu>
-		{! if (projects && projects[task.projectKey]) { !}
-			<li class="projectName">{!= projects[task.projectKey].name !}</li>
-		{! } !}
 		<li><button class="Icon edit" data-action="task"></button></li>
 		<li><button class="Icon menu" data-index="{!= index !}" data-action="menu"></button></li>
 	</menu>

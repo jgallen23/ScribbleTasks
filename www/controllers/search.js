@@ -32,15 +32,15 @@ var SearchController = ProjectController.extend({
 		var tasks = this.getVisibleTasks();
 		var data = { tasks: tasks, hasMore: (tasks.length != this.tasks.length), projects: this.projects };
 
-		var itemHeight = TaskHeight;
+        var minHeight = MinTaskHeight + 20;
 
 		this.view.find(".Loading").style.display = "none";
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data, function() {
             if (self.tasks.length != 0) {
-                self.drawScribbles(itemHeight);
+                self.drawScribbles();
                 self.view.findAll("div.TaskList li.taskItem", function(item, i) {
                     var size = self.tasks[i].height * TaskScale;
-                    size = (size < MinTaskHeight)?MinTaskHeight:size+10;
+                    size = (size < minHeight)?minHeight:size+20;
                     item.style.height = size + "px";
                     addSwipeHandler(item, function(element, direction) {
                         if (direction == "right") {
@@ -50,7 +50,7 @@ var SearchController = ProjectController.extend({
                 });
             }
 
-            self.view.findAll("button.incomplete span", function(elem, i) { elem.innerHTML = self.tasks.length; });
+            self.view.findAll("header button.hasCount span", function(elem, i) { elem.innerHTML = self.tasks.length; });
 			self.enableEvents();
 
             if (self.scroller) {
