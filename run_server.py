@@ -19,7 +19,7 @@ def generate_template(debug = False, phonegap = False, remote = ''):
     data = {
         'phonegap': phonegap,
         'debug': debug,
-        'appui_files': uimin.get_file_list('ext/appui/config.yaml', 'js', 'app.lawnchair', debug = debug),
+        'appui_files': uimin.get_file_list('ext/appui/config.yaml', 'js', 'app.persistence', debug = debug),
         'appui_path': "ext/appui" if debug else "ui/compressed",
         'js_files': uimin.get_file_list('config.yaml', 'js', 'scribbletasks', debug = debug),
         'js_path': '' if debug else 'ui/compressed',
