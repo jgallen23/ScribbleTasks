@@ -1,6 +1,6 @@
 <script type="text/html" id="jstProjectView">
 	{! for (var i = 0, c = tasks.length; i < c; i++) { var task = tasks[i]; !}
-	<li class="taskItem" data-key="{!= task.key !}" data-index="{!= i !}">
+	<li class="taskItem" data-key="{!= task.id !}" data-index="{!= i !}">
 		{!= template("jstTaskView", { index: i, task: task, projects: projects }) !}
 	</li>
 	{! } !}	
@@ -32,7 +32,7 @@
 		{!= task.name !}
 	</div>
 	{! } else { !}
-	<div id="Scribble_{!= task.key !}" class="task scribble">
+	<div id="Scribble_{!= task.id !}" class="task scribble">
 		{! if (projects && projects[task.projectKey]) { !}
 			<li class="projectName">{!= projects[task.projectKey].name !}</li>
 		{! } !}

@@ -1,4 +1,18 @@
-var Project = Model.extend({
+var Project = persistence.define('Project', {
+	name: 'TEXT',
+	createdOn: 'DATE',
+	modifiedOn: 'DATE'
+});
+Project.hasMany('tasks', Task, 'project');
+Project.prototype.getStarCount = function() {
+	return localStorage.getItem(String.format("starCount_{0}", this.id)) || 0;
+}
+Project.prototype.getIncompleteCount = function() {
+	return localStorage.getItem(String.format("taskCount_{0}", this.id)) || 0;
+}
+
+
+var ProjectOld = Model.extend({
 	init: function(initial) {
 		this._data = {
 			key: '',
@@ -138,4 +152,4 @@ Project.sort = {
 			return 0;
 	}
 }
-Project.data = new ProjectDataProvider();
+//Project.data = new ProjectDataProvider();

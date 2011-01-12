@@ -31,7 +31,9 @@ var ProjectListController = PageController.extend({
 	},
 	loadProjects: function() {
 		var self = this;
-		Project.data.find(function(projects) {
+		/*Project.data.find(function(projects) {*/
+		Project.all().list(null, function(projects) {
+			console.log(projects);
 			projects.sort(Project.sort.starred);
 			self.projects = projects;
 			self._render();

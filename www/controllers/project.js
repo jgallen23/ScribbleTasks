@@ -187,7 +187,7 @@ var ProjectController = PageController.extend({
 			self._render();
 		};
 		if (!self.allTasks) {
-			this.project.getTasks(function(tasks) {
+			this.project.tasks.list(null, function(tasks) {
 				self.allTasks = tasks;
 				filter();
 			});
@@ -222,8 +222,8 @@ var ProjectController = PageController.extend({
 			elem.removeClass(self.view.findAll("#Project .Toolbar li button"), "current");
 			elem.addClass(self.view.findAll("button."+self.filter), "current");
 
-			self.view.findAll("button.incomplete span", function(elem, i) { elem.innerHTML = self.project.incompleteCount; });
-			self.view.findAll("button.star span", function(elem, i) { elem.innerHTML = self.project.starCount; });
+			self.view.findAll("button.incomplete span", function(elem, i) { elem.innerHTML = self.project.getIncompleteCount(); });
+			self.view.findAll("button.star span", function(elem, i) { elem.innerHTML = self.project.getStarCount(); });
 
 			self.enableEvents();
 
@@ -248,7 +248,7 @@ var ProjectController = PageController.extend({
 		for (var i = 0, c = tasks.length; i < c; i++) {
 			var task = tasks[i];
 			if (task.path) {
-				var elem = document.getElementById("Scribble_"+task.key);
+				var elem = document.getElementById("Scribble_"+task.id);
 				var s = new Scribble(elem, true);
 				s.scale(TaskScale, TaskScale);
 				s.load(task.path, task.bounds[0]);
@@ -285,15 +285,16 @@ var ProjectController = PageController.extend({
 			var task = tasks[index];
 			if (!(task instanceof Task)) { //New Task
 				task = new Task(task);
-				self.project.addTask(task, function(project, task) {
-					self.allTasks.push(task);
-					add(tasks, index+1, cb);
-				});
+				self.project.tasks.add(task);
 			} else { // Update Task
-				task.save(function(task) {
-					add(tasks, index+1, cb);
-				});
+				task.markDirty('path');
+				/*task.save(function(task) {*/
+				/*add(tasks, index+1, cb);*/
+				/*});*/
 			}
+			persistence.flush(function() {
+				add(tasks, index+1, cb);
+			});
 		}
 		add(tasks, 0, function() {
 			setTimeout(function() {

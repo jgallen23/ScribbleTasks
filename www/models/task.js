@@ -1,4 +1,19 @@
-var Task = Model.extend({
+var Task = persistence.define('Task', {
+	name: 'TEXT',
+	star: 'BOOL',
+	priority: 'INT',
+	path: 'JSON',
+	bounds: 'JSON',
+	height: 'INT',
+	width: 'INT',
+	completedOn: 'DATE',
+	createdOn: 'DATE',
+	modifiedOn: 'DATE'
+});
+Task.index(['star', 'completedOn']);
+
+
+var TaskOld = Model.extend({
 	init: function(initial) {
 		this._data = {
 			key: '',
@@ -91,7 +106,7 @@ var Task = Model.extend({
 		return bounds;
 	}
 });
-Task.data = new TaskDataProvider();
+//Task.data = new TaskDataProvider();
 Task.filters = {
 	incomplete: function(t) {
 		return !t.isComplete;

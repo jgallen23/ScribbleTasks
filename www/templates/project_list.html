@@ -18,10 +18,10 @@
 		<script type="text/html" id="jstProjectListView">
 			{! for (var i = 0, c = projects.length; i < c; i++) { var project = projects[i]; !}
 				<li>
-					<div class="name" data-key="{!= project.key !}" data-index="{!= i !}" data-action="project">{!= project.name || "Project" !}</div>
-					<div class="count">{!= project.starCount !}</div>
+					<div class="name" data-key="{!= project.id !}" data-index="{!= i !}" data-action="project">{!= project.name || "Project" !}</div>
+					<div class="count">{!= project.getStarCount() !}</div>
 					<div class="sep">/</div>
-					<div class="count">{!= project.incompleteCount !}</div>
+					<div class="count">{!= project.getIncompleteCount() !}</div>
 					<button data-index="{!= i !}" class="Icon trash" data-action="delete"></button>
 				</li>
 			{! } !}

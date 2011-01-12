@@ -24,6 +24,7 @@ var ScribbleTasksApp = Application.extend({
 			elem.addClass(document.body, "iPhoneVersionMajor"+s[0]);
 			elem.addClass(document.body, "iPhoneVersionMinor"+s[1]);
 		}
+		this.initDB();
 		this.resize(window.innerWidth, window.innerHeight);
 		this.debug = debugUtils;
 		this.notificationCenter.bind("task.propertySet", function() { self.taskPropertySet.apply(self, arguments)});
@@ -32,6 +33,10 @@ var ScribbleTasksApp = Application.extend({
 		this.notificationCenter.bind("project.removed", function() { self.projectRemoved.apply(self, arguments)});
 		this.currentController = new ProjectListController("ProjectList");
 		this.runTests();
+	},
+	initDB: function() {
+		persistence.store.websql.config(persistence, 'ScribbleTasks', 'ScribbleTasks Database', 5 * 1024 * 1024);
+		persistence.schemaSync();
 	},
 	resize: function(width, height) {
 		this._super(width, height);
