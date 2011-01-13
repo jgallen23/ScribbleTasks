@@ -7,14 +7,14 @@ var ProjectListController = PageController.extend({
 
 		if (APP.browser.isMobile) {
 			this.scroller = new iScroll(this.view.find(".ProjectList ul"), { checkDOMChanges: false, desktopCompatibility: false });
-			window.addEventListener('orientationchange', this);
+			window.addEventListener('orientationChanged', this);
 		}
 
 		this.view.find(".Loading").style.display = "block";
 		this.loadProjects();
 	},
 	destroy: function() {
-		window.removeEventListener('orientationchange', this);
+		window.removeEventListener('orientationChanged', this);
 		if (this.scroller)
 			this.scroller.destroy();
 		this.scroller = null;
@@ -24,7 +24,7 @@ var ProjectListController = PageController.extend({
 		this._super(e);
 		var self = this;
 		switch (e.type) {
-			case "orientationchange":
+			case "orientationChanged":
 				setTimeout(function () { self.scroller.refresh(); }, 0);
 				break;
 		}
