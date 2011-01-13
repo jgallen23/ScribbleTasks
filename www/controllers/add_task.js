@@ -6,9 +6,23 @@ var AddTaskController = PageController.extend({
 		var container = this.view.find("#AddScribble");
 		container.appendChild(document.createElement("canvas"));
 		this.scribble = new Scribble(container);
+		if (APP.browser.isMobile) {
+			window.addEventListener('orientationChanged', this);
+		}
 		this.tasks = [];
 	},
+	handleEvent: function(e) {
+		this._super(e);
+		var self = this;
+		switch (e.type) {
+			case "orientationChanged":
+				console.log("redraw");
+				self.redraw(self.scribble.toJSON());
+				break;
+		}	
+	},
 	destroy: function() {
+		window.removeEventListener('orientationChanged', this);
 		this.view.find("#AddScribble").innerHTML = "";
 		this.star = null;
 		this.scribble = null;
@@ -24,21 +38,25 @@ var AddTaskController = PageController.extend({
 	setTask: function(scribble) {
 		APP.currentController = this;
 		//this.element.style.top = window.scrollY+"px";
-		var elem = this.view.find('#AddScribble');
-		this.scribble.canvas.height = elem.clientHeight;
-		this.scribble.canvas.width = elem.clientWidth;
 		//this._super();
 		APP.disableScrolling();
 		if (scribble) {
 			this.setPriority(scribble.priority);
 			this.setStar(scribble.star);
 			this.loadedScribble = scribble;
-			this.scribble.load(scribble.path);	
 		} else {
 			this.setPriority(0);
 		}
+		this.redraw((this.loadedScribble)?this.loadedScribble.path:null);
 		var data = { key: 'add_task', priority: 0 }
 		this.view.renderAt(this.view.find(".PriorityChooser"), "jstPriorityChooser", data);
+	},
+	redraw: function(path) {
+		var elem = this.view.find('#AddScribble');
+		this.scribble.canvas.height = elem.clientHeight;
+		this.scribble.canvas.width = elem.clientWidth;
+		console.log(elem.clientWidth);
+		if (path) this.scribble.load(path);	
 	},
 	show: function() {
 		this.element.style.display = "-webkit-box";

@@ -32,7 +32,7 @@ var SearchController = ProjectController.extend({
 		var tasks = this.getVisibleTasks();
 		var data = { tasks: tasks, hasMore: (tasks.length != this.tasks.length), projects: this.projects };
 
-        var minHeight = MinTaskHeight + 20;
+        var minHeight = MinTaskHeight + 30;
 
 		this.view.find(".Loading").style.display = "none";
 		this.view.renderAt("div.TaskList ul", "jstProjectView", data, function() {
@@ -40,7 +40,7 @@ var SearchController = ProjectController.extend({
                 self.drawScribbles();
                 self.view.findAll("div.TaskList li.taskItem", function(item, i) {
                     var size = self.tasks[i].height * TaskScale;
-                    size = (size < minHeight)?minHeight:size+20;
+                    size = (size < minHeight)?minHeight:size+30;
                     item.style.height = size + "px";
                     addSwipeHandler(item, function(element, direction) {
                         if (direction == "right") {
