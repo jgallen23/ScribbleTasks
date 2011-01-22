@@ -459,6 +459,43 @@
 			};
 			name = "Ad Hoc";
 		};
+		C9CFB6A212EB968600561312 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 307D28A1123043350040C0FA /* PhoneGapBuildSettings.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Greg Allen";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-Obj-C",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "06071689-9179-410B-B328-BDEB77EC274C";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(PHONEGAPLIB)/Classes/JSON $(PHONEGAPLIB)/Classes";
+			};
+			name = Distribution;
+		};
+		C9CFB6A312EB968600561312 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "~/code/ScribbleTasks/ScribbleTasks/Entitlements.plist";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ScribbleTasks_Prefix.pch;
+				INFOPLIST_FILE = "ScribbleTasks-Info.plist";
+				PRODUCT_NAME = ScribbleTasks;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -467,6 +504,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				C9CFB6A312EB968600561312 /* Distribution */,
 				C9CDEB7712D29F9F00CACE0E /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -477,6 +515,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				C9CFB6A212EB968600561312 /* Distribution */,
 				C9CDEB7612D29F9F00CACE0E /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
